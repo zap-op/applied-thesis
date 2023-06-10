@@ -1,0 +1,31 @@
+\documentclass[12pt]{article}
+% Packages
+\usepackage[utf8]{vietnam} % Enable vi language compile 
+\usepackage[a4paper]{geometry} % Define document
+\usepackage{graphicx} % Display picture
+\usepackage{subcaption} % Use subfigure in \begin ({minipage} used to be)
+\usepackage{tabularx} % Support advance table
+\usepackage{ltablex} % Table into next page
+\usepackage{makecell} % Create header of table in {tabularx}
+\usepackage{tabto} % Support \tab command to tab text 0.5cm (similar to  \hspace{5mm})
+\usepackage{amssymb} % Use \checkmark to represent V mark
+% ----------------------------------------
+
+\keepXColumns % Keep X column in ltablex to avoid \item missing error
+
+\input{macros/paragraph.tex} % Add space below \paragraph
+\input{macros/tabularx.tex} % Verticle center text in cell
+\input{macros/thead.tex} % Set \thead to Bold text
+\input{macros/newline-content-table.tex} % Add space \newline
+\input{macros/xmark.tex} % Use new command \xmark to represent X mark
+
+\newcommand{\applicationname}{Owlens\:}
+
+\begin{document}
+
+\input{title-page.tex}
+\input{sections/section-1_General infomation.tex}
+\input{sections/section-2_Contents of implementation.tex}
+\input{sections/reference-section_Reference.tex} % \bibliography in this section is commented to revent "No /cite founds" build error
+
+\end{document}
