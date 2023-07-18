@@ -18,7 +18,7 @@ Vì vậy, nhóm đề xuất giải pháp quét với bốn phương pháp có 
 \par
 
 Khi sử dụng giải pháp được đề xuất ở trên, người dùng có thể tạo các phiên quét bằng cách cung cấp các địa chỉ URL hoặc IP trang web cần quét và chọn các phương pháp quét.
-Từ đó hệ thống sẽ thực hiện quét các phiên này với ZAP và thu được kết quả quét tương ứng của từng địa chỉ với từng phương pháp quét đã chọn. 
+Từ đó hệ thống sẽ thực hiện quét các phiên này với ZAP và thu được kết quả quét tương ứng của từng địa chỉ với từng phương pháp quét đã chọn.
 Kết quả quét sẽ được lưu trữ, quản lý và hiển thị cho người dùng.
 Với các phương pháp quét với Spider và Ajax Spider thì người dùng có thể xem được quá trình quét trong thời gian thực trong một số kịch bản nhất định.
 
@@ -35,7 +35,7 @@ Cùng với đó, người dùng khi quét một mục tiêu thường sẽ có 
 Vì vậy đó cũng là lý do chúng em đưa ra giải pháp này.
 \par
 
-Một trong những chức năng tiên quyết của giải pháp này là thêm mới mục 
+Một trong những chức năng tiên quyết của giải pháp này là thêm mới mục
 Mục tiêu thêm mới sẽ cần các thông tin như tên mục tiêu, địa chỉ URL hay IP của mục tiêu và các nhãn dán mà người dùng muốn gán cho mục tiêu.
 Có thể gán nhiều nhãn dán khác nhau cho một mục tiêu.
 Các nhãn dán sẽ được đề xuất tự động khi người dùng đang thực hiện nhập thông tin tìm kiếm mục tiêu.
@@ -98,62 +98,99 @@ Theo như kiến trúc, tầng ứng dụng chứa hai phần là ứng dụng c
 Các service bao gồm: nhóm các ZAP service, dịch vụ xác thực (Authentication service), dịch vụ cơ sở dữ liệu (Database service) và dịch vụ ghi nhật ký (Logging service).
 \par
 
-\paragraph{Nhóm ZAP service}
+\myparagraph{Nhóm ZAP service}
+\tab \tab Nhóm các ZAP service bao gồm hai service chính là dịch vụ quản lý ZAP (ZAP Monitor service) và dịch vụ tương tác với ứng dụng ZAP (ZAP Client service), cuối cùng là lớp tiến trình ZAP (ZAP Process).
 
-\tab Nhóm các ZAP service bao gồm hai service chính là dịch vụ quản lý ZAP (ZAP Monitor service) và dịch vụ tương tác với ứng dụng ZAP (ZAP Client service), cuối cùng là lớp tiến trình ZAP (ZAP Process).
+\begin{itemize}
+    \item \textbf{ZAP Process:} Mỗi tiến trình ZAP sẽ được khởi tạo từ lớp ZAP Process, gọi là ZAP Process instance.
+          Mỗi instance là process chạy ngầm trong hệ thống (trình nền - daemon).
+          Các instance này hoạt động lập với nhau trên các cổng (port) khác nhau như một ứng dụng được khởi chạy riêng biệt.
+    \item \textbf{ZAP Client service:} Service có nhiệm vụ tạo và quản lý các ZAP client.
+          Mỗi ZAP client được service quản lý qua một mã định danh duy nhất (UUID - Universally Unique Identifier) và tham chiếu đến mỗi ZAP Process instance khác nhau.
+          ZAP client có vai trò tương tác, điều khiển ZAP process thực hiện các tác vụ của ZAP qua phương thức HTTP.
+          Vì ZAP process chỉ là một process chạy ngầm trong hệ thống và tách biệt với ứng dụng chính nên ZAP Client service là một trong những service quan trọng của ứng dụng chính.
+          Theo như giải pháp thì mỗi phương pháp quét sẽ cần mỗi ZAP process có hành vi, cấu hình khác nhau.
+          Nhóm chia thành hai loại là:
+          \begin{itemize}
+              \item \textbf{ZAP Client Shared:} Client này dành cho các phương pháp quét có thể sử dụng chung ZAP process instance, kết quả các phiên quét tuy sử dụng chung instance nhưng không ảnh hưởng đến nhau.
+                    Cặp client shared và ZAP process và luôn luôn tồn tại xuyên suốt quá trình sống của ứng dụng
+              \item \textbf{ZAP Client Private:} Client này dành cho các phương pháp quét không thể sử dụng chung ZAP process instance.
+          \end{itemize}
+    \item \textbf{ZAP Monitor service:} Service có vai trò đại diện cho nhóm ZAP service.
+          Cài đặt của các giải pháp của ứng dụng chính chỉ giao tiếp với service này.
+          Service có nhiệm vụ tạo, dừng và quản lý các phiên quét của người dùng; nắm giữ và quản lý quá trình quét của các phiên quét, giúp cho hệ thống có thể kết nối và biết được các thông tin về trạng thái và tiến độ của phiên quét; lưu trữ các dữ liệu cần thiết khi hoạt động với ZAP như thông tin phiên quét, thông tin kết quả với Database service.
+\end{itemize}
 
+\myparagraph{ZAP Pool}
+\tab \tab Là tập hợp các ZAP process instance chạy ngầm, mỗi instance sẽ chạy trên một cổng (port) khác nhau và được tham chiếu bởi các ZAP client của ZAP Client service.
 
-ZAP Process: Mỗi tiến trình ZAP sẽ được khởi tạo từ lớp ZAP Process, gọi là ZAP Process instance. Mỗi instance là process chạy ngầm trong hệ thống (trình nền - daemon). Các instance này hoạt động lập với nhau trên các cổng (port) khác nhau như một ứng dụng được khởi chạy riêng biệt.
+\myparagraph{Authentication service}
+\tab \tab Service thực hiện các nhiệm vụ liên quan đến xác thực người dùng.
+Các nhiệm vụ như xác minh lại token nhận được từ ứng dụng web từ bên thứ ba là Google Identify, đọc ghi dữ liệu người dùng với Database service.
 
-ZAP Client service: Service có nhiệm vụ tạo và quản lý các ZAP client. Mỗi ZAP client được service quản lý qua một mã định danh duy nhất (UUID - Universally Unique Identifier) và tham chiếu đến mỗi ZAP Process instance khác nhau. ZAP client có vai trò tương tác, điều khiển ZAP process thực hiện các tác vụ của ZAP qua phương thức HTTP. Vì ZAP process chỉ là một process chạy ngầm trong hệ thống và tách biệt với ứng dụng chính nên ZAP Client service là một trong những service quan trọng của ứng dụng chính. Theo như giải pháp thì mỗi phương pháp quét sẽ cần mỗi ZAP process có hành vi, cấu hình khác nhau. Nhóm chia thành hai loại là: 
+\myparagraph{Logging service}
+\tab \tab Service có trách nhiệm ghi lại nhật kí (log) cho toàn bộ ứng dụng, bao gồm cả các ZAP process chạy ngầm.
+Vì các ZAP process được chạy ngầm nằm ngoài phạm bị của ứng dụng và nhu cầu lấy log của các process này là cần thiết nên service này được cài đặt.
+Log của các service khác nhau được phân biệt bằng tên loại khác nhau, các tên này được sử dụng là tiền tố khi hiển thị trong bảng điều khiển (console).
+Chủ yếu có bốn loại log hiện có trong ứng dụng là:
 
-ZAP Client Shared: Client này dành cho các phương pháp quét có thể sử dụng chung ZAP process instance, kết quả các phiên quét tuy sử dụng chung instance nhưng không ảnh hưởng đến nhau. Cặp client shared và ZAP process và luôn luôn tồn tại xuyên suốt quá trình sống của ứng dụng
+\begin{itemize}
+    \item \textbf{Main process log:} Các log này trình bày các tác vụ, lỗi phát sinh bên trong ứng dụng chính, đa phần nằm trong ZAP Monitor service.
+    \item \textbf{Http request log:} Các log này trình bày thông tin chi tiết các yêu cầu (request) được gửi đến ứng dụng ở mọi tuyến (route).
+    \item \textbf{User session process log:} Các log này trình bày thông tin các kết nối của người dùng với các phiên quét.
+          Mỗi phiên quét sẽ có quá trình quét, các quá trình quét sẽ được quản lý bởi ZAP Monitor service, thông tin của phiên quét là trạng thái và tiến độ sẽ được gửi đến người dùng theo thời gian thực (stream).
+          Thông tin các kết nối stream của người dùng sẽ được ghi lại trong loại log này.
+    \item \textbf{ZAP process log:} Log này được nhúng vào mỗi ZAP process khi chúng vừa được khởi tạo.
+          Các log này trình bày thông tin của chính ZAP process đó in ra trong console của nó.
+          Theo như nghiệp vụ của giải pháp, loại log này còn có một biến thể nữa là ZAP private process log.
+          ZAP process log bình thường sẽ ghi lại các log trong ZAP shared process instance, còn ZAP private process log sẽ ghi lại các log trong các ZAP private process instance.
+\end{itemize}
 
-ZAP Client Private: Client này dành cho các phương pháp quét không thể sử dụng chung ZAP process instance.
+\myparagraph{Database service}
+\tab \tab Service có nhiệm vụ là kết nối với MongoDB Atlas và đại diện thực hiện các thao tác đọc ghi, truy vấn với cơ sở dữ liệu đã kết nối.
 
-ZAP Monitor service: Service có vai trò đại diện cho nhóm ZAP service. Cài đặt của các giải pháp của ứng dụng chính chỉ giao tiếp với service này. Service có nhiệm vụ tạo, dừng và quản lý các phiên quét của người dùng; nắm giữ và quản lý quá trình quét của các phiên quét, giúp cho hệ thống có thể kết nối và biết được các thông tin về trạng thái và tiến độ của phiên quét; lưu trữ các dữ liệu cần thiết khi hoạt động với ZAP như thông tin phiên quét, thông tin kết quả với Database service.
+\subsubsection{Thiết kế kiến trúc hệ thống tầng dữ liệu}
 
-ZAP Pool: Là tập hợp các ZAP process instance chạy ngầm, mỗi instance sẽ chạy trên một cổng (port) khác nhau và được tham chiếu bởi các ZAP client của ZAP Client service.
+\tab Tầng dữ liệu là tầng cơ sở dữ liệu, nơi các dữ liệu của hệ thống được lưu trữ.
+Các dữ liệu được lưu trữ trong hệ thống là thông tin định danh người dùng, các dữ liệu liên quan đến mục tiêu và phiên quét.
+\par
 
+Cơ sở dữ liệu MongoDB là một cơ sở dữ liệu hướng tài liệu, thuộc dạng cơ sở dữ liệu phi quan hệ (NoSQL).
+Bản ghi dữ liệu trong MongoDB được ghi đệm (cache) lên RAM (Random Access Memory) khi có truy vấn đến nó, hạn chế truy cập vào ổ cứng nên tốc độ đọc ghi cao.
+\par
 
+Nhóm đề xuất sử dụng MongoDB làm cơ sở dữ liệu do các tính chất trên phù hợp với giải pháp ứng dụng.
+Giải pháp ứng dụng yêu cầu ghi nhiều loại dữ liệu có cấu trúc linh hoạt, đa dạng.
+Các dữ liệu có cấu trúc linh hoạt tiêu biểu như:
 
-Authentication service: Service thực hiện các nhiệm vụ liên quan đến xác thực người dùng. Các nhiệm vụ như xác minh lại token nhận được từ ứng dụng web từ bên thứ ba là Google Identify, đọc ghi dữ liệu người dùng với Database service.
+\begin{itemize}
+    \item Bản ghi cấu hình và kết quả của phiên quét của các phương thức quét khác nhau.
+    \item Bản ghi thông tin phiên quét trong quá trình quét cần đọc ghi nhiều lần.
+\end{itemize}
 
-Logging service: Service có trách nhiệm ghi lại nhật kí (log) cho toàn bộ ứng dụng, bao gồm cả các ZAP process chạy ngầm. Vì các ZAP process được chạy ngầm nằm ngoài phạm bị của ứng dụng và nhu cầu lấy log của các process này là cần thiết nên service này được cài đặt. Log của các service khác nhau được phân biệt bằng tên loại khác nhau, các tên này được sử dụng là tiền tố khi hiển thị trong bảng điều khiển (console). Chủ yếu có bốn loại log hiện có trong ứng dụng là:
+Tiếp theo, như đã nhắc đến ở trên, bản ghi dữ liệu của MongoDB có thể cache lên RAM để tăng tốc truy vấn dữ liệu và mặc định sử dụng 50% RAM trên hệ thống.
+Cùng với việc hệ thống thường phải hoạt động với cường độ cao, sử dụng 80 đến 90% hiệu suất Bộ xử lý trung tâm (Central Processing Unit, viết tắt là CPU) và 60 đến 70% hiệu suất RAM, khi thực hiện nhiều phiên quét cùng lúc. 
+Vậy nên rủi ro dữ liệu không được ghi một cách đúng đắn khi hệ thống hoạt động hiệu suất cao là có tồn tại.
+\par
 
-Main process log: Các log này trình bày các tác vụ, lỗi phát sinh bên trong ứng dụng chính, đa phần nằm trong ZAP Monitor service.
+Để giải quyết vấn đề này, nhóm đề xuất sử dụng MongoDB Atlas là một dịch vụ cơ sở dữ liệu đám mây (cloud database service).
+MongoDB Atlas là một cloud database dành riêng và thuộc sự quản lý trực tiếp của MongoDB.
+Về bản chất, database được triển khai hoàn toàn trên VPC là Google Cloud Platform, AWS hay Microsoft Azure dựa theo tùy chọn khi khởi tạo.
+Người dùng có thể kết nối, quản lý, tương tác qua trung gian MongoDB Atlas.
+Như hình x, ứng dụng chính tương tác với database trên VPC bằng trình điều khiển MongoDB (MongoDB driver) qua phương thức TCP/IP socket.
+\par
 
-Http request log: Các log này trình bày thông tin chi tiết các yêu cầu (request) được gửi đến ứng dụng ở mọi tuyến (route).
+Về cơ bản, nhóm triển khai MongoDB trên một máy dịch vụ khác, không triển khai chung với hệ thống để tránh các vấn đề hiệu suất hệ thống ảnh hưởng đến toàn vẹn dữ liệu.
+Chuyển sự hạn chế bởi cấu hình của MongoDB sang máy khác nghĩa là không còn giữ nguyên được tính nhanh chóng (cache) và các tương tác với database phải thông qua giao thức TCP/IP socket (chức năng cache vẫn hoạt động bình thường ở VPC).
+Bên cạnh lợi ích toàn vẹn dữ liệu, việc lựa chọn giải pháp này cũng mang lại nhiều lợi ích khác như tăng tính bảo mật, mở rộng, linh hoạt, tiện lợi, dễ dàng quản lý và không cần nhiều bận tâm về các vấn đề của database trên hệ thống chính.
 
-User session process log: Các log này trình bày thông tin các kết nối của người dùng với các phiên quét. Mỗi phiên quét sẽ có quá trình quét, các quá trình quét sẽ được quản lý bởi ZAP Monitor service, thông tin của phiên quét là trạng thái và tiến độ sẽ được gửi đến người dùng theo thời gian thực (stream). Thông tin các kết nối stream của người dùng sẽ được ghi lại trong loại log này.
+\subsection{Thiết kế giao diện hệ thống}
 
-ZAP process log: Log này được nhúng vào mỗi ZAP process khi chúng vừa được khởi tạo. Các log này trình bày thông tin của chính ZAP process đó in ra trong console của nó. Theo như nghiệp vụ của giải pháp, loại log này còn có một biến thể nữa là ZAP private process log. ZAP process log bình thường sẽ ghi lại các log trong ZAP shared process instance, còn ZAP private process log sẽ ghi lại các log trong các ZAP private process instance.
+\subsubsection{Giao diện trang chủ}
 
-Database service: Service có nhiệm vụ là kết nối với MongoDB Atlas và đại diện thực hiện các thao tác đọc ghi, truy vấn với cơ sở dữ liệu đã kết nối.
-
-3.2.1.3 Thiết kế kiến trúc hệ thống tầng dữ liệu
-Tầng dữ liệu là tầng cơ sở dữ liệu, nơi các dữ liệu của hệ thống được lưu trữ. Các dữ liệu được lưu trữ trong hệ thống là thông tin định danh người dùng, các dữ liệu liên quan đến mục tiêu và phiên quét.
-
-Cơ sở dữ liệu MongoDB là một cơ sở dữ liệu hướng tài liệu, thuộc dạng cơ sở dữ liệu phi quan hệ (NoSQL). Bản ghi dữ liệu trong MongoDB được ghi đệm (cache) lên RAM (Random Access Memory) khi có truy vấn đến nó, hạn chế truy cập vào ổ cứng nên tốc độ đọc ghi cao.
-
-Nhóm đề xuất sử dụng MongoDB làm cơ sở dữ liệu do các tính chất trên phù hợp với giải pháp ứng dụng. Giải pháp ứng dụng yêu cầu ghi nhiều loại dữ liệu có cấu trúc linh hoạt, đa dạng. Các dữ liệu có cấu trúc linh hoạt tiêu biểu như:
-
-Bản ghi cấu hình và kết quả của phiên quét của các phương thức quét khác nhau.
-
-Bản ghi thông tin phiên quét trong quá trình quét cần đọc ghi nhiều lần.
-
-Tiếp theo, như đã nhắc đến ở trên, bản ghi dữ liệu của MongoDB có thể cache lên RAM để tăng tốc truy vấn dữ liệu và mặc định sử dụng 50% RAM trên hệ thống. Cùng với việc hệ thống thường phải hoạt động với cường độ cao, sử dụng 80 đến 90% hiệu suất Bộ xử lý trung tâm (Central Processing Unit, viết tắt là CPU) và 60 đến 70% hiệu suất RAM, khi thực hiện nhiều phiên quét cùng lúc. Vậy nên rủi ro dữ liệu không được ghi một cách đúng đắn khi hệ thống hoạt động hiệu suất cao là có tồn tại.
-
-Để giải quyết vấn đề này, nhóm đề xuất sử dụng MongoDB Atlas là một dịch vụ cơ sở dữ liệu đám mây (cloud database service). MongoDB Atlas là một cloud database dành riêng và thuộc sự quản lý trực tiếp của MongoDB. Về bản chất, database được triển khai hoàn toàn trên VPC là Google Cloud Platform, AWS hay Microsoft Azure dựa theo tùy chọn khi khởi tạo. Người dùng có thể kết nối, quản lý, tương tác qua trung gian MongoDB Atlas. Như hình x, ứng dụng chính tương tác với database trên VPC bằng trình điều khiển MongoDB (MongoDB driver) qua phương thức TCP/IP socket.
-
-
-[2]
-Về cơ bản, nhóm triển khai MongoDB trên một máy dịch vụ khác, không triển khai chung với hệ thống để tránh các vấn đề hiệu suất hệ thống ảnh hưởng đến toàn vẹn dữ liệu. Chuyển sự hạn chế bởi cấu hình của MongoDB sang máy khác nghĩa là không còn giữ nguyên được tính nhanh chóng (cache) và các tương tác với database phải thông qua giao thức TCP/IP socket (chức năng cache vẫn hoạt động bình thường ở VPC). Bên cạnh lợi ích toàn vẹn dữ liệu, việc lựa chọn giải pháp này cũng mang lại nhiều lợi ích khác như tăng tính bảo mật, mở rộng, linh hoạt, tiện lợi, dễ dàng quản lý và không cần nhiều bận tâm về các vấn đề của database trên hệ thống chính.
-
-3.2.2 Thiết kế giao diện hệ thống
-3.2.2.1 Giao diện trang chủ
-Màn hình trang chủ là nơi người dùng sẽ tiếp cận đầu tiên khi truy cập vào tên miền gốc của ứng dụng. Màn hình có hai thành phần chính là giới thiệu chung về ứng dụng và phần cho phép người dùng sử dụng thử chức năng quét với phương thức Spider, không cần đăng nhập xác minh. Giao diện màn hình trang chủ được thiết kế như sau:
-
+\tab Màn hình trang chủ là nơi người dùng sẽ tiếp cận đầu tiên khi truy cập vào tên miền gốc của ứng dụng.
+Màn hình có hai thành phần chính là giới thiệu chung về ứng dụng và phần cho phép người dùng sử dụng thử chức năng quét với phương thức Spider, không cần đăng nhập xác minh.
+Giao diện màn hình trang chủ được thiết kế như sau:
 
 Bảng mô tả giao diện màn hình trang chủ:
 
@@ -191,15 +228,20 @@ Dùng để điều hướng đến trang đăng nhập và đăng ký của h�
 
 Phần giới thiệu dùng thử
 
-Giới thiệu thông tin phần dùng thử. Người dùng có thể sử dụng thử chức năng quét với phương thức Spider mà không cần đăng nhập xác minh. 
+Giới thiệu thông tin phần dùng thử. Người dùng có thể sử dụng thử chức năng quét với phương thức Spider mà không cần đăng nhập xác minh.
 
 6
 
-Phần dùng thử 
+Phần dùng thử
 
 Người dùng dùng thử bằng cách nhập URL hoặc IP và chọn nút “Scan“ để bắt đầu phiên quét. Kết quả quét sẽ được hiển thị trực tiếp theo thời gian thực ngay trên cùng màn hình trang chủ, trong phần dùng thử. Vì không cần xác minh nên đối với kết quả quét xong, kết quả sẽ biến mất khi người dùng di chuyển ra khỏi màn hình trang chủ. Đối với kết quả đang được hiển thị trực tiếp, đang trong quá trình quét thì kết quả sẽ biến mất khi người dùng di chuyển quá 60 giây khỏi màn hình trang chủ.
 
-3.2.2.2 Giao diện ứng dụng web
+\subsubsection{Giao diện ứng dụng web}
+
+\tab Màn hình ứng dụng web là nơi người dùng sẽ tiếp cận sau khi đăng nhập vào ứng dụng. 
+Màn hình này là nơi người dùng thực hiện hầu hết mọi tác vụ có trong ứng dụng.
+Màn hình có hai thành phần chính là bảng tùy chọn và bản điều khiển.
+Giao diện ứng dụng web được thiết kế như sau:
 
 STT
 
@@ -237,10 +279,11 @@ Thanh truy vết địa chỉ
 
 Cho phép người dùng theo dõi vị trí hiện tại trong ứng dụng và di chuyển lại truy vết trước đó.
 
-3.3 Sơ đồ phần mềm hệ thống
-3.3.1 Sơ đồ use case
+\section{Sơ đồ phần mềm hệ thống}
 
-Mô tả chi tiết ở phụ lục ……
+\subsection{Sơ đồ use case}
+
+Bảng mô tả
 
 STT
 
