@@ -255,149 +255,173 @@ Với mỗi loại quét mà hệ thống hỗ trợ, nhóm thiết kế các ph
 \par
 
 \begin{itemize}
-  \item Đối với ZAP Spider, nhóm tạo phương thức spiderStart() trong service để xử lý tác vụ này. Phương thức có tham số clientId được xử lý đặc biệt. Nếu tham số clientId được chỉ định rõ ràng thì phiên quét sẽ được start trên chính ZAP Client đó. Nếu tham số clientId không chỉ định rõ ràng thì phiên quét sẽ được start trên ZAP Client Shared, khi đó phương thức sẽ trả về một đối tượng có chứa thứ tự của phiên quét trong ZAP instance (gọi là scan id, tên thuộc tính là scanId). Nếu tham số config không được chỉ định thì phương thức sẽ sử dụng cấu hình mặc định trong ZAP instance. Cấu hình chi tiết cho phiên quét của ZAP Spider được mô tả trong bảng xx ở dưới.
-  bảng cấu hình phương thức quét ZAP Spider
+  \item Đối với ZAP Spider, nhóm tạo phương thức spiderStart() trong service để xử lý tác vụ này.
+  Phương thức có tham số clientId được xử lý đặc biệt. 
+  Nếu tham số clientId được chỉ định rõ ràng thì phiên quét sẽ được start trên chính ZAP Client đó. 
+  Nếu tham số clientId không chỉ định rõ ràng thì phiên quét sẽ được start trên ZAP Client Shared, khi đó phương thức sẽ trả về một đối tượng có chứa thứ tự của phiên quét trong ZAP instance (gọi là scan id, tên thuộc tính là scanId). 
+  Nếu tham số config không được chỉ định thì phương thức sẽ sử dụng cấu hình mặc định trong ZAP instance. 
+  Cấu hình chi tiết cho phiên quét của ZAP Spider được mô tả trong bảng \ref{tab:ConfigSpider} ở dưới.
 
-  
 \begin{tabularx}{\textwidth}{|>{\hsize=.15\hsize\centering\let\newline
-  \\\arraybackslash}X|>{\hsize=.30\hsize\raggedright\let\newline
-  \\\arraybackslash}X|>{\hsize=.45\hsize\raggedright\let\newline
+  \\\arraybackslash}X|>{\hsize=.15\hsize\centering\let\newline
+  \\\arraybackslash}X|>{\hsize=.60\hsize\raggedright\let\newline
   \\\arraybackslash}X|}
   \hline
-  \textbf{STT}
-   & \textbf{Use Case}
-   & \textbf{Mô tả}
+  \thead{Tên tham số}
+   & \thead{Giá trị \\ mặc định}
+   & \thead{Mô tả}
   \\
   \hline
-  
-  \caption{Mô tả sơ đồ Use Case}
-  \label{tab:UseCase}
+  maxChildren
+&
+  0
+  & 
+  Tham số sử dụng để giới hạn số lượng URL con được tìm kiếm tại mỗi nút trong cây tìm kiếm. Tham số bằng 0 thể hiện số nút tìm kiếm là không giới hạn.
+  \\
+   \hline
+  recurse
+  &
+  true
+  &
+  Tham số chỉ định cách thức tìm kiếm liên kết. Nếu giá trị là "true", Spider sẽ tìm kiếm các liên kết trên các trang con của trang web hiện tại. Nếu giá trị là "false", Spider chỉ tìm kiếm các liên kết trên trang web hiện tại mà không tìm kiếm các trang con.
+  \\
+   \hline
+  contextName
+  &
+  ““
+  &
+  Tham số chỉ định tên của bối cảnh (context). Context là một cấu hình bao gồm các quy tắc như bao gồm (include) hoặc loại trừ (exclude) các URL có liên quan đến URL có trong quy tắc. Các cấu được lưu sẵn với tên, gọi là contextName. Đặt giá trị contextName là tên context đã lưu sẵn để sử dụng cấu hình.
+  \\
+   \hline
+  subtreeOnly
+  &
+  true
+  &
+  Tham số chỉ định các thức truy cập các tài nguyên nằm dưới điểm bắt đầu. Nếu giá trị là “true“, Spider sẽ chỉ tìm kiếm các liên kết và trang web con của trang web bắt đầu.
+   \\
+   \hline 
+  \caption{Cấu hình phương thức quét ZAP Spider}
+  \label{tab:ConfigSpider}
 \end{tabularx}
-
-
-Tên tham số
-
-Giá trị mặc định
-
-Mô tả
-
-maxChildren
-
-0
-
-Tham số sử dụng để giới hạn số lượng URL con được tìm kiếm tại mỗi nút trong cây tìm kiếm. Tham số bằng 0 thể hiện số nút tìm kiếm là không giới hạn.
-
-recurse
-
-true
-
-Tham số chỉ định cách thức tìm kiếm liên kết. Nếu giá trị là "true", Spider sẽ tìm kiếm các liên kết trên các trang con của trang web hiện tại. Nếu giá trị là "false", Spider chỉ tìm kiếm các liên kết trên trang web hiện tại mà không tìm kiếm các trang con.
-
-contextName
-
-““
-
-Tham số chỉ định tên của bối cảnh (context). Context là một cấu hình bao gồm các quy tắc như bao gồm (include) hoặc loại trừ (exclude) các URL có liên quan đến URL có trong quy tắc. Các cấu được lưu sẵn với tên, gọi là contextName. Đặt giá trị contextName là tên context đã lưu sẵn để sử dụng cấu hình.
-
-subtreeOnly
-
-true
-
-Tham số chỉ định các thức truy cập các tài nguyên nằm dưới điểm bắt đầu. Nếu giá trị là “true“, Spider sẽ chỉ tìm kiếm các liên kết và trang web con của trang web bắt đầu.
 
   \item Đối với ZAP Ajax, nhóm tạo phương thức ajaxStart() trong service để xử lý tác vụ này. Mỗi phiên quét của loại quét này chỉ có thể chạy trong mỗi ZAP instance tại một thời điểm. Nên mỗi khi start phiên quét, nhóm tạo một ZAP instance mới và start phiên quét trên instance đó. Ngoài ra, loại quét này còn cần quyền sử dụng trình duyệt (browser) để thực hiện các cuộc tấn công. Vì vậy, nhóm thực hiện cài đặt Firefox browser trong ứng dụng hệ thống và cấu hình cho phiên quét sử dụng firefox-headless (tính năng của trình duyệt Firefox, cho phép chạy trình duyệt dưới nền) trong phương thức ajaxStart(). Nhóm còn đặt các cấu hình mặc định, không bao gồm trong tham số config, trên ZAP instance trước khi start phiên quét. Các cấu hình như sau: 
   \begin{itemize}
-    \item Số lượng browser chạy cùng lúc là 1, qua phương thức ajaxSpider.setOptionNumberOfBrowsers() từ ZAP Client.
-    \item Độ sâu tối đa mà trình crawler có thể đạt là 5, qua phương thức ajaxSpider.setOptionMaxCrawlDepth() từ ZAP Client. Mặc định của ZAP instance là 10.
-    \item Thời gian mà trình crawler có thể chạy là 5 phút, qua phương thức ajaxSpider.setOptionMaxDuration() từ ZAP Client. Mặc định của ZAP instance là 60 phút.
+    \item Số lượng browser chạy cùng lúc là 1, qua phương thức \\
+     ajaxSpider.setOptionNumberOfBrowsers() từ ZAP Client.
+    \item Độ sâu tối đa mà trình crawler có thể đạt là 5, qua phương thức \\
+     ajaxSpider.setOptionMaxCrawlDepth() từ ZAP Client. Mặc định của ZAP instance là 10.
+    \item Thời gian mà trình crawler có thể chạy là 5 phút, qua phương thức \\
+     ajaxSpider.setOptionMaxDuration() từ ZAP Client. Mặc định của ZAP instance là 60 phút.
   \end{itemize}
   Nếu tham số config không được chỉ định thì phương thức sẽ sử dụng cấu hình mặc định trong ZAP instance
   
-Cấu hình chi tiết cho phiên quét của ZAP Ajax được mô tả trong bảng xx ở dưới.
+Cấu hình chi tiết cho phiên quét của ZAP Ajax được mô tả trong bảng \ref{tab:ConfigAjax} ở dưới.
 
-Bảng cấu hình phương thức quét ZAP Ajax
-
-Tên tham số
-
-Giá trị mặc định
-
-Mô tả
-
-inScope
-
+\begin{tabularx}{\textwidth}{|>{\hsize=.15\hsize\centering\let\newline
+  \\\arraybackslash}X|>{\hsize=.15\hsize\centering\let\newline
+  \\\arraybackslash}X|>{\hsize=.60\hsize\raggedright\let\newline
+  \\\arraybackslash}X|}
+  \hline
+  \thead{Tên tham số}
+   & \thead{Giá trị \\ mặc định}
+   & \thead{Mô tả}
+  \\
+  \hline
+  inScope
+&
 false
-
+&
 Nếu tham số có giá trị là “true” thì mọi URL nằm ngoài phạm vi sẽ bị bỏ qua.
-
+\\
+\hline
 contextName
-
+&
 ““
-
+&
 Tham số chỉ định tên của bối cảnh hoạt động. Chi tiết giống với bảng x ở trên.
-
+\\
+\hline
 subtreeOnly
-
+&
 true
-
+&
 Tham số chỉ định các thức truy cập các tài nguyên nằm dưới điểm bắt đầu. Chi tiết giống với bảng x ở trên.
-
+\\
+\hline
+  \caption{Cấu hình phương thức quét ZAP Ajax}
+  \label{tab:ConfigAjax}
+\end{tabularx}
 \item Đối với ZAP Passive, nhóm tạo phương thức passiveStart() trong service để xử lý tác vụ này. Loại quét này có kết quả được quản lý trên phạm vi toàn ZAP instance và không thể chạy song song nhiều phiên quét. Nên giống như ZAP Ajax, nhóm tạo một ZAP instance mới cho mỗi phiên quét. Như đã nhắc đến mở mục 4.3.2, ZAP Passive là quét thụ động và cần được bổ trợ bởi ZAP Spider hay ZAP Ajax. Vì vậy phương thức có thêm tham số exploreType, tham số có hai giá trị là “spider“ và “ajax“, giúp cho phương thức start biết được sẽ sử dụng ZAP Spider hay ZAP Ajax để khám phá. Khi đó, cấu hình chi tiết cho phiên quét sẽ tùy theo cách khám phá mà là cấu hình chi tiết của ZAP Spider hoặc ZAP Ajax. Phương thức không có tham số config. 
-\item Đối với ZAP Active, nhóm tạo phương thức activeStart() trong service để xử lý tác vụ này. Loại quét này có kết quả được quản lý và không thể chạy song song giống ZAP Passive vậy nên nhóm cũng tạo ZAP instance mới cho mỗi phiên quét. Như đã nhắc đến mở mục 4.3.2, các mục tiêu để tấn công cần được tìm trước thông qua ZAP Spider hay ZAP Ajax nên phương thức cũng có thêm tham số exploreType và cách xử lý giống với passiveStart(). Ngoài ra, để đảm bảo tất cả các quy tắc quét trong chức năng Scan Policy đều được áp dụng, trước khi start phiên quét, nhóm kích hoạt tất cả các quy tắc quét Scan Policy qua phương thức ascan.enableAllScanners() từ ZAP Client. Nếu tham số config không được chỉ định thì phương thức sẽ sử dụng cấu hình mặc định trong ZAP instance. Cấu hình chi tiết cho phiên quét của ZAP Active được mô tả trong bảng xx ở dưới.
-Bảng cấu hình phương thức quét ZAP Active
-
-Tên tham số
-
-Giá trị mặc định
-
-Mô tả
-
-exploreType
-
-spider
-
-Giống với mô tả tham số exploreType được mô tả ở mục trên
-
-recurse
-
-true
-
-Chi tiết giống với tham số recurse ở bảng cấu hình phương thức quét ZAP Spider
-
-inScopeOnly
-
-false
-
-Chi tiết giống với tham số inScope ở bảng cấu hình phương thức quét ZAP Ajax
-
-scanPolicyName
-
-““
-
-Tham số này cho phép người dùng chỉ định chính sách quét được sử dụng trong quá trình quét. Nếu không có chính sách quét nào được chỉ định, công cụ quét sẽ sử dụng chính sách quét mặc định.
-
-method
-
-““
-
-Tham số này cho phép người dùng chọn một phương thức cụ thể để thực hiện quét, ví dụ như GET hoặc POST.
-
-postData
-
-““
-
-Tham số này cho phép người dùng chỉ định dữ liệu đăng được sử dụng trong quá trình quét, nếu phương thức được sử dụng là POST
-
-contextId
-
-““
-
-Chi tiết tương tự với tham số contextName ở bảng cấu hình phương thức quét ZAP Spider. Nhưng chỉ số thứ tự của context đó trang danh sách đã lưu.
-
-Nếu start scan thành công thì phương thức sẽ trả về đối tượng định danh cho phiên quét, không thành công thì trả về đối tượng không xác định.
-\item 
-\item 
-\item 
+\item Đối với ZAP Active, nhóm tạo phương thức activeStart() trong service để xử lý tác vụ này.
+Loại quét này có kết quả được quản lý và không thể chạy song song giống ZAP Passive vậy nên nhóm cũng tạo ZAP instance mới cho mỗi phiên quét.
+Như đã nhắc đến mở mục 4.3.2, các mục tiêu để tấn công cần được tìm trước thông qua ZAP Spider hay ZAP Ajax nên phương thức cũng có thêm tham số exploreType và cách xử lý giống với passiveStart().
+Ngoài ra, để đảm bảo tất cả các quy tắc quét trong chức năng Scan Policy đều được áp dụng, trước khi start phiên quét, nhóm kích hoạt tất cả các quy tắc quét Scan Policy qua phương thức ascan.enableAllScanners() từ ZAP Client.
+Nếu tham số config không được chỉ định thì phương thức sẽ sử dụng cấu hình mặc định trong ZAP instance.
+Cấu hình chi tiết cho phiên quét của ZAP Active được mô tả trong bảng \ref{tab:ConfigActive} ở dưới.
+\begin{tabularx}{\textwidth}{|>{\hsize=.15\hsize\centering\let\newline
+  \\\arraybackslash}X|>{\hsize=.15\hsize\centering\let\newline
+  \\\arraybackslash}X|>{\hsize=.60\hsize\raggedright\let\newline
+  \\\arraybackslash}X|}
+  \hline
+  \thead{Tên tham số}
+   & \thead{Giá trị \\ mặc định}
+   & \thead{Mô tả}
+  \\
+  \hline
+  exploreType
+  &
+  spider
+  &
+  Giống với mô tả tham số exploreType được mô tả ở mục trên
+  \\
+  \hline
+  recurse
+  &
+  true
+  &
+  Chi tiết giống với tham số recurse ở bảng cấu hình phương thức quét ZAP Spider
+  \\
+  \hline
+  inScopeOnly
+  &
+  false
+  &
+  Chi tiết giống với tham số inScope ở bảng cấu hình phương thức quét ZAP Ajax
+  \\
+  \hline
+  scanPolicyName
+  &
+  ““
+  &
+  Tham số này cho phép người dùng chỉ định chính sách quét được sử dụng trong quá trình quét. Nếu không có chính sách quét nào được chỉ định, công cụ quét sẽ sử dụng chính sách quét mặc định.
+  \\
+  \hline
+  method
+  &
+  ““
+  &
+  Tham số này cho phép người dùng chọn một phương thức cụ thể để thực hiện quét, ví dụ như GET hoặc POST.
+  \\
+  \hline
+  postData
+  &
+  ““
+  &
+  Tham số này cho phép người dùng chỉ định dữ liệu đăng được sử dụng trong quá trình quét, nếu phương thức được sử dụng là POST
+  \\
+  \hline
+  contextId
+  &
+  ““
+  &
+  Chi tiết tương tự với tham số contextName ở bảng cấu hình phương thức quét ZAP Spider. Nhưng chỉ số thứ tự của context đó trang danh sách đã lưu.
+  \\
+  \hline
+  \caption{Cấu hình phương thức quét ZAP Active}
+  \label{tab:ConfigActive}
+\end{tabularx}
 \end{itemize}
+Nếu start scan thành công thì các phương thức sẽ trả về đối tượng định danh cho phiên quét, không thành công thì trả về đối tượng không xác định.
 
 Đối với các phương thức stop scan, các loại quét được cấu hình tương tự nhau bằng cách gọi đến phương thức stopZapClient(). Phương thức thực hiện gọi đến phương thức shutdown() từ core ZAP Client để tắt ZAP instance và xóa ZAP Client ra khỏi Map lữu trữ. Phương thức stop của ZAP Spider được cấu hình khác biệt, vì ZAP Spider riêng lẻ được chạy trên ZAP Client Shared nên sẽ được gọi đến phương thức stop() của chính phiên quét đó, sử dụng tham số scan id để xác định phiên quét.
 \par
@@ -408,8 +432,10 @@ Nếu start scan thành công thì phương thức sẽ trả về đối tượ
 Đối với các phương thức lấy full result, các loại quét khác nhau sẽ có cách cài đặt khác nhau, kiểu result trả về từ ZAP khác nhau và kiểu result được lưu trữ khác nhau. 
 
 \begin{itemize}
-  \item Đối với ZAP Spider, nhóm sử dụng phương thức spider.fullResult() từ ZAP Client để lấy full result của phiên quét. Dữ liệu trả về còn thô, khó sử dụng, lưu trữ  và truy xuất nên nhóm có thực hiện biến đổi lại như sau, chi tiết cách biến đổi kiểu dữ liệu được thể hiện trong hình x Hình thể hiện kiểu dữ liệu ZAP Spider full result khi mới trả về từ ZAP instance và sau khi được biến đổi --- (Chi tiết thông tin của các thuộc tính giống như thông tin full result từ bảng mô tả cơ sở dữ liệu của xx từ phụ lục)
+  \item Đối với ZAP Spider, nhóm sử dụng phương thức spider.fullResult() từ ZAP Client để lấy full result của phiên quét.
+  Dữ liệu trả về còn thô, khó sử dụng, lưu trữ và truy xuất nên nhóm có thực hiện biến đổi lại như sau, chi tiết cách biến đổi kiểu dữ liệu được thể hiện trong hình x Hình thể hiện kiểu dữ liệu ZAP Spider full result khi mới trả về từ ZAP instance và sau khi được biến đổi --- (Chi tiết thông tin của các thuộc tính giống như thông tin full result từ bảng mô tả cơ sở dữ liệu của xx từ phụ lục)
   bảng mô tả của cái ở trên
+  
   \item Đối với ZAP Ajax nhóm sử dụng phương thức ajaxSpider.fullResult() từ ZAP Client để lấy full result và không cần thực hiện biến đổi lại (Chi tiết thông tin của các thuộc tính giống như thông tin full result từ bảng mô tả cơ sở dữ liệu của xx từ phụ lục.)
   \item Đối với ZAP Passive và ZAP Active, kết quả quét của hai loại này là thông tin chi tiết của các lỗ hổng tìm năng gọi là cảnh báo (alert). ZAP cung cấp khá nhiều tổ hợp thông tin này, mỗi tổ hợp có kiểu dữ liệu khác nhau. Nhóm chọn ra hai tổ hợp thông tin sau đó dựa vào các cách thay đổi, truy xuất tùy chỉnh để có được đầy đủ thông tin. Tổ hợp đầu tiên là các alert, nhóm cài đặt phương thức getClientAlerts() trong service, với tham số truyền vào là client id, để lấy danh sách tất cả các alert mà instance tìm được. Phương thức getClientAlerts() sử dụng phương thức core.alerts() từ ZAP Client làm xương sống. Mỗi đối tượng alert sẽ có các thuộc tính và ý nghĩa như bảng x …….. . Tổ hợp tiếp theo là các alert theo rủi ro (risk), gọi là alert by risk, risk là một trường chỉ độ nghiêm trọng của alert. Nhóm cài đặt phương thức getClientAlertsByRisk() với tham số truyền vào là client id, hoạt động giống getClientAlerts(). Nhóm tự tạo một API đến ZAP bằng cách sử dụng endpoint /alert/view/alertsByRisk/ với phương thức requestPromise() từ ZAP Client để hỗ trợ phương thức này. Tuy nhiên kết quả trả về khá khó sử dụng nên nhóm có thực hiện biến đổi lại như sau, chi tiết cách biến đổi kiểu dữ liệu được thể hiện trong hình x Hình thể hiện kiểu dữ liệu alert by risk của ZAP Active (khi mới trả về từ ZAP instance và sau khi được biến đổi)
   bảng mô tả của cái ở trên
