@@ -1,7 +1,7 @@
-\documentclass[12pt]{article}
+\documentclass[12pt]{report}
 % Packages
 \usepackage[utf8]{vietnam} % Enable vi language compile 
-\usepackage[a4paper]{geometry} % Define document
+\usepackage[a4paper, top=3cm, right=2cm, bottom=3.5cm, left=3.5cm]{geometry} % Define document
 \usepackage{graphicx} % Display picture
 \usepackage{subcaption} % Use subfigure in \begin ({minipage} used to be)
 \usepackage{tabularx} % Support advance table
@@ -9,8 +9,12 @@
 \usepackage{makecell} % Create header of table in {tabularx}
 \usepackage{tabto} % Support \tab command to tab text 0.5cm (similar to  \hspace{5mm})
 \usepackage{amssymb} % Use \checkmark to represent V mark
+\usepackage{times} % Times font
+\usepackage{lipsum} % Support create dot command
+\usepackage{float} % Able to use H
 % ----------------------------------------
 
+\linespread{1.5}
 \keepXColumns % Keep X column in ltablex to avoid \item missing error
 
 \input{macros/paragraph.tex} % Add space below \paragraph
@@ -18,14 +22,25 @@
 \input{macros/thead.tex} % Set \thead to Bold text
 \input{macros/newline-content-table.tex} % Add space \newline
 \input{macros/xmark.tex} % Use new command \xmark to represent X mark
+\input{macros/dotcolumnfill.tex} % Use dot spread
 
 \newcommand{\applicationname}{Owlens\:}
 
 \begin{document}
 
+\pagenumbering{gobble}
 \input{title-page.tex}
-\input{sections/section-1_General infomation.tex}
-\input{sections/section-2_Contents of implementation.tex}
-\input{sections/reference-section_Reference.tex} % \bibliography in this section is commented to revent "No /cite founds" build error
-
+\input{instructor-comment.tex}
+\input{commentary-comment.tex}
+\input{thanks-letter.tex}
+\input{thesis-proposal.tex}
+% APPLIED THESIS
+\tableofcontents
+\pagenumbering{arabic}
+\input{applied-thesis-chapters/chapter-1/chapter-1.tex}
+\input{applied-thesis-chapters/chapter-2/chapter-2.tex}
+\input{applied-thesis-chapters/chapter-3/chapter-3.tex}
+% \input{applied-thesis-chapters/chapter-4/chapter-4.tex}
+% \input{applied-thesis-chapters/chapter-5/chapter-5.tex}
+\input{applied-thesis-chapters/bib/bib.tex}
 \end{document}

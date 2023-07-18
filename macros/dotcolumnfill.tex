@@ -1,0 +1,14 @@
+\makeatletter
+
+\newcommand*\dotcolumnfill{%
+    \par
+    \null
+    \vskip -\ht\strutbox
+    \xleaders \hb@xt@ \hsize {%
+        \strut \cleaders \hb@xt@ .44em{\hss.\hss}\hfill
+    }\vfill
+    \vskip \ht\strutbox
+    \break
+}
+
+\makeatother

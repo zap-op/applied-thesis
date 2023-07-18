@@ -1,0 +1,17 @@
+\chapter{CƠ SỞ LÝ THUYẾT}
+Các loại lỗi bảo mật phổ biến
+Lỗ hổng kiểm soát truy cập - Broken Access Control \cite{basar1995dynamic} and \cite{basar199mic}
+Khái niệm
+Access Control - Kiểm soát truy cập là việc kiểm soát quyền truy cập, thực hiện hành vi của người dùng trong phạm vi đã được dự định, cấp sẵn trước đó.
+
+Broken Access Control - Lỗ hổng kiểm soát truy cập là lỗ hỗng bị lợi dụng bằng những phương thức tấn công như xâm nhập, chiếm quyền sử dụng, kiểm soát các tài nguyên được bảo vệ trên hệ thống một cách trái phép. Việc này thường gây ra các hệ quả như để lộ, bị can thiệp sửa đổi thông tin một cách không mong muốn, bị phá hoại dữ liệu và thực hiện các chức năng bên ngoài phạm vi của quyền người dùng.
+
+Các CWE đáng chú ý bao gồm: CWE-200: Exposure of Sensitive Information to an Unauthorized Actor[4], CWE-201: Insertion of Sensitive Information Into Sent Data[5], và CWE-352: Cross-Site Request Forgery[6].
+
+Các lỗi thường gặp trong Broken Access Control
+
+Vi phạm cấu hình về đặc quyền tối thiểu. Quyền truy cập chỉ nên được cấp cho từng khả năng, nhu cầu, quyền và người dùng cụ thể thay vì cấp chung cho tất cả mọi người hoặc có những tồn tại không cần thiết.
+
+
+
+
