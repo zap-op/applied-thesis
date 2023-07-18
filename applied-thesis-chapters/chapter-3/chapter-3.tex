@@ -76,11 +76,14 @@ Tệp này sẽ chứa các thông tin có trong màn hình thông tin chi tiế
 \section{Thiết kế hệ thống}
 
 \subsection{Thiết kế kiến trúc hệ thống}
-
-\tab Tổng quan kiến trúc hệ thống được xây dựng theo mô hình N-Tier đã đề cập ở chương 2.x.x.
+\begin{figure}[H]
+      \centering
+      \includegraphics[width=\textwidth]{applied-thesis-chapters/chapter-3/Tổng quan kiến trúc hệ thống.png}
+      \caption{Tổng quan kiến trúc hệ thống}
+      \label{fig:KienTrucHeThong}
+\end{figure}
+\tab Hình số \ref{fig:KienTrucHeThong} thể hiện tổng quan kiến trúc hệ thống được xây dựng theo mô hình N-Tier đã đề cập ở chương 2.x.x.
 Kiến trúc hệ thống gồm 3 tầng (3-Tier): Tầng trình bày, tầng ứng dụng và tầng dữ liệu.
-
-Hình x: Kiến trúc hệ thống
 
 \subsubsection{Thiết kế kiến trúc hệ thống tầng trình bày}
 
@@ -100,29 +103,54 @@ Các service bao gồm: nhóm các ZAP service, dịch vụ xác thực (Authent
 
 \myparagraph{Nhóm ZAP service}
 \tab \tab Nhóm các ZAP service bao gồm hai service chính là dịch vụ quản lý ZAP (ZAP Monitor service) và dịch vụ tương tác với ứng dụng ZAP (ZAP Client service), cuối cùng là lớp tiến trình ZAP (ZAP Process).
+Hình \ref{fig:NhomZapServiceHoatDong} sẽ cho ta cái nhìn chi tiết hơn về cách hoạt động của nhóm ZAP service trong hệ thống.
+
+\begin{figure}[H]
+      \centering
+      \includegraphics[width=\textwidth]{applied-thesis-chapters/chapter-3/Mô tả nhóm ZAP service hoạt động trong hệ thống.png}
+      \caption{Mô tả nhóm ZAP service hoạt động trong hệ thống}
+      \label{fig:NhomZapServiceHoatDong}
+\end{figure}
 
 \begin{itemize}
-    \item \textbf{ZAP Process:} Mỗi tiến trình ZAP sẽ được khởi tạo từ lớp ZAP Process, gọi là ZAP Process instance.
-          Mỗi instance là process chạy ngầm trong hệ thống (trình nền - daemon).
-          Các instance này hoạt động lập với nhau trên các cổng (port) khác nhau như một ứng dụng được khởi chạy riêng biệt.
-    \item \textbf{ZAP Client service:} Service có nhiệm vụ tạo và quản lý các ZAP client.
-          Mỗi ZAP client được service quản lý qua một mã định danh duy nhất (UUID - Universally Unique Identifier) và tham chiếu đến mỗi ZAP Process instance khác nhau.
-          ZAP client có vai trò tương tác, điều khiển ZAP process thực hiện các tác vụ của ZAP qua phương thức HTTP.
-          Vì ZAP process chỉ là một process chạy ngầm trong hệ thống và tách biệt với ứng dụng chính nên ZAP Client service là một trong những service quan trọng của ứng dụng chính.
-          Theo như giải pháp thì mỗi phương pháp quét sẽ cần mỗi ZAP process có hành vi, cấu hình khác nhau.
-          Nhóm chia thành hai loại là:
-          \begin{itemize}
-              \item \textbf{ZAP Client Shared:} Client này dành cho các phương pháp quét có thể sử dụng chung ZAP process instance, kết quả các phiên quét tuy sử dụng chung instance nhưng không ảnh hưởng đến nhau.
-                    Cặp client shared và ZAP process và luôn luôn tồn tại xuyên suốt quá trình sống của ứng dụng
-              \item \textbf{ZAP Client Private:} Client này dành cho các phương pháp quét không thể sử dụng chung ZAP process instance.
-          \end{itemize}
-    \item \textbf{ZAP Monitor service:} Service có vai trò đại diện cho nhóm ZAP service.
-          Cài đặt của các giải pháp của ứng dụng chính chỉ giao tiếp với service này.
-          Service có nhiệm vụ tạo, dừng và quản lý các phiên quét của người dùng; nắm giữ và quản lý quá trình quét của các phiên quét, giúp cho hệ thống có thể kết nối và biết được các thông tin về trạng thái và tiến độ của phiên quét; lưu trữ các dữ liệu cần thiết khi hoạt động với ZAP như thông tin phiên quét, thông tin kết quả với Database service.
+      \item \textbf{ZAP Process:} Mỗi tiến trình ZAP sẽ được khởi tạo từ lớp ZAP Process, gọi là ZAP Process instance.
+            Mỗi instance là process chạy ngầm trong hệ thống (trình nền - daemon).
+            Các instance này hoạt động lập với nhau trên các cổng (port) khác nhau như một ứng dụng được khởi chạy riêng biệt.
+      \item \textbf{ZAP Client service:} Service có nhiệm vụ tạo và quản lý các ZAP client.
+            Mỗi ZAP client được service quản lý qua một mã định danh duy nhất (UUID - Universally Unique Identifier) và tham chiếu đến mỗi ZAP Process instance khác nhau.
+            ZAP client có vai trò tương tác, điều khiển ZAP process thực hiện các tác vụ của ZAP qua phương thức HTTP.
+            Vì ZAP process chỉ là một process chạy ngầm trong hệ thống và tách biệt với ứng dụng chính nên ZAP Client service là một trong những service quan trọng của ứng dụng chính.
+            Theo như giải pháp thì mỗi phương pháp quét sẽ cần mỗi ZAP process có hành vi, cấu hình khác nhau.
+            Nhóm chia thành hai loại là:
+            \begin{itemize}
+                  \item \textbf{ZAP Client Shared:} Client này dành cho các phương pháp quét có thể sử dụng chung ZAP process instance, kết quả các phiên quét tuy sử dụng chung instance nhưng không ảnh hưởng đến nhau.
+                        Cặp client shared và ZAP process và luôn luôn tồn tại xuyên suốt quá trình sống của ứng dụng
+                  \item \textbf{ZAP Client Private:} Client này dành cho các phương pháp quét không thể sử dụng chung ZAP process instance.
+            \end{itemize}
+      \item \textbf{ZAP Monitor service:} Service có vai trò đại diện cho nhóm ZAP service.
+            Cài đặt của các giải pháp của ứng dụng chính chỉ giao tiếp với service này.
+            Service có nhiệm vụ tạo, dừng và quản lý các phiên quét của người dùng; nắm giữ và quản lý quá trình quét của các phiên quét, giúp cho hệ thống có thể kết nối và biết được các thông tin về trạng thái và tiến độ của phiên quét; lưu trữ các dữ liệu cần thiết khi hoạt động với ZAP như thông tin phiên quét, thông tin kết quả với Database service.
 \end{itemize}
 
 \myparagraph{ZAP Pool}
 \tab \tab Là tập hợp các ZAP process instance chạy ngầm, mỗi instance sẽ chạy trên một cổng (port) khác nhau và được tham chiếu bởi các ZAP client của ZAP Client service.
+\par
+
+Hình \ref{fig:TTZapMonitorStartScan} và \ref{fig:TTHeThongStartScan} thể hiện quá trình tương tác và hoạt động của nhóm ZAP service trong hệ thống khi bắt đầu một phiên quét.
+
+\begin{figure}[H]
+      \centering
+      \includegraphics[width=\textwidth]{applied-thesis-chapters/chapter-3/Sơ đồ tuần tự của quá trình bắt đầu phiên quét của ZAP Monitor service.png}
+      \caption{Sơ đồ tuần tự của quá trình bắt đầu phiên quét của ZAP Monitor service}
+      \label{fig:TTZapMonitorStartScan}
+\end{figure}
+
+\begin{figure}[H]
+      \centering
+      \includegraphics[width=\textwidth]{applied-thesis-chapters/chapter-3/Sơ đồ tuần tự của quá trình bắt đầu phiên quét của hệ thống với ứng dụng web.png}
+      \caption{Sơ đồ tuần tự của quá trình bắt đầu phiên quét của hệ thống với ứng dụng web}
+      \label{fig:TTHeThongStartScan}
+\end{figure}
 
 \myparagraph{Authentication service}
 \tab \tab Service thực hiện các nhiệm vụ liên quan đến xác thực người dùng.
@@ -135,15 +163,15 @@ Log của các service khác nhau được phân biệt bằng tên loại khác
 Chủ yếu có bốn loại log hiện có trong ứng dụng là:
 
 \begin{itemize}
-    \item \textbf{Main process log:} Các log này trình bày các tác vụ, lỗi phát sinh bên trong ứng dụng chính, đa phần nằm trong ZAP Monitor service.
-    \item \textbf{Http request log:} Các log này trình bày thông tin chi tiết các yêu cầu (request) được gửi đến ứng dụng ở mọi tuyến (route).
-    \item \textbf{User session process log:} Các log này trình bày thông tin các kết nối của người dùng với các phiên quét.
-          Mỗi phiên quét sẽ có quá trình quét, các quá trình quét sẽ được quản lý bởi ZAP Monitor service, thông tin của phiên quét là trạng thái và tiến độ sẽ được gửi đến người dùng theo thời gian thực (stream).
-          Thông tin các kết nối stream của người dùng sẽ được ghi lại trong loại log này.
-    \item \textbf{ZAP process log:} Log này được nhúng vào mỗi ZAP process khi chúng vừa được khởi tạo.
-          Các log này trình bày thông tin của chính ZAP process đó in ra trong console của nó.
-          Theo như nghiệp vụ của giải pháp, loại log này còn có một biến thể nữa là ZAP private process log.
-          ZAP process log bình thường sẽ ghi lại các log trong ZAP shared process instance, còn ZAP private process log sẽ ghi lại các log trong các ZAP private process instance.
+      \item \textbf{Main process log:} Các log này trình bày các tác vụ, lỗi phát sinh bên trong ứng dụng chính, đa phần nằm trong ZAP Monitor service.
+      \item \textbf{Http request log:} Các log này trình bày thông tin chi tiết các yêu cầu (request) được gửi đến ứng dụng ở mọi tuyến (route).
+      \item \textbf{User session process log:} Các log này trình bày thông tin các kết nối của người dùng với các phiên quét.
+            Mỗi phiên quét sẽ có quá trình quét, các quá trình quét sẽ được quản lý bởi ZAP Monitor service, thông tin của phiên quét là trạng thái và tiến độ sẽ được gửi đến người dùng theo thời gian thực (stream).
+            Thông tin các kết nối stream của người dùng sẽ được ghi lại trong loại log này.
+      \item \textbf{ZAP process log:} Log này được nhúng vào mỗi ZAP process khi chúng vừa được khởi tạo.
+            Các log này trình bày thông tin của chính ZAP process đó in ra trong console của nó.
+            Theo như nghiệp vụ của giải pháp, loại log này còn có một biến thể nữa là ZAP private process log.
+            ZAP process log bình thường sẽ ghi lại các log trong ZAP shared process instance, còn ZAP private process log sẽ ghi lại các log trong các ZAP private process instance.
 \end{itemize}
 
 \myparagraph{Database service}
@@ -164,8 +192,8 @@ Giải pháp ứng dụng yêu cầu ghi nhiều loại dữ liệu có cấu tr
 Các dữ liệu có cấu trúc linh hoạt tiêu biểu như:
 
 \begin{itemize}
-    \item Bản ghi cấu hình và kết quả của phiên quét của các phương thức quét khác nhau.
-    \item Bản ghi thông tin phiên quét trong quá trình quét cần đọc ghi nhiều lần.
+      \item Bản ghi cấu hình và kết quả của phiên quét của các phương thức quét khác nhau.
+      \item Bản ghi thông tin phiên quét trong quá trình quét cần đọc ghi nhiều lần.
 \end{itemize}
 
 Tiếp theo, như đã nhắc đến ở trên, bản ghi dữ liệu của MongoDB có thể cache lên RAM để tăng tốc truy vấn dữ liệu và mặc định sử dụng 50% RAM trên hệ thống.
@@ -177,8 +205,15 @@ Vậy nên rủi ro dữ liệu không được ghi một cách đúng đắn kh
 MongoDB Atlas là một cloud database dành riêng và thuộc sự quản lý trực tiếp của MongoDB.
 Về bản chất, database được triển khai hoàn toàn trên VPC là Google Cloud Platform, AWS hay Microsoft Azure dựa theo tùy chọn khi khởi tạo.
 Người dùng có thể kết nối, quản lý, tương tác qua trung gian MongoDB Atlas.
-Như hình x, ứng dụng chính tương tác với database trên VPC bằng trình điều khiển MongoDB (MongoDB driver) qua phương thức TCP/IP socket.
+Như hình \ref{fig:KetNoiAtlas}, ứng dụng chính tương tác với database trên VPC bằng trình điều khiển MongoDB (MongoDB driver) qua phương thức TCP/IP socket.
 \par
+
+\begin{figure}[H]
+      \centering
+      \includegraphics[width=\textwidth]{applied-thesis-chapters/chapter-3/Mô tả kết nối của ứng dụng với MongoDB Atlas.png}
+      \caption{Mô tả kết nối của ứng dụng với MongoDB Atlas}
+      \label{fig:KetNoiAtlas}
+\end{figure}
 
 Về cơ bản, nhóm triển khai MongoDB trên một máy dịch vụ khác, không triển khai chung với hệ thống để tránh các vấn đề hiệu suất hệ thống ảnh hưởng đến toàn vẹn dữ liệu.
 Chuyển sự hạn chế bởi cấu hình của MongoDB sang máy khác nghĩa là không còn giữ nguyên được tính nhanh chóng (cache) và các tương tác với database phải thông qua giao thức TCP/IP socket (chức năng cache vẫn hoạt động bình thường ở VPC).
@@ -190,141 +225,209 @@ Bên cạnh lợi ích toàn vẹn dữ liệu, việc lựa chọn giải pháp
 
 \tab Màn hình trang chủ là nơi người dùng sẽ tiếp cận đầu tiên khi truy cập vào tên miền gốc của ứng dụng.
 Màn hình có hai thành phần chính là giới thiệu chung về ứng dụng và phần cho phép người dùng sử dụng thử chức năng quét với phương thức Spider, không cần đăng nhập xác minh.
-Giao diện màn hình trang chủ được thiết kế như sau:
+Giao diện màn hình trang chủ được thiết kế như sau, hình \ref{fig:MHTrangChu}:
 
-Bảng mô tả giao diện màn hình trang chủ:
+\begin{figure}[H]
+      \centering
+      \includegraphics[width=\textwidth]{applied-thesis-chapters/chapter-3/Màn hình trang chủ.png}
+      \caption{Màn hình trang chủ}
+      \label{fig:MHTrangChu}
+\end{figure}
 
-STT
+Bảng mô tả giao diện màn hình trang chủ, bảng \ref{tab:MTTrangChu}:
 
-Tên thành phần
-
-Mô tả
-
-1
-
-Logo
-
-Logo của ứng dụng Owlens. Có thể chọn vào logo để điều hướng quay lại màn hình trang chủ.
-
-2
-
-Nút bắt đầu
-
-Dùng để điều hướng đến trang đăng nhập và đăng ký của hệ thống.
-
-3
-
-Phần giới thiệu
-
-Phần này giới thiệu thông tin, chức năng chung của hệ thống.
-
-4
-
-Nút gọi hành động (Call to Action, viết tắt là CTA)
-
-Dùng để điều hướng đến trang đăng nhập và đăng ký của hệ thống.
-
-5
-
-Phần giới thiệu dùng thử
-
-Giới thiệu thông tin phần dùng thử. Người dùng có thể sử dụng thử chức năng quét với phương thức Spider mà không cần đăng nhập xác minh.
-
-6
-
-Phần dùng thử
-
-Người dùng dùng thử bằng cách nhập URL hoặc IP và chọn nút “Scan“ để bắt đầu phiên quét. Kết quả quét sẽ được hiển thị trực tiếp theo thời gian thực ngay trên cùng màn hình trang chủ, trong phần dùng thử. Vì không cần xác minh nên đối với kết quả quét xong, kết quả sẽ biến mất khi người dùng di chuyển ra khỏi màn hình trang chủ. Đối với kết quả đang được hiển thị trực tiếp, đang trong quá trình quét thì kết quả sẽ biến mất khi người dùng di chuyển quá 60 giây khỏi màn hình trang chủ.
+\begin{tabularx}{\textwidth}{|>{\hsize=.15\hsize\centering\let\newline
+      \\\arraybackslash}X|>{\hsize=.30\hsize\raggedright\let\newline
+      \\\arraybackslash}X|>{\hsize=.45\hsize\raggedright\let\newline
+      \\\arraybackslash}X|}
+      \hline
+      \textbf{STT}
+       & \textbf{Tên thành phần}
+       & \textbf{Mô tả}
+      \\
+      \hline
+      1
+       &
+      Logo
+       &
+      Logo của ứng dụng Owlens. Có thể chọn vào logo để điều hướng quay lại màn hình trang chủ.
+      \\
+      \hline
+      2
+       &
+      Nút bắt đầu
+       &
+      Dùng để điều hướng đến trang đăng nhập và đăng ký của hệ thống.
+      \\
+      \hline
+      3
+       &
+      Phần giới thiệu
+       &
+      Phần này giới thiệu thông tin, chức năng chung của hệ thống.
+      \\
+      \hline
+      4
+       &
+      Nút gọi hành động (Call to Action, viết tắt là CTA)
+       &
+      Dùng để điều hướng đến trang đăng nhập và đăng ký của hệ thống.
+      \\
+      \hline
+      5
+       &
+      Phần giới thiệu dùng thử
+       &
+      Giới thiệu thông tin phần dùng thử. Người dùng có thể sử dụng thử chức năng quét với phương thức Spider mà không cần đăng nhập xác minh.
+      \\
+      \hline
+      6
+       &
+      Phần dùng thử
+       &
+      Người dùng dùng thử bằng cách nhập URL hoặc IP và chọn nút “Scan“ để bắt đầu phiên quét. Kết quả quét sẽ được hiển thị trực tiếp theo thời gian thực ngay trên cùng màn hình trang chủ, trong phần dùng thử. Vì không cần xác minh nên đối với kết quả quét xong, kết quả sẽ biến mất khi người dùng di chuyển ra khỏi màn hình trang chủ. Đối với kết quả đang được hiển thị trực tiếp, đang trong quá trình quét thì kết quả sẽ biến mất khi người dùng di chuyển quá 60 giây khỏi màn hình trang chủ.
+      \\
+      \hline
+      \caption{Mô tả giao diện màn hình trang chủ}
+      \label{tab:MTTrangChu}
+\end{tabularx}
 
 \subsubsection{Giao diện ứng dụng web}
 
-\tab Màn hình ứng dụng web là nơi người dùng sẽ tiếp cận sau khi đăng nhập vào ứng dụng. 
+\tab Màn hình ứng dụng web là nơi người dùng sẽ tiếp cận sau khi đăng nhập vào ứng dụng.
 Màn hình này là nơi người dùng thực hiện hầu hết mọi tác vụ có trong ứng dụng.
 Màn hình có hai thành phần chính là bảng tùy chọn và bản điều khiển.
-Giao diện ứng dụng web được thiết kế như sau:
+Giao diện ứng dụng web được thiết kế như sau, hình \ref{fig:MHUngDung}:
 
-STT
+\begin{figure}[H]
+      \centering
+      \includegraphics[width=\textwidth]{applied-thesis-chapters/chapter-3/Màn hình ứng dụng.png}
+      \caption{Màn hình ứng dụng}
+      \label{fig:MHUngDung}
+\end{figure}
 
-Tên thành phần
+Bảng mô tả giao diện màn hình ứng dụng, bảng \ref{tab:MTUngDung}:
 
-Mô tả
-
-STT
-
-Tên thành phần
-
-Mô tả
-
-1
-
-Logo
-
-Logo của ứng dụng Owlens. Người dùng có thể chọn vào logo để quay lại màn hình chính của ứng dụng cũng là màn hình của tùy chọn “Dashboard“.
-
-2
-
-Bảng tùy chọn
-
-Người dùng có thể chuyển đổi giữa các bảng điều khiển bằng khác nhau tương ứng với các tuỳ chọn có trong bảng tùy chọn.
-
-3
-
-Bảng điều khiển
-
-Bảng hiển thị các nội dung khác nhau tương ứng với các tùy chọn đang được chọn khác nhau.
-
-4
-
-Thanh truy vết địa chỉ
-
-Cho phép người dùng theo dõi vị trí hiện tại trong ứng dụng và di chuyển lại truy vết trước đó.
+\begin{tabularx}{\textwidth}{|>{\hsize=.15\hsize\centering\let\newline
+      \\\arraybackslash}X|>{\hsize=.30\hsize\raggedright\let\newline
+      \\\arraybackslash}X|>{\hsize=.45\hsize\raggedright\let\newline
+      \\\arraybackslash}X|}
+      \hline
+      \textbf{STT}
+       & \textbf{Tên thành phần}
+       & \textbf{Mô tả}
+      \\
+      \hline
+      1
+       &
+      Logo
+       &
+      Logo của ứng dụng Owlens. Người dùng có thể chọn vào logo để quay lại màn hình chính của ứng dụng cũng là màn hình của tùy chọn “Dashboard“.
+      \\
+      \hline
+      2
+       &
+      Bảng tùy chọn
+       &
+      Người dùng có thể chuyển đổi giữa các bảng điều khiển bằng khác nhau tương ứng với các tuỳ chọn có trong bảng tùy chọn.
+      \\
+      \hline
+      3
+       &
+      Bảng điều khiển
+       &
+      Bảng hiển thị các nội dung khác nhau tương ứng với các tùy chọn đang được chọn khác nhau.
+      \\
+      \hline
+      4
+       &
+      Thanh truy vết địa chỉ
+       &
+      Cho phép người dùng theo dõi vị trí hiện tại trong ứng dụng và di chuyển lại truy vết trước đó.
+      \\
+      \hline
+      \caption{Mô tả giao diện màn hình ứng dụng}
+      \label{tab:MTUngDung}
+\end{tabularx}
 
 \section{Sơ đồ phần mềm hệ thống}
 
 \subsection{Sơ đồ use case}
 
-Bảng mô tả
+\tab Hình \ref{fig:UseCase} mô tả sơ đồ Use Case của hệ thống.
 
-STT
+\begin{figure}[H]
+      \centering
+      \includegraphics[width=\textwidth]{applied-thesis-chapters/chapter-3/Sơ đồ Use Case.png}
+      \caption{Sơ đồ Use Case}
+      \label{fig:UseCase}
+\end{figure}
 
-Use case
+Bảng \ref{tab:UseCase} mô tả cho sơ đồ Use Case của hệ thống
 
-Mô tả
+\begin{tabularx}{\textwidth}{|>{\hsize=.15\hsize\centering\let\newline
+      \\\arraybackslash}X|>{\hsize=.30\hsize\raggedright\let\newline
+      \\\arraybackslash}X|>{\hsize=.45\hsize\raggedright\let\newline
+      \\\arraybackslash}X|}
+      \hline
+      \textbf{STT}
+       & \textbf{Use Case}
+       & \textbf{Mô tả}
+      \\
+      \hline
+      1
+       &
+      Đăng nhập/Đăng ký với Google
+       &
+      Người dùng khách có thể đăng nhập vào hệ thống bằng tài khoản Google, nếu tài khoản của người dùng đăng nhập lần đầu sẽ được ghi nhận như đăng ký và đăng nhập cùng lúc
+      \\
+      \hline
+      2
+       &
+      Quét với ZAP Spider (Dùng thử)
+       &
+      Người dùng khách có thể sử dụng thử chức năng quét với ZAP Spider. Vì là khách nên kết quả quét chỉ được hiển thị chứ không lưu vào hệ thống
+      \\
+      \hline
+      3
+       &
+      Quản lý mục tiêu
+       &
+      Người dùng đã đăng nhập có thể xem danh sách mục tiêu, tạo và xóa các mục tiêu. Khi xem danh sách mục tiêu người dùng có tìm mục tiêu theo tên. Khi tạo mục tiêu, người dùng có thể tạo hai loại mục tiêu: mục tiêu bằng URL và mục tiêu bằng IP
+      \\
+      \hline
+      4
+       &
+      Tạo phiên quét
+       &
+      Người dùng đã đăng nhập có thể tạo phiên quét mới từ các mục tiêu đã tạo. Các phương thức của phiên quét người dùng có thể chọn là: ZAP Spider, ZAP Ajax, ZAP Passive, ZAP Active. Ngoài ra, khi tạo các phiên quét bằng ZAP Passive hay ZAP Active, người dùng có thể chọn cấu hình loại khám phá (explore type) là ZAP Spider hoặc ZAP Ajax (mặc định là ZAP Spider)
+      \\
+      \hline
+      5
+       &
+      Xem danh sách phiên quét
+       &
+      Người dùng đã đăng nhập có thể xem danh sách phiên quét. Danh sách phiên quét hiển thị thông tin chung của các phiên quét. Người dùng có thể chọn mục trong bảng để xem thông tin chi tiết của phiên quét. Trong màn hình của thông tin chi tiết phiên quét, người dùng có thể chọn xuất kết quả quét ra tệp PDF.
+      \\
+      \hline
+      6
+       &
+      Đăng xuất
+       &
+      Người dùng đã đăng nhập có thể đăng xuất phiên đăng nhập của mình khỏi hệ thống
+      \\
+      \hline
+      \caption{Mô tả sơ đồ Use Case}
+      \label{tab:UseCase}
+\end{tabularx}
 
-1
+\subsection{Sơ đồ cơ sở dữ liệu}
 
-Đăng nhập/Đăng ký với Google
+Hình \ref{fig:Database} mô tả sơ đồ cơ sở dữ liệu của hệ thống.
 
-Người dùng khách có thể đăng nhập vào hệ thống bằng tài khoản Google, nếu tài khoản của người dùng đăng nhập lần đầu sẽ được ghi nhận như đăng ký và đăng nhập cùng lúc
-
-2
-
-Quét với ZAP Spider (Dùng thử)
-
-Người dùng khách có thể sử dụng thử chức năng quét với ZAP Spider. Vì là khách nên kết quả quét chỉ được hiển thị chứ không lưu vào hệ thống
-
-3
-
-Quản lý mục tiêu
-
-Người dùng đã đăng nhập có thể xem danh sách mục tiêu, tạo và xóa các mục tiêu. Khi xem danh sách mục tiêu người dùng có tìm mục tiêu theo tên. Khi tạo mục tiêu, người dùng có thể tạo hai loại mục tiêu: mục tiêu bằng URL và mục tiêu bằng IP
-
-4
-
-Tạo phiên quét
-
-Người dùng đã đăng nhập có thể tạo phiên quét mới từ các mục tiêu đã tạo. Các phương thức của phiên quét người dùng có thể chọn là: ZAP Spider, ZAP Ajax, ZAP Passive, ZAP Active. Ngoài ra, khi tạo các phiên quét bằng ZAP Passive hay ZAP Active, người dùng có thể chọn cấu hình loại khám phá (explore type) là ZAP Spider hoặc ZAP Ajax (mặc định là ZAP Spider)
-
-5
-
-Xem danh sách phiên quét
-
-Người dùng đã đăng nhập có thể xem danh sách phiên quét. Danh sách phiên quét hiển thị thông tin chung của các phiên quét. Người dùng có thể chọn mục trong bảng để xem thông tin chi tiết của phiên quét. Trong màn hình của thông tin chi tiết phiên quét, người dùng có thể chọn xuất kết quả quét ra tệp PDF.
-
-6
-
-Đăng xuất
-
-Người dùng đã đăng nhập có thể đăng xuất phiên đăng nhập của mình khỏi hệ thống
-
-3.3.2 Sơ đồ cơ sở dữ liệu
+\begin{figure}[H]
+      \centering
+      \includegraphics[width=\textwidth]{applied-thesis-chapters/chapter-3/Sơ đồ cơ sở dữ liệu.png}
+      \caption{Sơ đồ cơ sở dữ liệu}
+      \label{fig:Database}
+\end{figure}

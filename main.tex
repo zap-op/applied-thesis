@@ -12,11 +12,35 @@
 \usepackage{times} % Times font
 \usepackage{lipsum} % Support create dot command
 \usepackage{float} % Able to use H
-% ----------------------------------------
+\usepackage{listings}
+\usepackage{xcolor}
 
+% ----------------------------------------
 \linespread{1.5}
 \keepXColumns % Keep X column in ltablex to avoid \item missing error
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
 
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
 \input{macros/paragraph.tex} % Add space below \paragraph
 \input{macros/tabularx.tex} % Verticle center text in cell
 \input{macros/thead.tex} % Set \thead to Bold text
@@ -43,5 +67,7 @@
 \input{applied-thesis-chapters/chapter-3/chapter-3.tex}
 \input{applied-thesis-chapters/chapter-4/chapter-4.tex}
 % \input{applied-thesis-chapters/chapter-5/chapter-5.tex}
-\input{applied-thesis-chapters/bib/bib.tex}
+\newpage
+\bibliographystyle{plain}
+\bibliography{bibliography.bib}
 \end{document}

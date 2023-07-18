@@ -53,6 +53,71 @@ Hỗ trợ hẹn lịch quét, báo cáo đầy đủ thông tin chi tiết và 
 
 \subsection{So sánh nhận xét 3 hệ thống}
 
+\begin{tabularx}{\textwidth}{|>{\hsize=0.2\hsize\centering\let\newline
+    \\\arraybackslash}X|>{\hsize=0.4\hsize\raggedright\let\newline
+    \\\arraybackslash}X|>{\hsize=0.4\hsize\raggedright\let\newline
+    \\\arraybackslash}X|}
+    \hline
+    \thead{Hệ thống}
+     &
+    \thead{Ưu điểm}
+     &
+    \thead{Khuyết điểm}
+    \\
+    \hline
+    Stack Hawk
+     &
+    - Tự động quét trên mỗi PR hoặc trong CI/CD.
+    \newlinecontenttable
+    - Quản lý thông tin kết quả quét, giao diện tường minh, dễ sử dụng.
+    \newlinecontenttable
+    - Đề xuất liên kết chứa thông tin sửa lỗi tìm được.
+    \newlinecontenttable
+    - Tích hợp được với những công cụ quản lý khác có sử dụng CI/CD như: Jira Sotfware, Gitlab, Github Action, Azure Pinelines, Jenkins, Travis CI,\dots
+    \newlinecontenttable
+    - Tài liệu hướng dẫn đầy đủ, chi tiết.
+     &
+    - Cần cấu hình pineline (.yml, .yaml).
+    \newlinecontenttable
+    - Cần Docker image đã build xây dựng sẵn.
+    \newlinecontenttable
+    - Kích hoạt quét bằng command line ở máy local. Cấu hình kích hoạt quét gồm nhiều bước.
+    \newlinecontenttable
+    - Dùng thử một lần mỗi ngày.
+    \\
+    \hline
+    Hosted Scan
+     &
+    - Hỗ trợ các loại quét khác như Nmap, OpenVas, SSL/TLS.
+    \newlinecontenttable
+    - Hẹn thời gian đặt lịch quét.
+    \newlinecontenttable
+    - Đề xuất liên kết chứa thông tin sửa lỗi tìm được.
+    \newlinecontenttable
+    - Thông tin scan đầy đủ. Giao diện đơn giản.
+     &
+    - Kết quả scan dường như là dữ liệu gốc, không được xử lý.
+    \newlinecontenttable
+    - Dùng thử 10 lần mỗi tháng.
+    \\
+    \hline
+    Detectify
+     &
+    - Tích hợp với các công cụ khác như: Slack, Jira, Zapier,…
+    \newlinecontenttable
+    - Đề xuất liên kết chứa thông tin sửa lỗi tìm được.
+     &
+    - Chi phí sử dụng cao.
+    \newlinecontenttable
+    - Cần phải cấu hình bên trong ứng dụng và triển khai để xác nhận chính chủ phức tạp, có thể không thành công.
+    \newlinecontenttable
+    - Không theo dõi được quá trình, tiến độ quét.
+    \\
+    \hline
+    \caption{Bảng đánh giá chức năng giữa các hệ thống}\label{dummy-1}\\
+\end{tabularx}
+
+
 \section{Lý do lựa chọn đề tài}
 
 \tab Trong thời đại ngày nay, các ứng dụng web phát triển với tốc độ nhanh chóng với số lượng, chất lượng và kích thước.
@@ -84,12 +149,9 @@ Nhóm chúng em xác định rõ các mục tiêu cần đạt được khi th�
     \item Viết 120 trang luận văn theo luồng logic trình bày trong tài liệu “Hướng dẫn thực hiện luận văn” mà giáo viên cung cấp, theo đúng chuẩn nhà trường yêu cầu và trích dẫn tài liệu tham khảo một cách chi tiết, đầy đủ.
 \end{itemize}
 
-\section{Yêu cầu chức năng}
-
-\tab Để hoàn thành tốt luận văn, nhóm chúng em đưa ra các chứng năng của hệ thống tư động tìm kiếm lỗi bảo mật web như sau:
-
 \section{Phạm vi đề tài}
 
 \tab Mục tiêu chính của đề tài “Hệ thống tự động tìm kiếm lỗi bảo mật ứng dụng web dựa trên nền tảng OWASP ZAP” là hướng tới sự dễ dàng và nhanh chóng tìm kiếm lỗi bảo mật ứng dụng và quản lý kết quả sau khi quét.
-Vì vậy ứng dụng sẽ chú trọng phát triển các tính năng mà các sản phẩm trên thị trường đang có như quét đa dạng và cho phép người dùng tương tác với thông tin kết quả quét mà không thực hiện các chức năng liên quan tới tích hợp các công cụ bên ngoài hay hẹn giờ quét.
+Vì vậy ứng dụng sẽ chú trọng phát triển các tính năng quét chính với ZAP đã đề xuất.
+Và các chức năng quản lý cơ bản của nền tảng như quản lý mục tiêu, quản lý phiên quét.
 Tuy vậy, ứng dụng sẽ tập trung vào trực quan hóa quá trình quét và giảm thiểu các cấu hình bắt buộc khi bắt đầu một phiên quét.
