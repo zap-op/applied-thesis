@@ -14,6 +14,12 @@
 \usepackage{float} % Able to use H
 \usepackage{listings}
 \usepackage{xcolor}
+\usepackage[backend=bibtex,
+style=numeric,
+bibencoding=ascii,
+sorting=none
+]{biblatex}
+\addbibresource{bibliography.bib}
 
 % ----------------------------------------
 \linespread{1.5}
@@ -68,6 +74,5 @@
 \input{applied-thesis-chapters/chapter-4/chapter-4.tex}
 % \input{applied-thesis-chapters/chapter-5/chapter-5.tex}
 \newpage
-\bibliographystyle{plain}
-\bibliography{bibliography.bib}
+\printbibliography[title={Tài liệu than khảo}]
 \end{document}

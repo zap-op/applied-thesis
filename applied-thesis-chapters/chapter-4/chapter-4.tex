@@ -15,8 +15,8 @@ Do đó, đề xuất sử dụng Redux của nhóm chính là sử dụng Redux
 \par
 
 \textit{"Redux Toolkit là phương pháp tiêu chuẩn chính thức để viết logic Redux.
-Nó bao bọc xung quanh lõi của Redux, và chứa các gói và hàm được cho là cần thiết để xây dựng một ứng dụng Redux.
-Redux Toolkit tích hợp các thực hành tốt nhất (best practices) được đề xuất, đơn giản hóa hầu hết các tác vụ Redux, ngăn ngừa những sai lầm phổ biến và làm cho việc viết ứng dụng Redux dễ dàng hơn."} \cite{chap4bib1}
+  Nó bao bọc xung quanh lõi của Redux, và chứa các gói và hàm được cho là cần thiết để xây dựng một ứng dụng Redux.
+  Redux Toolkit tích hợp các thực hành tốt nhất (best practices) được đề xuất, đơn giản hóa hầu hết các tác vụ Redux, ngăn ngừa những sai lầm phổ biến và làm cho việc viết ứng dụng Redux dễ dàng hơn."} \cite{chap4bib1}
 \par
 
 Trong phạm vi khóa luận, khi xây dựng ứng dụng web thì việc tương tác và quản lý dữ liệu API cũng là một vấn đề tiên quyết.
@@ -24,11 +24,11 @@ Khi muốn đưa dữ liệu từ API lên trạng thái toàn ứng dụng (glo
 Redux là một thư viện đồng bộ và tác vụ tương tác với API là tác vụ bất đồng bộ nên thực hiện việc này sẽ có khó khăn, mã dài dòng và khó quản lý lỗi.
 Để giải quyết vấn đề này, Redux Tookit có cung cấp hàm createAsyncThunk giúp đơn giản hóa quá trình tạo ra tác vụ bất đồng bộ.
 Tuy nhiên, người dùng vẫn phải viết một số lượng logic đáng kể để quản lý dữ liệu ghi đệm và trạng thái tải.
-Nhóm đề xuất sử dụng Redux Toolkit Query (RTK Query) làm công cụ tương tác, quản lý dữ liệu khi tương tác với API cho ứng dụng. 
+Nhóm đề xuất sử dụng Redux Toolkit Query (RTK Query) làm công cụ tương tác, quản lý dữ liệu khi tương tác với API cho ứng dụng.
 \par
 
 \textit{“RTK Query là một công cụ lấy dữ liệu (fetching) và lưu đệm (caching) mạnh mẽ.
-Nó được thiết kế để đơn giản hóa các trường hợp phổ biến khi tải dữ liệu trong một ứng dụng web, loại bỏ nhu cầu viết thủ công các logic lấy dữ liệu và caching của bạn.}
+  Nó được thiết kế để đơn giản hóa các trường hợp phổ biến khi tải dữ liệu trong một ứng dụng web, loại bỏ nhu cầu viết thủ công các logic lấy dữ liệu và caching của bạn.}
 \par
 
 \textit{RTK Query là một addon tùy chọn được bao gồm trong gói Redux Toolkit, và chức năng của nó được xây dựng trên các API khác trong Redux Toolkit.“} \cite{chap4bib2}
@@ -42,7 +42,7 @@ Vậy nên việc sử dụng RTK Query là giải pháp cho tương tác API k�
 
 \tab Việc tương tác với API trong RTK Query xoay quanh việc cài đặt các endpoint.
 Endpoint trong RTK Query được định nghĩa trong hàm createApi của thư viện.
-Để định nghĩa một endpoint, chúng ta cần cung cấp các thông tin như tên endpoint (là duy nhất trong phạm vi của hàm createAPI) , địa chỉ URL của API, phương thức của endpoint (phương thức HTTP, thông tin này là tùy chọn, mặc định sẽ tùy theo loại endpoint mà ta sử dụng). 
+Để định nghĩa một endpoint, chúng ta cần cung cấp các thông tin như tên endpoint (là duy nhất trong phạm vi của hàm createAPI) , địa chỉ URL của API, phương thức của endpoint (phương thức HTTP, thông tin này là tùy chọn, mặc định sẽ tùy theo loại endpoint mà ta sử dụng).
 Có thể sử dụng các endpoint đã được định nghĩa trong các component của ứng dụng bằng cách sử dụng hook tương ứng.
 Các hook này được sinh ra tự động bởi RTK Query và có tên được đặt dựa trên tên của endpoint.
 Ví dụ, nếu endpoint được định nghĩa theo loại Query endpoint và có tên là "getUsers", thì hook để sử dụng endpoint này sẽ có tên là "useGetUsersQuery".
@@ -51,13 +51,13 @@ Có hai loại endpoint trong RTK Query là Query endpoint và Mutation endpoint
 
 \begin{itemize}
   \item \textbf{Query endpoint} khuyến cáo nên được sử dụng khi lấy, truy xuất dữ liệu từ API.
-  Khi sử dụng endpoint này, theo mặc định, query endpoint sẽ tự động thực thi khi component sử dụng nó được hiển thị.
-  RTK Query sẽ kiểm tra xem dữ liệu đã được lưu trong store hay chưa.
-  Nếu có, dữ liệu đã có trong trong bộ đệm sẽ được trả về mà không cần gửi yêu cầu đến server.
-  Nếu chưa có, yêu cầu sẽ được gửi đến server để lấy dữ liệu mới nhất.
+        Khi sử dụng endpoint này, theo mặc định, query endpoint sẽ tự động thực thi khi component sử dụng nó được hiển thị.
+        RTK Query sẽ kiểm tra xem dữ liệu đã được lưu trong store hay chưa.
+        Nếu có, dữ liệu đã có trong trong bộ đệm sẽ được trả về mà không cần gửi yêu cầu đến server.
+        Nếu chưa có, yêu cầu sẽ được gửi đến server để lấy dữ liệu mới nhất.
   \item \textbf{Mutation endpoint} khuyến cáo nên được sử dụng khi thay đổi dữ liệu, làm cũ dữ liệu trong store qua API.
-  Không như query endpoint, mutation endpoint không được thực hiện tự động mà phải gọi tới mỗi khi sử dụng.
-  Endpoint này có thể sử dụng để đánh dấu dữ liệu đã cũ trong store, ra hiệu cho các endpoint có liên quan làm mới lại dữ liệu, ví dụ như component có sử dụng Query endpoint sẽ lấy dữ liệu mới, loại bỏ dữ liệu đã cũ trong store.
+        Không như query endpoint, mutation endpoint không được thực hiện tự động mà phải gọi tới mỗi khi sử dụng.
+        Endpoint này có thể sử dụng để đánh dấu dữ liệu đã cũ trong store, ra hiệu cho các endpoint có liên quan làm mới lại dữ liệu, ví dụ như component có sử dụng Query endpoint sẽ lấy dữ liệu mới, loại bỏ dữ liệu đã cũ trong store.
 \end{itemize}
 
 Endpoint của RTK Query có cung cấp nhiều lifecycle hook mạnh mẽ, hỗ trợ rất nhiều trong việc đóng gói các logic đi kèm bên trong chính endpoint đó.
@@ -67,20 +67,20 @@ Chi tiết của các hook này như sau:
 
 \begin{itemize}
   \item \textbf{transformResponse:} dùng để cài đặt thay đổi, biến đổi dữ liệu (data) được trả về.
-  Dữ liệu được trả về phải đi qua hook này trước khi được lấy ra từ endpoint
+        Dữ liệu được trả về phải đi qua hook này trước khi được lấy ra từ endpoint
   \item \textbf{transformErrorResponse:} tương tự như transformResponse nhưng dành cho đối tượng lỗi (error).
   \item \textbf{onQueryStarted:} đây là một hook bất đồng bộ, các cài đặt trong hook này sẽ được thực hiện trước khi request của endpoint được gửi đi. Hook này có cung cấp đối tượng LifecycleApi chứa các phương thức để tương tác với dữ liệu, tham số từ endpoint.
   \item \textbf{onCacheEntryAdded:} đây cũng là một hook bất đồng bộ, các cài đặt trong hook sẽ được thực hiện khi có một mục đệm (cache entry) được thêm vào.
-  Cache entry là một bộ dữ liệu của một endpoint với tham số truyền vào query đó.
-  Như đã nói, RTK Query cache dữ liệu của endpoint để tối ưu số lần request, nên nếu có hai nơi gọi đến cùng một bộ endpoint và tham số thì dữ liệu sẽ được chia sẽ cho nhau.
-  Vì vậy, lần đầu tiên bộ endpoint và tham số được gọi là lần cache entry được thêm vào.
-  Hook này có cũng cấp đối tượng CacheLifecycleApi có tác dụng tương tự với LifecycleApi từ onQueryStarted.
-  CacheLifecycleApi còn có cung cấp thêm hai thuộc tính là cacheDataLoaded và cacheDataRemoved để hỗ trợ ta có thể cài đặt đồng bộ trong hook.
+        Cache entry là một bộ dữ liệu của một endpoint với tham số truyền vào query đó.
+        Như đã nói, RTK Query cache dữ liệu của endpoint để tối ưu số lần request, nên nếu có hai nơi gọi đến cùng một bộ endpoint và tham số thì dữ liệu sẽ được chia sẽ cho nhau.
+        Vì vậy, lần đầu tiên bộ endpoint và tham số được gọi là lần cache entry được thêm vào.
+        Hook này có cũng cấp đối tượng CacheLifecycleApi có tác dụng tương tự với LifecycleApi từ onQueryStarted.
+        CacheLifecycleApi còn có cung cấp thêm hai thuộc tính là cacheDataLoaded và cacheDataRemoved để hỗ trợ ta có thể cài đặt đồng bộ trong hook.
   \item \textbf{providesTags:} Hook chỉ tồn tại trong Query endpoint.
-  Hook giúp cho các Query endpoint tự động làm mới dựa trên các thẻ (tag) mà ta gắn vào.
+        Hook giúp cho các Query endpoint tự động làm mới dựa trên các thẻ (tag) mà ta gắn vào.
   \item \textbf{invalidatesTags:} Hook chỉ tồn tại trong Mutation endpoint.
-  Hook giúp xác định cache data nào sẽ được tìm nạp lại hoặc xóa khỏi store.
-  Khi Mutation endpoint có gắn tag được gọi, dữ liệu nằm trong Query endpoint có tag tương tự sẽ bị đánh dấu là đã cũ, nếu dữ liệu bị đánh dấu cần sử dụng thì Query endpoint sẽ được gọi lại để làm mới dữ liệu.
+        Hook giúp xác định cache data nào sẽ được tìm nạp lại hoặc xóa khỏi store.
+        Khi Mutation endpoint có gắn tag được gọi, dữ liệu nằm trong Query endpoint có tag tương tự sẽ bị đánh dấu là đã cũ, nếu dữ liệu bị đánh dấu cần sử dụng thì Query endpoint sẽ được gọi lại để làm mới dữ liệu.
 \end{itemize}
 
 Trong onQueryStarted và onCacheEntryAdded của Query endpoint, hai đối tượng LifecycleApi và CacheLifecycleApi đều có cung cấp thêm thuộc tính updateCachedData.
@@ -90,20 +90,20 @@ updateCachedData thay đổi dữ liệu giống với cách reducer của Redux
 
 Có thể điều chỉnh cấu hình endpoint trong cài đặt hay trên hook để thay đổi hành vi của các endpoint.
 Một trong những hành vi tiêu biểu nhóm cần trong phạm vi thực hiện khóa luận là cập nhật dữ liệu liên tục (streaming update).
-Ta khởi tạo kết nối socket hay event source trong hook onCachedEntryAdded, phối hợp với sử dụng cacheDataLoaded và cacheDataRemoved để thực hiện hành vi này, chi tiết như đoạn trích ở dưới 
+Ta khởi tạo kết nối socket hay event source trong hook onCachedEntryAdded, phối hợp với sử dụng cacheDataLoaded và cacheDataRemoved để thực hiện hành vi này, chi tiết như đoạn trích ở dưới
 \par
 
 \textit{“… bạn sẽ await cacheDataLoaded để xác định thời điểm dữ liệu đầu tiên được tải xuống, sau đó sử dụng tiện ích (utility) updateCacheData để áp dụng các streaming updates khi nhận được tin nhắn (messages).
-updateCacheData là một callback do Immer cung cấp, nhận bản draft của giá trị cache hiện tại.
-Bạn có thể biến đổi giá trị draft để cập nhật giá trị đó khi cần dựa trên các giá trị nhận được. 
-RTK Query sau đó sẽ gửi một hành động áp dụng một bản vá lỗi khác dựa trên những thay đổi đó."} \cite{chap4bib3}
+  updateCacheData là một callback do Immer cung cấp, nhận bản draft của giá trị cache hiện tại.
+  Bạn có thể biến đổi giá trị draft để cập nhật giá trị đó khi cần dựa trên các giá trị nhận được.
+  RTK Query sau đó sẽ gửi một hành động áp dụng một bản vá lỗi khác dựa trên những thay đổi đó."} \cite{chap4bib3}
 
 \section{RxJS và Reactive Programming}
 
 \subsection{Reactive Programming}
 
 \tab Reactive programming là thuật ngữ chỉ phương pháp xử lý, lập trình với dữ liệu không tuần tự.
-Dữ liệu trong reactive programming sẽ được chứa trong một dòng tuần tự (stream) tương tự như hình \ref{fig:StreamInRP} 
+Dữ liệu trong reactive programming sẽ được chứa trong một dòng tuần tự (stream) tương tự như hình \ref{fig:StreamInRP}
 
 \begin{figure}[H]
   \centering
@@ -111,7 +111,6 @@ Dữ liệu trong reactive programming sẽ được chứa trong một dòng tu
   \caption{Minh họa Stream trong Reactive Programming \cite{chap4bib4}}
   \label{fig:StreamInRP}
 \end{figure}
-
 
 \tab Khi stream nhận vào một gói dữ liệu mới, gói đó sẽ được stream vận chuyển đến các điểm chỉnh sửa (modifier).
 Modifier là các phương thức được cài đặt, có nhiệm vụ sẽ tự động chạy hay phản ứng (react) với các gói dữ liệu được đưa vào, chỉnh sửa và đưa lại về stream.
@@ -136,36 +135,36 @@ Các khái niệm thiết yếu trong RxJS là: [5]
 \begin{itemize}
   \item \textbf{Observable:} là một đối tượng đại diện cho một chuỗi các sự kiện hoặc giá trị được phát ra theo thời gian.  Có thể hiểu đây là một stream trong Reactive Programming.
   \item \textbf{Observer:} là một tập hợp các callback lắng nghe các giá trị do Observable cung cấp.
-  Có ba loại callback trong đối tượng này, mỗi loại callback sẽ có chức năng khác nhau:
-  \begin{itemize}
-    \item next: callback này sẽ phản ứng mỗi khi Observable của nó phát ra gói dữ liệu.
-    \item error: callback này sẽ phản ứng khi luồng logic trong Observable của nó phát ra lỗi, tham số trả về trong callback sẽ là lỗi mà Observable gặp phải.
-    \item complete: callback này sẽ phản ứng khi logic của Observable của nó hoàn thành, không còn gói dữ liệu mới phát ra nữa.
-  \end{itemize}
+        Có ba loại callback trong đối tượng này, mỗi loại callback sẽ có chức năng khác nhau:
+        \begin{itemize}
+          \item next: callback này sẽ phản ứng mỗi khi Observable của nó phát ra gói dữ liệu.
+          \item error: callback này sẽ phản ứng khi luồng logic trong Observable của nó phát ra lỗi, tham số trả về trong callback sẽ là lỗi mà Observable gặp phải.
+          \item complete: callback này sẽ phản ứng khi logic của Observable của nó hoàn thành, không còn gói dữ liệu mới phát ra nữa.
+        \end{itemize}
   \item \textbf{Subscription:} là đối tượng đại diện cho quá trình đăng ký (subscribe) và hủy đăng ký (unsubscribe) của các Observer với một Observable.
-  Là cách tiếp cận tốt để quản lý các đăng ký và giải phóng tài nguyên.
+        Là cách tiếp cận tốt để quản lý các đăng ký và giải phóng tài nguyên.
   \item \textbf{Operators:} là các hàm được sử dụng để thực hiện các thao tác trên các Observable, có thể hiểu đây là các Modifier trên stream.
-  Các Operators cho phép ta xử lý các logic phức tạp trong Observable đơn giản, hiệu quả và tiện lợi.
-  Các Operators có thể được chia thành hai loại chính: Operators nối tiếp (Pipeable Operators) và Operators khởi tạo (Creation Operators).
-  \begin{itemize}
-    \item \textbf{Pipeable Operators:} sử dụng để thực hiện các thao tác trên Observable.
-    Có thể sử dụng phương thức pipe() kết nối các operator với nhau, tạo ra một chuỗi các operator.
-    Pipeable Operators bao gồm map(), filter(), mergeMap() và nhiều hàm khác.
-    \item \textbf{Creation Operators:} sử dụng để tạo ra một Observable mới.
-    Creation Operators bao gồm of(), from(), interval() và nhiều hàm khác.
-  \end{itemize}
+        Các Operators cho phép ta xử lý các logic phức tạp trong Observable đơn giản, hiệu quả và tiện lợi.
+        Các Operators có thể được chia thành hai loại chính: Operators nối tiếp (Pipeable Operators) và Operators khởi tạo (Creation Operators).
+        \begin{itemize}
+          \item \textbf{Pipeable Operators:} sử dụng để thực hiện các thao tác trên Observable.
+                Có thể sử dụng phương thức pipe() kết nối các operator với nhau, tạo ra một chuỗi các operator.
+                Pipeable Operators bao gồm map(), filter(), mergeMap() và nhiều hàm khác.
+          \item \textbf{Creation Operators:} sử dụng để tạo ra một Observable mới.
+                Creation Operators bao gồm of(), from(), interval() và nhiều hàm khác.
+        \end{itemize}
   \item \textbf{Subject:} là một loại Observable, tương đương với một EventEmitter, có thể được sử dụng trực tiếp để phát ra các sự kiện hoặc giá trị cho nhiều Observers.
   \item \textbf{Schedulers:} là các bộ điều phối tập trung để kiểm soát các hoạt động đồng thời, có thể hiểu đơn giản là sử dụng để kiểm soát và quản lý các hoạt động thực thi theo thứ tự mong muốn.
-  Ngoài ra, có thể sử dụng để xác định các nguồn thực thi, thời điểm thực thi trong các Observable, cho các hoạt động đồng bộ và không đồng bộ.
-  Schedulers cung cấp các tính năng như điều khiển tốc độ thực thi các hoạt động, điều chỉnh thời gian đợi giữa các hoạt động, phân tán hoạt động cho các luồng thực thi khác.
-  Schedulers được đóng gói thành các loại khác nhau gồm:
-  \begin{itemize}
-    \item asapScheduler: dùng để kiểm soát các hoạt động đồng bộ, ưu tiên thực hiện các hoạt động ngay khi có thể.
-    \item queueScheduler: dùng để kiểm soát các hoạt động đồng bộ và không đồng bộ, đưa các hoạt động vào một hàng đợi và thực hiện chúng theo thứ tự.
-    \item asyncScheduler: dùng để kiểm soát các hoạt động không đồng bộ, chạy các hoạt động trong một luồng thực thi riêng biệt.
-  \end{itemize}
+        Ngoài ra, có thể sử dụng để xác định các nguồn thực thi, thời điểm thực thi trong các Observable, cho các hoạt động đồng bộ và không đồng bộ.
+        Schedulers cung cấp các tính năng như điều khiển tốc độ thực thi các hoạt động, điều chỉnh thời gian đợi giữa các hoạt động, phân tán hoạt động cho các luồng thực thi khác.
+        Schedulers được đóng gói thành các loại khác nhau gồm:
+        \begin{itemize}
+          \item asapScheduler: dùng để kiểm soát các hoạt động đồng bộ, ưu tiên thực hiện các hoạt động ngay khi có thể.
+          \item queueScheduler: dùng để kiểm soát các hoạt động đồng bộ và không đồng bộ, đưa các hoạt động vào một hàng đợi và thực hiện chúng theo thứ tự.
+          \item asyncScheduler: dùng để kiểm soát các hoạt động không đồng bộ, chạy các hoạt động trong một luồng thực thi riêng biệt.
+        \end{itemize}
 \end{itemize}
- 
+
 \section{OWASP Zed Attack Proxy}
 
 \subsection{Giới thiệu tổng quan}
@@ -190,32 +189,32 @@ Trong đó, có 9 chức năng cốt lõi là:
 
 \begin{itemize}
   \item \textbf{API:} công cụ có cung cấp một hệ thống API cho phép tương tác với ZAP.
-  Chức năng cho phép phát triển tích hợp ZAP vào quy trình phát triển phần mềm hay chính các phần mềm khác, và thực hiện các kiểm thử bảo mật tự động.
-  Chức năng cung cấp nhiều API để tương tác với nhiều chức năng khác nhau trong ZAP, tiêu biểu là quét tự động, quản lý phiên quét, kiểm soát truy cập, và quản lý cấu hình.
-  \par
-  Theo mặc định, chỉ máy chủ ZAP đang chạy thì mới có thể truy cập vào API.
-  Để xem thông tin chi tiết về hướng dẫn và sử dụng của chức năng này, ta truy cập giao diện web qua URL http://zap/ khi đang dùng ZAP như proxy.
-  Hoặc thông qua URL http://localhost:8080/ khi ứng dụng ZAP đang chạy và máy chủ của chức năng có hoạt động, mỗi instance ứng dụng ZAP sẽ có một máy chủ khác nhau, phát trên các cổng khác nhau và dữ liệu của API trả về tương ứng với mỗi instance đó.
-  Dữ liệu API được cung cấp dưới dạng các định dạng JSON, HTML và XML.
+        Chức năng cho phép phát triển tích hợp ZAP vào quy trình phát triển phần mềm hay chính các phần mềm khác, và thực hiện các kiểm thử bảo mật tự động.
+        Chức năng cung cấp nhiều API để tương tác với nhiều chức năng khác nhau trong ZAP, tiêu biểu là quét tự động, quản lý phiên quét, kiểm soát truy cập, và quản lý cấu hình.
+        \par
+        Theo mặc định, chỉ máy chủ ZAP đang chạy thì mới có thể truy cập vào API.
+        Để xem thông tin chi tiết về hướng dẫn và sử dụng của chức năng này, ta truy cập giao diện web qua URL http://zap/ khi đang dùng ZAP như proxy.
+        Hoặc thông qua URL http://localhost:8080/ khi ứng dụng ZAP đang chạy và máy chủ của chức năng có hoạt động, mỗi instance ứng dụng ZAP sẽ có một máy chủ khác nhau, phát trên các cổng khác nhau và dữ liệu của API trả về tương ứng với mỗi instance đó.
+        Dữ liệu API được cung cấp dưới dạng các định dạng JSON, HTML và XML.
   \item \textbf{Marketplace:} tính năng này nơi chứa các thành phần mở rộng (add-on) dành cho ZAP được viết bởi các thành viện trong nhóm ZAP và cộng đồng. Các add-on này có thể được tùy chỉnh cài đặt theo nhu cầu qua giao diện ứng dụng hoặc qua chức năng API của ZAP.
-  \item \textbf{Spider:} là một công cụ tự động quét toàn bộ ứng dụng web để tìm kiếm các URL và các tài nguyên trong phạm vi ứng dụng đó. Trong thời điểm hiện tại, Spider là một chức năng nằm trong các add-on của ZAP. Chức năng của Spider tương tự như AJAX Spider nhưng đảm bảo an toàn cho mục tiêu được quét, thay vào đó là kết quả quét sẽ không sâu bằng AJAX Spider. 
-  \par
-  Khi hoạt động, Spider gửi các yêu cầu HTTP giả mạo đến trang web và thu thập các phản hồi. Sau đó phân tích các phản hồi để tiếp tục tìm kiếm các URL mới, tài nguyên, tệp JavaScript và tệp CSS. Các URL mới sẽ được thêm vào hàng đợi và quá trình quét sẽ tiếp tục cho đến khi toàn bộ ứng dụng web đã được khám phá. Thêm vào đó, Spider có cung cấp các tùy chỉnh để có thể cấu hình quá trình quét cho phù hợp với nhu cầu, có thể thực hiện qua giao diện ứng dụng hoặc qua chức năng API của ZAP.
+  \item \textbf{Spider:} là một công cụ tự động quét toàn bộ ứng dụng web để tìm kiếm các URL và các tài nguyên trong phạm vi ứng dụng đó. Trong thời điểm hiện tại, Spider là một chức năng nằm trong các add-on của ZAP. Chức năng của Spider tương tự như AJAX Spider nhưng đảm bảo an toàn cho mục tiêu được quét, thay vào đó là kết quả quét sẽ không sâu bằng AJAX Spider.
+        \par
+        Khi hoạt động, Spider gửi các yêu cầu HTTP giả mạo đến trang web và thu thập các phản hồi. Sau đó phân tích các phản hồi để tiếp tục tìm kiếm các URL mới, tài nguyên, tệp JavaScript và tệp CSS. Các URL mới sẽ được thêm vào hàng đợi và quá trình quét sẽ tiếp tục cho đến khi toàn bộ ứng dụng web đã được khám phá. Thêm vào đó, Spider có cung cấp các tùy chỉnh để có thể cấu hình quá trình quét cho phù hợp với nhu cầu, có thể thực hiện qua giao diện ứng dụng hoặc qua chức năng API của ZAP.
   \item \textbf{Ajax Spider:} là một công cụ quét tự động dành riêng cho các ứng dụng web sử dụng công nghệ AJAX (Asynchronous JavaScript and XML), rất hữu ích trong việc tìm kiếm các lỗ hổng bảo mật trong các ứng dụng web động. Trong thời điểm hiện tại, AJAX Spider là một chức năng nằm trong các add-on của ZAP. Khi sử dụng, ta có thể kết hợp với Spider để có được kết quả quét tốt nhất.
-  \par
-  Ajax Spider hoạt động bằng cách mô phỏng các tương tác AJAX của người dùng trên trình duyệt web. Nó sẽ tìm kiếm và gửi các yêu cầu AJAX đến ứng dụng web và thu thập các phản hồi. Sau đó, nó sẽ tìm kiếm các tương tác AJAX khác và tiếp tục thực hiện quét đến khi tất cả các tương tác AJAX của ứng dụng web đã được khám phá. Hơn nữa, AJAX Spider có cung cấp các tùy chỉnh để cấu hình quá trình quét cho phù hợp với nhu cầu, có thể thực hiện qua giao diện ứng dụng hoặc qua chức năng API của ZAP.
+        \par
+        Ajax Spider hoạt động bằng cách mô phỏng các tương tác AJAX của người dùng trên trình duyệt web. Nó sẽ tìm kiếm và gửi các yêu cầu AJAX đến ứng dụng web và thu thập các phản hồi. Sau đó, nó sẽ tìm kiếm các tương tác AJAX khác và tiếp tục thực hiện quét đến khi tất cả các tương tác AJAX của ứng dụng web đã được khám phá. Hơn nữa, AJAX Spider có cung cấp các tùy chỉnh để cấu hình quá trình quét cho phù hợp với nhu cầu, có thể thực hiện qua giao diện ứng dụng hoặc qua chức năng API của ZAP.
   \item \textbf{Passive Scan:} chức năng này tự động quét một cách thụ động các gói HTTP, yêu cầu và phản hồi, được proxy qua ZAP. Trong quá trình quét, Passive Scan không thay đổi yêu cầu hoặc phản hồi theo bất kỳ cách nào nên việc sử dụng là an toàn cho ứng dụng được quét. Gọi Passive Scan là quét thụ động vì nó không tự quét ứng dụng web, gửi và phản hồi các gói tin được mà nó cần được bổ trợ bởi các chức năng khác trong ZAP có thể thực hiện việc này như Spider, AJAX Spider hay thực hiện thủ công trên giao diện ứng dụng ZAP. Vì vậy, nó chạy ở một luồng khác dưới nền để không ảnh hưởng đến các chức năng quét chạy trên luồng chính.
-  Trong quá trình quét đến khi quét xong, thông tin các thẻ hoặc cảnh báo được tìm thấy sẽ được hiển thị lần lượt. Các tùy chọn hiển thị này được kích hoạt mặc định, nhưng cũng có thể được cấu hình. Passive Scan không đảm bảo có thể tìm thấy tất cả các lỗ hổng bảo mật có thể có trong ứng dụng web, vì nó chỉ quét những yêu cầu và phản hồi được gửi qua ZAP. Passive Scan có cung cấp các tùy chỉnh để cấu hình hành vi quét, có thể thực hiện qua giao diện ứng dụng hoặc qua chức năng API của ZAP.
+        Trong quá trình quét đến khi quét xong, thông tin các thẻ hoặc cảnh báo được tìm thấy sẽ được hiển thị lần lượt. Các tùy chọn hiển thị này được kích hoạt mặc định, nhưng cũng có thể được cấu hình. Passive Scan không đảm bảo có thể tìm thấy tất cả các lỗ hổng bảo mật có thể có trong ứng dụng web, vì nó chỉ quét những yêu cầu và phản hồi được gửi qua ZAP. Passive Scan có cung cấp các tùy chỉnh để cấu hình hành vi quét, có thể thực hiện qua giao diện ứng dụng hoặc qua chức năng API của ZAP.
   \item \textbf{Active Scan:} chức năng tự động tìm kiếm các lỗ hổng bảo mật tiềm năng bằng cách thực hiện các cuộc tấn công vào các mục tiêu đã biết trước. Các cuộc tấn công là các kỹ thuật tấn công phổ biến thường được sử dụng để kiểm tra bảo mật của ứng dụng web. Các mục tiêu được tìm thông qua phương pháp quét khám phá được cấu hình khi bắt đầu phiên quét. Các phương pháp quét dùng để khám phá các mục tiêu của Active Scan là Spider hoặc AJAX Spider.
-  Thực hiện Active Scan là thực hiện tấn công vào các mục tiêu trong ứng dụng web nên có thể sẽ gây ra các tác động không mong muốn đến ứng dụng web nếu không sử dụng đúng cách. Nên lưu ý rằng Active Scan chỉ có thể tìm thấy một số loại lỗ hổng. Các lỗ hổng logic như kiểm soát truy cập bị hỏng (Broken access control), sẽ không được tìm thấy bởi bất kỳ công cụ quét lỗ hổng Active Scan hoặc tự động nào. Active Scan có cung cấp các tùy chỉnh để cấu hình hành vi quét, có thể thực hiện qua giao diện ứng dụng hoặc qua chức năng API của ZAP. Thêm vào đó, Active Scan có thêm phần cấu hình các quy tắc quét thông qua chức năng Scan Policies.
+        Thực hiện Active Scan là thực hiện tấn công vào các mục tiêu trong ứng dụng web nên có thể sẽ gây ra các tác động không mong muốn đến ứng dụng web nếu không sử dụng đúng cách. Nên lưu ý rằng Active Scan chỉ có thể tìm thấy một số loại lỗ hổng. Các lỗ hổng logic như kiểm soát truy cập bị hỏng (Broken access control), sẽ không được tìm thấy bởi bất kỳ công cụ quét lỗ hổng Active Scan hoặc tự động nào. Active Scan có cung cấp các tùy chỉnh để cấu hình hành vi quét, có thể thực hiện qua giao diện ứng dụng hoặc qua chức năng API của ZAP. Thêm vào đó, Active Scan có thêm phần cấu hình các quy tắc quét thông qua chức năng Scan Policies.
   \item \textbf{Fuzzer:} là một chức năng kiểm thử tự động, sử dụng kĩ thuật Fuzzing là một kỹ thuật sử dụng các gói dữ liệu (payload) không hợp lệ hoặc không mong đợi đến mục tiêu. Fuzzer hay Fuzzing là một chức năng nằm trong các add-on của ZAP. Đối với các payload sử dụng trong chức năng nay, ta có thể tự tạo payload, lấy trong tập payload được xây dựng sẵn trong ZAP hay các payload được thiết kế sẵn trong add-on. Có thể tùy chỉnh thay đổi hành vi của chức năng theo mong muốn bằng các chức năng con của nó như Payload Generators, Payload Processors, Fuzz Location Processors và Message Processors. Tuy nhiên, cần phải cẩn thận khi sử dụng, vì kỹ thuật nó sử dụng là một kĩ thuật tấn công nên có thể sẽ gây ra các tác động không mong muốn cho ứng dụng web nếu không sử dụng đúng cách.
   \item \textbf{WebSockets:} là một chức năng nằm trong các add-on của ZAP có thể được sử dụng khi thực hiện khi thực hiện kiểm thử thủ công. Sử dụng chức năng này khi kiểm thử thủ công ứng dụng web trên giao diện ứng dụng ZAP, cho phép ứng dụng ZAP can thiệp vào các kết nối WebSocket giữa máy khách và máy chủ. Các can thiệp chức năng này hỗ trợ là:
-  \begin{itemize}
-    \item Chặn và hiển thị gói tin trong kết nối WebSocket.
-    \item Thiết lập điểm dừng (breakpoint) trên các loại gói tin cụ thể trong kết nối WebSocket.
-    \item Chạy Fuzz bằng chức năng Fuzzing đã được đề cập bên trên. 
-    \item Passive Scan các gói tin trong kết nối WebSocket.
-  \end{itemize}
+        \begin{itemize}
+          \item Chặn và hiển thị gói tin trong kết nối WebSocket.
+          \item Thiết lập điểm dừng (breakpoint) trên các loại gói tin cụ thể trong kết nối WebSocket.
+          \item Chạy Fuzz bằng chức năng Fuzzing đã được đề cập bên trên.
+          \item Passive Scan các gói tin trong kết nối WebSocket.
+        \end{itemize}
 \end{itemize}
 
 \subsection{Ưu và nhược điểm}
@@ -256,170 +255,170 @@ Với mỗi loại quét mà hệ thống hỗ trợ, nhóm thiết kế các ph
 
 \begin{itemize}
   \item Đối với ZAP Spider, nhóm tạo phương thức spiderStart() trong service để xử lý tác vụ này.
-  Phương thức có tham số clientId được xử lý đặc biệt. 
-  Nếu tham số clientId được chỉ định rõ ràng thì phiên quét sẽ được start trên chính ZAP Client đó. 
-  Nếu tham số clientId không chỉ định rõ ràng thì phiên quét sẽ được start trên ZAP Client Shared, khi đó phương thức sẽ trả về một đối tượng có chứa thứ tự của phiên quét trong ZAP instance (gọi là scan id, tên thuộc tính là scanId). 
-  Nếu tham số config không được chỉ định thì phương thức sẽ sử dụng cấu hình mặc định trong ZAP instance. 
-  Cấu hình chi tiết cho phiên quét của ZAP Spider được mô tả trong bảng \ref{tab:ConfigSpider} ở dưới.
+        Phương thức có tham số clientId được xử lý đặc biệt.
+        Nếu tham số clientId được chỉ định rõ ràng thì phiên quét sẽ được start trên chính ZAP Client đó.
+        Nếu tham số clientId không chỉ định rõ ràng thì phiên quét sẽ được start trên ZAP Client Shared, khi đó phương thức sẽ trả về một đối tượng có chứa thứ tự của phiên quét trong ZAP instance (gọi là scan id, tên thuộc tính là scanId).
+        Nếu tham số config không được chỉ định thì phương thức sẽ sử dụng cấu hình mặc định trong ZAP instance.
+        Cấu hình chi tiết cho phiên quét của ZAP Spider được mô tả trong bảng \ref{tab:ConfigSpider} ở dưới.
 
-\begin{tabularx}{\textwidth}{|>{\hsize=.15\hsize\centering\let\newline
-  \\\arraybackslash}X|>{\hsize=.15\hsize\centering\let\newline
-  \\\arraybackslash}X|>{\hsize=.60\hsize\raggedright\let\newline
-  \\\arraybackslash}X|}
-  \hline
-  \thead{Tên tham số}
-   & \thead{Giá trị \\ mặc định}
-   & \thead{Mô tả}
-  \\
-  \hline
-  maxChildren
-&
-  0
-  & 
-  Tham số sử dụng để giới hạn số lượng URL con được tìm kiếm tại mỗi nút trong cây tìm kiếm. Tham số bằng 0 thể hiện số nút tìm kiếm là không giới hạn.
-  \\
-   \hline
-  recurse
-  &
-  true
-  &
-  Tham số chỉ định cách thức tìm kiếm liên kết. Nếu giá trị là "true", Spider sẽ tìm kiếm các liên kết trên các trang con của trang web hiện tại. Nếu giá trị là "false", Spider chỉ tìm kiếm các liên kết trên trang web hiện tại mà không tìm kiếm các trang con.
-  \\
-   \hline
-  contextName
-  &
-  ““
-  &
-  Tham số chỉ định tên của bối cảnh (context). Context là một cấu hình bao gồm các quy tắc như bao gồm (include) hoặc loại trừ (exclude) các URL có liên quan đến URL có trong quy tắc. Các cấu được lưu sẵn với tên, gọi là contextName. Đặt giá trị contextName là tên context đã lưu sẵn để sử dụng cấu hình.
-  \\
-   \hline
-  subtreeOnly
-  &
-  true
-  &
-  Tham số chỉ định các thức truy cập các tài nguyên nằm dưới điểm bắt đầu. Nếu giá trị là “true“, Spider sẽ chỉ tìm kiếm các liên kết và trang web con của trang web bắt đầu.
-   \\
-   \hline 
-  \caption{Cấu hình phương thức quét ZAP Spider}
-  \label{tab:ConfigSpider}
-\end{tabularx}
+        \begin{tabularx}{\textwidth}{|>{\hsize=.15\hsize\centering\let\newline
+          \\\arraybackslash}X|>{\hsize=.15\hsize\centering\let\newline
+          \\\arraybackslash}X|>{\hsize=.60\hsize\raggedright\let\newline
+          \\\arraybackslash}X|}
+          \hline
+          \thead{Tên tham số}
+           & \thead{Giá trị \\ mặc định}
+           & \thead{Mô tả}
+          \\
+          \hline
+          maxChildren
+           &
+          0
+           &
+          Tham số sử dụng để giới hạn số lượng URL con được tìm kiếm tại mỗi nút trong cây tìm kiếm. Tham số bằng 0 thể hiện số nút tìm kiếm là không giới hạn.
+          \\
+          \hline
+          recurse
+           &
+          true
+           &
+          Tham số chỉ định cách thức tìm kiếm liên kết. Nếu giá trị là "true", Spider sẽ tìm kiếm các liên kết trên các trang con của trang web hiện tại. Nếu giá trị là "false", Spider chỉ tìm kiếm các liên kết trên trang web hiện tại mà không tìm kiếm các trang con.
+          \\
+          \hline
+          contextName
+           &
+          ““
+           &
+          Tham số chỉ định tên của bối cảnh (context). Context là một cấu hình bao gồm các quy tắc như bao gồm (include) hoặc loại trừ (exclude) các URL có liên quan đến URL có trong quy tắc. Các cấu được lưu sẵn với tên, gọi là contextName. Đặt giá trị contextName là tên context đã lưu sẵn để sử dụng cấu hình.
+          \\
+          \hline
+          subtreeOnly
+           &
+          true
+           &
+          Tham số chỉ định các thức truy cập các tài nguyên nằm dưới điểm bắt đầu. Nếu giá trị là “true“, Spider sẽ chỉ tìm kiếm các liên kết và trang web con của trang web bắt đầu.
+          \\
+          \hline
+          \caption{Cấu hình phương thức quét ZAP Spider}
+          \label{tab:ConfigSpider}
+        \end{tabularx}
 
-  \item Đối với ZAP Ajax, nhóm tạo phương thức ajaxStart() trong service để xử lý tác vụ này. Mỗi phiên quét của loại quét này chỉ có thể chạy trong mỗi ZAP instance tại một thời điểm. Nên mỗi khi start phiên quét, nhóm tạo một ZAP instance mới và start phiên quét trên instance đó. Ngoài ra, loại quét này còn cần quyền sử dụng trình duyệt (browser) để thực hiện các cuộc tấn công. Vì vậy, nhóm thực hiện cài đặt Firefox browser trong ứng dụng hệ thống và cấu hình cho phiên quét sử dụng firefox-headless (tính năng của trình duyệt Firefox, cho phép chạy trình duyệt dưới nền) trong phương thức ajaxStart(). Nhóm còn đặt các cấu hình mặc định, không bao gồm trong tham số config, trên ZAP instance trước khi start phiên quét. Các cấu hình như sau: 
-  \begin{itemize}
-    \item Số lượng browser chạy cùng lúc là 1, qua phương thức \\
-     ajaxSpider.setOptionNumberOfBrowsers() từ ZAP Client.
-    \item Độ sâu tối đa mà trình crawler có thể đạt là 5, qua phương thức \\
-     ajaxSpider.setOptionMaxCrawlDepth() từ ZAP Client. Mặc định của ZAP instance là 10.
-    \item Thời gian mà trình crawler có thể chạy là 5 phút, qua phương thức \\
-     ajaxSpider.setOptionMaxDuration() từ ZAP Client. Mặc định của ZAP instance là 60 phút.
-  \end{itemize}
-  Nếu tham số config không được chỉ định thì phương thức sẽ sử dụng cấu hình mặc định trong ZAP instance
-  
-Cấu hình chi tiết cho phiên quét của ZAP Ajax được mô tả trong bảng \ref{tab:ConfigAjax} ở dưới.
+  \item Đối với ZAP Ajax, nhóm tạo phương thức ajaxStart() trong service để xử lý tác vụ này. Mỗi phiên quét của loại quét này chỉ có thể chạy trong mỗi ZAP instance tại một thời điểm. Nên mỗi khi start phiên quét, nhóm tạo một ZAP instance mới và start phiên quét trên instance đó. Ngoài ra, loại quét này còn cần quyền sử dụng trình duyệt (browser) để thực hiện các cuộc tấn công. Vì vậy, nhóm thực hiện cài đặt Firefox browser trong ứng dụng hệ thống và cấu hình cho phiên quét sử dụng firefox-headless (tính năng của trình duyệt Firefox, cho phép chạy trình duyệt dưới nền) trong phương thức ajaxStart(). Nhóm còn đặt các cấu hình mặc định, không bao gồm trong tham số config, trên ZAP instance trước khi start phiên quét. Các cấu hình như sau:
+        \begin{itemize}
+          \item Số lượng browser chạy cùng lúc là 1, qua phương thức \\
+                ajaxSpider.setOptionNumberOfBrowsers() từ ZAP Client.
+          \item Độ sâu tối đa mà trình crawler có thể đạt là 5, qua phương thức \\
+                ajaxSpider.setOptionMaxCrawlDepth() từ ZAP Client. Mặc định của ZAP instance là 10.
+          \item Thời gian mà trình crawler có thể chạy là 5 phút, qua phương thức \\
+                ajaxSpider.setOptionMaxDuration() từ ZAP Client. Mặc định của ZAP instance là 60 phút.
+        \end{itemize}
+        Nếu tham số config không được chỉ định thì phương thức sẽ sử dụng cấu hình mặc định trong ZAP instance
 
-\begin{tabularx}{\textwidth}{|>{\hsize=.15\hsize\centering\let\newline
-  \\\arraybackslash}X|>{\hsize=.15\hsize\centering\let\newline
-  \\\arraybackslash}X|>{\hsize=.60\hsize\raggedright\let\newline
-  \\\arraybackslash}X|}
-  \hline
-  \thead{Tên tham số}
-   & \thead{Giá trị \\ mặc định}
-   & \thead{Mô tả}
-  \\
-  \hline
-  inScope
-&
-false
-&
-Nếu tham số có giá trị là “true” thì mọi URL nằm ngoài phạm vi sẽ bị bỏ qua.
-\\
-\hline
-contextName
-&
-““
-&
-Tham số chỉ định tên của bối cảnh hoạt động. Chi tiết giống với bảng x ở trên.
-\\
-\hline
-subtreeOnly
-&
-true
-&
-Tham số chỉ định các thức truy cập các tài nguyên nằm dưới điểm bắt đầu. Chi tiết giống với bảng x ở trên.
-\\
-\hline
-  \caption{Cấu hình phương thức quét ZAP Ajax}
-  \label{tab:ConfigAjax}
-\end{tabularx}
-\item Đối với ZAP Passive, nhóm tạo phương thức passiveStart() trong service để xử lý tác vụ này. Loại quét này có kết quả được quản lý trên phạm vi toàn ZAP instance và không thể chạy song song nhiều phiên quét. Nên giống như ZAP Ajax, nhóm tạo một ZAP instance mới cho mỗi phiên quét. Như đã nhắc đến mở mục 4.3.2, ZAP Passive là quét thụ động và cần được bổ trợ bởi ZAP Spider hay ZAP Ajax. Vì vậy phương thức có thêm tham số exploreType, tham số có hai giá trị là “spider“ và “ajax“, giúp cho phương thức start biết được sẽ sử dụng ZAP Spider hay ZAP Ajax để khám phá. Khi đó, cấu hình chi tiết cho phiên quét sẽ tùy theo cách khám phá mà là cấu hình chi tiết của ZAP Spider hoặc ZAP Ajax. Phương thức không có tham số config. 
-\item Đối với ZAP Active, nhóm tạo phương thức activeStart() trong service để xử lý tác vụ này.
-Loại quét này có kết quả được quản lý và không thể chạy song song giống ZAP Passive vậy nên nhóm cũng tạo ZAP instance mới cho mỗi phiên quét.
-Như đã nhắc đến mở mục 4.3.2, các mục tiêu để tấn công cần được tìm trước thông qua ZAP Spider hay ZAP Ajax nên phương thức cũng có thêm tham số exploreType và cách xử lý giống với passiveStart().
-Ngoài ra, để đảm bảo tất cả các quy tắc quét trong chức năng Scan Policy đều được áp dụng, trước khi start phiên quét, nhóm kích hoạt tất cả các quy tắc quét Scan Policy qua phương thức ascan.enableAllScanners() từ ZAP Client.
-Nếu tham số config không được chỉ định thì phương thức sẽ sử dụng cấu hình mặc định trong ZAP instance.
-Cấu hình chi tiết cho phiên quét của ZAP Active được mô tả trong bảng \ref{tab:ConfigActive} ở dưới.
-\begin{tabularx}{\textwidth}{|>{\hsize=.15\hsize\centering\let\newline
-  \\\arraybackslash}X|>{\hsize=.15\hsize\centering\let\newline
-  \\\arraybackslash}X|>{\hsize=.60\hsize\raggedright\let\newline
-  \\\arraybackslash}X|}
-  \hline
-  \thead{Tên tham số}
-   & \thead{Giá trị \\ mặc định}
-   & \thead{Mô tả}
-  \\
-  \hline
-  exploreType
-  &
-  spider
-  &
-  Giống với mô tả tham số exploreType được mô tả ở mục trên
-  \\
-  \hline
-  recurse
-  &
-  true
-  &
-  Chi tiết giống với tham số recurse ở bảng cấu hình phương thức quét ZAP Spider
-  \\
-  \hline
-  inScopeOnly
-  &
-  false
-  &
-  Chi tiết giống với tham số inScope ở bảng cấu hình phương thức quét ZAP Ajax
-  \\
-  \hline
-  scanPolicyName
-  &
-  ““
-  &
-  Tham số này cho phép người dùng chỉ định chính sách quét được sử dụng trong quá trình quét. Nếu không có chính sách quét nào được chỉ định, công cụ quét sẽ sử dụng chính sách quét mặc định.
-  \\
-  \hline
-  method
-  &
-  ““
-  &
-  Tham số này cho phép người dùng chọn một phương thức cụ thể để thực hiện quét, ví dụ như GET hoặc POST.
-  \\
-  \hline
-  postData
-  &
-  ““
-  &
-  Tham số này cho phép người dùng chỉ định dữ liệu đăng được sử dụng trong quá trình quét, nếu phương thức được sử dụng là POST
-  \\
-  \hline
-  contextId
-  &
-  ““
-  &
-  Chi tiết tương tự với tham số contextName ở bảng cấu hình phương thức quét ZAP Spider. Nhưng chỉ số thứ tự của context đó trang danh sách đã lưu.
-  \\
-  \hline
-  \caption{Cấu hình phương thức quét ZAP Active}
-  \label{tab:ConfigActive}
-\end{tabularx}
+        Cấu hình chi tiết cho phiên quét của ZAP Ajax được mô tả trong bảng \ref{tab:ConfigAjax} ở dưới.
+
+        \begin{tabularx}{\textwidth}{|>{\hsize=.15\hsize\centering\let\newline
+          \\\arraybackslash}X|>{\hsize=.15\hsize\centering\let\newline
+          \\\arraybackslash}X|>{\hsize=.60\hsize\raggedright\let\newline
+          \\\arraybackslash}X|}
+          \hline
+          \thead{Tên tham số}
+           & \thead{Giá trị \\ mặc định}
+           & \thead{Mô tả}
+          \\
+          \hline
+          inScope
+           &
+          false
+           &
+          Nếu tham số có giá trị là “true” thì mọi URL nằm ngoài phạm vi sẽ bị bỏ qua.
+          \\
+          \hline
+          contextName
+           &
+          ““
+           &
+          Tham số chỉ định tên của bối cảnh hoạt động. Chi tiết giống với bảng x ở trên.
+          \\
+          \hline
+          subtreeOnly
+           &
+          true
+           &
+          Tham số chỉ định các thức truy cập các tài nguyên nằm dưới điểm bắt đầu. Chi tiết giống với bảng x ở trên.
+          \\
+          \hline
+          \caption{Cấu hình phương thức quét ZAP Ajax}
+          \label{tab:ConfigAjax}
+        \end{tabularx}
+  \item Đối với ZAP Passive, nhóm tạo phương thức passiveStart() trong service để xử lý tác vụ này. Loại quét này có kết quả được quản lý trên phạm vi toàn ZAP instance và không thể chạy song song nhiều phiên quét. Nên giống như ZAP Ajax, nhóm tạo một ZAP instance mới cho mỗi phiên quét. Như đã nhắc đến mở mục 4.3.2, ZAP Passive là quét thụ động và cần được bổ trợ bởi ZAP Spider hay ZAP Ajax. Vì vậy phương thức có thêm tham số exploreType, tham số có hai giá trị là “spider“ và “ajax“, giúp cho phương thức start biết được sẽ sử dụng ZAP Spider hay ZAP Ajax để khám phá. Khi đó, cấu hình chi tiết cho phiên quét sẽ tùy theo cách khám phá mà là cấu hình chi tiết của ZAP Spider hoặc ZAP Ajax. Phương thức không có tham số config.
+  \item Đối với ZAP Active, nhóm tạo phương thức activeStart() trong service để xử lý tác vụ này.
+        Loại quét này có kết quả được quản lý và không thể chạy song song giống ZAP Passive vậy nên nhóm cũng tạo ZAP instance mới cho mỗi phiên quét.
+        Như đã nhắc đến mở mục 4.3.2, các mục tiêu để tấn công cần được tìm trước thông qua ZAP Spider hay ZAP Ajax nên phương thức cũng có thêm tham số exploreType và cách xử lý giống với passiveStart().
+        Ngoài ra, để đảm bảo tất cả các quy tắc quét trong chức năng Scan Policy đều được áp dụng, trước khi start phiên quét, nhóm kích hoạt tất cả các quy tắc quét Scan Policy qua phương thức ascan.enableAllScanners() từ ZAP Client.
+        Nếu tham số config không được chỉ định thì phương thức sẽ sử dụng cấu hình mặc định trong ZAP instance.
+        Cấu hình chi tiết cho phiên quét của ZAP Active được mô tả trong bảng \ref{tab:ConfigActive} ở dưới.
+        \begin{tabularx}{\textwidth}{|>{\hsize=.20\hsize\centering\let\newline
+          \\\arraybackslash}X|>{\hsize=.20\hsize\centering\let\newline
+          \\\arraybackslash}X|>{\hsize=.50\hsize\raggedright\let\newline
+          \\\arraybackslash}X|}
+          \hline
+          \thead{Tên tham số}
+           & \thead{Giá trị \\ mặc định}
+           & \thead{Mô tả}
+          \\
+          \hline
+          exploreType
+           &
+          spider
+           &
+          Giống với mô tả tham số exploreType được mô tả ở mục trên
+          \\
+          \hline
+          recurse
+           &
+          true
+           &
+          Chi tiết giống với tham số recurse ở bảng cấu hình phương thức quét ZAP Spider
+          \\
+          \hline
+          inScopeOnly
+           &
+          false
+           &
+          Chi tiết giống với tham số inScope ở bảng cấu hình phương thức quét ZAP Ajax
+          \\
+          \hline
+          scanPolicyName
+           &
+          ““
+           &
+          Tham số này cho phép người dùng chỉ định chính sách quét được sử dụng trong quá trình quét. Nếu không có chính sách quét nào được chỉ định, công cụ quét sẽ sử dụng chính sách quét mặc định.
+          \\
+          \hline
+          method
+           &
+          ““
+           &
+          Tham số này cho phép người dùng chọn một phương thức cụ thể để thực hiện quét, ví dụ như GET hoặc POST.
+          \\
+          \hline
+          postData
+           &
+          ““
+           &
+          Tham số này cho phép người dùng chỉ định dữ liệu đăng được sử dụng trong quá trình quét, nếu phương thức được sử dụng là POST
+          \\
+          \hline
+          contextId
+           &
+          ““
+           &
+          Chi tiết tương tự với tham số contextName ở bảng cấu hình phương thức quét ZAP Spider. Nhưng chỉ số thứ tự của context đó trang danh sách đã lưu.
+          \\
+          \hline
+          \caption{Cấu hình phương thức quét ZAP Active}
+          \label{tab:ConfigActive}
+        \end{tabularx}
 \end{itemize}
 Nếu start scan thành công thì các phương thức sẽ trả về đối tượng định danh cho phiên quét, không thành công thì trả về đối tượng không xác định.
 
@@ -429,16 +428,16 @@ Nếu start scan thành công thì các phương thức sẽ trả về đối t
 Đối với các phương thức stream status, các loại quét được cấu hình tương tự nhau bằng cách tạo một Observable kiểu timer() với RxJS và gọi đến phương thức status() của phiên quét hoặc ZAP Client đó mỗi 5 giây. Kiểu trạng thái nhận lại của mỗi loại quét sẽ khác nhau về kiểu lẫn giá trị.
 \par
 
-Đối với các phương thức lấy full result, các loại quét khác nhau sẽ có cách cài đặt khác nhau, kiểu result trả về từ ZAP khác nhau và kiểu result được lưu trữ khác nhau. 
+Đối với các phương thức lấy full result, các loại quét khác nhau sẽ có cách cài đặt khác nhau, kiểu result trả về từ ZAP khác nhau và kiểu result được lưu trữ khác nhau.
 
 \begin{itemize}
   \item Đối với ZAP Spider, nhóm sử dụng phương thức spider.fullResult() từ ZAP Client để lấy full result của phiên quét.
-  Dữ liệu trả về còn thô, khó sử dụng, lưu trữ và truy xuất nên nhóm có thực hiện biến đổi lại như sau, chi tiết cách biến đổi kiểu dữ liệu được thể hiện trong hình x Hình thể hiện kiểu dữ liệu ZAP Spider full result khi mới trả về từ ZAP instance và sau khi được biến đổi --- (Chi tiết thông tin của các thuộc tính giống như thông tin full result từ bảng mô tả cơ sở dữ liệu của xx từ phụ lục)
-  bảng mô tả của cái ở trên
-  
+        Dữ liệu trả về còn thô, khó sử dụng, lưu trữ và truy xuất nên nhóm có thực hiện biến đổi lại như sau, chi tiết cách biến đổi kiểu dữ liệu được thể hiện trong hình x Hình thể hiện kiểu dữ liệu ZAP Spider full result khi mới trả về từ ZAP instance và sau khi được biến đổi --- (Chi tiết thông tin của các thuộc tính giống như thông tin full result từ bảng mô tả cơ sở dữ liệu của xx từ phụ lục)
+        bảng mô tả của cái ở trên
+
   \item Đối với ZAP Ajax nhóm sử dụng phương thức ajaxSpider.fullResult() từ ZAP Client để lấy full result và không cần thực hiện biến đổi lại (Chi tiết thông tin của các thuộc tính giống như thông tin full result từ bảng mô tả cơ sở dữ liệu của xx từ phụ lục.)
   \item Đối với ZAP Passive và ZAP Active, kết quả quét của hai loại này là thông tin chi tiết của các lỗ hổng tìm năng gọi là cảnh báo (alert). ZAP cung cấp khá nhiều tổ hợp thông tin này, mỗi tổ hợp có kiểu dữ liệu khác nhau. Nhóm chọn ra hai tổ hợp thông tin sau đó dựa vào các cách thay đổi, truy xuất tùy chỉnh để có được đầy đủ thông tin. Tổ hợp đầu tiên là các alert, nhóm cài đặt phương thức getClientAlerts() trong service, với tham số truyền vào là client id, để lấy danh sách tất cả các alert mà instance tìm được. Phương thức getClientAlerts() sử dụng phương thức core.alerts() từ ZAP Client làm xương sống. Mỗi đối tượng alert sẽ có các thuộc tính và ý nghĩa như bảng x …….. . Tổ hợp tiếp theo là các alert theo rủi ro (risk), gọi là alert by risk, risk là một trường chỉ độ nghiêm trọng của alert. Nhóm cài đặt phương thức getClientAlertsByRisk() với tham số truyền vào là client id, hoạt động giống getClientAlerts(). Nhóm tự tạo một API đến ZAP bằng cách sử dụng endpoint /alert/view/alertsByRisk/ với phương thức requestPromise() từ ZAP Client để hỗ trợ phương thức này. Tuy nhiên kết quả trả về khá khó sử dụng nên nhóm có thực hiện biến đổi lại như sau, chi tiết cách biến đổi kiểu dữ liệu được thể hiện trong hình x Hình thể hiện kiểu dữ liệu alert by risk của ZAP Active (khi mới trả về từ ZAP instance và sau khi được biến đổi)
-  bảng mô tả của cái ở trên
+        bảng mô tả của cái ở trên
 \end{itemize}
 
 \subsubsection{Cài đặt ZAP Monitor service}
@@ -446,7 +445,7 @@ Nếu start scan thành công thì các phương thức sẽ trả về đối t
 \tab Như đã trình bày ở mục 3.2.1.2, service đóng vai trò trung gian giữa ứng dụng hệ thống và ZAP Client service. Hệ thống thực hiện tương tác với phiên quét thông qua ZAP Monitor service. Các tương tác với phiên quét, giống nhau với mọi loại quét, được nhóm thiết kế trong service này là start và giám sát; chia sẻ trạng thái trực tiếp; ra hiệu dừng quét. Các phiên quét được quản lý trong service dưới dạng cặp định danh giám sát (monitor id) và đối tượng giám sát phiên quét trong một đối tượng Map() của JavaScript.
 \par
 
-Với tương tác start và giám sát, các loại quét đều có thiết kế, luồng hoạt động tương tự nhau nhưng không giống nhau. Nhóm cài đặt các phương thức có tên với tiền tố là tên loại quét và hậu tố là StartAndMonitor để thực hiện tác vụ này, ví dụ ajaxStartAndMonitor(), nhóm sẽ gọi ngắn gọn là StartAndMonitor. Luồng hoạt động chung của các StartAndMonitor gồm các bước tuần tự là start phiên quét; tạo đối tượng giám sát phiên quét và thêm đối tượng đó vào Map giám sát. Monitor id là băm (hash) của đối tượng chứa client id và scan id nên đảm bảo được tính độc nhất. Đối tượng giám sát phiên quét, gọi là status monitor, là connectable() trong RxJS, cho phép nhiều kết nối có thể đăng ký (subscribe) vào. Status monitor gói stream status observable của phiên quét (đã nhắc đến ở mục 4.4.1.1) ở bên trong. Status monitor dùng để giám sát, thực hiện các tác vụ khi phiên quét đạt tới status cần xử lý và là observable được đẩy lên làm publisher (hay gọi là đối tượng phát trạng thái, emmiter). Các tác vụ tiêu biểu được thực hiện trong status monitor là chỉ phát status khi có thay đổi so với phiên trước (mặc định); lấy full result của phiên quét tương ứng từ ZAP Client service và lưu xuống database qua Database service; thực hiện giải phóng các tài nguyên liên quan trong quá trình quét như xóa status monitor khỏi Map giám sát, tắt phiên quét, tắt ZAP instance qua ZAP Client service. 
+Với tương tác start và giám sát, các loại quét đều có thiết kế, luồng hoạt động tương tự nhau nhưng không giống nhau. Nhóm cài đặt các phương thức có tên với tiền tố là tên loại quét và hậu tố là StartAndMonitor để thực hiện tác vụ này, ví dụ ajaxStartAndMonitor(), nhóm sẽ gọi ngắn gọn là StartAndMonitor. Luồng hoạt động chung của các StartAndMonitor gồm các bước tuần tự là start phiên quét; tạo đối tượng giám sát phiên quét và thêm đối tượng đó vào Map giám sát. Monitor id là băm (hash) của đối tượng chứa client id và scan id nên đảm bảo được tính độc nhất. Đối tượng giám sát phiên quét, gọi là status monitor, là connectable() trong RxJS, cho phép nhiều kết nối có thể đăng ký (subscribe) vào. Status monitor gói stream status observable của phiên quét (đã nhắc đến ở mục 4.4.1.1) ở bên trong. Status monitor dùng để giám sát, thực hiện các tác vụ khi phiên quét đạt tới status cần xử lý và là observable được đẩy lên làm publisher (hay gọi là đối tượng phát trạng thái, emmiter). Các tác vụ tiêu biểu được thực hiện trong status monitor là chỉ phát status khi có thay đổi so với phiên trước (mặc định); lấy full result của phiên quét tương ứng từ ZAP Client service và lưu xuống database qua Database service; thực hiện giải phóng các tài nguyên liên quan trong quá trình quét như xóa status monitor khỏi Map giám sát, tắt phiên quét, tắt ZAP instance qua ZAP Client service.
 \par
 
 Tương tác chia sẻ trạng thái trực tiếp, đặt tên tương tự StartAndMonitor là SharedStatusStream, dàng cho ứng dụng hệ thống đưa status monitor lên làm publisher. Publisher gửi status phiên quét cho subscriber từ ứng dụng web bằng SSE, như thiết kế ở hình xxx (hghcfgxdg cái hình chương 3.2.1.2 )
@@ -469,19 +468,18 @@ Hai token trên là hai JWT được tạo qua phương thức signJwt() trong s
 
 \subsection{Cài đặt Database service}
 
-\tab Để service kết nối và tương tác với cơ sở dữ liệu, nhóm sử dụng gói mongoose, một thư viện hỗ trợ tương tác với cơ sở dữ liệu MongoDB dành cho Node.js, để tạo kết nối với MongoDB từ MongoDB Atlas thông qua phương thức connect() được gói cung cấp và chuỗi kết nối đến cơ sở dữ liệu. 
+\tab Để service kết nối và tương tác với cơ sở dữ liệu, nhóm sử dụng gói mongoose, một thư viện hỗ trợ tương tác với cơ sở dữ liệu MongoDB dành cho Node.js, để tạo kết nối với MongoDB từ MongoDB Atlas thông qua phương thức connect() được gói cung cấp và chuỗi kết nối đến cơ sở dữ liệu.
 \par
 
 Trong MongoDB, một bảng trong database gọi là Collection. Collection được đặt tên theo quy ước của MongoDB và lưu trữ các bản ghi (document) trong đó. Để tương tác với các Collection, ta cần có các đối tượng Model, mỗi Model là đại diện cho mỗi Collection trong Mongoose. Model giúp việc tương tác với MongoDB dễ dàng hơn, không cần viết các câu lệnh trực tiếp để thao tác trên cơ sở dữ liệu. Thay vào đó, ta sử dụng các phương thức có sẵn trong Model để thực hiện các thao tác tương ứng. Đồng thời, định nghĩa cấu trúc (Schema) của Collection cũng có thể được tạo trong lúc tạo Model. Để tạo các Model, ta sử dụng đối tượng đã kết nối với database và phương thức model() được cung cấp bởi thư viện mongoose.
 \par
 
 Hệ thống có bốn Model chính dành để lưu trữ dữ liệu cho target, người dùng (user), phiên quét (scan session) và kết quả quét chi tiết (scan full result). Để khởi tạo và định nghĩa các Model này, hệ thống tạo các model có tên tương ứng lần lượt là target.model, user.model, scan-session.model và scan-fullresults.model. Các Model được tạo riêng lẻ trên các tệp khác nhau và xuất đối tượng trả về của model() để chia sẻ cho các tác vụ khác.
+
+Vì hệ thống có nhiều loại document khác nhau trên một Collection, như Collection dành cho phiên quét cần lưu trữ bốn loại phiên quét là ZAP Spider, ZAP Ajax, ZAP Passive và ZAP Active. Nên nhóm cần cấu hình cho các Model để thực hiện tác vụ này.
 \par
 
-Vì hệ thống có nhiều loại document khác nhau trên một Collection, như Collection dành cho phiên quét cần lưu trữ bốn loại phiên quét là ZAP Spider, ZAP Ajax, ZAP Passive và ZAP Active. Nên nhóm cần cấu hình cho các Model để thực hiện tác vụ này. 
-\par
-
-Mongoose cung cấp một tính năng cho phép định nghĩa các loại document khác nhau trong một Collection là Discriminator. Khi sử dụng Discriminator, có thể định nghĩa một Schema chung cho tất cả các document trong Collection, sau đó định nghĩa các Schema riêng cho các document con. Các Schema riêng này sẽ kế thừa từ Schema chung và bổ sung thêm các định nghĩa của riêng nó. Document của các Schema con sẽ được phân biệt dựa trên một trường phân loại gọi là discriminator key. 
+Mongoose cung cấp một tính năng cho phép định nghĩa các loại document khác nhau trong một Collection là Discriminator. Khi sử dụng Discriminator, có thể định nghĩa một Schema chung cho tất cả các document trong Collection, sau đó định nghĩa các Schema riêng cho các document con. Các Schema riêng này sẽ kế thừa từ Schema chung và bổ sung thêm các định nghĩa của riêng nó. Document của các Schema con sẽ được phân biệt dựa trên một trường phân loại gọi là discriminator key.
 \par
 
 Để tạo các Discriminator cho các Collection cần thiết, trên đối tượng Model của Collection đó, nhóm sử dụng phương thức discriminator() cùng một chuỗi dành để phân biệt các Schema con, chuỗi này cũng chính là discriminator key. Các đối tượng trả về từ phương thức discriminator() có thể sử dụng tương tự như đối tượng từ Model, tuy nhiên đối tượng chỉ có ảnh hưởng trên chính các document của chính nó.
@@ -492,185 +490,225 @@ Mongoose cung cấp một tính năng cho phép định nghĩa các loại docum
 
 \section{Cài đặt chức năng hệ thống}
 
-\tab Để thống nhất thông tin chi tiết cho trạng thái của các endpoint, nhóm thiết kế ba bảng trạng thái riêng cho hệ thống và sử dụng tùy theo các trường hợp khác nhau.
-
-Bảng trạng thái cho việc xác thực người dùng ( LOGIN\_STATUS)
-
-Tên đại diện
-
-Đối tượng trạng thái
-
-LOGIN\_SUCCESS
-
-statusCode: 0
-
-msg: "Login successfully"
-
-TOKEN\_NOT\_FOUND
-
-statusCode: -1
-
-msg: "No token found"
-
-TOKEN\_INVALID
-
-statusCode: -2
-
-msg: "Invalid token"
-
-USER\_ADD\_FAILED
-
-statusCode: -3
-
-msg: "New user failed to add"
-
-USER\_ALREADY\_LINKED
-
-statusCode: -4
-
-msg: "Google account already used with different email"
-
-EMAIL\_ALREADY\_USED
-
-statusCode: -5
-
-msg: "Email already used"
-
- 
-
-Bảng trạng thái cho quá trình quét (SCAN\_STATUS)
-
-Tên đại diện
-
-Đối tượng trạng thái
-
-SESSION\_INITIALIZE\_SUCCEED
-
-statusCode: 90
-
-msg: "Scan session initialize succeed!"
-
-SESSION\_INITIALIZE\_FAIL
-
-statusCode: -91
-
-msg: "Scan session initialize fail!"
-
-INVAVLID\_URL
-
-statusCode: -92
-
-msg: "Invalid URL!"
-
-INVALID\_SESSION
-
-statusCode: -93
-
-msg: "Invalid scan session!"
-
-ZAP\_INITIALIZE\_FAIL
-
-statusCode: -94
-
-msg: "ZAP scan initialize fail!"
-
-ZAP\_INTERNAL\_ERROR
-
-statusCode: -95
-
-msg: "ZAP internal error!"
-
-INVALID\_ID
-
-statusCode: -96
-
-msg: "Invalid scan id!"
-
-INVALID\_RESULT\_OFFSET
-
-statusCode: -97
-
-msg: "Invalid scan result offset!"
-
-INVALID\_ID\_OR\_ZAP\_INTERNAL\_ERROR
-
-statusCode: -98
-
-msg: "Invalid scan id or ZAP internal error!"
-
- 
-
-Bảng trạng thái cho các tác vụ quản lý (MGMT\_STATUS)
-
-Tên đại diện
-
-Đối tượng trạng thái
-
-TARGET\_ADDED
-
-statusCode: 10
-
-msg: "Target added successfully"
-
-TARGET\_MOVED\_TO\_TRASH
-
-statusCode: 11
-
-msg: "Target moved to trash successfully"
-
-TARGET\_DELETED
-
-statusCode: 12
-
-msg: "Target deleted successfully"
-
-TARGET\_INVAVLID\_URL
-
-statusCode: -11
-
-msg: "Invalid URL for target"
-
-TARGET\_ADD\_FAILED
-
-statusCode: -12
-
-msg: "Target failed to add"
-
-TARGET\_INVALID\_ID
-
-statusCode: -13
-
-msg: "Invalid ID for target"
-
-TARGET\_FIND\_FAILED
-
-statusCode: -14
-
-msg: "Target failed to find"
-
-TARGET\_DELETE\_FAILED
-
-statusCode: -15
-
-msg: "Target failed to delete"
-
-TARGET\_NAME\_DUPLICATE
-
-statusCode: -16
-
-msg: "Target name already exist"
-
-TARGET\_GET\_FAILED
-
-statusCode: -17
-
-msg: "Targets cannot be found"
-
-SESSION\_GET\_FAILED
-
-statusCode: -18
-
-msg: "Sessions cannot be found"
+\tab Để thống nhất thông tin chi tiết cho trạng thái của các endpoint, nhóm thiết kế ba bảng trạng thái \ref{tab:LoginStatus}, \ref{tab:ScanStatus} và \ref{tab:MgmtStatus} riêng cho hệ thống và sử dụng tùy theo các trường hợp khác nhau.
+
+\begin{tabularx}{\textwidth}{|>{\hsize=.35\hsize\centering\let\newline
+  \\\arraybackslash}X|>{\hsize=.60\hsize\raggedright\let\newline
+  \\\arraybackslash}X|}
+  \hline
+  \thead{Tên đại diện}
+   & \thead{Đối tượng trạng thái}
+  \\
+  \hline
+  LOGIN\_SUCCESS
+   &
+  statusCode: 0
+  \newlinecontenttable
+  msg: "Login successfully"
+  \\
+  \hline
+  TOKEN\_NOT\_FOUND
+   &
+  statusCode: -1
+  \newlinecontenttable
+  msg: "No token found"
+  \\
+  \hline
+  TOKEN\_INVALID
+   &
+  statusCode: -2
+  \newlinecontenttable
+  msg: "Invalid token"
+  \\
+  \hline
+  USER\_ADD\_FAILED
+   &
+  statusCode: -3
+  \newlinecontenttable
+  msg: "New user failed to add"
+  \\
+  \hline
+  USER\_ALREADY\_LINKED
+   &
+  statusCode: -4
+  \newlinecontenttable
+  msg: "Google account already used with different email"
+  \\
+  \hline
+  EMAIL\_ALREADY\_USED
+   &
+  statusCode: -5
+  \newlinecontenttable
+  msg: "Email already used"
+  \\
+  \hline
+  \caption{Trạng thái cho việc xác thực người dùng (LOGIN\_STATUS)}
+  \label{tab:LoginStatus}
+\end{tabularx}
+
+\begin{tabularx}{\textwidth}{|>{\hsize=.35\hsize\centering\let\newline
+  \\\arraybackslash}X|>{\hsize=.60\hsize\raggedright\let\newline
+  \\\arraybackslash}X|}
+  \hline
+  \thead{Tên đại diện}
+   & \thead{Đối tượng trạng thái}
+  \\
+  \hline
+  SESSION\_INITIALIZE             \\\_SUCCEED
+   &
+  statusCode: 90
+  \newlinecontenttable
+  msg: "Scan session initialize succeed!"
+  \\
+  \hline
+  SESSION\_INITIALIZE\_FAIL
+   &
+  statusCode: -91
+  \newlinecontenttable
+  msg: "Scan session initialize fail!"
+  \\
+  \hline
+  INVAVLID\_URL
+   &
+  statusCode: -92
+  \newlinecontenttable
+  msg: "Invalid URL!"
+  \\
+  \hline
+  INVALID\_SESSION
+   &
+  statusCode: -93
+  \newlinecontenttable
+  msg: "Invalid scan session!"
+  \\
+  \hline
+  ZAP\_INITIALIZE\_FAIL
+   &
+  statusCode: -94
+  \newlinecontenttable
+  msg: "ZAP scan initialize fail!"
+  \\
+  \hline
+  ZAP\_INTERNAL\_ERROR
+   &
+  statusCode: -95
+  \newlinecontenttable
+  msg: "ZAP internal error!"
+  \\
+  \hline
+  INVALID\_ID
+   &
+  statusCode: -96
+  \newlinecontenttable
+  msg: "Invalid scan id!"
+  \\
+  \hline
+  INVALID\_RESULT\_OFFSET
+   &
+  statusCode: -97
+  \newlinecontenttable
+  msg: "Invalid scan result offset!"
+  \\
+  \hline
+  INVALID\_ID\_OR                 \\\_ZAP\_INTERNAL\_ERROR
+   &
+  statusCode: -98
+  \newlinecontenttable
+  msg: "Invalid scan id or ZAP internal error!"
+  \\
+  \hline
+  \caption{Trạng thái cho quá trình quét (SCAN\_STATUS)}
+  \label{tab:ScanStatus}
+\end{tabularx}
+
+\begin{tabularx}{\textwidth}{|>{\hsize=.35\hsize\centering\let\newline
+  \\\arraybackslash}X|>{\hsize=.60\hsize\raggedright\let\newline
+  \\\arraybackslash}X|}
+  \hline
+  \thead{Tên đại diện}
+   & \thead{Đối tượng trạng thái}
+  \\
+  \hline
+  TARGET\_ADDED
+   &
+  statusCode: 10
+  \newlinecontenttable
+  msg: "Target added successfully"
+  \\
+  \hline
+  TARGET\_MOVED                   \\\_TO\_TRASH
+   &
+  statusCode: 11
+  \newlinecontenttable
+  msg: "Target moved to trash successfully"
+  \\
+  \hline
+  TARGET\_DELETED
+   &
+  statusCode: 12
+  \newlinecontenttable
+  msg: "Target deleted successfully"
+  \\
+  \hline
+  TARGET\_INVAVLID\_URL
+   &
+  statusCode: -11
+  \newlinecontenttable
+  msg: "Invalid URL for target"
+  \\
+  \hline
+  TARGET\_ADD\_FAILED
+   &
+  statusCode: -12
+  \newlinecontenttable
+  msg: "Target failed to add"
+  \\
+  \hline
+  TARGET\_INVALID\_ID
+   &
+  statusCode: -13
+  \newlinecontenttable
+  msg: "Invalid ID for target"
+  \\
+  \hline
+  TARGET\_FIND\_FAILED
+   &
+  statusCode: -14
+  \newlinecontenttable
+  msg: "Target failed to find"
+  \\
+  \hline
+  TARGET\_DELETE\_FAILED
+   &
+  statusCode: -15
+  \newlinecontenttable
+  msg: "Target failed to delete"
+  \\
+  \hline
+  TARGET\_NAME                    \\\_DUPLICATE
+   &
+  statusCode: -16
+  \newlinecontenttable
+  msg: "Target name already exist"
+  \\
+  \hline
+  TARGET\_GET\_FAILED
+   &
+  statusCode: -17
+  \newlinecontenttable
+  msg: "Targets cannot be found"
+  \\
+  \hline
+  SESSION\_GET\_FAILED
+   &
+  statusCode: -18
+  \newlinecontenttable
+  msg: "Sessions cannot be found"
+  \\
+  \hline
+  \caption{Trạng thái cho các tác vụ quản lý (MGMT\_STATUS)}
+  \label{tab:MgmtStatus}
+\end{tabularx}
 
 \subsection{Cài đặt chức năng đăng ký/ đăng nhập và đăng xuất}
 
@@ -679,11 +717,11 @@ msg: "Sessions cannot be found"
 \tab Nhóm sử dụng nền tảng Google Cloud Identity, một nền tảng quản lý truy cập và nhận diện người dùng, làm chủ chốt để cài đặt chức năng đăng ký/đăng nhập cho ứng dụng, cụ thể là chức năng “Sign In with Google for Web“, một trong các chức năng Xác thực (Authentication) của nền tảng. Để có thể sử dụng chức năng từ nền tảng, nhóm phải tạo một Google API ID (Google API client ID), sau nhóm sẽ gọi là Google ID.
 \par
 
-Ở ứng dụng web, để sử dụng được Google Sign-In (GSI) nhóm thêm thư viện GSI dành cho phía ứng dụng khách vào bên trong thẻ <head> của tệp HTML chứa ứng dụng, chi tiết như sau:  
+Ở ứng dụng web, để sử dụng được Google Sign-In (GSI) nhóm thêm thư viện GSI dành cho phía ứng dụng khách vào bên trong thẻ <head> của tệp HTML chứa ứng dụng, chi tiết như sau:
 \par
 
 \lstset{style=mystyle}
-\begin{lstlisting}[language=HTML, caption=HTML example]
+\begin{lstlisting}[language=HTML, caption=Thêm thư viện GSI vào ứng dụng]
   <head>
   ...
     <!-- GOOGLE PLATFORM LIBRARY IMPORT -->
@@ -698,119 +736,168 @@ Sau khi đã cài đặt các thư viện nền tảng, nhóm tạo AuthGoogleBu
 
 Nhóm thiết kế một mutation endpoint với RTK Query đặt tên là login, endpoint thực hiện request với phương thức HTTP POST đến điểm /login của ứng dụng hệ thống. Endpoint nhận vào biến loại GSI credential và trả về các đối tượng trạng thái như bảng trạng thái cho việc xác thực. Đồng thời, trên hook onQueryStarted của endpoint, nhóm xử lý ghi credential vào cookie tên ggToken tại domain hiện tại. Khi người dùng thực hiện đăng nhập hoàn tất, kích hoạt login endpoint.
 
-Để thực hiện xác thực, ứng dụng hệ thống thực hiện kiểm tra xem người dùng có phải là người dùng mới hay không. Nếu người dùng là người dùng mới thì thực hiện đăng ký cùng với đăng nhập, nếu không thì thực hiện đăng nhập. Chi tiết trong hình x sơ đồ luồng kiểm tra đăng nhập.
+Để thực hiện xác thực, ứng dụng hệ thống thực hiện kiểm tra xem người dùng có phải là người dùng mới hay không.
+Nếu người dùng là người dùng mới thì thực hiện đăng ký cùng với đăng nhập, nếu không thì thực hiện đăng nhập.
+Chi tiết trong hình \ref{fig:SignUpIn} sơ đồ luồng kiểm tra đăng nhập.
 
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{applied-thesis-chapters/chapter-4/Sơ đồ quá trình đăng ký và đăng nhập.png}
+  \caption{Sơ đồ quá trình đăng ký và đăng nhập}
+  \label{fig:SignUpIn}
+\end{figure}
 
 Ở bước “Verify with Google“ trong hình x sơ đồ luồng kiểm tra đăng nhập, ta thực hiện xác thực credential nhận được với Google qua Authentication service. Ở bước cuối cùng “Response Login Success“ trong hình x sơ đồ luồng kiểm tra đăng nhập, ngoài việc thực hiện trả về các thông tin trong hình ta còn thực hiện ghi hai cookie là accessToken và refreshToken lên toàn domain của ứng dụng, bao gồm cả tên miền chính và tiên miền con. Hai token này là hai JWT được tạo qua phương thức signJwt() của Authentication service.
 
 Trong việc ghi cookie lên toàn domain của ứng dụng, có một vấn đề đó là nếu đang trong phiên bản phát triển, khi ứng dụng web chạy trên localhost hay 127.0.0.1 thì không nên thêm thuộc tính domain, việc chỉ định thuộc tính domain trong trường hợp này sẽ gây ra lỗi khiến cho không ghi được cookie. Lỗi này nằm ở thiết kết của cookie của HTTP. Chi tiết như sau:
 
-“Chỉ các máy chủ trong domain được chỉ định mới có thể đặt cookie cho domain và các domain phải có ít nhất hai hoặc ba dấu chấm để ngăn các miền có dạng: ".com", ".edu" và " va.us"…“ [6]
+\textit{“Chỉ các máy chủ trong domain được chỉ định mới có thể đặt cookie cho domain và các domain phải có ít nhất hai hoặc ba dấu chấm để ngăn các miền có dạng: ".com", ".edu" và " va.us"…“} \cite{chap4bib4}
 
 Để xử lý vấn đề này nhóm thực hiện như sau, ở phần scripts trong tệp package.json, nhóm cài đặt đặt biến môi trường NODE\_ENV là production ở lệnh start và NODE\_ENV là development ở lệnh dev. Việc đặt giá trị cho biến môi trường, để có thể tương thích trên mọi môi trường (hệ điều hành) chạy Node.js thì nhóm sử dụng gói cross-env để cài đặt, hỗ trợ thực hiện tác vụ này. Sau đó nhóm cài đặt phương thức isOnProduction() để kiểm tra giá trị biến môi trường xem ứng dụng backend đang chạy trong chế độ (mode) nào. Và trước khi tiến hành ghi cookie sẽ tiến hành kiểm tra xem ứng dụng backend đang ở mode nào, nếu đang trong development mode thì sẽ không chỉ định thuộc tính domain và ngược lại.
 
-4.5.1.2 Cài đặt chức  năng đăng xuất 
-Khi người dùng chọn đăng xuất thì ứng dụng web sẽ tiến hành làm mới dữ liệu trong auth store. Đồng thời xóa hai cookie accessToken và refreshToken đã ghi trước đó.
+\subsubsection{Cài đặt chức  năng đăng xuất}
+
+\tab Khi người dùng chọn đăng xuất thì ứng dụng web sẽ tiến hành làm mới dữ liệu trong auth store. Đồng thời xóa hai cookie accessToken và refreshToken đã ghi trước đó.
 
 Khi đó biến isAuth trong auth store, được cài đặt là biến phụ thuộc (dependence) trên phạm vi toàn ứng dụng web, có giá trị thay đổi thành false. Điều này khởi chạy các logic điều hướng người dùng trong ứng dụng ra ngoài màn hình trang chủ.
 
-4.5.2 Cài đặt chức năng dùng thử quét với ZAP Spider
-Ở ứng dụng web, nhóm tạo một query endpoint với RTK Query đặt tên là trialScan, endpoint thuộc loại Query endpoint, là một endpoint tùy chỉnh (custom endpoint) để có thể sử dụng SSE, streaming update, đã đề cập đến ở mục 4.1. Endpoint nhận vào tham số target kiểu chuỗi (string) và trả về data custom được mô tả trong bảng x (bảng mô tả các thuộc tính của đối tượng data custom trong trialScan endpoint)
+\subsection{Cài đặt chức năng dùng thử quét với ZAP Spider}
 
-Tên thuộc tính
+\tab Ở ứng dụng web, nhóm tạo một query endpoint với RTK Query đặt tên là trialScan, endpoint thuộc loại Query endpoint, là một endpoint tùy chỉnh (custom endpoint) để có thể sử dụng SSE, streaming update, đã đề cập đến ở mục 4.1.
+Endpoint nhận vào tham số target kiểu chuỗi (string) và trả về data custom được mô tả trong bảng \ref{tab:DesDataTrial}.
 
-Kiểu dữ liệu
-
-Mô tả
-
-isScanning
-
-boolean
-
-Thuộc tính cho biết endpoint đang trong quá trình quét hay không
-
-progress
-
-number
-
-Thuộc tính cho biết tiến triển phần trăm của quá trình quét
-
-data
-
-string[]
-
-Thuộc tính lưu trữ các In Scope URL mà ZAP Spider quét được
-
-error
-
-Status
-
-Thuộc tính lưu trữ trạng thái lỗi nếu có lỗi phát sinh trong quá trình quét
+\begin{tabularx}{\textwidth}{|>{\hsize=.15\hsize\centering\let\newline
+  \\\arraybackslash}X|>{\hsize=.15\hsize\centering\let\newline
+  \\\arraybackslash}X|>{\hsize=.60\hsize\raggedright\let\newline
+  \\\arraybackslash}X|}
+  \hline
+  \thead{Tên              \\thuộc tính}
+   & \thead{Kiểu dữ liệu}
+   & \thead{Mô tả}
+  \\
+  \hline
+  isScanning
+   &
+  boolean
+   &
+  Thuộc tính cho biết endpoint đang trong quá trình quét hay không
+  \\
+  \hline
+  progress
+   &
+  number
+   &
+  Thuộc tính cho biết tiến triển phần trăm của quá trình quét
+  \\
+  \hline
+  data
+   &
+  string[]
+   &
+  Thuộc tính lưu trữ các In Scope URL mà ZAP Spider quét được
+  \\
+  \hline
+  error
+   &
+  Status
+   &
+  Thuộc tính lưu trữ trạng thái lỗi nếu có lỗi phát sinh trong quá trình quét
+  \\
+  \hline
+  \caption{Mô tả các thuộc tính của đối tượng data custom trong trialScan endpoint}
+  \label{tab:DesDataTrial}
+\end{tabularx}
 
 Để thể hiện quá trình quét đang được thực hiện, trong hook onQueryStarted của trialScan endpoint ta dùng updateCachedData để cập nhật isScanning thành true. Tiếp đến, ta tiến hành thiết lập kết nối SSE với ứng dụng hệ thống trong hook onCacheEntryAdded. Khi trialScan endpoint được gọi, quá trình xử lý ở hai phía như sau:
 
 Phía ứng dụng web, ta thiết lập kết nối SSE tới backend bằng cách sử dụng đối tượng EventSource trong JavaScript. Endpoint được sử dụng để kết nối là /scan/trial?url="URL", với URL là địa chỉ trang web cần quét. Sau thiết lập thành công, ta tiếp tục tạo lắng nghe sự kiện trên ba kênh “id”, “status” và “error”. Kênh “id” dùng để lắng nghe mã số định danh phiên quét (scan id) của phiên quét. Nếu sự kiện gửi đến không hợp lệ thì đóng kết nối SSE và cập nhật lại isScanning thành false. Kênh “status” dùng để lắng nghe trạng thái tiến độ (progress status) của phiên quét và cập nhật lên data. Mỗi khi progress được gửi đến, cập nhật progress lên data và thực hiện lần lượt hai việc. Thứ nhất là gọi yêu cầu lấy dữ liệu từ endpoint /scan/trial/results?id=scanId bằng phương thức fetch() và cập nhật dữ liệu nhận được lên data, với scanId là scan id lắng nghe được từ kênh “id” và dữ liệu nhận được là chuỗi các URL kết quả quét từ phiên ZAP Spider trong thời điểm đó. Kết quả được xử lý lại nhất quán, không trùng lặp. Thứ hai là kiểm tra điều kiện duy trì kết nối nếu giá trị status là 100 thì đóng kết nối và cập nhật lại isScanning thành false. Kênh “error“ dùng để lắng nghe các trạng thái lỗi được gửi đến. Nếu có bất kì trạng thái nào được gửi đến thì cập nhật thông tin lên error trong đối tượng data custom, đóng kết nối SSE và cập nhật isScanning thành false.
 
-Phía ứng dụng hệ thống, cài đặt chức năng quét này khác biệt so với các chức năng quét khác, ứng dụng hệ thống thực hiện kết nối SSE trước và kiểm tra sự hợp lệ của URL sau, nếu URL không hợp lệ thì gửi trạng thái INVAVLID\_URL lên kênh “error”. Để kiểm tra sự hợp lệ của URL, ngoài các cài đặt kiểm tra bình thường nhóm có cài đặt phương thức isValidURL() với điều kiện đặc biệt là: Không được bao gồm chuỗi “localhost“ và “127.0.01“; URL phải có giao thức "http" hoặc "https", sử dụng gói validator. Cuối cùng start phiên quét và thực hiện đăng ký kết nối của ứng dụng web cho satus monitor tương ứng bằng ZAP Monitor service. Phiên quét được start với các cấu hình mặc định cài đặt sẵn cho chức năng dùng thử với ZAP Spider. Các cấu hình được biểu diễn chi tiết trong bảng x (bảng chi tiết cấu hình mặc định cho chức năng dùng thử với ZAP Spider).
+Phía ứng dụng hệ thống, cài đặt chức năng quét này khác biệt so với các chức năng quét khác, ứng dụng hệ thống thực hiện kết nối SSE trước và kiểm tra sự hợp lệ của URL sau, nếu URL không hợp lệ thì gửi trạng thái INVAVLID\_URL lên kênh “error”.
+Để kiểm tra sự hợp lệ của URL, ngoài các cài đặt kiểm tra bình thường nhóm có cài đặt phương thức isValidURL() với điều kiện đặc biệt là: Không được bao gồm chuỗi “localhost“ và “127.0.01“; URL phải có giao thức "http" hoặc "https", sử dụng gói validator.
+Cuối cùng start phiên quét và thực hiện đăng ký kết nối của ứng dụng web cho satus monitor tương ứng bằng ZAP Monitor service.
+Phiên quét được start với các cấu hình mặc định cài đặt sẵn cho chức năng dùng thử với ZAP Spider.
+Các cấu hình được biểu diễn chi tiết trong bảng \ref{tab:ConfigSpiderDefault}.
 
-Tên thuộc tính
+\begin{tabularx}{\textwidth}{|>{\hsize=.45\hsize\centering\let\newline
+  \\\arraybackslash}X|>{\hsize=.45\hsize\centering\let\newline
+  \\\arraybackslash}X|}
+  \hline
+  \thead{Tên thuộc tính}
+   & \thead{Cài đặt thuộc tính}
+  \\
+  \hline
+  maxChildren
+   &
+  5
+  \\
+  \hline
+  recurse
+   &
+  true
+  \\
+  \hline
+  contextName
+   &
+  ""
+  \\
+  \hline
+  subtreeOnly
+   &
+  false
+  \\
+  \hline
+  \caption{Bảng chi tiết cấu hình mặc định cho chức năng dùng thử với ZAP Spider}
+  \label{tab:ConfigSpiderDefault}
+\end{tabularx}
 
-Cài đặt thuộc tính
+\subsection{Cài đặt chức năng quản lý mục tiêu}
 
-maxChildren
-
-5
-
-recurse
-
-true
-
-contextName
-
-""
-
-subtreeOnly
-
-false
-
-4.5.3 Cài đặt chức năng quản lý mục tiêu
-Để hiển thị thông tin chi tiết các target ở ứng dụng web, nhóm cài đặt getTarget endpoint là một Query endpoint, endpoint thực hiện request HTTP GET đến điểm /management/targets để lấy danh sách thông tin các target. Để getTarget endpoint biết được khi nào data đã cũ thì nhóm cung cấp tag TARGET\_TAG cho hook providesTags.
+\tab Để hiển thị thông tin chi tiết các target ở ứng dụng web, nhóm cài đặt getTarget endpoint là một Query endpoint, endpoint thực hiện request HTTP GET đến điểm /management/targets để lấy danh sách thông tin các target. Để getTarget endpoint biết được khi nào data đã cũ thì nhóm cung cấp tag TARGET\_TAG cho hook providesTags.
 
 Ở ứng dụng hệ thống, vì các endpoint trong chức năng quản lý mục tiêu là các endpoint cần xác minh người dùng nên sẽ được đặt dưới các middleware xác thực từ Authentication service. Danh sách thông tin được lấy thông qua target.model với định danh người dùng tương ứng, không bị đánh dấu xóa, sắp xếp theo thứ tự giảm dần ở thuộc tính updateAt và gửi đi.
 
-4.5.3.1 Cài đặt chức năng tạo và xóa mục tiêu
-Để thêm mới target, ở ứng dụng web, nhóm cài đặt addTarget endpoint là một Mutation endpoint, endpoint thực hiện request HTTP POST đến /management/target. Để đánh dấu danh sách target trong cache đã cũ sau khi thêm mới thì nhóm thêm tag TARGET\_TAG, giống với getTarget endpoint, cho hook invalidatesTags trong endpoint. Ở ứng dụng hệ thống, thực hiện kiểm tra lại target với phương thức isValidURL() (đã nhắc đến ở mục 4.5.2) và kiểm tra target có bị trùng tên với nhóm các target đã có của người dùng không. Nếu tất cả đều thỏa thì thêm target vào database. Endpoint gửi và nhận về kết quả trạng thái tương ứng trong bảng MGMT\_STATUS.
+\subsubsection{Cài đặt chức năng tạo và xóa mục tiêu}
+
+\tab Để thêm mới target, ở ứng dụng web, nhóm cài đặt addTarget endpoint là một Mutation endpoint, endpoint thực hiện request HTTP POST đến /management/target. Để đánh dấu danh sách target trong cache đã cũ sau khi thêm mới thì nhóm thêm tag TARGET\_TAG, giống với getTarget endpoint, cho hook invalidatesTags trong endpoint. Ở ứng dụng hệ thống, thực hiện kiểm tra lại target với phương thức isValidURL() (đã nhắc đến ở mục 4.5.2) và kiểm tra target có bị trùng tên với nhóm các target đã có của người dùng không. Nếu tất cả đều thỏa thì thêm target vào database. Endpoint gửi và nhận về kết quả trạng thái tương ứng trong bảng MGMT\_STATUS.
 
 Để xóa target, ở dứng dụng web, nhóm cài đặt moveToTrashTarget endpoint loại Mutation endpoint, thực hiện request HTTP DELETE đến /management/target?id=”ID” với ID là id của target. Để đánh dấu danh sách target trong cache đã cũ sau khi xóa thì nhóm thực hiện tương tự addTarget endpoint, thêm tag TARGET\_TAG vào hook invalidatesTags. Ở ứng dụng hệ thống, thực hiện xóa target qua các bước: kiểm tra hợp lệ tham số trên query; kiểm tra sự tồn tại của target bằng target id và user id, nếu hợp lệ thì thực hiện cập nhật thuộc tính idDelete của target đó thành true.
 
-4.5.3.2 Cài đặt chức năng tìm mục tiêu theo tên
-Để thực hiện chức năng này, nhóm chỉ thực hiện cài đặt ở phía ứng dụng web. Danh sách các target được nhóm phân biệt theo hai đối đượng. Một là đối tượng danh sách các target có từ endpoint gọi là listTarget, hai là danh sách các target dùng để hiển thị gọi là listShowTarget. listShowTarget là một đối tượng được phản chiếu từ listTarget, các thay đổi trên thanh tìm kiếm sẽ thực hiện lọc và thay đổi listShowTarget.
+\subsubsection{Cài đặt chức năng tìm mục tiêu theo tên}
+
+\tab Để thực hiện chức năng này, nhóm chỉ thực hiện cài đặt ở phía ứng dụng web. Danh sách các target được nhóm phân biệt theo hai đối đượng. Một là đối tượng danh sách các target có từ endpoint gọi là listTarget, hai là danh sách các target dùng để hiển thị gọi là listShowTarget. listShowTarget là một đối tượng được phản chiếu từ listTarget, các thay đổi trên thanh tìm kiếm sẽ thực hiện lọc và thay đổi listShowTarget.
 
 Khi thực hiện tác vụ trên, nhóm gặp vấn đề vì thông tin trong thanh tìm kiếm là thông tin được nhập từ người dùng, nên tác vụ lọc sẽ được thực hiện rất nhiều lần khi thông tin tìm kiếm thay đổi. Đều này gây ra vấn đề hiệu suất và hiển thị. Để giải quyết vấn đề trên nhóm cài đặt custom hook useDebounceEffect(), sử dụng kỹ thuật debounce, để kiểm soát tầng suất thực hiện tác vụ. Sau đó, nhóm thực hiện bao tác vụ tìm kiếm và lọc trong hook này để khi người dùng dừng thay đổi thông tin tìm kiểm trong một khoảng thời gian thì mới thực hiện lọc. Khoảng thời gian nhóm cài đặt là 300 mili giây.
 
-4.5.4 Cài đặt chức năng tạo phiên quét
-Để có thể gửi yêu cầu quét của các loại quét cho ứng dụng hệ thống, ở ứng dụng web, nhóm cài đặt lần lượt các endpoint cho các loại quét với các tên spiderScan, ajaxScan, passiveScan, activeScan. Các endpoint này đều là Mutation endpoint thực hiện request HTTP POST đến lần lượt các điểm /scan/zap/spider, /scan/zap/ajax, /scan/zap/passive, /scan/zap/active. Các endpoint này đều gửi thông tin target cần quét, riêng passiveScan và activeScan thì cần thêm thông tin exploreType.
+\subsection{Cài đặt chức năng tạo phiên quét}
 
-Để biết được target nào cần quét và sử dụng các loại quét nào, nhóm tạo một đối tượng danh sách các target được chọn trong store gọi là listSelectedTarget và một đối tượng lưu thông tin trạng thái các lựa chọn quét gọi là scanOption. Đối tượng listSelectedTarget là một mảng có các phần tử là đối tượng chứa một số thông tin của target, thông tin biểu là target id. Đối tượng scanOption là một đối tượng chứa thông tin trạng thái bật tắt của các loại quét. Cùng với đó, nhóm tạo các reducer tương ứng trong store để thực hiện thay đối, thêm bớt cho các đối tượng này. Ở giao diện web, theo các tạo phiên quét bình thường, người dùng phải trải qua hai bước thiết lập là chọn các target trong danh sách và cấu hình các phiên quét, ở đây nhóm sẽ gọi đến các reducer tương ứng để lưu thông tin vào các đối tượng trong store. Các tiếp cận này giúp nhóm có thể cài đặt hiển thị bền vững thông tin trạng thái của các lựa chọn trong màn hình, có nghĩa nếu đang trong quá trình tạo phiên quét, người dùng có di chuyển khỏi màn hình thì trạng thái của các lựa chọn cũng không mất đi.
+\tab Để có thể gửi yêu cầu quét của các loại quét cho ứng dụng hệ thống, ở ứng dụng web, nhóm cài đặt lần lượt các endpoint cho các loại quét với các tên spiderScan, ajaxScan, passiveScan, activeScan. Các endpoint này đều là Mutation endpoint thực hiện request HTTP POST đến lần lượt các điểm /scan/zap/spider, /scan/zap/ajax, /scan/zap/passive, /scan/zap/active. Các endpoint này đều gửi thông tin target cần quét, riêng passiveScan và activeScan thì cần thêm thông tin exploreType.
+
+Để biết được target nào cần quét và sử dụng các loại quét nào, nhóm tạo một đối tượng danh sách các target được chọn trong store gọi là listSelectedTarget và một đối tượng lưu thông tin trạng thái các lựa chọn quét gọi là scanOption. Đối tượng listSelectedTarget là một mảng có các phần tử là đối tượng chứa một số thông tin của target, thông tin tiêu biểu là target id. Đối tượng scanOption là một đối tượng chứa thông tin trạng thái bật tắt của các loại quét. Cùng với đó, nhóm tạo các reducer tương ứng trong store để thực hiện thay đối, thêm bớt cho các đối tượng này. Ở giao diện web, theo các tạo phiên quét bình thường, người dùng phải trải qua hai bước thiết lập là chọn các target trong danh sách và cấu hình các phiên quét, ở đây nhóm sẽ gọi đến các reducer tương ứng để lưu thông tin vào các đối tượng trong store. Các tiếp cận này giúp nhóm có thể cài đặt hiển thị bền vững thông tin trạng thái của các lựa chọn trong màn hình, có nghĩa nếu đang trong quá trình tạo phiên quét, người dùng có di chuyển khỏi màn hình thì trạng thái của các lựa chọn cũng không mất đi.
 
 Nhờ cách tiếp cận này, người dùng có thể sử dụng chức năng này như chức năng tạo nhiều phiên quét cùng lúc. Để bắt đầu xử lý gọi các phiên quét, nhóm tạo một custom hook tên useDigestTargetsWithOptions(). Hook sẽ được gọi khi người dùng chọn bắt đầu quét sau khi đã thực hiện lựa chọn xong. Hook gọi đến lần lượt các trạng thái trong scanOption, ở mỗi trạng thái nếu là true thì sẽ duyệt listSelectedTarget và tạo phiên quét tương ứng với id target đó, gọi đến endpoint dùng để quét đã trình bày ở trên. Sau khi hoàn thành mỗi lần start scan cho mỗi phiên quét, để làm mới lại danh sách phiên quét thì nhóm thực hiện đánh dấu cũ cho tag của endpoint lấy danh sách phiên quét (sẽ được trình bày trong mục 4.5.5). Sau khi hoàn thành thì hook gọi đến reducer tương ứng để làm mới listSelectedTarget và scanOption.
 
- Ở ứng dụng hệ thống, vì các endpoint trong này cần xác minh nên sẽ được đặt dưới các middleware xác thực. Đối với mỗi endpoint tương ứng sẽ thực hiện start các loại scan tương ứng thông qua ZAP Monitor service, ví dụ endpoint để start ajax sẽ gọi ajaxStartAndMonitor(). Quá trình thực hiện start scan tương tự nhau và được thể hiện trong hình x sơ đồ xxx chi tiết bla bla
+Ở ứng dụng hệ thống, vì các endpoint trong này cần xác minh nên sẽ được đặt dưới các middleware xác thực. Đối với mỗi endpoint tương ứng sẽ thực hiện start các loại scan tương ứng thông qua ZAP Monitor service, ví dụ endpoint để start ajax sẽ gọi ajaxStartAndMonitor(). Quá trình thực hiện start scan tương tự nhau và được thể hiện trong hình x sơ đồ xxx chi tiết bla bla
 
 
 Như hình x, ở bước “Get id“, “id“ trong loại quét spider sẽ là scan id còn các loại còn lại sẽ là client id, dựa theo thiết kế đã nhắc ở mục 4.4.1.1. Các phiên quét được start ở đây đầu sử dụng cấu hình mặc định, đã mô tả ở các bảng xxx, xxx, xxx và xxx.
 
-4.5.5 Cài đặt chức năng quản lý phiên quét
-Để có được danh sách các phiên quét (scan session), ở ứng dụng web nhóm cài đặt getScanSession endpoint là một Query endpoint, endpoint thực hiện request HTTP GET đến điểm /management/scanSessions để lấy danh sách thông tin các scan session. Để getScanSession endpoint biết được khi nào data đã cũ thì nhóm cung cấp tag SCAN\_SESSION\_TAG cho hook providesTags trong endpoint. 
+\subsection{Cài đặt chức năng quản lý phiên quét}
+
+\tab Để có được danh sách các phiên quét (scan session), ở ứng dụng web nhóm cài đặt getScanSession endpoint là một Query endpoint, endpoint thực hiện request HTTP GET đến điểm /management/scanSessions để lấy danh sách thông tin các scan session. Để getScanSession endpoint biết được khi nào data đã cũ thì nhóm cung cấp tag SCAN\_SESSION\_TAG cho hook providesTags trong endpoint.
 
 Ở ứng dụng hệ thống, vì các endpoint cần xác minh nên được đặt dưới các middleware xác thực. Danh sách được lấy thông qua scan-session.model với định danh người dùng tương ứng, sắp xếp theo thứ tự giảm dần ở thuộc tính updateAt. Vì nhóm cần thêm thông tin của target kèm với thông tin của scan session tương ứng, nên nhóm sử dụng chức năng Population của mongoose (chức năng thay thế đại diện cho \$lookup aggregation của MongoDB). Khi cài đặt Schema cho scan-session.model, nhóm tạo tham chiếu đến id của document target, và khi truy xuất scan session nhóm sử dụng phương thức populate() để kèm theo thông tin của target tương ứng.
 
-4.5.5.1 Cài đặt chức năng xem trạng thái phiên quét
-Để thể hiện thông tin trạng thái của một phiên quét trong danh sách quét, nhóm thiết lập hai loại thông tin là thông tin trạng thái (state) và thông tin trạng thái tiến triển (progess). State chỉ trạng thái hiện tại của phiên quét và được thể hiện trong dữ liệu của phiên quét đó. Có 3 loại state là PROCESSING, SUCCESSFUL và FAILED. Progress là thông chỉ tiến độ của phiên quét khi phiên quét đang trong state PROCESSING, vì vậy chỉ khi state của phiên quét là PROCESSING thì progress mới hiển thị. Tùy theo từng loại quét mà progress sẽ thể hiện khác nhau.
+\subsubsection{Cài đặt chức năng xem trạng thái phiên quét}
 
-Để có được thông tin progress của phiên quét, ở ứng dụng web, nhóm cài đặt lần lượt các endpoint cho các loại phiên quét với các tên streamSpiderScan, streamAjaxScan, streamPassiveScan, streamActiveScan. Các endpoint đều là Query endpoint và là custom endpoint để streaming update, đã đề cập đến ở mục 4.1. Các endpoint này nhận vào tham số để định danh phiên quét tương ứng của nó ở ứng dụng hệ thống và trả về đối tượng data custom. Đối tượng data custom có các thuộc tính tương như các thuộc tính được mô tả trong bảng x bảng mô tả các thuộc tính của đối tượng data custom trong trialScan endpoint. Tuy nhiên, đối tượng không có thuộc tính data và thuộc tính progress sẽ có kiểu và giá trị tùy theo loại phiên quét. Nếu phiên quét thuộc loại ZAP Spider và ZAP Active thì thuộc tính progress sẽ là kiểu số và có giá trị từ 0 đến 100. Nếu phiên quét thuộc loại ZAP Ajax và ZAP Passive thì thuộc tính progress sẽ là kiểu chuỗi và có giá trị là “running“ hoặc “stopped“. 
+\tab Để thể hiện thông tin trạng thái của một phiên quét trong danh sách quét, nhóm thiết lập hai loại thông tin là thông tin trạng thái (state) và thông tin trạng thái tiến triển (progess). State chỉ trạng thái hiện tại của phiên quét và được thể hiện trong dữ liệu của phiên quét đó. Có 3 loại state là PROCESSING, SUCCESSFUL và FAILED. Progress là thông chỉ tiến độ của phiên quét khi phiên quét đang trong state PROCESSING, vì vậy chỉ khi state của phiên quét là PROCESSING thì progress mới hiển thị. Tùy theo từng loại quét mà progress sẽ thể hiện khác nhau.
 
-Các endpoint tiến hành thiết lập kết nối SSE với ứng dụng hệ thống trong hook onCacheEntryAdded bằng EventSource. Các endpoint được sử dụng để kết nối lần lượt tương ứng là /scan/zap/spider?scanSession=”sessionId”\&zapScanId=”zapScanId”, /scan/zap/ajax?scanSession=”sessionId”\&zapClientId=”zapClientId”, /scan/zap/passive?scanSession=”sessionId”\&zapClientId=”zapClientId”, active?scanSession=”sessionId”\&zapClientId=”zapClientId” với sessionId là định danh document của phiên quét, zapScanId và zapClientId chính là thông tin định danh của đối tượng đang thực hiện phiên quét. 
+Để có được thông tin progress của phiên quét, ở ứng dụng web, nhóm cài đặt lần lượt các endpoint cho các loại phiên quét với các tên streamSpiderScan, streamAjaxScan, streamPassiveScan, streamActiveScan. Các endpoint đều là Query endpoint và là custom endpoint để streaming update, đã đề cập đến ở mục 4.1. Các endpoint này nhận vào tham số để định danh phiên quét tương ứng của nó ở ứng dụng hệ thống và trả về đối tượng data custom. Đối tượng data custom có các thuộc tính tương như các thuộc tính được mô tả trong bảng x bảng mô tả các thuộc tính của đối tượng data custom trong trialScan endpoint. Tuy nhiên, đối tượng không có thuộc tính data và thuộc tính progress sẽ có kiểu và giá trị tùy theo loại phiên quét. Nếu phiên quét thuộc loại ZAP Spider và ZAP Active thì thuộc tính progress sẽ là kiểu số và có giá trị từ 0 đến 100. Nếu phiên quét thuộc loại ZAP Ajax và ZAP Passive thì thuộc tính progress sẽ là kiểu chuỗi và có giá trị là “running“ hoặc “stopped“.
+
+Các endpoint tiến hành thiết lập kết nối SSE với ứng dụng hệ thống trong hook onCacheEntryAdded bằng EventSource. Các endpoint được sử dụng để kết nối lần lượt tương ứng là \\
+/scan/zap/spider?scanSession=”sessionId”\&zapScanId=”zapScanId”, \\
+/scan/zap/ajax?scanSession=”sessionId”\&zapClientId=”zapClientId”, \\
+/scan/zap/passive?scanSession=”sessionId”\&zapClientId=”zapClientId”, \\
+active?scanSession=”sessionId”\&zapClientId=”zapClientId” với sessionId là định danh document của phiên quét, zapScanId và zapClientId chính là thông tin định danh của đối tượng đang thực hiện phiên quét.
 
 Khi endpoint được gọi, endpoint cập nhật isScanning thành true trên hook onQueryStarted trước rồi thực hiện kết nối SSE với ứng dụng hệ thống trong hook onCacheEntryAdded. Sau khi thiết lập thành công, tạo lắng nghe sự kiện trên hai kênh “status” và “error”. Kênh “status” lắng nghe thông tin progress của phiên quét. Mỗi khi trạng thái được gửi đến, thực hiện cập nhật progress lên data và kiểm tra điều kiện duy trì kết nối nếu giá trị status là 100 hoặc “stopped“ thì đóng kết nối và cập nhật lại isScanning thành false. Kênh “error“ dùng để lắng nghe các trạng thái lỗi được gửi đến. Nếu trạng thái được gửi đến thì cập nhật thông tin lên error trong đối tượng data custom, đóng kết nối SSE và cập nhật isScanning thành false.
 
@@ -824,4 +911,4 @@ Bước 3: Thiết lập kết nối SSE.
 
 Bước 4: Lấy status monitor của phiên quét lên làm publisher qua ZAP Monitor service. Thực hiện kết nối publisher vào các kênh tương ứng ở SSE.
 
-Ở ứng dụng web, khi thực hiện chức năng này, nhóm gặp khó khăn vì danh sách phiên quét sẽ hiển thị nhiều mục phiên quét và mỗi mục tùy theo loại phiên quét mà sử dụng endpoint khác nhau. Không cài đặt theo cấu trúc điều kiện cho mỗi mục trong trường hợp này, vì endpoint là hook và React không cho phép sử dụng hook trong cấu trúc điều kiện. Nhóm giải quyết vấn đề này bằng cách tạo từng component cho từng mục khác nhau, với mỗi mục thuộc mỗi loại phiên quét. Thực hiện gọi hook endpoint kết nối SSE trên loại component tương ứng. 
+Ở ứng dụng web, khi thực hiện chức năng này, nhóm gặp khó khăn vì danh sách phiên quét sẽ hiển thị nhiều mục phiên quét và mỗi mục tùy theo loại phiên quét mà sử dụng endpoint khác nhau. Không cài đặt theo cấu trúc điều kiện cho mỗi mục trong trường hợp này, vì endpoint là hook và React không cho phép sử dụng hook trong cấu trúc điều kiện. Nhóm giải quyết vấn đề này bằng cách tạo từng component cho từng mục khác nhau, với mỗi mục thuộc mỗi loại phiên quét. Thực hiện gọi hook endpoint kết nối SSE trên loại component tương ứng.
