@@ -221,7 +221,8 @@
     \item Hệ thống càng phân tán càng tiềm ẩn nhiều nguy cơ bảo mật.
 \end{itemize}
 
-\section{Kiến trúc nguồn sự kiện (Event Sourcing) ~\cite{chap2bib28} ~\cite{chap2bib29}}
+\newpage
+\section{Kiến trúc nguồn sự kiện (Event Sourcing) \cite{chap2bib28} \cite{chap2bib29}}
 
 \paragraph{Giới thiệu giải pháp}
 
@@ -229,7 +230,7 @@
     \begin{figure}[H]
         \centering
         \includegraphics[width=\textwidth]{applied-thesis-chapters/chapter-2/Mẫu kiến trúc nguồn sự kiện.png}
-        \caption{Mẫu kiến trúc nguồn sự kiện ~\cite{chap2bib29}}
+        \caption{Mẫu kiến trúc nguồn sự kiện \cite{chap2bib29}}
     \end{figure}
     \item Nguồn sự kiện sẽ trả về các sự kiện theo thời gian xuất hiện (ở dạng stream). Những nơi cần sử dụng có thể đăng ký với nguồn sự kiện, sau đó sẽ được thông báo và có thể xử lý chúng nếu cần.
     \item Kiến trúc nguồn sự kiện đảm nhiệm công việc tạo ra và gửi đi các luồng tin nhắn liên tục đến một nơi lưu trữ. Mỗi tin nhắn mô tả một sự kiện trong hệ thống. Sau đó, các dịch vụ và ứng dụng khác sẽ truy vấn để tìm các sự kiện theo nhu cầu.

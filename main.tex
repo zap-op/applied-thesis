@@ -14,6 +14,7 @@
 \usepackage{float} % Able to use H
 \usepackage{listings}
 \usepackage{xcolor}
+\usepackage{hyperref}
 \usepackage[backend=bibtex,
 style=numeric,
 bibencoding=ascii,
@@ -68,16 +69,16 @@ sorting=none
 \input{thesis-proposal.tex}
 % APPLIED THESIS
 \tableofcontents
-\pagenumbering{arabic}
 \newpage
 \listoffigures
 \newpage
 \listoftables
+\input{summary.tex}
 \input{applied-thesis-chapters/chapter-1/chapter-1.tex}
 \input{applied-thesis-chapters/chapter-2/chapter-2.tex}
 \input{applied-thesis-chapters/chapter-3/chapter-3.tex}
 \input{applied-thesis-chapters/chapter-4/chapter-4.tex}
-% \input{applied-thesis-chapters/chapter-5/chapter-5.tex}
+\input{applied-thesis-chapters/chapter-5/chapter-5.tex}
 \newpage
-\printbibliography[title={Tài liệu than khảo}]
+\printbibliography[title={Tài liệu tham khảo}]
 \end{document}

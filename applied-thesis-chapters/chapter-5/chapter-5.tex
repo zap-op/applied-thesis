@@ -21,225 +21,268 @@
 \subsection{Môi trường phát triển}
 
 \begin{itemize}
-    \item 
+    \item Hệ điều hành: Windows 10 Home 64-bit, macOS Ventura.
+    \item Hệ quản trị cơ sở dữ liệu: MongoDB, MongoDB Atlas.
+    \item Công cụ quản lý, truy vấn cơ sở dữ liệu MongoDB: MongoDB Compass Community 1.8.0.
+    \item Công cụ xây dựng và phát triển phần mềm: Visual Studio Code.
+    \item Công cụ quản trị máy chủ từ xa qua giao thức SSH: Window PowerShell 5.1.19041.2673.
+    \item Các thư viện / nền tảng sử dụng:
+          \begin{tabularx}{\textwidth}{|>{\hsize=.40\hsize\centering\let\newline
+              \\\arraybackslash}X|>{\hsize=.50\hsize\raggedright\let\newline
+              \\\arraybackslash}X|}
+              \hline
+              \thead{Tên thư viện / nền tảng}
+               & \thead{Tóm tắt chức năng}
+              \\
+              \hline
+              NodeJS
+               &
+              Là môi trường thực thi JavaScript bên ngoài trình duyệt, hỗ trợ viết mã phía server và xây dựng ứng dụng web có tính tương tác cao.
+              \\
+              \hline
+              Express.js
+               &
+              Là framework Node.js hỗ trợ viết mã backend, cung cấp các tính năng như định tuyến, middleware và tương tác với database để xây dựng RESTful API và ứng dụng web.
+              \\
+              \hline
+              Mongoose
+               &
+              Là thư viện Object Data Modeling (ODM) dành cho MongoDB, giúp đơn giản hóa truy vấn, tạo ra các model đồng thời cung cấp API để thao tác với database.
+              \\
+              \hline
+              ReactJS
+               &
+              Là thư viện JavaScript được sử dụng để xây dựng giao diện, mang lại trải nghiệm người dùng tốt hơn qua các tính năng hiệu suất tối ưu, cập nhật dữ liệu, tái sử dụng Components và Virtual DOM.
+              \\
+              \hline
+              zap-api-nodejs / zaproxy
+               &
+               Là thư viện của NodeJS được sử dụng để truy cập vào API của OWASP ZAP.
+               Thư viện cung cấp cách tiếp cận dễ dàng hơn để tương tác với chức năng API của OWASP ZAP từ ứng dụng NodeJS.
+              \\
+              \hline
+              Redux Toolkit
+               &
+               Là thư viện mã nguồn mở của Redux được tạo ra để giúp đơn giản hóa việc sử dụng Redux trong ứng dụng React.
+              \\
+              \hline
+              RxJS
+               &
+               Là thư viện mã nguồn mở của JavaScrip.
+                Sử dụng để lập trình bất đồng bộ với dữ liệu chuỗi (stream) và tương tác với các sự kiện trong ứng dụng
+              \\
+              \hline
+              RTK Query
+               &
+               Là một thư viện của Redux Toolkit.
+               Sử dụng để xử lý việc truy vấn API trong ứng dụng Redux.
+              \\
+              \hline
+              jsPDF
+               &
+               Là một thư viện mã nguồn mở của JavaScript. Sử dụng để tạo và xuất các tài liệu PDF trong ứng dụng web.
+              \\
+              \hline
+              jsPDF-AutoTable
+               &
+               Là một phần mở rộng của thư viện jsPDF. Sử dụng để tạo bảng động trong tài liệu PDF.
+              \\
+              \hline
+              winston
+               &
+               Là một thư viện mã nguồn mở của Node.js. Sử dụng để quản lý và ghi nhật ký (logs) trong ứng dụng Node.js.
+              \\
+              \hline
+              google-auth-library
+               &
+               Là một thư viện mã nguồn mở của Google. Sử dụng để xác thực và ủy quyền trong các ứng dụng gọi API của Google.
+              \\
+              \hline
+              validator.js
+               &
+               Là một thư viện mã nguồn mở của JavaScript.
+               Thư viện cung cấp nhiều phương thức kiểm tra kiểu dữ liệu khác nhau như chuỗi (string), số (number), địa chỉ email (email), URL, và các kiểu dữ liệu khác.
+              \\
+              \hline
+              \caption{Các thư viện, nền tảng sử dụng trong quá trình xây dựng hệ thống}
+          \end{tabularx}
 \end{itemize}
-Hệ điều hành: Windows 10 Home 64-bit, macOS Ventura
 
-Hệ quản trị cơ sở dữ liệu: MongoDB
-
-Công cụ quản lý, truy vấn cơ sở dữ liệu MongoDB: MongoDB Compass Community 1.8.0
-
-Công cụ xây dựng và phát triển phần mềm: Visual Studio Code
-
-Công cụ quản trị máy chủ từ xa qua giao thức SSH: Window PowerShell 5.1.19041.2673
-
-Các thư viện / nền tảng sử dụng:
-
-Tên thư viện / nền tảng
-
-Tóm tắt chức năng
-
-NodeJS
-
-Là môi trường thực thi JavaScript bên ngoài trình duyệt, hỗ trợ viết mã phía server và xây dựng ứng dụng web có tính tương tác cao.
-
-Express.js
-
-Là framework Node.js hỗ trợ viết mã backend, cung cấp các tính năng như định tuyến, middleware và tương tác với database để xây dựng RESTful API và ứng dụng web.
-
-Mongoose
-
-Là thư viện Object Data Modeling (ODM) dành cho MongoDB, giúp đơn giản hóa truy vấn, tạo ra các model đồng thời cung cấp API để thao tác với database.
-
-ReactJS
-
-Là thư viện JavaScript được sử dụng để xây dựng giao diện, mang lại trải nghiệm người dùng tốt hơn qua các tính năng hiệu suất tối ưu, cập nhật dữ liệu, tái sử dụng Components và Virtual DOM.
-
-Redux
-
-Là thư viện quản lý trạng thái (state management) cho các ứng dụng web được xây dựng bằng ReactJS, giúp dễ dàng quản lý và cập nhật trạng thái của ứng dụng.
-
-Bảng 5.1 Các thư viện, nền tảng sử dụng trong quá trình xây dựng hệ thống
-
-5.2.2 Môi trường triển khai
- DigitalOcean - nhà cung cấp dịch vụ đám mây (cloud service provider), cung cấp các ứng dụng web chạy trên nền tảng máy chủ ảo và container, hỗ trợ phát triển và vận hành ứng dụng web nhanh chóng và tiết kiệm chi phí. Thông qua DigitalOcean, người dùng có thể thuê máy chủ ảo (VPS), quản lý hệ thống và cấu hình chi tiết.
-
-Amazon Elastic Compute Cloud (EC2) - dịch vụ đám mây của Amazon Web Services (AWS), cung cấp máy chủ ảo (VPS) có thể được sử dụng để triển khai, quản lý và mở rộng các ứng dụng web một cách dễ dàng và tiết kiệm chi phí.
-
-5.2.3 Hiệu năng hệ thống
-5.2.4 Các chức năng đã cài đặt
-Đăng ký / Đăng nhập.
-
-Dùng thử chức năng quét với ZAP Spider.
-
-Quét ứng dụng web qua URL hoặc IP bằng các loại quét, kịch bản nền tảng ZAP có hỗ trợ.
-
-Hỗ trợ cấu hình các phiên quét ánh xạ với nền tảng ZAP.
-
-Hỗ trợ quét Nmap Port.
-
-Hỗ trợ quét Sslyze TLS/SSL Security.
-
-Quản lý thông tin các URL hoặc IP dùng để quét và các thông tin liên quan.
-
-Giao diện quá trình quét trực quan.
-
-Quản lý thông tin kết quả của các phiên quét.
-
-Gửi kết quả trạng thái quét, báo cáo rút gọn qua mail.
-
-Xuất báo cáo với định dạng pdf, xml.
-
-5.2.5 So sánh với một số hệ thống khác trên thị trường
-Tên chức năng
-
-Owlens
-
-Stack Hawk
-
-Detectify
-
-Hosted Scan
-
-Đăng ký / Đăng nhập.
-
-:heavy_check_mark: 
-
-:heavy_check_mark:  
-
-:heavy_check_mark:  
-
-:heavy_check_mark:  
-
-Dùng thử chức năng quét với ZAP Spider.
-
-:heavy_check_mark:  
-
-:heavy_check_mark:  
-
- 
-
-:heavy_check_mark:  
-
-Quét ứng dụng web qua URL hoặc IP bằng các loại quét, kịch bản nền tảng ZAP có hỗ trợ.
-
-:heavy_check_mark:  
-
-:heavy_check_mark:  
-
- 
-
-:heavy_check_mark:  
-
-Hỗ trợ cấu hình các phiên quét ánh xạ với nền tảng ZAP.
-
-:heavy_check_mark:  
-
-:heavy_check_mark:  
-
- 
-
- 
-
-Hỗ trợ quét Nmap Port.
-
-:heavy_check_mark:  
-
-:heavy_check_mark:  
-
-:heavy_check_mark:  
-
-:heavy_check_mark:  
-
-Hỗ trợ quét Sslyze TLS/SSL Security.
-
-:heavy_check_mark:  
-
-:heavy_check_mark:  
-
-:heavy_check_mark:  
-
- 
-
-Quản lý thông tin các URL hoặc IP dùng để quét và các thông tin liên quan.
-
-:heavy_check_mark:  
-
-:heavy_check_mark:  
-
-:heavy_check_mark:  
-
-:heavy_check_mark:  
-
-Giao diện quá trình quét trực quan.
-
-:heavy_check_mark:  
-
-:heavy_check_mark:  
-
-:heavy_check_mark:  
-
- 
-
-Quản lý thông tin kết quả của các phiên quét.
-
-:heavy_check_mark:  
-
-:heavy_check_mark:  
-
-:heavy_check_mark:  
-
-:heavy_check_mark:  
-
-Gửi kết quả trạng thái quét, báo cáo rút gọn qua mail.
-
-:heavy_check_mark:  
-
-:heavy_check_mark:  
-
-:heavy_check_mark:  
-
-:heavy_check_mark:  
-
-Xuất báo cáo với định dạng pdf, xml.
-
-:heavy_check_mark:  
-
-:heavy_check_mark:  
-
-:heavy_check_mark:  
-
-:heavy_check_mark:  
-
-Bảng 5.2 So sánh chức năng giữa các hệ thống cung cấp dịch vụ
-
-5.3 So sánh các kết quả thu được với mục tiêu ban đầu
-Mục tiêu ban đầu
-
-Nhận xét mức độ hoàn thành
-
-Mục tiêu ban đầu
-
-Nhận xét mức độ hoàn thành
-
-Trình bày lý do xây dựng hệ thống tự động tìm kiếm lỗi bảo mật ứng dụng web dựa trên nền tảng OWASP ZAP.
-
-Đã trình bày một số lý do cơ bản trong chương 1 của luận văn.
-
-Trình bày các tính năng cơ bản của 3 ứng dụng tìm kiếm lỗi bảo mật ứng dụng web hiện có và nêu ra các khuyết điểm của các ứng dụng.
-
-Đã trình bày một số ý ở chương 1 của luận văn.
-
-Trình bày tóm tắt thông tin về các lỗi bảo mật ứng dụng web thường gặp.
-
-Đã trình bày ở chương 2 của luận văn.
-
-Xây dựng ứng dụng web tự động tìm kiếm lỗi bảo mật ứng dụng web hoàn thiện.
-
-Đã xây dựng ứng dụng web tự động tìm kiếm lỗi bảo mật ứng dụng web.
-
-Viết 120 trang luận văn theo luồng logic trình bày trong tài liệu “Hướng dẫn thực hiện luận văn” mà giáo viên cung cấp, theo đúng chuẩn nhà trường yêu cầu và trích dẫn tài liệu tham khảo một cách chi tiết, đầy đủ.
-
-Luận văn được viết tương đối đẩy đủ và chính xác.
-
- Bảng 5.3 Bảng so sánh mục tiêu ban đầu với kết quả thu được
+\subsection{Môi trường triển khai}
+
+\tab Nhóm thực hiện triển khai hệ thống trên các nền tảng sau:
+
+\begin{itemize}
+    \item DigitalOcean - nhà cung cấp dịch vụ đám mây (cloud service provider), cung cấp các ứng dụng web chạy trên nền tảng máy chủ ảo và container, hỗ trợ phát triển và vận hành ứng dụng web nhanh chóng và tiết kiệm chi phí. Thông qua DigitalOcean, người dùng có thể thuê máy chủ ảo (VPS), quản lý hệ thống và cấu hình chi tiết.
+    \item Amazon Elastic Compute Cloud (EC2) - dịch vụ đám mây của Amazon Web Services (AWS), cung cấp máy chủ ảo (VPS) có thể được sử dụng để triển khai, quản lý và mở rộng các ứng dụng web một cách dễ dàng và tiết kiệm chi phí.
+\end{itemize}
+
+\subsection{Các chức năng đã cài đặt}
+
+\tab Trong quá trình thực hiện cài đặt ứng dụng cho khóa luận, nhóm đã cài đặt được các chức năng sau:
+
+\begin{itemize}
+    \item Đăng ký / Đăng nhập và đăng xuất tài khoản cá nhân.
+    \item Quản lý thông tin các URL hoặc IP dùng để quét và các thông tin liên quan.
+    \item Quét ứng dụng web qua URL hoặc IP bằng các loại quét, kịch bản nền tảng ZAP có hỗ trợ.
+    \item Giao diện quá trình quét trực quan.
+    \item Xem trạng thái, thông tin và thông tin chi tiết kết quả của các phiên quét.
+    \item Xuất báo cáo kết quả quét chi tiết với định dạng pdf
+\end{itemize}
+
+\subsection{So sánh với một số hệ thống khác trên thị trường}
+
+\begin{tabularx}{\textwidth}{|>{\hsize=.20\hsize\centering\let\newline
+    \\\arraybackslash}X|>{\hsize=.15\hsize\centering\let\newline
+    \\\arraybackslash}X|>{\hsize=.15\hsize\centering\let\newline
+    \\\arraybackslash}X|>{\hsize=.15\hsize\centering\let\newline
+    \\\arraybackslash}X|>{\hsize=.15\hsize\centering\let\newline
+    \\\arraybackslash}X|}
+    \hline
+    \thead{Tên chức năng}
+     & \thead{Owlens}
+     & \thead{Stack Hawk}
+     & \thead{Detectify}
+     & \thead{Hosted Scan}
+    \\
+    \hline
+    Đăng ký / Đăng nhập và đăng xuất.
+     &
+    \checkmark
+     &
+    \checkmark
+     &
+    \checkmark
+     &
+    \checkmark
+    \\
+    \hline
+    Dùng thử chức năng quét với ZAP Spider.
+     &
+    \checkmark
+     &
+    \checkmark
+     &
+
+     &
+    \checkmark
+    \\
+    \hline
+    Quét ứng dụng web qua URL hoặc IP bằng các loại quét, kịch bản nền tảng ZAP có hỗ trợ.
+     &
+    \checkmark
+     &
+    \checkmark
+     &
+
+     &
+    \checkmark
+    \\
+    \hline
+    Quản lý thông tin các URL hoặc IP dùng để quét và các thông tin liên quan.
+     &
+    \checkmark
+     &
+    \checkmark
+     &
+    \checkmark
+     &
+    \checkmark
+    \\
+    \hline
+    Giao diện quá trình quét trực quan.
+     &
+    \checkmark
+     &
+    \checkmark
+     &
+    \checkmark
+     &
+
+    \\
+    \hline
+    Xem trạng thái, thông tin và thông tin chi tiết kết quả của các phiên quét.
+     &
+    \checkmark
+     &
+    \checkmark
+     &
+    \checkmark
+     &
+    \checkmark
+    \\
+    \hline
+    Xuất báo cáo với định dạng pdf.
+     &
+    \checkmark
+     &
+    \checkmark
+     &
+    \checkmark
+     &
+    \checkmark
+    \\
+    \hline
+    \caption{So sánh chức năng giữa các hệ thống cung cấp dịch vụ}
+\end{tabularx}
+
+\section{So sánh các kết quả thu được với mục tiêu ban đầu}
+
+\begin{tabularx}{\textwidth}{|>{\hsize=.40\hsize\raggedright\let\newline
+    \\\arraybackslash}X|>{\hsize=.40\hsize\raggedright\let\newline
+    \\\arraybackslash}X|}
+    \hline
+    \thead{Mục tiêu ban đầu}
+     & \thead{Nhận xét mức độ hoàn thành}
+    \\
+    \hline
+    Trình bày lý do xây dựng hệ thống tự động tìm kiếm lỗi bảo mật ứng dụng web dựa trên nền tảng OWASP ZAP.
+     &
+    Đã trình bày một số lý do cơ bản trong chương 1 của luận văn.
+    \\
+    \hline
+    Trình bày các tính năng cơ bản của 3 ứng dụng tìm kiếm lỗi bảo mật ứng dụng web hiện có và nêu ra các khuyết điểm của các ứng dụng.
+     &
+    Đã trình bày một số ý ở chương 1 của luận văn.
+    \\
+    \hline
+    Trình bày tóm tắt thông tin về các lỗi bảo mật ứng dụng web thường gặp.
+     &
+    Đã trình bày một số lỗi ở chương 2 của luận văn.
+    \\
+    \hline
+    Xây dựng ứng dụng web tự động tìm kiếm lỗi bảo mật ứng dụng web hoàn thiện.
+     &
+    Đã xây dựng ứng dụng web tự động tìm kiếm lỗi bảo mật ứng dụng web.
+    \\
+    \hline
+    Viết 100 trang luận văn theo luồng logic trình bày trong tài liệu “Hướng dẫn thực hiện luận văn” mà giáo viên cung cấp, theo đúng chuẩn nhà trường yêu cầu và trích dẫn tài liệu tham khảo một cách chi tiết, đầy đủ.
+     &
+    Luận văn được viết tương đối đẩy đủ và chính xác.
+    \\
+    \hline
+    \caption{Bảng so sánh mục tiêu ban đầu với kết quả thu được}
+\end{tabularx}
+
+\section{Hướng phát triển}
+
+\subsection{Hoàn thiện đề tài}
+
+Mặc dù sản phẩm đề tài đáp ứng các chức năng đề ra trong phạm vi khóa luận. Nhưng hướng đi của đề tài theo nhóm đánh giá là đáng giá. Sản phẩm của đề tài sẽ hoàn hảo hơn nếu được phát triển có nhiều chức năng quét hơn, chức năng quản lý, ổn định, cải thiện hiệu suất, trở thành một hệ thống quản lý lỗi ứng dụng cho các dự án hoàn thiện.
+
+\subsection{Mở rộng theo hướng ứng dụng}
+
+\begin{itemize}
+    \item Cải thiện mức độ hoàn thiện các tính năng hiện tại. Cải thiện lỗi và hiệu suất.
+    \item Phát triển thêm các tính năng quét, quản lý, thông báo hỗ trợ người dùng khi sử dụng hệ thống. Phát triển các chức năng theo chiều ngang để trở thành một hệ thống quản lý lỗi ứng dụng cho các dự án hoàn thiện.
+    \item Phát triển giao diện hướng người dùng, thân thiện và thuận tiện cho người dùng hơn.
+    \item Thực hiện CI/CD và kiểm thử cho hệ thống.
+\end{itemize}
+
+\subsection{Mở rộng theo hướng nghiên cứu}
+
+\begin{itemize}
+    \item Nghiên cứu các lỗi và phương pháp quét mới vì các lỗi trong ứng dụng luôn ngày càng đổi mới.
+    \item Nghiên cứu phát triển các kịch bản quét đặc biệt, hiệu quả hơn của riêng ứng dụng.
+    \item Nghiên cứu cải thiện, khai thác dữ liệu có từ kết quả quét và đưa ra các đề xuất sửa lỗi hiệu quả hơn.
+\end{itemize}

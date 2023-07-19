@@ -75,7 +75,7 @@ Tệp này sẽ chứa các thông tin có trong màn hình thông tin chi tiế
 
 \section{Thiết kế hệ thống}
 
-\subsection{Thiết kế kiến trúc hệ thống}
+\subsection{Thiết kế kiến trúc hệ thống} \label{subsec:TKKienTrucHeThong}
 \begin{figure}[H]
       \centering
       \includegraphics[width=\textwidth]{applied-thesis-chapters/chapter-3/Tổng quan kiến trúc hệ thống.png}
@@ -132,11 +132,11 @@ Hình \ref{fig:NhomZapServiceHoatDong} sẽ cho ta cái nhìn chi tiết hơn v�
             Service có nhiệm vụ tạo, dừng và quản lý các phiên quét của người dùng; nắm giữ và quản lý quá trình quét của các phiên quét, giúp cho hệ thống có thể kết nối và biết được các thông tin về trạng thái và tiến độ của phiên quét; lưu trữ các dữ liệu cần thiết khi hoạt động với ZAP như thông tin phiên quét, thông tin kết quả với Database service.
 \end{itemize}
 
+\newpage
 \myparagraph{\textit{ZAP Pool}}
 \tab \tab Là tập hợp các ZAP process instance chạy ngầm, mỗi instance sẽ chạy trên một cổng (port) khác nhau và được tham chiếu bởi các ZAP client của ZAP Client service.
 \par
 
-\smallskip
 Hình \ref{fig:TTZapMonitorStartScan} và \ref{fig:TTHeThongStartScan} thể hiện quá trình tương tác và hoạt động của nhóm ZAP service trong hệ thống khi bắt đầu một phiên quét.
 
 \begin{figure}[H]
@@ -221,6 +221,7 @@ Về cơ bản, nhóm triển khai MongoDB trên một máy dịch vụ khác, k
 Chuyển sự hạn chế bởi cấu hình của MongoDB sang máy khác nghĩa là không còn giữ nguyên được tính nhanh chóng (cache) và các tương tác với database phải thông qua giao thức TCP/IP socket (chức năng cache vẫn hoạt động bình thường ở VPC).
 Bên cạnh lợi ích toàn vẹn dữ liệu, việc lựa chọn giải pháp này cũng mang lại nhiều lợi ích khác như tăng tính bảo mật, mở rộng, linh hoạt, tiện lợi, dễ dàng quản lý và không cần nhiều bận tâm về các vấn đề của database trên hệ thống chính.
 
+\newpage
 \subsection{Thiết kế giao diện hệ thống}
 
 \subsubsection{Giao diện trang chủ}
@@ -236,6 +237,7 @@ Giao diện màn hình trang chủ được thiết kế như hình \ref{fig:MHT
       \label{fig:MHTrangChu}
 \end{figure}
 
+\newpage
 Bảng mô tả giao diện màn hình trang chủ, bảng \ref{tab:MTTrangChu}:
 
 \begin{tabularx}{\textwidth}{|>{\hsize=.10\hsize\centering\let\newline
@@ -294,6 +296,7 @@ Bảng mô tả giao diện màn hình trang chủ, bảng \ref{tab:MTTrangChu}:
       \label{tab:MTTrangChu}
 \end{tabularx}
 
+\newpage
 \subsubsection{Giao diện ứng dụng web}
 
 \tab Màn hình ứng dụng web là nơi người dùng sẽ tiếp cận sau khi đăng nhập vào ứng dụng.
@@ -423,6 +426,7 @@ Bảng \ref{tab:UseCase} mô tả cho sơ đồ Use Case của hệ thống.
       \label{tab:UseCase}
 \end{tabularx}
 
+\newpage
 \subsection{Sơ đồ cơ sở dữ liệu}
 
 Hình \ref{fig:Database} mô tả sơ đồ cơ sở dữ liệu của hệ thống.
