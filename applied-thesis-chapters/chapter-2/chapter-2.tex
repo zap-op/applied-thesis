@@ -8,7 +8,7 @@
 
 \begin{itemize}
     \item Access Control - Kiểm soát truy cập là việc kiểm soát quyền truy cập, thực hiện hành vi của người dùng trong phạm vi đã được dự định, cấp sẵn trước đó.
-    \item Broken Access Control - Lỗ hổng kiểm soát truy cập là lỗ hỗng bị lợi dụng bằng những phương thức tấn công như xâm nhập, chiếm quyền sử dụng, kiểm soát các tài nguyên được bảo vệ trên hệ thống một cách trái phép. Việc này thường gây ra các hệ quả như để lộ, bị can thiệp sửa đổi thông tin một cách không mong muốn, bị phá hoại dữ liệu và thực hiện các chức năng bên ngoài phạm vi của quyền người dùng.
+    \item Broken Access Control - Lỗ hổng kiểm soát truy cập là lỗ hổng bị lợi dụng bằng những phương thức tấn công như xâm nhập, chiếm quyền sử dụng, kiểm soát các tài nguyên được bảo vệ trên hệ thống một cách trái phép. Việc này thường gây ra các hệ quả như để lộ, bị can thiệp sửa đổi thông tin một cách không mong muốn, bị phá hoại dữ liệu và thực hiện các chức năng bên ngoài phạm vi của quyền người dùng.
     \item Các CWE đáng chú ý bao gồm: CWE-200: Exposure of Sensitive Information to an Unauthorized Actor ~\cite{chap2bib4}, CWE-201: Insertion of Sensitive Information Into Sent Data ~\cite{chap2bib5}, và CWE-352: Cross-Site Request Forgery ~\cite{chap2bib6}.
 \end{itemize}
 
@@ -31,7 +31,7 @@
         \label{fib:DuLieuNhayCam}
     \end{figure}
     \item Các truy cập API không phân biệt rõ ràng hoặc không cấu hình các phương thức GET, POST, PUT, DELETE,…
-    \item Lổ hỗng Nâng cao Đặc quyền - Elevation of Privilege. Lỗ hổng này đề cập đến việc người dùng có thể bằng cách nào đó thay đổi đặc quyền của mình đối với hệ thống một cách không chính thống.
+    \item Lỗ hổng Nâng cao Đặc quyền - Elevation of Privilege. Lỗ hổng này đề cập đến việc người dùng có thể bằng cách nào đó thay đổi đặc quyền của mình đối với hệ thống một cách không chính thống.
     \item Cấu hình sai CORS, cho phép gửi API từ các nguồn không tin tưởng, không được cấp quyền.
 \end{itemize}
 
@@ -61,7 +61,7 @@
 \begin{itemize}
     \item Kiểm tra xem có dữ liệu nào được truyền dưới dạng văn bản không mã hoá (clear text) không, đặc biệt khi có liên quan đến các giao thức như HTTP, SMTP, hay FTP sử dụng cải tiến TLS như STARTTLS. Cần nhớ rằng lưu lượng internet từ bên ngoài có rất nhiều rủi ro. Lưu lượng nội bộ cũng cần được đảm bảo tính bảo mật, ví dụ như giữa các bộ cân bằng tải (load balancers), các máy chủ web hoặc các hệ thống back-end.
     \item Liệu có bất cứ một thuật toán hoặc giao thức mật mã cũ hoặc yếu nào được sử dụng trong cài đặt mặc định hoặc trong mã nguồn cũ không?
-    \item Liệu có bất kì đâu trong hệ thống mà mã hóa chưa được tận dụng, như là thiếu chỉ thị bảo mật của các HTTP header (trình duyệt) hoặc thiếu các header tương ứng?
+    \item Liệu có bất kỳ đâu trong hệ thống mà mã hóa chưa được tận dụng, như là thiếu chỉ thị bảo mật của các HTTP header (trình duyệt) hoặc thiếu các header tương ứng?
     \item Liệu thuật toán ngẫu nhiên dùng cho mục đích mã hóa không được thiết kế để đáp ứng yêu cầu? Ngay cả khi đã chọn được thuật toán chính xác, liệu nó cần được khởi tạo (seed) thủ công, và nếu không thì liệu ta có đang ghi đè chức năng khởi tạo tối ưu hơn vốn được tích hợp sẵn, và seed của ta thì không đáp ứng các yếu tố entropy/unpredictability?
     \item Liệu ta có đang sử dụng các hàm băm đã lỗi thời như MD5 hoặc SHA1, hoặc các hàm băm không có tính chất mật mã trong những trường hợp cần mã hóa không?
 \end{itemize}
@@ -69,7 +69,7 @@
 \paragraph{Cách phòng tránh}
 
 \begin{itemize}
-    \item Phân loại các dữ liệu được lưu trữ, truyền qua hoặc xử lí trong hệ thống. Xác định các dữ liệu nhạy cảm theo các luật về quyền riêng tư, các quy định hoặc theo nhu cầu kinh doanh.
+    \item Phân loại các dữ liệu được lưu trữ, truyền qua hoặc xử lý trong hệ thống. Xác định các dữ liệu nhạy cảm theo các luật về quyền riêng tư, các quy định hoặc theo nhu cầu kinh doanh.
     \item Hạn chế lưu trữ dữ liệu nhạy cảm. Loại bỏ các dữ liệu này ngay khi có thể hoặc sử dụng tokenization theo chuẩn PCI DSS, hay thậm chí là cắt bớt dữ liệu. Dữ liệu không được lưu trữ thì sẽ không bị đánh cắp.
     Tokenization là quá trình thay thế dữ liệu nhạy cảm bằng một mã thông báo (token) không thể đoán được và không có giá trị thực.
     \item Đảm bảo mã hóa tất cả dữ liệu nhạy cảm cho dù đang không được truyền đi.
@@ -132,7 +132,7 @@
 \paragraph{Các lỗi thường gặp trong Insecure Design ~\cite{chap2bib18}}
 
 \begin{itemize}
-    \item Trust boundary violations: xảy ra khi interface chấp nhận và lưu trữ cả dữ liệu đáng tin cậy và dữ liệu không đáng tin cậy trong cùng một kho lưu trữ dữ liệu. Nhà phát triển thường không phân ra giữa nguồn dữ liệu đáng tin cậy và không đáng tin cậy, đẫn đến việc các dữ liệu và lệnh độc hại được truyền vào ứng dụng.
+    \item Trust boundary violations: xảy ra khi interface chấp nhận và lưu trữ cả dữ liệu đáng tin cậy và dữ liệu không đáng tin cậy trong cùng một kho lưu trữ dữ liệu. Nhà phát triển thường không phân ra giữa nguồn dữ liệu đáng tin cậy và không đáng tin cậy, dẫn đến việc các dữ liệu và lệnh độc hại được truyền vào ứng dụng.
     \item Thông báo lỗi dài dòng và chứa thông tin nhạy cảm như ID người dùng, mật khẩu, môi trường ứng dụng hoặc dữ liệu liên quan khác mà kẻ tấn công có thể lợi dụng.
     \item Improper isolation: xảy ra khi ứng dụng không tách ra được các thực thể (entities) với các quyền (rights), đặc quyền (privileges) và quyền truy cập (access permissions) khác nhau. Điều này dẫn đến việc kiểm soát truy cập bị hỏng (broken access control).
 \end{itemize}
@@ -241,7 +241,7 @@
 \begin{itemize}
     \item Cực kỳ linh hoạt. Bất kỳ loại tin nhắn đều có thể được lưu trữ và truy xuất.
     \item Thích hợp cho tác vụ báo cáo dữ liệu theo thời gian thực.
-    \item Các sự kiện là bất biến và chỉ có thể được thêm vào hệ thống lưu trữ. Các nơi cần sử dụng như giao diện người dùng hoặc tác vụ khởi tạo sự kiện có thể tiếp tục công viêc. Và các tác vụ xử lý sự kiện có thể chạy ở môi trường nền.
+    \item Các sự kiện là bất biến và chỉ có thể được thêm vào hệ thống lưu trữ. Các nơi cần sử dụng như giao diện người dùng hoặc tác vụ khởi tạo sự kiện có thể tiếp tục công việc. Và các tác vụ xử lý sự kiện có thể chạy ở môi trường nền.
     \item Sự kiện chỉ là các đối tượng đơn giản mô tả một số hành động đã xảy ra, cùng với những dữ liệu liên quan. Chúng chỉ được ghi lại để xử lý vào thời điểm thích hợp khác. Sử dụng các sự kiện có thể đơn giản hóa việc triển khai và quản lý.
     \item Việc chỉ cho phép lưu trữ thêm các sự kiện mới cung cấp một lộ trình theo thời gian có thể được sử dụng để giám sát các hành động được thực hiện trong hệ thống. Danh sách các sự kiện cũng có thể được sử dụng để phân tích hiệu suất của ứng dụng.
 \end{itemize}

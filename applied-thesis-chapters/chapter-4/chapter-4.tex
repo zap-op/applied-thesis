@@ -1,5 +1,22 @@
 \chapter{CÀI ĐẶT GIẢI PHÁP}
 
+\tab Trong phần này, để cài đặt của các chức năng ở mục \ref{sec:CaiDatChucNangHeThong} "Cài đặt chức năng hệ thống" dễ hiểu và ngắn gọn hơn.
+Sau khi trình bày ở mục sau xong, thì các cài đặt có liên quan tới các thư viện đó ở mục \ref{sec:CaiDatChucNangHeThong} sẽ không được miêu tả lại.
+
+Nhóm sẽ tiến hành trình bày theo thứ tự các phần như sau:
+\begin{itemize}
+  \item RTK Query: cung cấp cái nhìn tổng quan về thư viện và mô tả chức năng.
+  Thư viện là một trong những phần cốt lõi để cài đặt ứng dụng web.
+  \item RxJS: cung cấp cái nhìn tổng quan về thư viện và mô tả chức năng tương tự cách trình bày RTK Query.
+  Thư viện là một trong những phần cốt lõi để cài đặt ứng dụng hệ thống.
+  \item OWASP Zed Attack Proxy: mô tả chi tiết thông tin và chức năng của ứng dụng OWASP Zed Attack Proxy.
+  Làm nền tảng để tiếp trục trình bày ở mục \ref{sec:CaiDatKienTrucHeThong} "Cài đặt kiến trúc hệ thống" tiếp theo và mô tả cài đặt các chức năng ở mục \ref{sec:CaiDatChucNangHeThong} tiếp theo.
+  \item Cài đặt kiến trúc hệ thống: mô tả chi tiết cách cài đặt các service đã trình bày ở phần "Thiết kế kiến trúc hệ thống tầng ứng dụng" của mục \ref{subsec:TKKienTrucHeThong}.
+\end{itemize}
+
+Việc trình bày phần này là quan trọng. Vì phần này mang các cài đặt cốt lõi của ứng dụng hệ thống, 
+nếu không được mô tả trước thì sẽ khó để mô tả cài đặt các chức năng ở mục \ref{sec:CaiDatChucNangHeThong} "Cài đặt chức năng hệ thống" tiếp theo.
+
 \section{RKT Query} \label{sec:RTKQ}
 
 \tab Nhóm sử dụng thư viện React, là một thư viện JavaScript giúp xây dựng giao diện người dùng, để phát triển ứng dụng web.
@@ -53,7 +70,7 @@ Có hai loại endpoint trong RTK Query là Query endpoint và Mutation endpoint
   \item \textbf{Query endpoint} khuyến cáo nên được sử dụng khi lấy, truy xuất dữ liệu từ API.
         Khi sử dụng endpoint này, theo mặc định, query endpoint sẽ tự động thực thi khi component sử dụng nó được hiển thị.
         RTK Query sẽ kiểm tra xem dữ liệu đã được lưu trong store hay chưa.
-        Nếu có, dữ liệu đã có trong trong bộ đệm sẽ được trả về mà không cần gửi yêu cầu đến server.
+        Nếu có, dữ liệu đã có trong bộ đệm sẽ được trả về mà không cần gửi yêu cầu đến server.
         Nếu chưa có, yêu cầu sẽ được gửi đến server để lấy dữ liệu mới nhất.
   \item \textbf{Mutation endpoint} khuyến cáo nên được sử dụng khi thay đổi dữ liệu, làm cũ dữ liệu trong store qua API.
         Không như query endpoint, mutation endpoint không được thực hiện tự động mà phải gọi tới mỗi khi sử dụng.
@@ -208,7 +225,7 @@ Trong đó, có 9 chức năng cốt lõi là:
         Trong quá trình quét đến khi quét xong, thông tin các thẻ hoặc cảnh báo được tìm thấy sẽ được hiển thị lần lượt. Các tùy chọn hiển thị này được kích hoạt mặc định, nhưng cũng có thể được cấu hình. Passive Scan không đảm bảo có thể tìm thấy tất cả các lỗ hổng bảo mật có thể có trong ứng dụng web, vì nó chỉ quét những yêu cầu và phản hồi được gửi qua ZAP. Passive Scan có cung cấp các tùy chỉnh để cấu hình hành vi quét, có thể thực hiện qua giao diện ứng dụng hoặc qua chức năng API của ZAP.
   \item \textbf{Active Scan:} chức năng tự động tìm kiếm các lỗ hổng bảo mật tiềm năng bằng cách thực hiện các cuộc tấn công vào các mục tiêu đã biết trước. Các cuộc tấn công là các kỹ thuật tấn công phổ biến thường được sử dụng để kiểm tra bảo mật của ứng dụng web. Các mục tiêu được tìm thông qua phương pháp quét khám phá được cấu hình khi bắt đầu phiên quét. Các phương pháp quét dùng để khám phá các mục tiêu của Active Scan là Spider hoặc AJAX Spider.
         Thực hiện Active Scan là thực hiện tấn công vào các mục tiêu trong ứng dụng web nên có thể sẽ gây ra các tác động không mong muốn đến ứng dụng web nếu không sử dụng đúng cách. Nên lưu ý rằng Active Scan chỉ có thể tìm thấy một số loại lỗ hổng. Các lỗ hổng logic như kiểm soát truy cập bị hỏng (Broken access control), sẽ không được tìm thấy bởi bất kỳ công cụ quét lỗ hổng nào, dù là Active Scan hay tự động. Active Scan có cung cấp các tùy chỉnh để cấu hình hành vi quét, có thể thực hiện qua giao diện ứng dụng hoặc qua chức năng API của ZAP. Thêm vào đó, Active Scan có thêm phần cấu hình các quy tắc quét thông qua chức năng Scan Policies.
-  \item \textbf{Fuzzer:} là một chức năng kiểm thử tự động, sử dụng kĩ thuật Fuzzing là một kỹ thuật sử dụng các gói dữ liệu (payload) không hợp lệ hoặc không mong đợi đến mục tiêu. Fuzzer hay Fuzzing là một chức năng nằm trong các add-on của ZAP. Đối với các payload sử dụng trong chức năng này, ta có thể tự tạo payload, lấy trong tập payload được xây dựng sẵn trong ZAP hay các payload được thiết kế sẵn trong add-on. Có thể tùy chỉnh thay đổi hành vi của chức năng theo mong muốn bằng các chức năng con của nó như Payload Generators, Payload Processors, Fuzz Location Processors và Message Processors. Tuy nhiên, cần phải cẩn thận khi sử dụng, vì kỹ thuật nó sử dụng là một kĩ thuật tấn công nên có thể sẽ gây ra các tác động không mong muốn cho ứng dụng web nếu không sử dụng đúng cách.
+  \item \textbf{Fuzzer:} là một chức năng kiểm thử tự động, sử dụng kỹ thuật Fuzzing là một kỹ thuật sử dụng các gói dữ liệu (payload) không hợp lệ hoặc không mong đợi đến mục tiêu. Fuzzer hay Fuzzing là một chức năng nằm trong các add-on của ZAP. Đối với các payload sử dụng trong chức năng này, ta có thể tự tạo payload, lấy trong tập payload được xây dựng sẵn trong ZAP hay các payload được thiết kế sẵn trong add-on. Có thể tùy chỉnh thay đổi hành vi của chức năng theo mong muốn bằng các chức năng con của nó như Payload Generators, Payload Processors, Fuzz Location Processors và Message Processors. Tuy nhiên, cần phải cẩn thận khi sử dụng, vì kỹ thuật nó sử dụng là một kỹ thuật tấn công nên có thể sẽ gây ra các tác động không mong muốn cho ứng dụng web nếu không sử dụng đúng cách.
   \item \textbf{WebSockets:} là một chức năng nằm trong các add-on của ZAP có thể được sử dụng khi thực hiện kiểm thử thủ công. Sử dụng chức năng này khi kiểm thử thủ công ứng dụng web trên giao diện ứng dụng ZAP, cho phép ứng dụng ZAP can thiệp vào các kết nối WebSocket giữa máy khách và máy chủ. Các can thiệp chức năng này hỗ trợ là:
         \begin{itemize}
           \item Chặn và hiển thị gói tin trong kết nối WebSocket.
@@ -237,7 +254,7 @@ Trong đó, có 9 chức năng cốt lõi là:
   \item Khó sử dụng, phức tạp đối với người dùng mới.
 \end{itemize}
 
-\section{Cài đặt kiến trúc hệ thống}
+\section{Cài đặt kiến trúc hệ thống} \label{sec:CaiDatKienTrucHeThong}
 
 \tab Như đã trình bày ở mục Nhóm ZAP service của mục "Thiết kế kiến trúc hệ thống tầng ứng dụng" ở phần \ref{subsec:TKKienTrucHeThong}, hệ thống bao gồm nhiều service được cài đặt tách biệt với nhau và có các tác dụng khác nhau. Trong phần này, nhóm sẽ trình bày chi tiết hơn về cách thiết kế của các service này.
 
@@ -433,7 +450,7 @@ Với mỗi loại quét mà hệ thống hỗ trợ, nhóm thiết kế các ph
 \end{itemize}
 Nếu start scan thành công thì các phương thức sẽ trả về đối tượng định danh cho phiên quét, không thành công thì trả về đối tượng không xác định.
 
-Đối với các phương thức stop scan, các loại quét được cấu hình tương tự nhau bằng cách gọi đến phương thức stopZapClient(). Phương thức thực hiện gọi đến phương thức shutdown() từ core ZAP Client để tắt ZAP instance và xóa ZAP Client ra khỏi Map lữu trữ. Phương thức stop của ZAP Spider được cấu hình khác biệt, vì ZAP Spider riêng lẻ được chạy trên ZAP Client Shared nên sẽ được gọi đến phương thức stop() của chính phiên quét đó, sử dụng tham số scan id để xác định phiên quét.
+Đối với các phương thức stop scan, các loại quét được cấu hình tương tự nhau bằng cách gọi đến phương thức stopZapClient(). Phương thức thực hiện gọi đến phương thức shutdown() từ core ZAP Client để tắt ZAP instance và xóa ZAP Client ra khỏi Map lưu trữ. Phương thức stop của ZAP Spider được cấu hình khác biệt, vì ZAP Spider riêng lẻ được chạy trên ZAP Client Shared nên sẽ được gọi đến phương thức stop() của chính phiên quét đó, sử dụng tham số scan id để xác định phiên quét.
 \par
 
 Đối với các phương thức stream status, các loại quét được cấu hình tương tự nhau bằng cách tạo một Observable kiểu timer() với RxJS và gọi đến phương thức status() của phiên quét hoặc ZAP Client đó mỗi 5 giây. Kiểu trạng thái nhận lại của mỗi loại quét sẽ khác nhau về kiểu lẫn giá trị.
@@ -544,7 +561,7 @@ Các log tùy chỉnh là các loại, đối tượng log mới.
 Nằm ngoài bốn loại log chủ yếu được trình bày ở phần "Logging service" của phần "Thiết kế kiến trúc hệ thống tầng ứng dụng" mục \ref{subsec:TKKienTrucHeThong}.
 Các luồng log ngoài hiển thị trên console còn được lưu trữ trong thư mục có tên logs, thư này đồng cấp với thư mục chứa ứng dụng. Các loại log khác nhau hay mỗi log tùy chỉnh sẽ được lưu trong tệp riêng biệt, với tên tệp (tên luồng log được đặt lúc tạo) và thời gian tương ứng.
 
-\section{Cài đặt chức năng hệ thống}
+\section{Cài đặt chức năng hệ thống} \label{sec:CaiDatChucNangHeThong}
 
 \tab Để thống nhất thông tin chi tiết cho trạng thái của các endpoint, nhóm thiết kế ba bảng trạng thái \ref{tab:LoginStatus}, \ref{tab:ScanStatus} và \ref{tab:MgmtStatus} riêng cho hệ thống và sử dụng tùy theo các trường hợp khác nhau.
 
@@ -892,7 +909,7 @@ Sau thiết lập thành công, ta tiếp tục tạo lắng nghe sự kiện tr
     \item Thứ hai là kiểm tra điều kiện duy trì kết nối nếu giá trị status là 100 thì đóng kết nối và cập nhật lại isScanning thành false.
     \item Kênh “error“ dùng để lắng nghe các trạng thái lỗi được gửi đến.
   \end{itemize}
-  Nếu có bất kì trạng thái nào được gửi đến thì cập nhật thông tin lên error trong đối tượng data custom, đóng kết nối SSE và cập nhật isScanning thành false.
+  Nếu có bất kỳ trạng thái nào được gửi đến thì cập nhật thông tin lên error trong đối tượng data custom, đóng kết nối SSE và cập nhật isScanning thành false.
 \end{itemize}
 
 Phía ứng dụng hệ thống, cài đặt chức năng quét này khác biệt so với các chức năng quét khác.
