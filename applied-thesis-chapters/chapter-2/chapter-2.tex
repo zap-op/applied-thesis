@@ -22,11 +22,13 @@
         \caption{Nguyên tắc đặc quyền tối thiểu.png ~\cite{chap2bib2}}
     \end{figure}
     \item Có thể vượt qua phần kiểm tra quyền truy cập bằng các thao tác như mạo danh tham chiếu (Parameter Tampering) hoặc đường dẫn (Force Browsing) trong URL, thay đổi trạng thái ứng dụng và thay đổi nội dung các API gửi đi.
-    \item Tham chiếu đối tượng không an toàn (Insecure Direct Object Reference - IDOR). Đối tượng có thể được tham chiếu qua nhiều phương pháp, tuy nhiên định danh duy nhất của đối tượng dùng để tham chiếu lại quá dễ đoán, không được tiền xử lý như hình 
+    \item Tham chiếu đối tượng không an toàn (Insecure Direct Object Reference - IDOR). Đối tượng có thể được tham chiếu qua nhiều phương pháp, tuy nhiên định danh duy nhất của đối tượng dùng để tham chiếu lại quá dễ đoán, không được tiền xử lý
+    Như hình \ref{fib:DuLieuNhayCam} mô tả.
     \begin{figure}[H]
         \centering
         \includegraphics[width=\textwidth]{applied-thesis-chapters/chapter-2/Mô tả dữ liệu nhạy cảm có thể được tìm thấy trong URL.png}
         \caption{Mô tả dữ liệu nhạy cảm có thể được tìm thấy trong URL ~\cite{chap2bib3}}
+        \label{fib:DuLieuNhayCam}
     \end{figure}
     \item Các truy cập API không phân biệt rõ ràng hoặc không cấu hình các phương thức GET, POST, PUT, DELETE,…
     \item Lổ hỗng Nâng cao Đặc quyền - Elevation of Privilege. Lỗ hổng này đề cập đến việc người dùng có thể bằng cách nào đó thay đổi đặc quyền của mình đối với hệ thống một cách không chính thống.
@@ -58,7 +60,7 @@
 
 \begin{itemize}
     \item Kiểm tra xem có dữ liệu nào được truyền dưới dạng văn bản không mã hoá (clear text) không, đặc biệt khi có liên quan đến các giao thức như HTTP, SMTP, hay FTP sử dụng cải tiến TLS như STARTTLS. Cần nhớ rằng lưu lượng internet từ bên ngoài có rất nhiều rủi ro. Lưu lượng nội bộ cũng cần được đảm bảo tính bảo mật, ví dụ như giữa các bộ cân bằng tải (load balancers), các máy chủ web hoặc các hệ thống back-end.
-    \item Liệu có bất cứ một thuật toán hoặc giao thức mật mã cũ hoặc yếu nào được sử dụng trong cài đặt mặc định hoặc trong code cũ không?
+    \item Liệu có bất cứ một thuật toán hoặc giao thức mật mã cũ hoặc yếu nào được sử dụng trong cài đặt mặc định hoặc trong mã nguồn cũ không?
     \item Liệu có bất kì đâu trong hệ thống mà mã hóa chưa được tận dụng, như là thiếu chỉ thị bảo mật của các HTTP header (trình duyệt) hoặc thiếu các header tương ứng?
     \item Liệu thuật toán ngẫu nhiên dùng cho mục đích mã hóa không được thiết kế để đáp ứng yêu cầu? Ngay cả khi đã chọn được thuật toán chính xác, liệu nó cần được khởi tạo (seed) thủ công, và nếu không thì liệu ta có đang ghi đè chức năng khởi tạo tối ưu hơn vốn được tích hợp sẵn, và seed của ta thì không đáp ứng các yếu tố entropy/unpredictability?
     \item Liệu ta có đang sử dụng các hàm băm đã lỗi thời như MD5 hoặc SHA1, hoặc các hàm băm không có tính chất mật mã trong những trường hợp cần mã hóa không?
@@ -69,6 +71,7 @@
 \begin{itemize}
     \item Phân loại các dữ liệu được lưu trữ, truyền qua hoặc xử lí trong hệ thống. Xác định các dữ liệu nhạy cảm theo các luật về quyền riêng tư, các quy định hoặc theo nhu cầu kinh doanh.
     \item Hạn chế lưu trữ dữ liệu nhạy cảm. Loại bỏ các dữ liệu này ngay khi có thể hoặc sử dụng tokenization theo chuẩn PCI DSS, hay thậm chí là cắt bớt dữ liệu. Dữ liệu không được lưu trữ thì sẽ không bị đánh cắp.
+    Tokenization là quá trình thay thế dữ liệu nhạy cảm bằng một mã thông báo (token) không thể đoán được và không có giá trị thực.
     \item Đảm bảo mã hóa tất cả dữ liệu nhạy cảm cho dù đang không được truyền đi.
     \item Đảm bảo sử dụng các thuật toán, giao thức và khóa tiêu chuẩn hiện đại; đảm bảo quản lý khóa (key management) đúng cách.
     \item Mã hóa tất cả dữ liệu trong đang truyền với các giao thức an toàn (secure protocols) như TLS với phương pháp mã hoá forward secrecy (FS), ưu tiên mã hoá (cipher prioritization) bởi máy chủ và các tham số an toàn (secure parameters). Áp dụng mã hóa bằng cách sử dụng chỉ thị như HTTP Strict Transport Security (HSTS).
@@ -140,6 +143,7 @@
     \item Thiết lập và sử dụng một quy trình phát triển (development lifecycle) an toàn với các chuyên gia AppSec để giúp đánh giá và thiết kế các điều khiển (controls) về bảo mật và riêng tư.
     \item Thiết lập và sử dụng thư viện với các design pattern an toàn hoặc các component đã được thiết lập hoàn chỉnh để sử dụng.
     \item Sử dụng threat modeling cho các thao tác xác thực quan trọng, kiểm soát truy cập, logic kinh doanh và các luồng chính (key flows).
+    Threat modeling là một kỹ thuật được sử dụng trong lĩnh vực bảo mật thông tin để đánh giá và phân tích các mối đe dọa tiềm năng đến hệ thống, ứng dụng hoặc sản phẩm.
     \item Tiến hành kiểm tra tính hợp lý ở từng tầng (tier) của ứng dụng (từ frontend đến backend).
     \item Viết unit test và integration để chắc chắn rằng tất cả các luồng quan trọng đều chống lại được threat model đã đặt ra. Tổng hợp các use-case và misuse-case cho từng tầng của ứng dụng.
     \item Phân tách các lớp (layer) của tầng theo lớp hệ thống và lớp mạng dựa trên mức độ tiếp xúc với bên ngoài (exposure) và nhu cầu được bảo vệ của nó.
@@ -165,7 +169,7 @@
     \item Các tính năng không cần thiết lại được bật hoặc cài đặt (ví dụ: cổng, dịch vụ, trang, tài khoản hoặc đặc quyền không cần thiết).
     \item Xử lý lỗi (error handling) làm lộ các stack trace hoặc lỗi được thông báo với quá nhiều thông tin cho người dùng.
     \item Với các hệ thống đã được nâng cấp, các tính năng bảo mật mới nhất lại bị vô hiệu hoá hoặc không được cấu hình một cách an toàn.
-    \item Các cài đặt bảo mật trong các máy chủ ứng dụng, các framework ứng dụng (ví dụ: Struts, Spring, ), thư viện, cơ sở dữ liệu, v.v. không được cài đặt với các thiết lập an toàn.
+    \item Các cài đặt bảo mật trong các máy chủ ứng dụng, các framework ứng dụng (ví dụ: Struts, Spring), thư viện, cơ sở dữ liệu, ... không được cài đặt với các thiết lập an toàn.
     \item Máy chủ không gửi các header hoặc chỉ thị bảo mật, hoặc chúng không được cài đặt với các giá trị an toàn.
     \item Phần mềm đã lỗi thời hoặc có lỗ hổng bảo mật.
 \end{itemize}
@@ -182,7 +186,7 @@
     \item Tự động hóa quy trình để xác minh tính hiệu quả của các cấu hình và thiết lập trong tất cả môi trường.
 \end{itemize}
 
-\section{Kiến trúc phân tầng (N-Tier)}
+\section{Kiến trúc phân tầng (N-Tier)} \label{sec:NTier}
 
 \paragraph{Giới thiệu giải pháp ~\cite{chap2bib26} ~\cite{chap2bib27}}
 
@@ -205,7 +209,7 @@
     \item Hiệu suất sẽ tốt hơn nếu được triển khai hay cài đặt một cách có hệ thống, phù hợp. Về mặt độ trễ của phản hồi có thể vượt trội hơn khi được so sánh với kiến trúc Microservice có độ trễ nhất định trong giao tiếp giữa các service.
     \item Dễ dàng thay thế, nâng cấp hệ thống.
     \item Được hỗ trợ bởi các nền tảng Cloud hiện nay.
-    \item Ứng dụng có thể hoạt động trên nhiều môi trường, hệ điều hành, tech stack khác nhau.
+    \item Ứng dụng có thể hoạt động trên nhiều môi trường, hệ điều hành, công nghệ khác nhau.
 \end{itemize}
 
 \paragraph{Nhược điểm}
@@ -213,7 +217,7 @@
 \begin{itemize}
     \item Khó khăn trong việc đảm bảo tương tác giữa các tầng và xử lý các vấn đề về hiệu suất. 
     \item Phức tạp hóa quy trình phát triển và triển khai do sự tách biệt giữa các tầng.
-    \item Hệ thống IaaS khó quản lý và cần nhiều thời gian tìm hiểu, học hỏi.
+    \item Hệ thống IaaS (Cơ sở hạ tầng như Một Dịch vụ, hay Infrastructure as a Service) khó quản lý và cần nhiều thời gian tìm hiểu, học hỏi.
     \item Hệ thống càng phân tán càng tiềm ẩn nhiều nguy cơ bảo mật.
 \end{itemize}
 
@@ -222,16 +226,13 @@
 \paragraph{Giới thiệu giải pháp}
 
 \begin{itemize}
-    \item Để người dùng có thể theo dõi được trạng thái của của phiên quét và để ứng dụng phía người dùng thể thực hiện các tác . Nhóm chọn thiết kế giải nguồn sự kiện (Event Sourcing).
     \begin{figure}[H]
         \centering
         \includegraphics[width=\textwidth]{applied-thesis-chapters/chapter-2/Mẫu kiến trúc nguồn sự kiện.png}
         \caption{Mẫu kiến trúc nguồn sự kiện ~\cite{chap2bib29}}
     \end{figure}
     \item Nguồn sự kiện sẽ trả về các sự kiện theo thời gian xuất hiện (ở dạng stream). Những nơi cần sử dụng có thể đăng ký với nguồn sự kiện, sau đó sẽ được thông báo và có thể xử lý chúng nếu cần.
-    \item The Event Sourcing pattern involves sending a continuous stream of messages to an authoritative storage target. Each message describes an event in the system. Services and applications then query the event store for interesting events in a way that is particular to the purpose of the given service or application.
     \item Kiến trúc nguồn sự kiện đảm nhiệm công việc tạo ra và gửi đi các luồng tin nhắn liên tục đến một nơi lưu trữ. Mỗi tin nhắn mô tả một sự kiện trong hệ thống. Sau đó, các dịch vụ và ứng dụng khác sẽ truy vấn để tìm các sự kiện theo nhu cầu.
-    \item Event source nhóm sử dụng ở đây là SSE (Server Sent Event) được dựa trên phương thức giao tiếp HTTP.
 \end{itemize}
 
 \paragraph{Ưu điểm}
@@ -248,4 +249,5 @@
 
 \begin{itemize}
     \item Các sự kiện khác nhau sẽ chứa các thông tin, định dạng khác nhau. Cần phải có một nguồn sự thật duy nhất để xác định và xác định định dạng thông báo cho một sự kiện cụ thể.
+    \item Việc triển khai giải pháp nguồn sự kiện có thể đòi hỏi kiến thức chuyên môn và kỹ năng phát triển phần mềm cao.
 \end{itemize}

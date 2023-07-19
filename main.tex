@@ -54,6 +54,8 @@ sorting=none
 \input{macros/xmark.tex} % Use new command \xmark to represent X mark
 \input{macros/dotcolumnfill.tex} % Use dot spread
 
+\renewcommand*\listfigurename{Danh sách hình}
+
 \newcommand{\applicationname}{Owlens\:}
 
 \begin{document}
@@ -67,7 +69,10 @@ sorting=none
 % APPLIED THESIS
 \tableofcontents
 \pagenumbering{arabic}
-
+\newpage
+\listoffigures
+\newpage
+\listoftables
 \input{applied-thesis-chapters/chapter-1/chapter-1.tex}
 \input{applied-thesis-chapters/chapter-2/chapter-2.tex}
 \input{applied-thesis-chapters/chapter-3/chapter-3.tex}

@@ -1,6 +1,6 @@
 \chapter{THIẾT KẾ GIẢI PHÁP}
 
-\section{Giải pháp tổng quát}
+\section{Giải pháp tổng quát} \label{sec:AbstractSol}
 
 \tab Để có được một công cụ xác định lỗi bảo mật web bằng các phương pháp khác nhau sẽ là một vấn đề rất rộng, cần nhiều thời gian cũng như nguồn lực mới có thể phát triển, triển khai và bảo trì.
 Vì vậy, trong phạm vi của khóa luận, nhóm chọn thiết kế giải pháp dựa trên công cụ OWASP Zed Attack Proxy - ZAP là một công cụ mã nguồn mở uy tín trong giới, có đội ngũ chuyên môn cao và hàng trăm nhà phát triển đang đóng góp đến nay.
@@ -20,7 +20,7 @@ Vì vậy, nhóm đề xuất giải pháp quét với bốn phương pháp có 
 Khi sử dụng giải pháp được đề xuất ở trên, người dùng có thể tạo các phiên quét bằng cách cung cấp các địa chỉ URL hoặc IP trang web cần quét và chọn các phương pháp quét.
 Từ đó hệ thống sẽ thực hiện quét các phiên này với ZAP và thu được kết quả quét tương ứng của từng địa chỉ với từng phương pháp quét đã chọn.
 Kết quả quét sẽ được lưu trữ, quản lý và hiển thị cho người dùng.
-Với các phương pháp quét với Spider và Ajax Spider thì người dùng có thể xem được quá trình quét trong thời gian thực trong một số kịch bản nhất định.
+Với các phương pháp quét với Spider thì người dùng có thể xem được quá trình quét trong thời gian thực trong kịch bản nhất định.
 
 \subsection{Giải pháp quản lý thông tin liên quan đến quá trình quét}
 
@@ -29,13 +29,13 @@ Vì vậy chúng em đề xuất 3 giải pháp kèm theo đó là quản lý l�
 
 \subsubsection{Giải pháp quản lý mục tiêu}
 
-\tab Để có quét một trang web ta cần xác định địa chỉ URL hoặc IP của trang web.
+\tab Để có thể quét một trang web ta cần xác định địa chỉ URL hoặc IP của trang web.
 Trong phạm vi ứng dụng chúng em gọi các URL hay các IP này là “mục tiêu” để quét.
 Cùng với đó, người dùng khi quét một mục tiêu thường sẽ có nhu cầu lưu và quản lý mục tiêu đó để dùng lại sau này.
 Vì vậy đó cũng là lý do chúng em đưa ra giải pháp này.
 \par
 
-Một trong những chức năng tiên quyết của giải pháp này là thêm mới mục
+Một trong những chức năng của giải pháp này là thêm mới mục tiêu.
 Mục tiêu thêm mới sẽ cần các thông tin như tên mục tiêu, địa chỉ URL hay IP của mục tiêu và các nhãn dán mà người dùng muốn gán cho mục tiêu.
 Có thể gán nhiều nhãn dán khác nhau cho một mục tiêu.
 Các nhãn dán sẽ được đề xuất tự động khi người dùng đang thực hiện nhập thông tin tìm kiếm mục tiêu.
@@ -45,7 +45,7 @@ Các mục tiêu trong bảng sẽ được sắp xếp theo thứ tự từ th�
 \par
 
 Trong quá trình sử dụng, sẽ xuất hiện những mục tiêu người dùng không có nhu cầu sử dụng trong tương lai hay muốn làm gọn lại danh sách các mục tiêu.
-Vì vậy, ứng dụng có chức năng xóa mục tiêu đã được tạo trước đó.
+Vì vậy, ứng dụng có chức năng xóa mục tiêu đã tồn tại trước đó.
 \par
 
 Khi có danh sách các mục tiêu, để giúp cho người dùng tìm kiếm các mục tiêu thuận tiện hơn thì ứng dụng có chức năng tìm kiếm mục tiêu dựa theo tên của mục tiêu.
@@ -55,7 +55,7 @@ Người dùng cần xóa hết thông tin trong thanh tìm kiếm để có th�
 
 Đồng thời, để cho việc bắt đầu phiên quét thuận tiện hơn, ứng dụng cũng có cung cấp chức năng bắt đầu quét trên mỗi mục tiêu.
 Từ mục tiêu người dùng có thể chọn bắt đầu quét và được đưa đến màn hình lựa chọn loại quét và bắt đầu phiên quét như bình thường.
-Rút ngắn bước cấu hình chọn lựa từng mục tiêu từ danh sách các mục tiêu trước khi cấu hình cho phiên quét.
+Rút ngắn bước cấu hình chọn lựa mục tiêu từ danh sách cho phiên quét.
 
 \subsubsection{Giải pháp quản lý phiên quét và thông tin chi tiết kết quả quét}
 
@@ -64,8 +64,8 @@ Bảng các phiên quét sẽ có các cột chứa các thông tin như tên m�
 Các phiên quét trong bản sẽ được sắp xếp theo thứ tự thời gian có thay đổi gần nhất đến thời gian có thay đổi xa nhất.
 \par
 
-Khi trạng thái của các phiên quét đã hoàn thành thì người dùng có thể chọn vào phiên quét để đến màn hình thông tin chi tiết kết quả quét của phiên quét.
-Tùy theo từng loại phương pháp quét của phiên quét thì thông tin chi tiết kết quả quét của phiên quét sẽ có cách hiển thị khác nhau.
+Khi trạng thái của phiên quét đã hoàn thành thì người dùng có thể chọn vào phiên quét để đến màn hình thông tin chi tiết kết quả quét của phiên quét.
+Tùy theo từng loại phương pháp quét của phiên quét thì màn hình có cách hiển thị khác nhau.
 Các thông tin về phiên quét cũng sẽ hiển thị trong màn hình này, các thông tin sẽ là mã định danh của phiên quét, cấu hình chi tiết tùy theo từng loại phương pháp quét và các thông tin hiển thị trên từng mục phiên quét ở bên ngoài bảng quản lý các phiên quét là tên mục tiêu, địa chỉ URL hay IP, loại phương pháp, trạng thái, tiến độ và các thời gian liên quan.
 \par
 
@@ -82,13 +82,13 @@ Tệp này sẽ chứa các thông tin có trong màn hình thông tin chi tiế
       \caption{Tổng quan kiến trúc hệ thống}
       \label{fig:KienTrucHeThong}
 \end{figure}
-\tab Hình số \ref{fig:KienTrucHeThong} thể hiện tổng quan kiến trúc hệ thống được xây dựng theo mô hình N-Tier đã đề cập ở chương 2.x.x.
+\tab Hình số \ref{fig:KienTrucHeThong} thể hiện tổng quan kiến trúc hệ thống được xây dựng theo mô hình N-Tier đã đề cập ở mục \ref{sec:NTier}.
 Kiến trúc hệ thống gồm 3 tầng (3-Tier): Tầng trình bày, tầng ứng dụng và tầng dữ liệu.
 
 \subsubsection{Thiết kế kiến trúc hệ thống tầng trình bày}
 
 \tab Tầng trình bày (Presentation tier) là tầng ứng dụng web phục vụ cho người dùng.
-Người dùng tương tác trên giao diện ứng dụng web để tiếp cận với các giải pháp mà nhóm đã đề cập đến ở chương 3.1.
+Người dùng tương tác trên giao diện ứng dụng web để tiếp cận với các giải pháp mà nhóm đã đề cập đến ở mục \ref{sec:AbstractSol}.
 Theo như kiến trúc, ứng dụng của tầng trình bày được xây dựng chính bằng thư viện React và các công cụ có hỗ trợ React.
 
 \subsubsection{Thiết kế kiến trúc hệ thống tầng ứng dụng}
@@ -101,7 +101,7 @@ Theo như kiến trúc, tầng ứng dụng chứa hai phần là ứng dụng c
 Các service bao gồm: nhóm các ZAP service, dịch vụ xác thực (Authentication service), dịch vụ cơ sở dữ liệu (Database service) và dịch vụ ghi nhật ký (Logging service).
 \par
 
-\myparagraph{Nhóm ZAP service}
+\myparagraph{\textit{Nhóm ZAP service}}
 \tab \tab Nhóm các ZAP service bao gồm hai service chính là dịch vụ quản lý ZAP (ZAP Monitor service) và dịch vụ tương tác với ứng dụng ZAP (ZAP Client service), cuối cùng là lớp tiến trình ZAP (ZAP Process).
 Hình \ref{fig:NhomZapServiceHoatDong} sẽ cho ta cái nhìn chi tiết hơn về cách hoạt động của nhóm ZAP service trong hệ thống.
 
@@ -114,7 +114,7 @@ Hình \ref{fig:NhomZapServiceHoatDong} sẽ cho ta cái nhìn chi tiết hơn v�
 
 \begin{itemize}
       \item \textbf{ZAP Process:} Mỗi tiến trình ZAP sẽ được khởi tạo từ lớp ZAP Process, gọi là ZAP Process instance.
-            Mỗi instance là process chạy ngầm trong hệ thống (trình nền - daemon).
+            Mỗi instance là process chạy ngầm trong hệ thống (trình nền, hay còn gọi là daemon).
             Các instance này hoạt động lập với nhau trên các cổng (port) khác nhau như một ứng dụng được khởi chạy riêng biệt.
       \item \textbf{ZAP Client service:} Service có nhiệm vụ tạo và quản lý các ZAP client.
             Mỗi ZAP client được service quản lý qua một mã định danh duy nhất (UUID - Universally Unique Identifier) và tham chiếu đến mỗi ZAP Process instance khác nhau.
@@ -124,7 +124,7 @@ Hình \ref{fig:NhomZapServiceHoatDong} sẽ cho ta cái nhìn chi tiết hơn v�
             Nhóm chia thành hai loại là:
             \begin{itemize}
                   \item \textbf{ZAP Client Shared:} Client này dành cho các phương pháp quét có thể sử dụng chung ZAP process instance, kết quả các phiên quét tuy sử dụng chung instance nhưng không ảnh hưởng đến nhau.
-                        Cặp client shared và ZAP process và luôn luôn tồn tại xuyên suốt quá trình sống của ứng dụng
+                        Cặp client shared và ZAP process và luôn luôn tồn tại xuyên suốt quá trình sống của ứng dụng.
                   \item \textbf{ZAP Client Private:} Client này dành cho các phương pháp quét không thể sử dụng chung ZAP process instance.
             \end{itemize}
       \item \textbf{ZAP Monitor service:} Service có vai trò đại diện cho nhóm ZAP service.
@@ -132,10 +132,11 @@ Hình \ref{fig:NhomZapServiceHoatDong} sẽ cho ta cái nhìn chi tiết hơn v�
             Service có nhiệm vụ tạo, dừng và quản lý các phiên quét của người dùng; nắm giữ và quản lý quá trình quét của các phiên quét, giúp cho hệ thống có thể kết nối và biết được các thông tin về trạng thái và tiến độ của phiên quét; lưu trữ các dữ liệu cần thiết khi hoạt động với ZAP như thông tin phiên quét, thông tin kết quả với Database service.
 \end{itemize}
 
-\myparagraph{ZAP Pool}
+\myparagraph{\textit{ZAP Pool}}
 \tab \tab Là tập hợp các ZAP process instance chạy ngầm, mỗi instance sẽ chạy trên một cổng (port) khác nhau và được tham chiếu bởi các ZAP client của ZAP Client service.
 \par
 
+\smallskip
 Hình \ref{fig:TTZapMonitorStartScan} và \ref{fig:TTHeThongStartScan} thể hiện quá trình tương tác và hoạt động của nhóm ZAP service trong hệ thống khi bắt đầu một phiên quét.
 
 \begin{figure}[H]
@@ -152,14 +153,14 @@ Hình \ref{fig:TTZapMonitorStartScan} và \ref{fig:TTHeThongStartScan} thể hi�
       \label{fig:TTHeThongStartScan}
 \end{figure}
 
-\myparagraph{Authentication service}
+\myparagraph{\textit{Authentication service}}
 \tab \tab Service thực hiện các nhiệm vụ liên quan đến xác thực người dùng.
 Các nhiệm vụ như xác minh lại token nhận được từ ứng dụng web từ bên thứ ba là Google Identify, đọc ghi dữ liệu người dùng với Database service.
 
-\myparagraph{Logging service}
+\myparagraph{\textit{Logging service}}
 \tab \tab Service có trách nhiệm ghi lại nhật kí (log) cho toàn bộ ứng dụng, bao gồm cả các ZAP process chạy ngầm.
-Vì các ZAP process được chạy ngầm nằm ngoài phạm bị của ứng dụng và nhu cầu lấy log của các process này là cần thiết nên service này được cài đặt.
-Log của các service khác nhau được phân biệt bằng tên loại khác nhau, các tên này được sử dụng là tiền tố khi hiển thị trong bảng điều khiển (console).
+Service được cài đặt.vì các ZAP process được chạy ngầm nằm ngoài phạm vi của ứng dụng, và nhu cầu lấy log của các process này là cần thiết.
+Log của các service khác nhau được phân biệt bằng tên loại khác nhau, các tên này được sử dụng làm tiền tố của mỗi dòng log khi hiển thị trong bảng điều khiển (console).
 Chủ yếu có bốn loại log hiện có trong ứng dụng là:
 
 \begin{itemize}
@@ -169,12 +170,13 @@ Chủ yếu có bốn loại log hiện có trong ứng dụng là:
             Mỗi phiên quét sẽ có quá trình quét, các quá trình quét sẽ được quản lý bởi ZAP Monitor service, thông tin của phiên quét là trạng thái và tiến độ sẽ được gửi đến người dùng theo thời gian thực (stream).
             Thông tin các kết nối stream của người dùng sẽ được ghi lại trong loại log này.
       \item \textbf{ZAP process log:} Log này được nhúng vào mỗi ZAP process khi chúng vừa được khởi tạo.
-            Các log này trình bày thông tin của chính ZAP process đó in ra trong console của nó.
+            Nội dung của các log này giống với log của chính trình nền đang chạy ZAP process đó.
+            Hiển thị theo thời gian thực giống với trình nền đó.
             Theo như nghiệp vụ của giải pháp, loại log này còn có một biến thể nữa là ZAP private process log.
             ZAP process log bình thường sẽ ghi lại các log trong ZAP shared process instance, còn ZAP private process log sẽ ghi lại các log trong các ZAP private process instance.
 \end{itemize}
 
-\myparagraph{Database service}
+\myparagraph{\textit{Database service}}
 \tab \tab Service có nhiệm vụ là kết nối với MongoDB Atlas và đại diện thực hiện các thao tác đọc ghi, truy vấn với cơ sở dữ liệu đã kết nối.
 
 \subsubsection{Thiết kế kiến trúc hệ thống tầng dữ liệu}
@@ -224,8 +226,8 @@ Bên cạnh lợi ích toàn vẹn dữ liệu, việc lựa chọn giải pháp
 \subsubsection{Giao diện trang chủ}
 
 \tab Màn hình trang chủ là nơi người dùng sẽ tiếp cận đầu tiên khi truy cập vào tên miền gốc của ứng dụng.
-Màn hình có hai thành phần chính là giới thiệu chung về ứng dụng và phần cho phép người dùng sử dụng thử chức năng quét với phương thức Spider, không cần đăng nhập xác minh.
-Giao diện màn hình trang chủ được thiết kế như sau, hình \ref{fig:MHTrangChu}:
+Màn hình có hai thành phần chính là giới thiệu chung về ứng dụng và phần cho phép người dùng sử dụng thử chức năng quét với phương thức ZAP Spider, không cần đăng nhập xác minh.
+Giao diện màn hình trang chủ được thiết kế như hình \ref{fig:MHTrangChu}.
 
 \begin{figure}[H]
       \centering
@@ -236,9 +238,9 @@ Giao diện màn hình trang chủ được thiết kế như sau, hình \ref{fi
 
 Bảng mô tả giao diện màn hình trang chủ, bảng \ref{tab:MTTrangChu}:
 
-\begin{tabularx}{\textwidth}{|>{\hsize=.15\hsize\centering\let\newline
+\begin{tabularx}{\textwidth}{|>{\hsize=.10\hsize\centering\let\newline
       \\\arraybackslash}X|>{\hsize=.30\hsize\raggedright\let\newline
-      \\\arraybackslash}X|>{\hsize=.45\hsize\raggedright\let\newline
+      \\\arraybackslash}X|>{\hsize=.50\hsize\raggedright\let\newline
       \\\arraybackslash}X|}
       \hline
       \thead{STT}
@@ -278,7 +280,7 @@ Bảng mô tả giao diện màn hình trang chủ, bảng \ref{tab:MTTrangChu}:
        &
       Phần giới thiệu dùng thử
        &
-      Giới thiệu thông tin phần dùng thử. Người dùng có thể sử dụng thử chức năng quét với phương thức Spider mà không cần đăng nhập xác minh.
+      Giới thiệu thông tin phần dùng thử. Người dùng có thể sử dụng thử chức năng quét với phương thức ZAP Spider mà không cần đăng nhập xác minh.
       \\
       \hline
       6
@@ -297,7 +299,7 @@ Bảng mô tả giao diện màn hình trang chủ, bảng \ref{tab:MTTrangChu}:
 \tab Màn hình ứng dụng web là nơi người dùng sẽ tiếp cận sau khi đăng nhập vào ứng dụng.
 Màn hình này là nơi người dùng thực hiện hầu hết mọi tác vụ có trong ứng dụng.
 Màn hình có hai thành phần chính là bảng tùy chọn và bản điều khiển.
-Giao diện ứng dụng web được thiết kế như sau, hình \ref{fig:MHUngDung}:
+Giao diện ứng dụng web được thiết kế như hình \ref{fig:MHUngDung}.
 
 \begin{figure}[H]
       \centering
@@ -308,9 +310,9 @@ Giao diện ứng dụng web được thiết kế như sau, hình \ref{fig:MHUn
 
 Bảng mô tả giao diện màn hình ứng dụng, bảng \ref{tab:MTUngDung}:
 
-\begin{tabularx}{\textwidth}{|>{\hsize=.15\hsize\centering\let\newline
+\begin{tabularx}{\textwidth}{|>{\hsize=.10\hsize\centering\let\newline
       \\\arraybackslash}X|>{\hsize=.30\hsize\raggedright\let\newline
-      \\\arraybackslash}X|>{\hsize=.45\hsize\raggedright\let\newline
+      \\\arraybackslash}X|>{\hsize=.50\hsize\raggedright\let\newline
       \\\arraybackslash}X|}
       \hline
       \thead{STT}
@@ -363,11 +365,11 @@ Bảng mô tả giao diện màn hình ứng dụng, bảng \ref{tab:MTUngDung}:
       \label{fig:UseCase}
 \end{figure}
 
-Bảng \ref{tab:UseCase} mô tả cho sơ đồ Use Case của hệ thống
+Bảng \ref{tab:UseCase} mô tả cho sơ đồ Use Case của hệ thống.
 
-\begin{tabularx}{\textwidth}{|>{\hsize=.15\hsize\centering\let\newline
+\begin{tabularx}{\textwidth}{|>{\hsize=.10\hsize\centering\let\newline
       \\\arraybackslash}X|>{\hsize=.30\hsize\raggedright\let\newline
-      \\\arraybackslash}X|>{\hsize=.45\hsize\raggedright\let\newline
+      \\\arraybackslash}X|>{\hsize=.50\hsize\raggedright\let\newline
       \\\arraybackslash}X|}
       \hline
       \thead{STT}
@@ -379,28 +381,28 @@ Bảng \ref{tab:UseCase} mô tả cho sơ đồ Use Case của hệ thống
        &
       Đăng nhập/Đăng ký với Google
        &
-      Người dùng khách có thể đăng nhập vào hệ thống bằng tài khoản Google, nếu tài khoản của người dùng đăng nhập lần đầu sẽ được ghi nhận như đăng ký và đăng nhập cùng lúc
+      Người dùng khách có thể đăng nhập vào hệ thống bằng tài khoản Google, nếu tài khoản của người dùng đăng nhập lần đầu sẽ được ghi nhận như đăng ký và đăng nhập cùng lúc.
       \\
       \hline
       2
        &
       Quét với ZAP Spider (Dùng thử)
        &
-      Người dùng khách có thể sử dụng thử chức năng quét với ZAP Spider. Vì là khách nên kết quả quét chỉ được hiển thị chứ không lưu vào hệ thống
+      Người dùng khách có thể sử dụng thử chức năng quét với ZAP Spider. Vì là khách nên kết quả quét chỉ được hiển thị chứ không lưu vào hệ thống.
       \\
       \hline
       3
        &
       Quản lý mục tiêu
        &
-      Người dùng đã đăng nhập có thể xem danh sách mục tiêu, tạo và xóa các mục tiêu. Khi xem danh sách mục tiêu người dùng có tìm mục tiêu theo tên. Khi tạo mục tiêu, người dùng có thể tạo hai loại mục tiêu: mục tiêu bằng URL và mục tiêu bằng IP
+      Người dùng đã đăng nhập có thể xem danh sách mục tiêu, tạo và xóa các mục tiêu. Khi xem danh sách mục tiêu người dùng có tìm mục tiêu theo tên. Khi tạo mục tiêu, người dùng có thể tạo hai loại mục tiêu: mục tiêu bằng URL và mục tiêu bằng IP.
       \\
       \hline
       4
        &
       Tạo phiên quét
        &
-      Người dùng đã đăng nhập có thể tạo phiên quét mới từ các mục tiêu đã tạo. Các phương thức của phiên quét người dùng có thể chọn là: ZAP Spider, ZAP Ajax, ZAP Passive, ZAP Active. Ngoài ra, khi tạo các phiên quét bằng ZAP Passive hay ZAP Active, người dùng có thể chọn cấu hình loại khám phá (explore type) là ZAP Spider hoặc ZAP Ajax (mặc định là ZAP Spider)
+      Người dùng đã đăng nhập có thể tạo phiên quét mới từ các mục tiêu đã tạo. Các phương thức của phiên quét người dùng có thể chọn là: ZAP Spider, ZAP Ajax, ZAP Passive, ZAP Active. Ngoài ra, khi tạo các phiên quét bằng ZAP Passive hay ZAP Active, người dùng có thể chọn cấu hình loại khám phá (explore type) là ZAP Spider hoặc ZAP Ajax (mặc định là ZAP Spider).
       \\
       \hline
       5
@@ -414,7 +416,7 @@ Bảng \ref{tab:UseCase} mô tả cho sơ đồ Use Case của hệ thống
        &
       Đăng xuất
        &
-      Người dùng đã đăng nhập có thể đăng xuất phiên đăng nhập của mình khỏi hệ thống
+      Người dùng đã đăng nhập có thể đăng xuất phiên đăng nhập của mình khỏi hệ thống.
       \\
       \hline
       \caption{Mô tả sơ đồ Use Case}
