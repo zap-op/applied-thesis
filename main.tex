@@ -15,6 +15,10 @@
 \usepackage{listings}
 \usepackage{xcolor}
 \usepackage{hyperref}
+\usepackage{tocloft}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{decorations.pathmorphing}
 \usepackage[backend=bibtex,
 style=numeric,
 bibencoding=ascii,
@@ -62,17 +66,17 @@ sorting=none
 \begin{document}
 
 \pagenumbering{gobble}
+\newgeometry{a4paper, bottom=2cm}
 \input{title-page.tex}
-\input{instructor-comment.tex}
-\input{commentary-comment.tex}
+\input{title-page-2.tex}
+\restoregeometry
+% \input{instructor-comment.tex}
+% \input{commentary-comment.tex}
 \input{thanks-letter.tex}
 \input{thesis-proposal.tex}
 % APPLIED THESIS
-\tableofcontents
-\newpage
-\listoffigures
-\newpage
-\listoftables
+\input{toc.tex}
+\input{short.tex}
 \input{summary.tex}
 \input{applied-thesis-chapters/chapter-1/chapter-1.tex}
 \input{applied-thesis-chapters/chapter-2/chapter-2.tex}
