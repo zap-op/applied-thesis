@@ -10,255 +10,29 @@ Nhóm sẽ tiến hành trình bày theo thứ tự các phần như sau:
   \item RxJS: cung cấp cái nhìn tổng quan về thư viện và mô tả chức năng tương tự cách trình bày RTK Query.
   Thư viện là một trong những phần cốt lõi để cài đặt ứng dụng hệ thống.
   \item OWASP Zed Attack Proxy: mô tả chi tiết thông tin và chức năng của ứng dụng OWASP Zed Attack Proxy.
-  Làm nền tảng để tiếp trục trình bày ở mục \ref{sec:CaiDatKienTrucHeThong} "Cài đặt kiến trúc hệ thống" tiếp theo và mô tả cài đặt các chức năng ở mục \ref{sec:CaiDatChucNangHeThong} tiếp theo.
+  Làm nền tảng để tiếp trục trình bày ở mục \ref{sec:CaiDatUngDungHeThong} "Cài đặt kiến trúc hệ thống" tiếp theo và mô tả cài đặt các chức năng ở mục \ref{sec:CaiDatChucNangHeThong} tiếp theo.
   \item Cài đặt kiến trúc hệ thống: mô tả chi tiết cách cài đặt các service đã trình bày ở phần "Thiết kế kiến trúc hệ thống tầng ứng dụng" của mục \ref{subsec:TKKienTrucHeThong}.
 \end{itemize}
 
 Việc trình bày phần này là quan trọng. Vì phần này mang các cài đặt cốt lõi của ứng dụng hệ thống, 
 nếu không được mô tả trước thì sẽ khó để mô tả cài đặt các chức năng ở mục \ref{sec:CaiDatChucNangHeThong} "Cài đặt chức năng hệ thống" tiếp theo.
 
-\section{RKT Query} \label{sec:RTKQ}
-
-\tab Nhóm sử dụng thư viện React, là một thư viện JavaScript giúp xây dựng giao diện người dùng, để phát triển ứng dụng web.
-Khi sử dụng React thì việc quản lý trạng thái ứng dụng (state) là một trong những vấn đề tiên quyết cần giải quyết.
-Nhóm chọn sử dụng thư viện Redux để giải quyết vấn đề này.
-Redux là một thư viện JavaScript, dùng để quản lý state ứng dụng, được sử dụng rộng rãi trong hệ sinh thái React.
-\par
-
-Trong quá khứ, trước phiên bản React 16.8, để có thể theo dõi trạng thái và vòng đời của một thành phần React (React component) thì sử dụng thành phần lớp React (React class component) là cách duy nhất.
-Khi đó, việc sử dụng Redux trong ứng dụng React có đôi chút khó khăn và dài dòng do cú pháp, cấu trúc phức tạp.
-Từ phiên bản React 16.8, với sự xuất hiện của thành phần hàm React (React functional component) là cách khởi tạo React component mới, cùng với sự xuất hiện của React Hook là cách quản lý trạng thái và vòng đời của component trong React functional component, thì Redux cũng được cải tiến để phù hợp với sự thay đổi này đó là sự xuất hiện của thư viện Redux Tookit.
-Do đó, đề xuất sử dụng Redux của nhóm chính là sử dụng Redux Tookit.
-\par
-
-\textit{"Redux Toolkit là phương pháp tiêu chuẩn chính thức để viết logic Redux.
-  Nó bao bọc xung quanh lõi của Redux, và chứa các gói và hàm được cho là cần thiết để xây dựng một ứng dụng Redux.
-  Redux Toolkit tích hợp các thực hành tốt nhất (best practices) được đề xuất, đơn giản hóa hầu hết các tác vụ Redux, ngăn ngừa những sai lầm phổ biến và làm cho việc viết ứng dụng Redux dễ dàng hơn."} \cite{chap4bib1}
-\par
-
-Trong phạm vi khóa luận, khi xây dựng ứng dụng web thì việc tương tác và quản lý dữ liệu API cũng là một vấn đề tiên quyết.
-Khi muốn đưa dữ liệu từ API lên trạng thái toàn ứng dụng (global state) thì ta chuyển dữ liệu này lên Redux store (đối tượng quản lý global state của Redux).
-Redux là một thư viện đồng bộ và tác vụ tương tác với API là tác vụ bất đồng bộ nên thực hiện việc này sẽ có khó khăn, mã dài dòng và khó quản lý lỗi.
-Để giải quyết vấn đề này, Redux Tookit có cung cấp hàm createAsyncThunk giúp đơn giản hóa quá trình tạo ra tác vụ bất đồng bộ.
-Tuy nhiên, người dùng vẫn phải viết một số lượng logic đáng kể để quản lý dữ liệu ghi đệm và trạng thái tải.
-Nhóm đề xuất sử dụng Redux Toolkit Query (RTK Query) làm công cụ tương tác, quản lý dữ liệu khi tương tác với API cho ứng dụng.
-\par
-
-\textit{“RTK Query là một công cụ lấy dữ liệu (fetching) và lưu đệm (caching) mạnh mẽ.
-  Nó được thiết kế để đơn giản hóa các trường hợp phổ biến khi tải dữ liệu trong một ứng dụng web, loại bỏ nhu cầu viết thủ công các logic lấy dữ liệu và caching của bạn.}
-\par
-
-\textit{RTK Query là một addon tùy chọn được bao gồm trong gói Redux Toolkit, và chức năng của nó được xây dựng trên các API khác trong Redux Toolkit.“} \cite{chap4bib2}
-\par
-
-Dữ liệu và trạng thái của API được tạo với RTK Query được lưu trữ và quản lý trên store của Redux.
-Thiết kế của RTK Query được lấy cảm hứng từ các công cụ phổ biến, tiên phong trong giải pháp lấy dữ liệu API như Apollo Client, React Query, Urql và SWR.
-Vậy nên việc sử dụng RTK Query là giải pháp cho tương tác API kết hợp với Redux Tookit trong ứng dụng sẽ giúp cho việc quản lý trạng thái ứng dụng và tương tác với API trở nên đơn giản, dễ dàng và hiệu quả hơn.
-
-\subsubsection{Endpoints, Queries, Mutations, các lifecycle hook và Streaming Update}
-
-\tab Việc tương tác với API trong RTK Query xoay quanh việc cài đặt các endpoint.
-Endpoint trong RTK Query được định nghĩa trong hàm createApi của thư viện.
-Để định nghĩa một endpoint, chúng ta cần cung cấp các thông tin như tên endpoint (là duy nhất trong phạm vi của hàm createAPI) , địa chỉ URL của API, phương thức của endpoint (phương thức HTTP, thông tin này là tùy chọn, mặc định sẽ tùy theo loại endpoint mà ta sử dụng).
-Có thể sử dụng các endpoint đã được định nghĩa trong các component của ứng dụng bằng cách sử dụng hook tương ứng.
-Các hook này được sinh ra tự động bởi RTK Query và có tên được đặt dựa trên tên của endpoint.
-Ví dụ, nếu endpoint được định nghĩa theo loại Query endpoint và có tên là "getUsers", thì hook để sử dụng endpoint này sẽ có tên là "useGetUsersQuery".
-Ngoài ra, cũng có thể sử dụng các endpoint  qua đối tượng trả về của hàm createApi, không qua hook.
-Có hai loại endpoint trong RTK Query là Query endpoint và Mutation endpoint.
-
-\begin{itemize}
-  \item \textbf{Query endpoint} khuyến cáo nên được sử dụng khi lấy, truy xuất dữ liệu từ API.
-        Khi sử dụng endpoint này, theo mặc định, query endpoint sẽ tự động thực thi khi component sử dụng nó được hiển thị.
-        RTK Query sẽ kiểm tra xem dữ liệu đã được lưu trong store hay chưa.
-        Nếu có, dữ liệu đã có trong bộ đệm sẽ được trả về mà không cần gửi yêu cầu đến server.
-        Nếu chưa có, yêu cầu sẽ được gửi đến server để lấy dữ liệu mới nhất.
-  \item \textbf{Mutation endpoint} khuyến cáo nên được sử dụng khi thay đổi dữ liệu, làm cũ dữ liệu trong store qua API.
-        Không như query endpoint, mutation endpoint không được thực hiện tự động mà phải gọi tới mỗi khi sử dụng.
-        Endpoint này có thể sử dụng để đánh dấu dữ liệu đã cũ trong store, ra hiệu cho các endpoint có liên quan làm mới lại dữ liệu, ví dụ như component có sử dụng Query endpoint sẽ lấy dữ liệu mới, loại bỏ dữ liệu đã cũ trong store.
-\end{itemize}
-
-Endpoint của RTK Query có cung cấp nhiều lifecycle hook mạnh mẽ, hỗ trợ rất nhiều trong việc đóng gói các logic đi kèm bên trong chính endpoint đó.
-Các lifecycle hook tiêu biểu được cung cấp trong cả Query endpoint và Mutation endpoint là transformResponse,  transformErrorResponse, onQueryStarted và onCacheEntryAdded.
-Đặc biệt, trong Query endpoint có cung cấp hook providesTags và trong Mutation endpoint có cung cấp hook invalidatesTags.
-Chi tiết của các hook này như sau:
-
-\begin{itemize}
-  \item \textbf{transformResponse:} dùng để cài đặt thay đổi, biến đổi dữ liệu (data) được trả về.
-        Dữ liệu được trả về phải đi qua hook này trước khi được lấy ra từ endpoint
-  \item \textbf{transformErrorResponse:} tương tự như transformResponse nhưng dành cho đối tượng lỗi (error).
-  \item \textbf{onQueryStarted:} đây là một hook bất đồng bộ, các cài đặt trong hook này sẽ được thực hiện trước khi request của endpoint được gửi đi. Hook này có cung cấp đối tượng LifecycleApi chứa các phương thức để tương tác với dữ liệu, tham số từ endpoint.
-  \item \textbf{onCacheEntryAdded:} đây cũng là một hook bất đồng bộ, các cài đặt trong hook sẽ được thực hiện khi có một mục đệm (cache entry) được thêm vào.
-        Cache entry là một bộ dữ liệu của một endpoint với tham số truyền vào query đó.
-        Như đã nói, RTK Query cache dữ liệu của endpoint để tối ưu số lần request, nên nếu có hai nơi gọi đến cùng một bộ endpoint và tham số thì dữ liệu sẽ được chia sẻ cho nhau.
-        Vì vậy, lần đầu tiên bộ endpoint và tham số được gọi là lần cache entry được thêm vào.
-        Hook này có cũng cấp đối tượng CacheLifecycleApi có tác dụng tương tự với LifecycleApi từ onQueryStarted.
-        CacheLifecycleApi còn có cung cấp thêm hai thuộc tính là cacheDataLoaded và cacheDataRemoved để hỗ trợ ta có thể cài đặt đồng bộ trong hook.
-  \item \textbf{providesTags:} Hook chỉ tồn tại trong Query endpoint.
-        Hook giúp cho các Query endpoint tự động làm mới dựa trên các thẻ (tag) mà ta gắn vào.
-  \item \textbf{invalidatesTags:} Hook chỉ tồn tại trong Mutation endpoint.
-        Hook giúp xác định cache data nào sẽ được tìm nạp lại hoặc xóa khỏi store.
-        Khi Mutation endpoint có gắn tag được gọi, dữ liệu nằm trong Query endpoint có tag tương tự sẽ bị đánh dấu là đã cũ.
-        Nếu Query endpoint có dữ liệu đã bị đánh dấu cũ thì endpoint đó sẽ được thực hiện gọi lại để làm mới dữ liệu.
-\end{itemize}
-
-Trong onQueryStarted và onCacheEntryAdded của Query endpoint, hai đối tượng LifecycleApi và CacheLifecycleApi đều có cung cấp thêm thuộc tính updateCachedData.
-updateCachedData hoạt động như một hàm hỗ trợ việc cập nhật dữ liệu lên đối tượng data của endpoint.
-updateCachedData thay đổi dữ liệu giống với cách reducer của Redux.
-\par
-
-Có thể điều chỉnh cấu hình endpoint trong cài đặt hay trên hook để thay đổi hành vi của các endpoint.
-Một trong những hành vi tiêu biểu nhóm cần trong phạm vi thực hiện khóa luận là cập nhật dữ liệu liên tục (streaming update).
-Ta khởi tạo kết nối socket hay event source trong hook onCachedEntryAdded, phối hợp với sử dụng cacheDataLoaded và cacheDataRemoved để thực hiện hành vi này, chi tiết như đoạn trích ở dưới.
-\par
-
-\textit{“… bạn sẽ await cacheDataLoaded để xác định thời điểm dữ liệu đầu tiên được tải xuống, sau đó sử dụng tiện ích (utility) updateCacheData để áp dụng các streaming updates khi nhận được tin nhắn (messages).
-  updateCacheData là một callback do Immer cung cấp, nhận bản draft của giá trị cache hiện tại.
-  Bạn có thể biến đổi giá trị draft để cập nhật giá trị đó khi cần dựa trên các giá trị nhận được.
-  RTK Query sau đó sẽ gửi một hành động áp dụng một bản vá lỗi khác dựa trên những thay đổi đó."} \cite{chap4bib3}
-
-\section{RxJS và Reactive Programming}
-
-\subsection{Reactive Programming}
-
-\tab Reactive programming là thuật ngữ chỉ phương pháp xử lý, lập trình với dữ liệu không tuần tự.
-Dữ liệu trong reactive programming sẽ được chứa trong một dòng tuần tự (stream) tương tự như hình \ref{fig:StreamInRP}.
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{applied-thesis-chapters/chapter-4/Minh họa Stream trong Reactive Programming.png}
-  \caption{Minh họa Stream trong Reactive Programming \cite{chap4bib4}}
-  \label{fig:StreamInRP}
-\end{figure}
-
-Khi stream nhận vào một gói dữ liệu mới, gói đó sẽ được stream vận chuyển đến các điểm chỉnh sửa (modifier).
-Modifier là các phương thức được cài đặt, có nhiệm vụ sẽ tự động chạy hay phản ứng (react) với các gói dữ liệu được đưa vào, chỉnh sửa và đưa lại về stream.
-\par
-
-Modifier tự động phản ứng với các gói dữ liệu được stream truyền vào, không cần phải tự gọi các modifier như các logic bình thường nên luồng hoạt động của mô hình này dễ đọc hiểu và nắm bắt.
-Trong mô hình này, ta có thể tự định nghĩa thứ tự, logic của các modifier trong stream lúc cài đặt.
-Tùy vào thứ tự, cách cài đặt của modifier mà các gói dữ liệu trong stream sẽ được thay đổi khác nhau.
-
-\subsection{RxJS}
-
-\tab RxJS, tên đầy đủ nhưng hiếm khi được gọi là ReactX JS, là một thư viện JavaScript dùng để xử lý event được dùng rất rộng rãi hiện nay.
-Thư viện được xây dựng dựa trên khái niệm Reactive Programming, cung cấp một cách tiếp cận đơn giản và mạnh mẽ để xử lý các luồng dữ liệu.
-Nó có thể sử dụng JavaScript, không phân biệt ứng dụng web hoặc ứng dụng máy chủ.
-\par
-
-\textit{“RxJS kết hợp mẫu Observer (Observer pattern) với mẫu Iterator (Iterator pattern) và lập trình hàm (functional programing) với các bộ sưu tập (collections) để quản lý các chuỗi sự kiện một cách lý tưởng.”} \cite{chap4bib5}
-\par
-
-Các khái niệm thiết yếu trong RxJS là: \cite{chap4bib5}
-
-\begin{itemize}
-  \item \textbf{Observable:} là một đối tượng đại diện cho một chuỗi các sự kiện hoặc giá trị được phát ra theo thời gian.  Có thể hiểu đây là một stream trong Reactive Programming.
-  \item \textbf{Observer:} là một tập hợp các callback lắng nghe các giá trị do Observable cung cấp.
-        Có ba loại callback trong đối tượng này, mỗi loại callback sẽ có chức năng khác nhau:
-        \begin{itemize}
-          \item next: callback này sẽ phản ứng mỗi khi Observable của nó phát ra gói dữ liệu.
-          \item error: callback này sẽ phản ứng khi luồng logic trong Observable của nó phát ra lỗi, tham số trả về trong callback sẽ là lỗi mà Observable gặp phải.
-          \item complete: callback này sẽ phản ứng khi logic của Observable của nó hoàn thành, không còn gói dữ liệu mới phát ra nữa.
-        \end{itemize}
-  \item \textbf{Subscription:} là đối tượng đại diện cho quá trình đăng ký (subscribe) và hủy đăng ký (unsubscribe) của các Observer với một Observable.
-        Là cách tiếp cận tốt để quản lý các đăng ký và giải phóng tài nguyên.
-  \item \textbf{Operators:} là các hàm được sử dụng để thực hiện các thao tác trên các Observable, có thể hiểu đây là các Modifier trên stream.
-        Các Operators cho phép ta xử lý các logic phức tạp trong Observable đơn giản, hiệu quả và tiện lợi.
-        Các Operators có thể được chia thành hai loại chính: Operators nối tiếp (Pipeable Operators) và Operators khởi tạo (Creation Operators).
-        \begin{itemize}
-          \item \textbf{Pipeable Operators:} sử dụng để thực hiện các thao tác trên Observable.
-                Có thể sử dụng phương thức pipe() kết nối các operator với nhau, tạo ra một chuỗi các operator.
-                Pipeable Operators bao gồm map(), filter(), mergeMap() và nhiều hàm khác.
-          \item \textbf{Creation Operators:} sử dụng để tạo ra một Observable mới.
-                Creation Operators bao gồm of(), from(), interval() và nhiều hàm khác.
-        \end{itemize}
-  \item \textbf{Subject:} là một loại Observable, tương đương với một EventEmitter, có thể được sử dụng trực tiếp để phát ra các sự kiện hoặc giá trị cho nhiều Observers.
-  \item \textbf{Schedulers:} là các bộ điều phối tập trung để kiểm soát các hoạt động đồng thời, có thể hiểu đơn giản là sử dụng để kiểm soát và quản lý các hoạt động thực thi theo thứ tự mong muốn.
-        Ngoài ra, có thể sử dụng để xác định các nguồn thực thi, thời điểm thực thi trong các Observable, cho các hoạt động đồng bộ và không đồng bộ.
-        Schedulers cung cấp các tính năng như điều khiển tốc độ thực thi các hoạt động, điều chỉnh thời gian đợi giữa các hoạt động, phân tán hoạt động cho các luồng thực thi khác.
-        Schedulers được đóng gói thành các loại khác nhau gồm:
-        \begin{itemize}
-          \item asapScheduler: dùng để kiểm soát các hoạt động đồng bộ, ưu tiên thực hiện các hoạt động ngay khi có thể.
-          \item queueScheduler: dùng để kiểm soát các hoạt động đồng bộ và không đồng bộ, đưa các hoạt động vào một hàng đợi và thực hiện chúng theo thứ tự.
-          \item asyncScheduler: dùng để kiểm soát các hoạt động không đồng bộ, chạy các hoạt động trong một luồng thực thi riêng biệt.
-        \end{itemize}
-\end{itemize}
-
-\section{OWASP Zed Attack Proxy}
-
-\subsection{Giới thiệu tổng quan}
-
-\tab OWASP Zed Attack Proxy (ZAP) là một công cụ kiểm thử bảo mật ứng dụng web mã nguồn mở được phát triển bởi một cộng đồng quốc tế có tên Open Web Application Security Project (OWASP).
-\par
-
-OWASP được điều hành bởi một tổ chức có tên The OWASP Foundation tại Hoa Kỳ, được thành lập vào năm 2001 và trở thành một tổ chức từ thiện phi lợi nhuận vào ngày 21 tháng 4 năm 2004.
-Tổ chức hoạt động với những giá trị cốt lõi là minh bạch, sáng tạo, toàn cầu hóa và trung thực.
-Mục đích và tầm nhìn của The OWASP Foundation là loại trừ các phần mềm không an toàn.
-Đến hiện tại, tổ chức đã có hơn 400 chi nhánh trên khắp thế giới, cụ thể là 448 chi nhánh vào 11/2022 . OWASP đã và đang thực hiện hơn 270 dự án, cụ thể là 276 dự án vào 11/2022. Và OWASP ZAP là một trong những dự án đó.
-\par
-
-Công cụ ZAP được sử dụng để tìm kiếm các lỗ hổng bảo mật trong ứng dụng web bằng cách mô phỏng các cuộc tấn công và kiểm tra các yếu tố bảo mật như xác thực, truy cập, mã hóa và xử lý dữ liệu.
-Đồng thời, công cụ cũng cung cấp giao diện đồ họa, cho phép người dùng kiểm tra ứng dụng web bằng cách sử dụng các kịch bản kiểm thử bảo mật đã tích hợp sẵn hoặc tự tạo.
-Các kịch bản này là các loại tấn công phổ biến như SQL Injection, Cross-Site Scripting (XSS), và các cuộc tấn công khác.
-
-\subsection{Giới thiệu chức năng} \label{subsec:IntroFunc}
-
-\tab Trong thời điểm hiện tại, công cụ ZAP có cung cấp 28 chức năng, tiện ích là Active Scan, Add-ons, Alerts, Anti CSRF Tokens, API, Authentication, Authentication Methods, Authentication Verification Strategies, Breakpoints, Contexts, Data Driven Content, HTTP Sessions, Manipulator-in-the-middle Proxy, Marketplace, Modes, Notes, Passive Scan, Scan Policy, Scope, Scripts, Session Management, Sites Tree, Spider, Statistics, Structural Modifiers, Structural Parameters, Tags, Users.
-Trong đó, có 9 chức năng cốt lõi là:
-
-\begin{itemize}
-  \item \textbf{API:} công cụ có cung cấp một hệ thống API cho phép tương tác với ZAP.
-        Chức năng cho phép phát triển tích hợp ZAP vào quy trình phát triển phần mềm hay chính các phần mềm khác, và thực hiện các kiểm thử bảo mật tự động.
-        Chức năng cung cấp nhiều API để tương tác với nhiều chức năng khác nhau trong ZAP, tiêu biểu là quét tự động, quản lý phiên quét, kiểm soát truy cập, và quản lý cấu hình.
-        \par
-        Theo mặc định, chỉ máy chủ ZAP đang chạy thì mới có thể truy cập vào API.
-        Để xem thông tin chi tiết về hướng dẫn và sử dụng của chức năng này, ta truy cập giao diện web qua URL http://zap/ khi đang dùng ZAP như proxy.
-        Hoặc thông qua URL http://localhost:8080/ khi ứng dụng ZAP đang chạy và máy chủ của chức năng có hoạt động, mỗi instance ứng dụng ZAP sẽ có một máy chủ khác nhau, phát trên các cổng khác nhau và dữ liệu của API trả về tương ứng với mỗi instance đó.
-        Dữ liệu API được cung cấp dưới dạng các định dạng JSON, HTML và XML.
-  \item \textbf{Marketplace:} tính năng này nơi chứa các thành phần mở rộng (add-on) dành cho ZAP được viết bởi các thành viện trong nhóm ZAP và cộng đồng. Các add-on này có thể được tùy chỉnh cài đặt theo nhu cầu qua giao diện ứng dụng hoặc qua chức năng API của ZAP.
-  \item \textbf{Spider:} là một công cụ tự động quét toàn bộ ứng dụng web để tìm kiếm các URL và các tài nguyên trong phạm vi ứng dụng đó. Trong thời điểm hiện tại, Spider là một chức năng nằm trong các add-on của ZAP. Chức năng của Spider tương tự như AJAX Spider nhưng đảm bảo an toàn cho mục tiêu được quét, thay vào đó là kết quả quét sẽ không sâu bằng AJAX Spider.
-        \par
-        Khi hoạt động, Spider gửi các yêu cầu HTTP giả mạo đến trang web và thu thập các phản hồi. Sau đó phân tích các phản hồi để tiếp tục tìm kiếm các URL mới, tài nguyên, tệp JavaScript và tệp CSS. Các URL mới sẽ được thêm vào hàng đợi và quá trình quét sẽ tiếp tục cho đến khi toàn bộ ứng dụng web đã được khám phá. Thêm vào đó, Spider có cung cấp các tùy chỉnh để có thể cấu hình quá trình quét cho phù hợp với nhu cầu, có thể thực hiện qua giao diện ứng dụng hoặc qua chức năng API của ZAP.
-  \item \textbf{Ajax Spider:} là một công cụ quét tự động dành riêng cho các ứng dụng web sử dụng công nghệ AJAX (Asynchronous JavaScript and XML), rất hữu ích trong việc tìm kiếm các lỗ hổng bảo mật trong các ứng dụng web động. Trong thời điểm hiện tại, AJAX Spider là một chức năng nằm trong các add-on của ZAP. Khi sử dụng, ta có thể kết hợp với Spider để có được kết quả quét tốt nhất.
-        \par
-        Ajax Spider hoạt động bằng cách mô phỏng các tương tác AJAX của người dùng trên trình duyệt web. Nó sẽ tìm kiếm và gửi các yêu cầu AJAX đến ứng dụng web và thu thập các phản hồi. Sau đó, nó sẽ tìm kiếm các tương tác AJAX khác và tiếp tục thực hiện quét đến khi tất cả các tương tác AJAX của ứng dụng web đã được khám phá. Hơn nữa, AJAX Spider có cung cấp các tùy chỉnh để cấu hình quá trình quét cho phù hợp với nhu cầu, có thể thực hiện qua giao diện ứng dụng hoặc qua chức năng API của ZAP.
-  \item \textbf{Passive Scan:} chức năng này tự động quét một cách thụ động các gói HTTP được proxy qua ZAP. Các gói HTTP bao gồm các gói yêu cầu và các gói phản hồi. Trong quá trình quét, Passive Scan không thay đổi yêu cầu hoặc phản hồi theo bất kỳ cách nào nên việc sử dụng là an toàn cho ứng dụng được quét. Gọi Passive Scan là quét thụ động vì nó không tự quét ứng dụng web, gửi và phản hồi các gói tin được mà nó cần được bổ trợ bởi các chức năng khác trong ZAP có thể thực hiện việc này như Spider, AJAX Spider hay thực hiện thủ công trên giao diện ứng dụng ZAP. Vì vậy, nó chạy ở một luồng khác dưới nền để không ảnh hưởng đến các chức năng quét chạy trên luồng chính.
-        Trong quá trình quét đến khi quét xong, thông tin các thẻ hoặc cảnh báo được tìm thấy sẽ được hiển thị lần lượt. Các tùy chọn hiển thị này được kích hoạt mặc định, nhưng cũng có thể được cấu hình. Passive Scan không đảm bảo có thể tìm thấy tất cả các lỗ hổng bảo mật có thể có trong ứng dụng web, vì nó chỉ quét những yêu cầu và phản hồi được gửi qua ZAP. Passive Scan có cung cấp các tùy chỉnh để cấu hình hành vi quét, có thể thực hiện qua giao diện ứng dụng hoặc qua chức năng API của ZAP.
-  \item \textbf{Active Scan:} chức năng tự động tìm kiếm các lỗ hổng bảo mật tiềm năng bằng cách thực hiện các cuộc tấn công vào các mục tiêu đã biết trước. Các cuộc tấn công là các kỹ thuật tấn công phổ biến thường được sử dụng để kiểm tra bảo mật của ứng dụng web. Các mục tiêu được tìm thông qua phương pháp quét khám phá được cấu hình khi bắt đầu phiên quét. Các phương pháp quét dùng để khám phá các mục tiêu của Active Scan là Spider hoặc AJAX Spider.
-        Thực hiện Active Scan là thực hiện tấn công vào các mục tiêu trong ứng dụng web nên có thể sẽ gây ra các tác động không mong muốn đến ứng dụng web nếu không sử dụng đúng cách. Nên lưu ý rằng Active Scan chỉ có thể tìm thấy một số loại lỗ hổng. Các lỗ hổng logic như kiểm soát truy cập bị hỏng (Broken access control), sẽ không được tìm thấy bởi bất kỳ công cụ quét lỗ hổng nào, dù là Active Scan hay tự động. Active Scan có cung cấp các tùy chỉnh để cấu hình hành vi quét, có thể thực hiện qua giao diện ứng dụng hoặc qua chức năng API của ZAP. Thêm vào đó, Active Scan có thêm phần cấu hình các quy tắc quét thông qua chức năng Scan Policies.
-  \item \textbf{Fuzzer:} là một chức năng kiểm thử tự động, sử dụng kỹ thuật Fuzzing là một kỹ thuật sử dụng các gói dữ liệu (payload) không hợp lệ hoặc không mong đợi đến mục tiêu. Fuzzer hay Fuzzing là một chức năng nằm trong các add-on của ZAP. Đối với các payload sử dụng trong chức năng này, ta có thể tự tạo payload, lấy trong tập payload được xây dựng sẵn trong ZAP hay các payload được thiết kế sẵn trong add-on. Có thể tùy chỉnh thay đổi hành vi của chức năng theo mong muốn bằng các chức năng con của nó như Payload Generators, Payload Processors, Fuzz Location Processors và Message Processors. Tuy nhiên, cần phải cẩn thận khi sử dụng, vì kỹ thuật nó sử dụng là một kỹ thuật tấn công nên có thể sẽ gây ra các tác động không mong muốn cho ứng dụng web nếu không sử dụng đúng cách.
-  \item \textbf{WebSockets:} là một chức năng nằm trong các add-on của ZAP có thể được sử dụng khi thực hiện kiểm thử thủ công. Sử dụng chức năng này khi kiểm thử thủ công ứng dụng web trên giao diện ứng dụng ZAP, cho phép ứng dụng ZAP can thiệp vào các kết nối WebSocket giữa máy khách và máy chủ. Các can thiệp chức năng này hỗ trợ là:
-        \begin{itemize}
-          \item Chặn và hiển thị gói tin trong kết nối WebSocket.
-          \item Thiết lập điểm dừng (breakpoint) trên các loại gói tin cụ thể trong kết nối WebSocket.
-          \item Chạy Fuzz bằng chức năng Fuzzing đã được đề cập bên trên.
-          \item Passive Scan các gói tin trong kết nối WebSocket.
-        \end{itemize}
-\end{itemize}
-
-\subsection{Ưu và nhược điểm}
-
-\paragraph{Ưu điểm}
-\begin{itemize}
-  \item Dự án mã nguồn mở, được phát triển và hỗ trợ bởi những lập trình viên kỳ cựu và tổ chức đáng tin cậy.
-  \item Cung cấp đa dạng các phương pháp kiểm thử bảo mật ứng dụng từ tự động đến thủ công.
-  \item Các phương pháp kiểm thử đều có thể tùy chỉnh, cấu hình đa dạng và chi tiết.
-  \item Thông tin các báo cáo đều rất chi tiết và có thể tùy chỉnh.
-  \item Vì là mã nguồn mở và được phát triển bởi tổ chức phi lợi nhuận nên công cụ miễn phí cho tất cả mọi người.
-\end{itemize}
-
-\paragraph{Nhược điểm}
-\begin{itemize}
-  \item Giao diện người dùng đã cũ, có nhiều thông tin hiển thị tràn lan gây khó hiểu.
-  \item Tài liệu hướng dẫn khó hiểu, không có đủ thông tin, phân tán khó tiếp cận.
-  \item Chỉ có dạng phần mềm. Phần mềm có nhiều phiên bản dành cho nhiều mục đích, hệ điều hành khác nhau. Người dùng phải có hiểu biết, tìm hiểu một lượng thông tin nhất định mới có thể hiểu và chọn đúng phiên bản mình cần.
-  \item Khó sử dụng, phức tạp đối với người dùng mới.
-\end{itemize}
-
-\section{Cài đặt kiến trúc hệ thống} \label{sec:CaiDatKienTrucHeThong}
+\section{Cài đặt ứng dụng hệ thống} \label{sec:CaiDatUngDungHeThong}
 
 \tab Như đã trình bày ở mục Nhóm ZAP service của mục "Thiết kế kiến trúc hệ thống tầng ứng dụng" ở phần \ref{subsec:TKKienTrucHeThong}, hệ thống bao gồm nhiều service được cài đặt tách biệt với nhau và có các tác dụng khác nhau. Trong phần này, nhóm sẽ trình bày chi tiết hơn về cách thiết kế của các service này.
 
 \subsection{Cài đặt nhóm ZAP service} \label{subsec:CaiDatNhomZapService}
+
+\tab Như đã mô tả ở phần "Nhóm ZAP service" mục ...., cài đặt nhóm ZAP service cũng là một trong những phần khó nhất trong việc xây dựng ứng dụng hệ thống.
+Tuy OWASP ZAP là một công cụ được phát triển bởi tổ chức lớn và các lập trình viên kỳ cựu, nhưng quy mô của công cụ là lớn và thời lượng các thành viên hoạt động trên nó còn hạn chế.
+Điều này dẫn đến việc các tính năng của công cụ được phát triển tốt.
+Nhưng nguồn tài liệu đi kèm còn thiếu, không rõ ràng hoặc chưa có.
+Nguồn tài liệu chính thức thực sự hạn chế về số lượng lẫn chất lượng.
+Để có thể cài đặt các service tương tác tốt với ứng dụng ZAP,
+nhóm cần hiểu được cách hoạt động của những chức năng mà nhóm cần tương tác trong ZAP.
+Để thực hiện điều này, nhóm tiến hành các việc như nghiên cứu các tài liệu, thông tin liên quan bên ngoài nguồn chính thống;
+Sử dụng thử ứng dụng và các endpoint; Đọc mã nguồn của chính công cụ ZAP.
+Chi tiết của các cài đặt được nhóm trình bày trong các phần sau.
 
 \subsubsection{Cài đặt ZAP Client service}
 
@@ -791,7 +565,7 @@ Các luồng log ngoài hiển thị trên console còn được lưu trữ tron
   \label{tab:MgmtStatus}
 \end{tabularx}
 
-\subsection{Cài đặt chức năng đăng ký/ đăng nhập và đăng xuất} \label{subsec:CaiDatDangKyDangNhap}
+\subsection{Cài đặt chức năng đăng ký / đăng nhập và đăng xuất} \label{subsec:CaiDatDangKyDangNhap}
 
 \subsubsection{Cài đặt chức năng đăng ký / đăng nhập}
 

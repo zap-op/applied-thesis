@@ -104,8 +104,7 @@
 \end{itemize}
 
 \myparagraph{Cách phòng tránh}
-
-\tab \tab Để ngăn chặn injection, ta cần tách riêng dữ liệu khỏi các lệnh và truy vấn.
+\tab Để ngăn chặn injection, ta cần tách riêng dữ liệu khỏi các lệnh và truy vấn.
 
 \begin{itemize}
     \item Kiểm thử tự động cho tất cả các tham số, headers, URL, cookie, JSON, SOAP và đầu vào dữ liệu XML.
@@ -251,4 +250,75 @@
 \begin{itemize}
     \item Các sự kiện khác nhau sẽ chứa các thông tin, định dạng khác nhau. Cần phải có một nguồn sự thật duy nhất để xác định và xác định định dạng thông báo cho một sự kiện cụ thể.
     \item Việc triển khai giải pháp nguồn sự kiện có thể đòi hỏi kiến thức chuyên môn và kỹ năng phát triển phần mềm cao.
+\end{itemize}
+
+\section{OWASP Zed Attack Proxy}
+
+\subsection{Giới thiệu tổng quan}
+
+\tab OWASP Zed Attack Proxy (ZAP) là một công cụ kiểm thử bảo mật ứng dụng web mã nguồn mở được phát triển bởi một cộng đồng quốc tế có tên Open Web Application Security Project (OWASP).
+\par
+
+OWASP được điều hành bởi một tổ chức có tên The OWASP Foundation tại Hoa Kỳ, được thành lập vào năm 2001 và trở thành một tổ chức từ thiện phi lợi nhuận vào ngày 21 tháng 4 năm 2004.
+Tổ chức hoạt động với những giá trị cốt lõi là minh bạch, sáng tạo, toàn cầu hóa và trung thực.
+Mục đích và tầm nhìn của The OWASP Foundation là loại trừ các phần mềm không an toàn.
+Đến hiện tại, tổ chức đã có hơn 400 chi nhánh trên khắp thế giới, cụ thể là 448 chi nhánh vào 11/2022 . OWASP đã và đang thực hiện hơn 270 dự án, cụ thể là 276 dự án vào 11/2022. Và OWASP ZAP là một trong những dự án đó.
+\par
+
+Công cụ ZAP được sử dụng để tìm kiếm các lỗ hổng bảo mật trong ứng dụng web bằng cách mô phỏng các cuộc tấn công và kiểm tra các yếu tố bảo mật như xác thực, truy cập, mã hóa và xử lý dữ liệu.
+Đồng thời, công cụ cũng cung cấp giao diện đồ họa, cho phép người dùng kiểm tra ứng dụng web bằng cách sử dụng các kịch bản kiểm thử bảo mật đã tích hợp sẵn hoặc tự tạo.
+Các kịch bản này là các loại tấn công phổ biến như SQL Injection, Cross-Site Scripting (XSS), và các cuộc tấn công khác.
+
+\subsection{Giới thiệu chức năng} \label{subsec:IntroFunc}
+
+\tab Trong thời điểm hiện tại, công cụ ZAP có cung cấp 28 chức năng, tiện ích là Active Scan, Add-ons, Alerts, Anti CSRF Tokens, API, Authentication, Authentication Methods, Authentication Verification Strategies, Breakpoints, Contexts, Data Driven Content, HTTP Sessions, Manipulator-in-the-middle Proxy, Marketplace, Modes, Notes, Passive Scan, Scan Policy, Scope, Scripts, Session Management, Sites Tree, Spider, Statistics, Structural Modifiers, Structural Parameters, Tags, Users.
+Trong đó, có 9 chức năng cốt lõi là:
+
+\begin{itemize}
+  \item \textbf{API:} công cụ có cung cấp một hệ thống API cho phép tương tác với ZAP.
+        Chức năng cho phép phát triển tích hợp ZAP vào quy trình phát triển phần mềm hay chính các phần mềm khác, và thực hiện các kiểm thử bảo mật tự động.
+        Chức năng cung cấp nhiều API để tương tác với nhiều chức năng khác nhau trong ZAP, tiêu biểu là quét tự động, quản lý phiên quét, kiểm soát truy cập, và quản lý cấu hình.
+        \par
+        Theo mặc định, chỉ máy chủ ZAP đang chạy thì mới có thể truy cập vào API.
+        Để xem thông tin chi tiết về hướng dẫn và sử dụng của chức năng này, ta truy cập giao diện web qua URL http://zap/ khi đang dùng ZAP như proxy.
+        Hoặc thông qua URL http://localhost:8080/ khi ứng dụng ZAP đang chạy và máy chủ của chức năng có hoạt động, mỗi instance ứng dụng ZAP sẽ có một máy chủ khác nhau, phát trên các cổng khác nhau và dữ liệu của API trả về tương ứng với mỗi instance đó.
+        Dữ liệu API được cung cấp dưới dạng các định dạng JSON, HTML và XML.
+  \item \textbf{Marketplace:} tính năng này nơi chứa các thành phần mở rộng (add-on) dành cho ZAP được viết bởi các thành viện trong nhóm ZAP và cộng đồng. Các add-on này có thể được tùy chỉnh cài đặt theo nhu cầu qua giao diện ứng dụng hoặc qua chức năng API của ZAP.
+  \item \textbf{Spider:} là một công cụ tự động quét toàn bộ ứng dụng web để tìm kiếm các URL và các tài nguyên trong phạm vi ứng dụng đó. Trong thời điểm hiện tại, Spider là một chức năng nằm trong các add-on của ZAP. Chức năng của Spider tương tự như AJAX Spider nhưng đảm bảo an toàn cho mục tiêu được quét, thay vào đó là kết quả quét sẽ không sâu bằng AJAX Spider.
+        \par
+        Khi hoạt động, Spider gửi các yêu cầu HTTP giả mạo đến trang web và thu thập các phản hồi. Sau đó phân tích các phản hồi để tiếp tục tìm kiếm các URL mới, tài nguyên, tệp JavaScript và tệp CSS. Các URL mới sẽ được thêm vào hàng đợi và quá trình quét sẽ tiếp tục cho đến khi toàn bộ ứng dụng web đã được khám phá. Thêm vào đó, Spider có cung cấp các tùy chỉnh để có thể cấu hình quá trình quét cho phù hợp với nhu cầu, có thể thực hiện qua giao diện ứng dụng hoặc qua chức năng API của ZAP.
+  \item \textbf{Ajax Spider:} là một công cụ quét tự động dành riêng cho các ứng dụng web sử dụng công nghệ AJAX (Asynchronous JavaScript and XML), rất hữu ích trong việc tìm kiếm các lỗ hổng bảo mật trong các ứng dụng web động. Trong thời điểm hiện tại, AJAX Spider là một chức năng nằm trong các add-on của ZAP. Khi sử dụng, ta có thể kết hợp với Spider để có được kết quả quét tốt nhất.
+        \par
+        Ajax Spider hoạt động bằng cách mô phỏng các tương tác AJAX của người dùng trên trình duyệt web. Nó sẽ tìm kiếm và gửi các yêu cầu AJAX đến ứng dụng web và thu thập các phản hồi. Sau đó, nó sẽ tìm kiếm các tương tác AJAX khác và tiếp tục thực hiện quét đến khi tất cả các tương tác AJAX của ứng dụng web đã được khám phá. Hơn nữa, AJAX Spider có cung cấp các tùy chỉnh để cấu hình quá trình quét cho phù hợp với nhu cầu, có thể thực hiện qua giao diện ứng dụng hoặc qua chức năng API của ZAP.
+  \item \textbf{Passive Scan:} chức năng này tự động quét một cách thụ động các gói HTTP được proxy qua ZAP. Các gói HTTP bao gồm các gói yêu cầu và các gói phản hồi. Trong quá trình quét, Passive Scan không thay đổi yêu cầu hoặc phản hồi theo bất kỳ cách nào nên việc sử dụng là an toàn cho ứng dụng được quét. Gọi Passive Scan là quét thụ động vì nó không tự quét ứng dụng web, gửi và phản hồi các gói tin được mà nó cần được bổ trợ bởi các chức năng khác trong ZAP có thể thực hiện việc này như Spider, AJAX Spider hay thực hiện thủ công trên giao diện ứng dụng ZAP. Vì vậy, nó chạy ở một luồng khác dưới nền để không ảnh hưởng đến các chức năng quét chạy trên luồng chính.
+        Trong quá trình quét đến khi quét xong, thông tin các thẻ hoặc cảnh báo được tìm thấy sẽ được hiển thị lần lượt. Các tùy chọn hiển thị này được kích hoạt mặc định, nhưng cũng có thể được cấu hình. Passive Scan không đảm bảo có thể tìm thấy tất cả các lỗ hổng bảo mật có thể có trong ứng dụng web, vì nó chỉ quét những yêu cầu và phản hồi được gửi qua ZAP. Passive Scan có cung cấp các tùy chỉnh để cấu hình hành vi quét, có thể thực hiện qua giao diện ứng dụng hoặc qua chức năng API của ZAP.
+  \item \textbf{Active Scan:} chức năng tự động tìm kiếm các lỗ hổng bảo mật tiềm năng bằng cách thực hiện các cuộc tấn công vào các mục tiêu đã biết trước. Các cuộc tấn công là các kỹ thuật tấn công phổ biến thường được sử dụng để kiểm tra bảo mật của ứng dụng web. Các mục tiêu được tìm thông qua phương pháp quét khám phá được cấu hình khi bắt đầu phiên quét. Các phương pháp quét dùng để khám phá các mục tiêu của Active Scan là Spider hoặc AJAX Spider.
+        Thực hiện Active Scan là thực hiện tấn công vào các mục tiêu trong ứng dụng web nên có thể sẽ gây ra các tác động không mong muốn đến ứng dụng web nếu không sử dụng đúng cách. Nên lưu ý rằng Active Scan chỉ có thể tìm thấy một số loại lỗ hổng. Các lỗ hổng logic như kiểm soát truy cập bị hỏng (Broken access control), sẽ không được tìm thấy bởi bất kỳ công cụ quét lỗ hổng nào, dù là Active Scan hay tự động. Active Scan có cung cấp các tùy chỉnh để cấu hình hành vi quét, có thể thực hiện qua giao diện ứng dụng hoặc qua chức năng API của ZAP. Thêm vào đó, Active Scan có thêm phần cấu hình các quy tắc quét thông qua chức năng Scan Policies.
+  \item \textbf{Fuzzer:} là một chức năng kiểm thử tự động, sử dụng kỹ thuật Fuzzing là một kỹ thuật sử dụng các gói dữ liệu (payload) không hợp lệ hoặc không mong đợi đến mục tiêu. Fuzzer hay Fuzzing là một chức năng nằm trong các add-on của ZAP. Đối với các payload sử dụng trong chức năng này, ta có thể tự tạo payload, lấy trong tập payload được xây dựng sẵn trong ZAP hay các payload được thiết kế sẵn trong add-on. Có thể tùy chỉnh thay đổi hành vi của chức năng theo mong muốn bằng các chức năng con của nó như Payload Generators, Payload Processors, Fuzz Location Processors và Message Processors. Tuy nhiên, cần phải cẩn thận khi sử dụng, vì kỹ thuật nó sử dụng là một kỹ thuật tấn công nên có thể sẽ gây ra các tác động không mong muốn cho ứng dụng web nếu không sử dụng đúng cách.
+  \item \textbf{WebSockets:} là một chức năng nằm trong các add-on của ZAP có thể được sử dụng khi thực hiện kiểm thử thủ công. Sử dụng chức năng này khi kiểm thử thủ công ứng dụng web trên giao diện ứng dụng ZAP, cho phép ứng dụng ZAP can thiệp vào các kết nối WebSocket giữa máy khách và máy chủ. Các can thiệp chức năng này hỗ trợ là:
+        \begin{itemize}
+          \item Chặn và hiển thị gói tin trong kết nối WebSocket.
+          \item Thiết lập điểm dừng (breakpoint) trên các loại gói tin cụ thể trong kết nối WebSocket.
+          \item Chạy Fuzz bằng chức năng Fuzzing đã được đề cập bên trên.
+          \item Passive Scan các gói tin trong kết nối WebSocket.
+        \end{itemize}
+\end{itemize}
+
+\subsection{Ưu và nhược điểm}
+
+\paragraph{Ưu điểm}
+\begin{itemize}
+  \item Dự án mã nguồn mở, được phát triển và hỗ trợ bởi những lập trình viên kỳ cựu và tổ chức đáng tin cậy.
+  \item Cung cấp đa dạng các phương pháp kiểm thử bảo mật ứng dụng từ tự động đến thủ công.
+  \item Các phương pháp kiểm thử đều có thể tùy chỉnh, cấu hình đa dạng và chi tiết.
+  \item Thông tin các báo cáo đều rất chi tiết và có thể tùy chỉnh.
+  \item Vì là mã nguồn mở và được phát triển bởi tổ chức phi lợi nhuận nên công cụ miễn phí cho tất cả mọi người.
+\end{itemize}
+
+\paragraph{Nhược điểm}
+\begin{itemize}
+  \item Giao diện người dùng đã cũ, có nhiều thông tin hiển thị tràn lan gây khó hiểu.
+  \item Tài liệu hướng dẫn khó hiểu, không có đủ thông tin, phân tán khó tiếp cận.
+  \item Chỉ có dạng phần mềm. Phần mềm có nhiều phiên bản dành cho nhiều mục đích, hệ điều hành khác nhau. Người dùng phải có hiểu biết, tìm hiểu một lượng thông tin nhất định mới có thể hiểu và chọn đúng phiên bản mình cần.
+  \item Khó sử dụng, phức tạp đối với người dùng mới.
 \end{itemize}

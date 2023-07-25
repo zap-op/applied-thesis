@@ -10,12 +10,10 @@ Các giải pháp nhóm đưa ra như sau.
 
 \tab Việc sử dụng ứng dụng ZAP trực tiếp sẽ đòi hỏi nhiều yêu cầu cần thiết như phần cứng đáp ứng đủ điều kiện sử dụng ứng dụng, lựa chọn phiên bản phù hợp với cấu hình, tải xuống, cài đặt môi trường (Java Runtime Environment - JRE), xử lý lỗi cài đặt - cấu hình.
 Nhiều hơn nữa, để sử dụng được một số chức năng, người dùng cần phải biết cách cấu hình trình duyệt cho ZAP, quản lý dữ liệu của phiên sử dụng, cấu hình cho phương thức và nhiều tác vụ khác.
-\par
 
 Quét lỗi bảo mật web với ZAP là giải pháp, mục tiêu quan trọng và cốt lõi của hệ thống mà nhóm nhắm tới.
 Với mục tiêu ban đầu là nhanh chóng, dễ sử dụng với mong muốn là dễ tiếp cận người dùng hơn thì các điều kiện đã nêu trên là vấn đề cần giải quyết.
 Vì vậy, nhóm đề xuất giải pháp quét với bốn phương pháp có trong ZAP là Spider, Ajax Spider, Active và Passive là bốn phương pháp quét bảo mật web phổ biến và không cần sử dụng trực tiếp ứng dụng ZAP.
-\par
 
 Khi sử dụng giải pháp được đề xuất ở trên, người dùng có thể tạo các phiên quét bằng cách cung cấp các địa chỉ URL hoặc IP trang web cần quét và chọn các phương pháp quét.
 Từ đó hệ thống sẽ thực hiện quét các phiên này với ZAP và thu được kết quả quét tương ứng của từng địa chỉ với từng phương pháp quét đã chọn.
@@ -82,14 +80,14 @@ Tệp này sẽ chứa các thông tin có trong màn hình thông tin chi tiế
       \caption{Tổng quan kiến trúc hệ thống}
       \label{fig:KienTrucHeThong}
 \end{figure}
-\tab Hình số \ref{fig:KienTrucHeThong} thể hiện tổng quan kiến trúc hệ thống được xây dựng theo mô hình N-Tier đã đề cập ở mục \ref{sec:NTier}.
+\tab Hình \textit{\ref{fig:KienTrucHeThong} \nameref{fig:KienTrucHeThong}} thể hiện tổng quan kiến trúc hệ thống được xây dựng theo mô hình N-Tier đã đề cập ở mục \textit{\ref{sec:NTier} \nameref{sec:NTier}}.
 Kiến trúc hệ thống gồm 3 tầng (3-Tier): Tầng trình bày, tầng ứng dụng và tầng dữ liệu.
 
 \subsubsection{Thiết kế kiến trúc hệ thống tầng trình bày}
 
-\tab Tầng trình bày (Presentation tier) là tầng ứng dụng web phục vụ cho người dùng.
-Người dùng tương tác trên giao diện ứng dụng web để tiếp cận với các giải pháp mà nhóm đã đề cập đến ở mục \ref{sec:AbstractSol}.
-Theo như kiến trúc, ứng dụng của tầng trình bày được xây dựng chính bằng thư viện React và các công cụ có hỗ trợ React.
+\tab Tầng trình bày (Presentation tier) là tầng dành cho ứng dụng web, phục vụ cho người dùng.
+Người dùng tương tác trên giao diện ứng dụng web để tiếp cận với các giải pháp mà nhóm đã đề cập đến ở mục \textit{\ref{sec:AbstractSol} \nameref{sec:AbstractSol}}.
+Theo như kiến trúc, ứng dụng web của tầng trình bày được xây dựng chính bằng thư viện React và các công cụ có hỗ trợ React.
 
 \subsubsection{Thiết kế kiến trúc hệ thống tầng ứng dụng}
 
@@ -103,7 +101,7 @@ Các service bao gồm: nhóm các ZAP service, dịch vụ xác thực (Authent
 
 \myparagraph{\textit{Nhóm ZAP service}}
 \tab \tab Nhóm các ZAP service bao gồm hai service chính là dịch vụ quản lý ZAP (ZAP Monitor service) và dịch vụ tương tác với ứng dụng ZAP (ZAP Client service), cuối cùng là lớp tiến trình ZAP (ZAP Process).
-Hình \ref{fig:NhomZapServiceHoatDong} sẽ cho ta cái nhìn chi tiết hơn về cách hoạt động của nhóm ZAP service trong hệ thống.
+Hình \textit{\ref{fig:NhomZapServiceHoatDong} \nameref{fig:NhomZapServiceHoatDong}} sẽ cho ta cái nhìn chi tiết hơn về cách hoạt động của nhóm ZAP service trong hệ thống.
 
 \begin{figure}[H]
       \centering
@@ -137,7 +135,7 @@ Hình \ref{fig:NhomZapServiceHoatDong} sẽ cho ta cái nhìn chi tiết hơn v�
 \tab \tab Là tập hợp các ZAP process instance chạy ngầm, mỗi instance sẽ chạy trên một cổng (port) khác nhau và được tham chiếu bởi các ZAP client của ZAP Client service.
 \par
 
-Hình \ref{fig:TTZapMonitorStartScan} và \ref{fig:TTHeThongStartScan} thể hiện quá trình tương tác và hoạt động của nhóm ZAP service trong hệ thống khi bắt đầu một phiên quét.
+Hình \textit{\ref{fig:TTZapMonitorStartScan} \nameref{fig:TTZapMonitorStartScan}} và \textit{\ref{fig:TTHeThongStartScan} \nameref{fig:TTHeThongStartScan}} thể hiện quá trình tương tác và hoạt động của nhóm ZAP service trong hệ thống khi bắt đầu một phiên quét.
 
 \begin{figure}[H]
       \centering
@@ -222,13 +220,13 @@ Chuyển sự hạn chế bởi cấu hình của MongoDB sang máy khác nghĩa
 Bên cạnh lợi ích toàn vẹn dữ liệu, việc lựa chọn giải pháp này cũng mang lại nhiều lợi ích khác như tăng tính bảo mật, mở rộng, linh hoạt, tiện lợi, dễ dàng quản lý và không cần nhiều bận tâm về các vấn đề của database trên hệ thống chính.
 
 \newpage
-\subsection{Thiết kế giao diện hệ thống}
+\subsection{Thiết kế giao diện ứng dụng web}
 
-\subsubsection{Giao diện trang chủ}
+\subsubsection{Thiết kế màn hình trang chủ}
 
 \tab Màn hình trang chủ là nơi người dùng sẽ tiếp cận đầu tiên khi truy cập vào tên miền gốc của ứng dụng.
 Màn hình có hai thành phần chính là giới thiệu chung về ứng dụng và phần cho phép người dùng sử dụng thử chức năng quét với phương thức ZAP Spider, không cần đăng nhập xác minh.
-Giao diện màn hình trang chủ được thiết kế như hình \ref{fig:MHTrangChu}.
+Màn hình trang chủ được thiết kế như hình \textit{\ref{fig:MHTrangChu} \nameref{fig:MHTrangChu}}.
 
 \begin{figure}[H]
       \centering
@@ -238,7 +236,7 @@ Giao diện màn hình trang chủ được thiết kế như hình \ref{fig:MHT
 \end{figure}
 
 \newpage
-Bảng mô tả giao diện màn hình trang chủ, bảng \ref{tab:MTTrangChu}:
+Mô tả giao diện màn hình trang chủ được thể hiện qua bảng \textit{\ref{tab:MTTrangChu} \nameref{tab:MTTrangChu}}:
 
 \begin{tabularx}{\textwidth}{|>{\hsize=.10\hsize\centering\let\newline
       \\\arraybackslash}X|>{\hsize=.30\hsize\raggedright\let\newline
@@ -297,12 +295,12 @@ Bảng mô tả giao diện màn hình trang chủ, bảng \ref{tab:MTTrangChu}:
 \end{tabularx}
 
 \newpage
-\subsubsection{Giao diện ứng dụng web}
+\subsubsection{Màn hình ứng dụng}
 
-\tab Màn hình ứng dụng web là nơi người dùng sẽ tiếp cận sau khi đăng nhập vào ứng dụng.
+\tab Màn hình ứng dụng là nơi người dùng sẽ tiếp cận sau khi đăng nhập vào ứng dụng.
 Màn hình này là nơi người dùng thực hiện hầu hết mọi tác vụ có trong ứng dụng.
 Màn hình có hai thành phần chính là bảng tùy chọn và bản điều khiển.
-Giao diện ứng dụng web được thiết kế như hình \ref{fig:MHUngDung}.
+Màn hình ứng dụng được thiết kế như hình \textit{\ref{fig:MHUngDung} \nameref{fig:MHUngDung}}.
 
 \begin{figure}[H]
       \centering
@@ -311,7 +309,7 @@ Giao diện ứng dụng web được thiết kế như hình \ref{fig:MHUngDung
       \label{fig:MHUngDung}
 \end{figure}
 
-Bảng mô tả giao diện màn hình ứng dụng, bảng \ref{tab:MTUngDung}:
+Mô tả giao diện màn hình ứng dụng được thể hiện qua bảng \textit{\ref{tab:MTUngDung} \nameref{tab:MTUngDung}}:
 
 \begin{tabularx}{\textwidth}{|>{\hsize=.10\hsize\centering\let\newline
       \\\arraybackslash}X|>{\hsize=.30\hsize\raggedright\let\newline
@@ -359,7 +357,7 @@ Bảng mô tả giao diện màn hình ứng dụng, bảng \ref{tab:MTUngDung}:
 
 \subsection{Sơ đồ use case}
 
-\tab Hình \ref{fig:UseCase} mô tả sơ đồ Use Case của hệ thống.
+\tab Sơ đồ Use Case của hệ thống được thể hiện qua hình \textit{\ref{fig:UseCase} \nameref{fig:UseCase}}.
 
 \begin{figure}[H]
       \centering
@@ -368,7 +366,7 @@ Bảng mô tả giao diện màn hình ứng dụng, bảng \ref{tab:MTUngDung}:
       \label{fig:UseCase}
 \end{figure}
 
-Bảng \ref{tab:UseCase} mô tả cho sơ đồ Use Case của hệ thống.
+Sơ đồ Use Case của hệ thống được mô tả qua bảng \textit{\ref{tab:UseCase} \nameref{tab:UseCase}}.
 
 \begin{tabularx}{\textwidth}{|>{\hsize=.10\hsize\centering\let\newline
       \\\arraybackslash}X|>{\hsize=.30\hsize\raggedright\let\newline
@@ -429,7 +427,7 @@ Bảng \ref{tab:UseCase} mô tả cho sơ đồ Use Case của hệ thống.
 \newpage
 \subsection{Sơ đồ cơ sở dữ liệu}
 
-Hình \ref{fig:Database} mô tả sơ đồ cơ sở dữ liệu của hệ thống.
+Sơ đồ cơ sở dữ liệu của hệ thống được thể hiện qua hình \textit{\ref{fig:Database} \nameref{fig:Database}}.
 
 \begin{figure}[H]
       \centering
