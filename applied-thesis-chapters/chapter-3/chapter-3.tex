@@ -13,7 +13,7 @@ Nhiều hơn nữa, để sử dụng được một số chức năng, người
 
 Quét lỗi bảo mật web với ZAP là giải pháp, mục tiêu quan trọng và cốt lõi của hệ thống mà nhóm nhắm tới.
 Với mục tiêu ban đầu là nhanh chóng, dễ sử dụng với mong muốn là dễ tiếp cận người dùng hơn thì các điều kiện đã nêu trên là vấn đề cần giải quyết.
-Vì vậy, nhóm đề xuất giải pháp quét với bốn phương pháp có trong ZAP là Spider, Ajax Spider, Active và Passive là bốn phương pháp quét bảo mật web phổ biến và không cần sử dụng trực tiếp ứng dụng ZAP.
+Vì vậy, nhóm đề xuất giải pháp quét với 4 phương pháp có trong ZAP là Spider, Ajax Spider, Active và Passive là 4 phương pháp quét bảo mật web phổ biến và không cần sử dụng trực tiếp ứng dụng ZAP.
 
 Khi sử dụng giải pháp được đề xuất ở trên, người dùng có thể tạo các phiên quét bằng cách cung cấp các địa chỉ URL hoặc IP trang web cần quét và chọn các phương pháp quét.
 Từ đó hệ thống sẽ thực hiện quét các phiên này với ZAP và thu được kết quả quét tương ứng của từng địa chỉ với từng phương pháp quét đã chọn.
@@ -69,18 +69,20 @@ Các thông tin về phiên quét cũng sẽ hiển thị trong màn hình này,
 
 Việc phải truy cập vào hệ thống và truy xuất thông tin chi tiết kết quả của phiên quét có thể sẽ gây khó khăn cho người dùng trong quá trình sử dụng nên ứng dụng có chức năng xuất tệp định dạng tài liệu di động (Portable Document Format, viết tắt là PDF).
 Tệp này sẽ chứa các thông tin có trong màn hình thông tin chi tiết kết quả quét của phiên quét, tùy theo từng phương pháp quét khác nhau sẽ thì tệp sẽ có cấu trúc khác nhau.
-\par
 
 \section{Thiết kế hệ thống}
 
 \subsection{Thiết kế kiến trúc hệ thống} \label{subsec:TKKienTrucHeThong}
+
+\newpage
 \begin{figure}[H]
       \centering
       \includegraphics[width=\textwidth]{applied-thesis-chapters/chapter-3/Tổng quan kiến trúc hệ thống.png}
       \caption{Tổng quan kiến trúc hệ thống}
       \label{fig:KienTrucHeThong}
 \end{figure}
-\tab Hình \textit{\ref{fig:KienTrucHeThong} \nameref{fig:KienTrucHeThong}} thể hiện tổng quan kiến trúc hệ thống được xây dựng theo mô hình N-Tier đã đề cập ở mục \textit{\ref{sec:NTier} \nameref{sec:NTier}}.
+
+Hình \textit{\ref{fig:KienTrucHeThong} \nameref{fig:KienTrucHeThong}} thể hiện tổng quan kiến trúc hệ thống được xây dựng theo mô hình N-Tier đã đề cập ở mục \textit{\ref{sec:NTier} \nameref{sec:NTier}}.
 Kiến trúc hệ thống gồm 3 tầng (3-Tier): Tầng trình bày, tầng ứng dụng và tầng dữ liệu.
 
 \subsubsection{Thiết kế kiến trúc hệ thống tầng trình bày}
@@ -89,18 +91,18 @@ Kiến trúc hệ thống gồm 3 tầng (3-Tier): Tầng trình bày, tầng �
 Người dùng tương tác trên giao diện ứng dụng web để tiếp cận với các giải pháp mà nhóm đã đề cập đến ở mục \textit{\ref{sec:AbstractSol} \nameref{sec:AbstractSol}}.
 Theo như kiến trúc, ứng dụng web của tầng trình bày được xây dựng chính bằng thư viện React và các công cụ có hỗ trợ React.
 
-\subsubsection{Thiết kế kiến trúc hệ thống tầng ứng dụng}
+\subsubsection{Thiết kế kiến trúc hệ thống tầng ứng dụng} \label{subsubsec:ThietKeKienTrucTangUngDung}
 
 \tab Tầng ứng dụng (Application tier) là tầng có trách nhiệm xử lý đa phần mọi giải pháp của hệ thống, là tầng chính của toàn bộ hệ thống.
-Theo như kiến trúc, tầng ứng dụng chứa hai phần là ứng dụng chính và tập hợp các đối tượng ZAP (ZAP Pool).
-\par
+Theo như kiến trúc, tầng ứng dụng chứa 2 phần là ứng dụng chính và tập hợp các đối tượng ZAP (ZAP Pool).
+Ứng dụng của tầng này được xây dựng với framework Express.js trên nền tảng Node.js.
 
 Ứng dụng chính bao gồm các dịch vụ (service) được cài đặt tách biệt với nhau, mang nhiệm vụ riêng để tăng tính trực quan và linh hoạt, khả năng mở rộng và bảo trì, tránh các lỗi xung đột không đáng có, dễ dàng phát triển và tích hợp.
-Các service bao gồm: nhóm các ZAP service, dịch vụ xác thực (Authentication service), dịch vụ cơ sở dữ liệu (Database service) và dịch vụ ghi nhật ký (Logging service).
+Các service bao gồm: Nhóm các ZAP service, Dịch vụ xác thực (Authentication service), Dịch vụ cơ sở dữ liệu (Database service) và Dịch vụ ghi nhật ký (Logging service).
 \par
 
-\myparagraph{\textit{Nhóm ZAP service}}
-\tab \tab Nhóm các ZAP service bao gồm hai service chính là dịch vụ quản lý ZAP (ZAP Monitor service) và dịch vụ tương tác với ứng dụng ZAP (ZAP Client service), cuối cùng là lớp tiến trình ZAP (ZAP Process).
+\myparagraph{Nhóm ZAP service}
+\tab \tab Nhóm các ZAP service bao gồm 2 service chính là dịch vụ quản lý ZAP (ZAP Monitor service) và dịch vụ tương tác với ứng dụng ZAP (ZAP Client service), cuối cùng là lớp tiến trình ZAP (ZAP Process).
 Hình \textit{\ref{fig:NhomZapServiceHoatDong} \nameref{fig:NhomZapServiceHoatDong}} sẽ cho ta cái nhìn chi tiết hơn về cách hoạt động của nhóm ZAP service trong hệ thống.
 
 \begin{figure}[H]
@@ -119,7 +121,7 @@ Hình \textit{\ref{fig:NhomZapServiceHoatDong} \nameref{fig:NhomZapServiceHoatDo
             ZAP client có vai trò tương tác, điều khiển ZAP process thực hiện các tác vụ của ZAP qua phương thức HTTP.
             Vì ZAP process chỉ là một process chạy ngầm trong hệ thống và tách biệt với ứng dụng chính nên ZAP Client service là một trong những service quan trọng của ứng dụng chính.
             Theo như giải pháp thì mỗi phương pháp quét sẽ cần mỗi ZAP process có hành vi, cấu hình khác nhau.
-            Nhóm chia thành hai loại là:
+            Nhóm chia thành 2 loại là:
             \begin{itemize}
                   \item \textbf{ZAP Client Shared:} Client này dành cho các phương pháp quét có thể sử dụng chung ZAP process instance, kết quả các phiên quét tuy sử dụng chung instance nhưng không ảnh hưởng đến nhau.
                         Cặp client shared và ZAP process và luôn luôn tồn tại xuyên suốt quá trình sống của ứng dụng.
@@ -131,11 +133,11 @@ Hình \textit{\ref{fig:NhomZapServiceHoatDong} \nameref{fig:NhomZapServiceHoatDo
 \end{itemize}
 
 \newpage
-\myparagraph{\textit{ZAP Pool}}
+\myparagraph{ZAP Pool}
 \tab \tab Là tập hợp các ZAP process instance chạy ngầm, mỗi instance sẽ chạy trên một cổng (port) khác nhau và được tham chiếu bởi các ZAP client của ZAP Client service.
 \par
 
-Hình \textit{\ref{fig:TTZapMonitorStartScan} \nameref{fig:TTZapMonitorStartScan}} và \textit{\ref{fig:TTHeThongStartScan} \nameref{fig:TTHeThongStartScan}} thể hiện quá trình tương tác và hoạt động của nhóm ZAP service trong hệ thống khi bắt đầu một phiên quét.
+Các hình \textit{\ref{fig:TTZapMonitorStartScan} \nameref{fig:TTZapMonitorStartScan}} và \textit{\ref{fig:TTHeThongStartScan} \nameref{fig:TTHeThongStartScan}} thể hiện quá trình tương tác và hoạt động của nhóm ZAP service trong hệ thống khi bắt đầu một phiên quét.
 
 \begin{figure}[H]
       \centering
@@ -151,15 +153,15 @@ Hình \textit{\ref{fig:TTZapMonitorStartScan} \nameref{fig:TTZapMonitorStartScan
       \label{fig:TTHeThongStartScan}
 \end{figure}
 
-\myparagraph{\textit{Authentication service}}
+\myparagraph{Authentication service}
 \tab \tab Service thực hiện các nhiệm vụ liên quan đến xác thực người dùng.
 Các nhiệm vụ như xác minh lại token nhận được từ ứng dụng web từ bên thứ ba là Google Identify, đọc ghi dữ liệu người dùng với Database service.
 
-\myparagraph{\textit{Logging service}}
+\myparagraph{Logging service}
 \tab \tab Service có trách nhiệm ghi lại nhật ký (log) cho toàn bộ ứng dụng, bao gồm cả các ZAP process chạy ngầm.
 Service được cài đặt.vì các ZAP process được chạy ngầm nằm ngoài phạm vi của ứng dụng, và nhu cầu lấy log của các process này là cần thiết.
 Log của các service khác nhau được phân biệt bằng tên loại khác nhau, các tên này được sử dụng làm tiền tố của mỗi dòng log khi hiển thị trong bảng điều khiển (console).
-Chủ yếu có bốn loại log hiện có trong ứng dụng là:
+Chủ yếu có 4 loại log hiện có trong ứng dụng là:
 
 \begin{itemize}
       \item \textbf{Main process log:} Các log này trình bày các tác vụ, lỗi phát sinh bên trong ứng dụng chính, đa phần nằm trong ZAP Monitor service.
@@ -174,7 +176,7 @@ Chủ yếu có bốn loại log hiện có trong ứng dụng là:
             ZAP process log bình thường sẽ ghi lại các log trong ZAP shared process instance, còn ZAP private process log sẽ ghi lại các log trong các ZAP private process instance.
 \end{itemize}
 
-\myparagraph{\textit{Database service}}
+\myparagraph{Database service}
 \tab \tab Service có nhiệm vụ là kết nối với MongoDB Atlas và đại diện thực hiện các thao tác đọc ghi, truy vấn với cơ sở dữ liệu đã kết nối.
 
 \subsubsection{Thiết kế kiến trúc hệ thống tầng dữ liệu}
@@ -205,7 +207,7 @@ Vậy nên rủi ro dữ liệu không được ghi một cách đúng đắn kh
 MongoDB Atlas là một cloud database dành riêng và thuộc sự quản lý trực tiếp của MongoDB.
 Về bản chất, database được triển khai hoàn toàn trên VPC là Google Cloud Platform, AWS hay Microsoft Azure dựa theo tùy chọn khi khởi tạo.
 Người dùng có thể kết nối, quản lý, tương tác qua trung gian MongoDB Atlas.
-Như hình \ref{fig:KetNoiAtlas}, ứng dụng chính tương tác với database trên VPC bằng trình điều khiển MongoDB (MongoDB driver) qua phương thức TCP/IP socket.
+Như hình \textit{\ref{fig:KetNoiAtlas} \nameref{fig:KetNoiAtlas}}, ứng dụng chính tương tác với database trên VPC bằng trình điều khiển MongoDB (MongoDB driver) qua phương thức TCP/IP socket.
 \par
 
 \begin{figure}[H]
@@ -225,7 +227,7 @@ Bên cạnh lợi ích toàn vẹn dữ liệu, việc lựa chọn giải pháp
 \subsubsection{Thiết kế màn hình trang chủ}
 
 \tab Màn hình trang chủ là nơi người dùng sẽ tiếp cận đầu tiên khi truy cập vào tên miền gốc của ứng dụng.
-Màn hình có hai thành phần chính là giới thiệu chung về ứng dụng và phần cho phép người dùng sử dụng thử chức năng quét với phương thức ZAP Spider, không cần đăng nhập xác minh.
+Màn hình có 2 thành phần chính là giới thiệu chung về ứng dụng và phần cho phép người dùng sử dụng thử chức năng quét với phương thức ZAP Spider, không cần đăng nhập xác minh.
 Màn hình trang chủ được thiết kế như hình \textit{\ref{fig:MHTrangChu} \nameref{fig:MHTrangChu}}.
 
 \begin{figure}[H]
@@ -299,7 +301,7 @@ Mô tả giao diện màn hình trang chủ được thể hiện qua bảng \te
 
 \tab Màn hình ứng dụng là nơi người dùng sẽ tiếp cận sau khi đăng nhập vào ứng dụng.
 Màn hình này là nơi người dùng thực hiện hầu hết mọi tác vụ có trong ứng dụng.
-Màn hình có hai thành phần chính là bảng tùy chọn và bản điều khiển.
+Màn hình có 2 thành phần chính là bảng tùy chọn và bản điều khiển.
 Màn hình ứng dụng được thiết kế như hình \textit{\ref{fig:MHUngDung} \nameref{fig:MHUngDung}}.
 
 \begin{figure}[H]
@@ -396,7 +398,7 @@ Sơ đồ Use Case của hệ thống được mô tả qua bảng \textit{\ref{
        &
       Quản lý mục tiêu
        &
-      Người dùng đã đăng nhập có thể xem danh sách mục tiêu, tạo và xóa các mục tiêu. Khi xem danh sách mục tiêu người dùng có tìm mục tiêu theo tên. Khi tạo mục tiêu, người dùng có thể tạo hai loại mục tiêu: mục tiêu bằng URL và mục tiêu bằng IP.
+      Người dùng đã đăng nhập có thể xem danh sách mục tiêu, tạo và xóa các mục tiêu. Khi xem danh sách mục tiêu người dùng có tìm mục tiêu theo tên. Khi tạo mục tiêu, người dùng có thể tạo 2 loại mục tiêu: mục tiêu bằng URL và mục tiêu bằng IP.
       \\
       \hline
       4

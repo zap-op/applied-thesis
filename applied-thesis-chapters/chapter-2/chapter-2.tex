@@ -22,8 +22,8 @@
         \caption{Nguyên tắc đặc quyền tối thiểu.png ~\cite{chap2bib2}}
     \end{figure}
     \item Có thể vượt qua phần kiểm tra quyền truy cập bằng các thao tác như mạo danh tham chiếu (Parameter Tampering) hoặc đường dẫn (Force Browsing) trong URL, thay đổi trạng thái ứng dụng và thay đổi nội dung các API gửi đi.
-    \item Tham chiếu đối tượng không an toàn (Insecure Direct Object Reference - IDOR). Đối tượng có thể được tham chiếu qua nhiều phương pháp, tuy nhiên định danh duy nhất của đối tượng dùng để tham chiếu lại quá dễ đoán, không được tiền xử lý
-    Như hình \ref{fib:DuLieuNhayCam} mô tả.
+    \item Tham chiếu đối tượng không an toàn (Insecure Direct Object Reference - IDOR). Đối tượng có thể được tham chiếu qua nhiều phương pháp, tuy nhiên định danh duy nhất của đối tượng dùng để tham chiếu lại quá dễ đoán, không được tiền xử lý.
+    Như hình \textit{\ref{fib:DuLieuNhayCam} \nameref{fib:DuLieuNhayCam}} mô tả rõ hơn vấn đề này.
     \begin{figure}[H]
         \centering
         \includegraphics[width=\textwidth]{applied-thesis-chapters/chapter-2/Mô tả dữ liệu nhạy cảm có thể được tìm thấy trong URL.png}
@@ -42,7 +42,7 @@
     \item Trong mô hình access controls, các bản ghi trong cơ sở dữ liệu nên có quyền sở hữu và chỉ những ai có quyền sở hữu có thể thêm, xoá, sửa bản ghi đó.
     \item Không cho phép duyệt file trên Web Server, bảo đảm rằng các file metadata (e.g., .git) file backup không được nằm trong Web Root.
     \item Lưu lại các lỗi về access control, thông báo cho admin nếu cần thiết.
-    \item Các phiên làm việc lưu tại Server phải được huỷ khi người dùng đăng xuất. JWT token nên có thời hạn ngắn.
+    \item Các phiên làm việc lưu tại Server phải được huỷ khi người dùng đăng xuất. JSON Web Token (JWT) nên có thời hạn ngắn.
 \end{itemize}
 
 \subsection{Cryptographic Failures ~\cite{chap2bib7}}
@@ -50,7 +50,7 @@
 \paragraph{Khái niệm ~\cite{chap2bib8}}
 
 \begin{itemize}
-    \item Cryptographic failure là một lỗi bảo mật nghiêm trọng của ứng dụng web, đó là để lộ thông tin nhạy cảm bằng những thuật toán mã hoá yếu hoặc không mã hoá dữ liệu. Những thông tin này có thể bao gồm mật khẩu, hồ sơ sức khoẻ bệnh nhân, thông tin bí mật doanh nghiệp, thông tin thẻ thanh toán, địa chỉ email, … và các thông tin cá nhân khác.
+    \item Cryptographic failure là một lỗi bảo mật nghiêm trọng của ứng dụng web, đó là để lộ thông tin nhạy cảm bằng những thuật toán mã hoá yếu hoặc không mã hoá dữ liệu. Những thông tin này có thể bao gồm mật khẩu, hồ sơ sức khoẻ bệnh nhân, thông tin bí mật doanh nghiệp, thông tin thẻ thanh toán, địa chỉ email và các thông tin cá nhân khác.
     \item Ngoài việc để lộ thông tin nhạy cảm, sự cố trong các hệ thống mật mã hóa cũng tạo ra lỗ hổng trong hệ thống. Đây được coi là một trong những rủi ro bảo mật quan trọng nhất đối với cả tổ chức và các người dùng kinh doanh.
     \item Các CWE đáng chú ý bao gồm: CWE-259: Use of Hard-coded Password ~\cite{chap2bib9}, CWE-327: Broken or Risky Crypto Algorithm ~\cite{chap2bib10}, và CWE-331 Insufficient Entropy ~\cite{chap2bib11}.
 \end{itemize}
@@ -252,7 +252,7 @@
     \item Việc triển khai giải pháp nguồn sự kiện có thể đòi hỏi kiến thức chuyên môn và kỹ năng phát triển phần mềm cao.
 \end{itemize}
 
-\section{OWASP Zed Attack Proxy}
+\section{OWASP Zed Attack Proxy} \label{sec:ZAP}
 
 \subsection{Giới thiệu tổng quan}
 
@@ -272,7 +272,7 @@ Các kịch bản này là các loại tấn công phổ biến như SQL Injecti
 \subsection{Giới thiệu chức năng} \label{subsec:IntroFunc}
 
 \tab Trong thời điểm hiện tại, công cụ ZAP có cung cấp 28 chức năng, tiện ích là Active Scan, Add-ons, Alerts, Anti CSRF Tokens, API, Authentication, Authentication Methods, Authentication Verification Strategies, Breakpoints, Contexts, Data Driven Content, HTTP Sessions, Manipulator-in-the-middle Proxy, Marketplace, Modes, Notes, Passive Scan, Scan Policy, Scope, Scripts, Session Management, Sites Tree, Spider, Statistics, Structural Modifiers, Structural Parameters, Tags, Users.
-Trong đó, có 9 chức năng cốt lõi là:
+Trong đó, có 8 chức năng cốt lõi là:
 
 \begin{itemize}
   \item \textbf{API:} công cụ có cung cấp một hệ thống API cho phép tương tác với ZAP.

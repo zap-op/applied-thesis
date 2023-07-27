@@ -2,7 +2,15 @@
 
 \section{RKT Query} \label{sec:RTKQ}
 
-\subsection{Giới thiệu}
+\tab Phần RTK Query này được trình bày lần lượt gồm 3 phần là: 
+
+\begin{itemize}
+      \item Giới thiệu RTK Query: Trình bày sự hình thành và giới thiệu thư viện.
+      \item Các chức năng của RTK Query: Trình bày các chức năng nổi bật của thư viện.
+      \item Kết hợp Redux Toolkit và RTK Query: Trình bày cách thức kết hợp tiêu biểu (được sử dụng nhiều trong phạm vi khóa luận).
+\end{itemize}
+
+\subsection{Giới thiệu RTK Query}
 
 \tab Phần giới thiệu thư viện RTK Query được trình bày theo trình tự:
 
@@ -19,7 +27,7 @@ Khi sử dụng React thì việc quản lý trạng thái ứng dụng (state) 
 Trong hệ sinh thái của React, Redux là một trong những công cụ dành cho vấn đề này.
 Redux là một thư viện JavaScript, dùng để quản lý state ứng dụng, được sử dụng rộng rãi trong hệ sinh thái React.
 Như hình \textit{\ref{fig:BieuDoLuotTai} \nameref{fig:BieuDoLuotTai}}, được lấy từ trang npm trends \footnote{https://npmtrends.com/, trang so sánh lượt tải của gói npm theo thời gian.}.
-Ta có thể thấy được sự phổ biến của Redux đối với React qua số lượt tải của Redux, trong vòng 2 năm từ 7/2021 đến 7/2023, luôn đạt 50\% số lượt tải của React, và dao động của hai đường đo tương thích với nhau.
+Ta có thể thấy được sự phổ biến của Redux đối với React qua số lượt tải của Redux, trong vòng 2 năm từ 7/2021 đến 7/2023, luôn đạt 50\% số lượt tải của React, và dao động của 2 đường đo tương thích với nhau.
 
 \begin{figure}[H]
       \centering
@@ -66,29 +74,32 @@ Dữ liệu và trạng thái của API được tạo với RTK Query được 
 Thiết kế của RTK Query được lấy cảm hứng từ các công cụ phổ biến, tiên phong trong giải pháp lấy dữ liệu API như Apollo Client, React Query, Urql và SWR.
 Vậy nên việc sử dụng RTK Query là giải pháp cho tương tác API kết hợp với Redux Tookit trong ứng dụng sẽ giúp cho việc quản lý trạng thái ứng dụng và truy vấn mạng trở nên đơn giản, dễ dàng và hiệu quả hơn.
 
-\subsection{Các chức năng của RTK Query}
+\subsection{Các chức năng của RTK Query} \label{subsec:CacChucNangRTKQuery}
 
 \tab Thư viện RTK Query hỗ trợ đa dạng chức năng cho truy vấn mạng, tương tác API.
 Sau đây là mô tả một số chức năng nổi bật của thư viện RTK Query và có được sử dụng trong phạm vi khóa luận.
 
 \myparagraph{Endpoints, Queries và Mutations}
 \tab \tab Việc tương tác với API trong RTK Query xoay quanh việc cài đặt các endpoint.
-Endpoint trong RTK Query được định nghĩa trong hàm createApi của thư viện.
-Để định nghĩa một endpoint, chúng ta cần cung cấp các thông tin như tên endpoint (là duy nhất trong phạm vi của hàm createAPI) , địa chỉ URL của API, phương thức của endpoint (phương thức HTTP, thông tin này là tùy chọn, mặc định sẽ tùy theo loại endpoint mà ta sử dụng).
+Endpoint trong RTK Query được định nghĩa trong phương thức createApi() của thư viện.
+Phương thức createApi() là chức năng cốt lõi của RTK Query.
+Để định nghĩa một endpoint, chúng ta cần cung cấp các thông tin như tên endpoint (là duy nhất trong phạm vi của hàm createApi()) , địa chỉ URL của API, phương thức của endpoint (phương thức HTTP, thông tin này là tùy chọn, mặc định sẽ tùy theo loại endpoint mà ta sử dụng).
+
 Có thể sử dụng các endpoint đã được định nghĩa trong các component của ứng dụng bằng cách sử dụng hook tương ứng.
 Các hook này được sinh ra tự động bởi RTK Query và có tên được đặt dựa trên tên của endpoint.
 Ví dụ, nếu endpoint được định nghĩa theo loại Query endpoint và có tên là "getUsers", thì hook để sử dụng endpoint này sẽ có tên là "useGetUsersQuery".
-Ngoài ra, cũng có thể sử dụng các endpoint  qua đối tượng trả về của hàm createApi, không qua hook.
-Có hai loại endpoint trong RTK Query là Query endpoint và Mutation endpoint.
+Ngoài ra, cũng có thể sử dụng các endpoint  qua đối tượng trả về của hàm createApi(), không qua hook.
+
+Có 2 loại endpoint trong RTK Query là Query endpoint và Mutation endpoint.
 
 \begin{itemize}
       \item \textbf{Query endpoint} khuyến cáo nên được sử dụng khi lấy, truy xuất dữ liệu từ API.
-            Khi sử dụng endpoint này, theo mặc định, query endpoint sẽ tự động thực thi khi component sử dụng nó được hiển thị.
+            Khi sử dụng endpoint này, theo mặc định, Query endpoint sẽ tự động thực thi khi component sử dụng nó được hiển thị.
             RTK Query sẽ kiểm tra xem dữ liệu đã được lưu trong store hay chưa.
             Nếu có, dữ liệu đã có trong bộ đệm sẽ được trả về mà không cần gửi yêu cầu đến server.
             Nếu chưa có, yêu cầu sẽ được gửi đến server để lấy dữ liệu mới nhất.
       \item \textbf{Mutation endpoint} khuyến cáo nên được sử dụng khi thay đổi dữ liệu, làm cũ dữ liệu trong store qua API.
-            Không như query endpoint, mutation endpoint không được thực hiện tự động mà phải gọi tới mỗi khi sử dụng.
+            Không như Query endpoint, Mutation endpoint không được thực hiện tự động mà phải gọi tới mỗi khi sử dụng.
             Endpoint này có thể sử dụng để đánh dấu dữ liệu đã cũ trong store, ra hiệu cho các endpoint có liên quan làm mới lại dữ liệu, ví dụ như component có sử dụng Query endpoint sẽ lấy dữ liệu mới, loại bỏ dữ liệu đã cũ trong store.
 \end{itemize}
 
@@ -100,15 +111,17 @@ Chi tiết của các hook này như sau:
 
 \begin{itemize}
       \item \textbf{transformResponse:} dùng để cài đặt thay đổi, biến đổi dữ liệu (data) được trả về.
-            Dữ liệu được trả về phải đi qua hook này trước khi được lấy ra từ endpoint
+            Dữ liệu được trả về phải đi qua hook này trước khi được lấy ra từ endpoint.
       \item \textbf{transformErrorResponse:} tương tự như transformResponse nhưng dành cho đối tượng lỗi (error).
       \item \textbf{onQueryStarted:} đây là một hook bất đồng bộ, các cài đặt trong hook này sẽ được thực hiện trước khi request của endpoint được gửi đi. Hook này có cung cấp đối tượng LifecycleApi chứa các phương thức để tương tác với dữ liệu, tham số từ endpoint.
       \item \textbf{onCacheEntryAdded:} đây cũng là một hook bất đồng bộ, các cài đặt trong hook sẽ được thực hiện khi có một mục đệm (cache entry) được thêm vào.
             Cache entry là một bộ dữ liệu của một endpoint với tham số truyền vào query đó.
-            Như đã nói, RTK Query cache dữ liệu của endpoint để tối ưu số lần request, nên nếu có hai nơi gọi đến cùng một bộ endpoint và tham số thì dữ liệu sẽ được chia sẻ cho nhau.
-            Vì vậy, lần đầu tiên bộ endpoint và tham số được gọi là lần cache entry được thêm vào.
+            
+            Như đã nói, RTK Query cache dữ liệu của endpoint để tối ưu số lần request, nên nếu có nhiều nơi gọi đến cùng một bộ endpoint và tham số thì dữ liệu sẽ được chia sẻ cho nhau.
+            Theo như cài đặt, lần đầu tiên bộ endpoint và tham số được gọi là lần cache entry được thêm vào.
+            
             Hook này có cũng cấp đối tượng CacheLifecycleApi có tác dụng tương tự với LifecycleApi từ onQueryStarted.
-            CacheLifecycleApi còn có cung cấp thêm hai thuộc tính là cacheDataLoaded và cacheDataRemoved để hỗ trợ ta có thể cài đặt đồng bộ trong hook.
+            CacheLifecycleApi còn có cung cấp thêm 2 thuộc tính là cacheDataLoaded và cacheDataRemoved để hỗ trợ ta có thể cài đặt đồng bộ trong hook.
       \item \textbf{providesTags:} Hook chỉ tồn tại trong Query endpoint.
             Hook giúp cho các Query endpoint tự động làm mới dựa trên các thẻ (tag) mà ta gắn vào.
       \item \textbf{invalidatesTags:} Hook chỉ tồn tại trong Mutation endpoint.
@@ -117,7 +130,7 @@ Chi tiết của các hook này như sau:
             Nếu Query endpoint có dữ liệu đã bị đánh dấu cũ thì endpoint đó sẽ được thực hiện gọi lại để làm mới dữ liệu.
 \end{itemize}
 
-Trong onQueryStarted và onCacheEntryAdded của Query endpoint, hai đối tượng LifecycleApi và CacheLifecycleApi đều có cung cấp thêm thuộc tính updateCachedData.
+Trong onQueryStarted và onCacheEntryAdded của Query endpoint, 2 đối tượng LifecycleApi và CacheLifecycleApi đều có cung cấp thêm thuộc tính updateCachedData.
 updateCachedData hoạt động như một hàm hỗ trợ việc cập nhật dữ liệu lên đối tượng data của endpoint.
 updateCachedData thay đổi dữ liệu giống với cách reducer của Redux.
 \par
@@ -132,8 +145,41 @@ Ta khởi tạo kết nối socket hay event source trong hook onCachedEntryAdde
       Bạn có thể biến đổi giá trị draft để cập nhật giá trị đó khi cần dựa trên các giá trị nhận được.
       RTK Query sau đó sẽ gửi một hành động áp dụng một bản vá lỗi khác dựa trên những thay đổi đó."} \cite{chap4bib3}
 
-\newpage
-\section{Reactive Programming và RxJS}
+\subsection{Kết hợp Redux Toolkit và RTK Query}
+
+\tab Như đã biết, RTK Query là một phần mở rộng của Redux Toolkit, vậy nên ta có thể sử dụng phối hợp RTK Query với Redux Toolkit.
+Tiêu biểu là sự kết hợp của extraReducers của Redux Toolkit và các Matchers của RTK Query.
+Mô tả của extraReducers và Matchers như sau:
+
+\begin{itemize}
+      \item \textbf{ExtraReducers:} Các reducer là một phần quan trọng của kiến trúc Redux.
+      Reducer là hàm xử lý lấy trạng thái (state) hiện tại trong Redux store, thực hiện sự kiện (action) và trả về state mới.
+      
+      Trong Redux Toolkit, tiêu chuẩn để cài đặt Redux logic hoàn chỉnh là thông qua phương thức createSlice() của thư viện.
+      Đối tượng thu được của phương thức gọi là slice.
+      Trong phương thức createSlice(), ta cài đặt các reducer bên trong thuộc tính "reducers" của phương thức.
+      Các reducer được định nghĩa ở trong slice chỉ có thể sử dụng và tương tác được các trạng thái bên trong slice đó.
+      
+      Đồng thời, phương thức createSlice() cũng có cung cấp thuộc tính extraReducers hỗ trợ cài đặt các reducer.
+      Cách hoạt động của các reducer ở thuộc tính này, có cách hoạt động không giống các reducer bên trong thuộc tính "reducer".
+      Các reducer của extraReducers phải lắng nghe action nào đó, và chỉ được gọi thực hiện khi action đó xuất hiện.
+      Các action này thuộc các reducer bên ngoài slice, của slice khác hoặc trong store chính.
+      
+      \item \textbf{Matchers:} Như đã mô tả ở phần Endpoints, Queries và Mutations mục \textit{\ref{subsec:CacChucNangRTKQuery} \nameref{subsec:CacChucNangRTKQuery}}, ta định nghĩa các API bằng cách cài đặt các endpoint trong phương thức createApi() của RTK Query, gọi đối tượng nhận được từ phương thức createApi() là api.
+      
+      Khi tạo endpoint trong phương thức createApi(), RTK Query ngoài việc phát sinh ra các hook tương ứng để sử dụng endpoint, 
+      song song đó còn tạo thêm các dịch vụ API (API service) chứa Redux logic, có thể truy cập các API service này thông qua đối tượng api.
+      Các API service này gọi là API Slices.
+      
+      Từ chính đối tượng api, các API Slices cung cấp cho ta đa dạng các nhóm phương thức hỗ trợ như: Tích hợp với Redux (Redux integration), Tương tác với chính endpoint của đối tượng api (Endpoint interactions), Quản lý mã (Code spitting and generation), Sự kiện nội tại (Internal Actions), sử dụng hook trực tiếp từ đối tượng api và các tiện ích (Utilities).
+      
+      Ở nhóm phương thức Endpoint interactions có cung cấp các thuộc tính matchPending, matchFulfilled và matchRejected cho mỗi endpoint được định nghĩa trong đối tượng api, nhóm các thuộc tính này gọi là Matchers.
+      Các thuộc tính này tương ứng với các action pending, fulfilled và rejected có trong một tác vụ bất đồng bộ trong Redux (gọi là thunk), cũng được dùng để xác định trạng thái của tác vụ bất đồng bộ.
+\end{itemize}
+
+Như vậy, ta có thể phối hợp sử dụng các thuộc tính trong nhóm Matchers cùng với extraReducers để thực thi các cài đặt dựa trên trạng thái của endpoint đã cài đặt với RTK Query.
+
+\section{Reactive Programming và RxJS} \label{sec:RxJS}
 
 \subsection{Reactive Programming}
 
@@ -180,7 +226,7 @@ Các khái niệm thiết yếu trong RxJS là: \cite{chap4bib5}
             Là cách tiếp cận tốt để quản lý các đăng ký và giải phóng tài nguyên.
       \item \textbf{Operators:} là các hàm được sử dụng để thực hiện các thao tác trên các Observable, có thể hiểu đây là các Modifier trên stream.
             Các Operators cho phép ta xử lý các logic phức tạp trong Observable đơn giản, hiệu quả và tiện lợi.
-            Các Operators có thể được chia thành hai loại chính: Operators nối tiếp (Pipeable Operators) và Operators khởi tạo (Creation Operators).
+            Các Operators có thể được chia thành 2 loại chính: Operators nối tiếp (Pipeable Operators) và Operators khởi tạo (Creation Operators).
             \begin{itemize}
                   \item \textbf{Pipeable Operators:} sử dụng để thực hiện các thao tác trên Observable.
                         Có thể sử dụng phương thức pipe() kết nối các operator với nhau, tạo ra một chuỗi các operator.
@@ -206,9 +252,11 @@ Các khái niệm thiết yếu trong RxJS là: \cite{chap4bib5}
 \section{Giao diện và chức năng của ứng dụng}
 
 \tab Phần này trình bày các giao diện màn hình và chức năng cụ thể của màn hình trong ứng dụng Owlens.
-Được trình bày chia làm hai phần là các màn hình bên ngoài ứng dụng (chưa đăng nhập) và các màn hình bên trong ứng dụng (đã đăng nhập).
+Được trình bày chia làm ba phần là các màn hình bên ngoài ứng dụng (chưa đăng nhập), các màn hình bên trong ứng dụng (đã đăng nhập) và Cấu trúc nội dung các tệp báo cáo.
 
 \subsection{Các màn hình bên ngoài ứng dụng}
+
+\tab Các màn hình bên ngoài ứng dụng gồm 2 màn hình là màn hình Trang chủ và màn hình Trang đăng ký / đăng nhập.
 
 \myparagraph{Trang chủ}
 \tab \tab Đầu tiên, khi người dùng truy cập vào tên miền thì màn hình đầu tiên người dùng tiếp cập được là màn hình trang chủ.
@@ -258,7 +306,7 @@ Màn hình điều khiển ứng dụng được chia làm 5 phần chính Bản
 
 \myparagraph{Bảng điều khiển (Dashboard)}
 \tab \tab Hình \textit{\ref{fig:ManHinhDashboard} \nameref{fig:ManHinhDashboard}} thể hiện giao diện phần Dashboard.
-Màn hình Dashboard gồm hai phần thông tin là thông tin của hai phần Targets và Results.
+Màn hình Dashboard gồm 2 phần là thông tin của phần Targets và Results.
 
 \begin{figure}[H]
       \centering
@@ -267,8 +315,8 @@ Màn hình Dashboard gồm hai phần thông tin là thông tin của hai phần
       \label{fig:ManHinhDashboard}
 \end{figure}
 
-Người dùng có thể truy cập, sử dụng nhanh các tác vụ mà không cần đi đến hai màn hình điều khiển cụ thể của từng phần.
-Trong Dashboard, thứ tự hiển thị trên dưới của hai phần Results và Targets sẽ thay đổi theo thời gian thay đổi dữ liệu nội tại của từng phần.
+Người dùng có thể truy cập, sử dụng nhanh các tác vụ mà không cần đi đến màn hình điều khiển cụ thể của từng phần.
+Trong Dashboard, thứ tự hiển thị trên dưới của 2 phần Results và Targets sẽ thay đổi theo thời gian thay đổi dữ liệu nội tại của từng phần.
 Ví dụ, nếu dữ liệu của Targets có thay đổi mới gần hơn Results thì phần Targets sẽ được hiển thị bên trên và ngược lại.
 
 \myparagraph{Quản lý mục tiêu (Targets)}
@@ -321,73 +369,148 @@ Mỗi loại quét khác nhau sẽ có giao diện màn hình kết quả quét 
 
 Các hình \textit{\ref{fig:ManHinhKetQuaQuetChiTietSpiderVaURLsInScope} \nameref{fig:ManHinhKetQuaQuetChiTietSpiderVaURLsInScope}} 
 và \textit{\ref{fig:ManHinhKetQuaQuetChiTietSpiderVaURLsOutOfScope} \nameref{fig:ManHinhKetQuaQuetChiTietSpiderVaURLsOutOfScope}} 
-thể hiện giao diện màn hình kết quả quét chi tiết của phiên quét loại Spider.
+thể hiện giao diện màn hình kết quả quét chi tiết của phiên quét loại ZAP Spider.
 
 \begin{figure}[H]
       \centering
-      \includegraphics[width=\textwidth]{applied-thesis-chapters/chapter-6/Màn hình kết quả quét chi tiết Spider và bảng URLs In Scope.png}
-      \caption{Màn hình kết quả quét chi tiết Spider và bảng URLs In Scope}
+      \includegraphics[width=\textwidth]{applied-thesis-chapters/chapter-6/Màn hình kết quả quét chi tiết ZAP Spider và bảng URLs In Scope.png}
+      \caption{Màn hình kết quả quét chi tiết ZAP Spider và bảng URLs In Scope}
       \label{fig:ManHinhKetQuaQuetChiTietSpiderVaURLsInScope}
 \end{figure}
 
 \begin{figure}[H]
       \centering
-      \includegraphics[width=\textwidth]{applied-thesis-chapters/chapter-6/Màn hình kết quả quét chi tiết Spider và bảng URLs Out Of Scope.png}
-      \caption{Màn hình kết quả quét chi tiết Spider và bảng URLs Out Of Scope}
+      \includegraphics[width=\textwidth]{applied-thesis-chapters/chapter-6/Màn hình kết quả quét chi tiết ZAP Spider và bảng URLs Out Of Scope.png}
+      \caption{Màn hình kết quả quét chi tiết ZAP Spider và bảng URLs Out Of Scope}
       \label{fig:ManHinhKetQuaQuetChiTietSpiderVaURLsOutOfScope}
 \end{figure}
 
 Các hình \textit{\ref{fig:ManHinhKetQuaQuetChiTietAjaxVaURLsInScope} \nameref{fig:ManHinhKetQuaQuetChiTietAjaxVaURLsInScope}} 
 và \textit{\ref{fig:ManHinhKetQuaQuetChiTietAjaxVaURLsOutOfScope} \nameref{fig:ManHinhKetQuaQuetChiTietAjaxVaURLsOutOfScope}} 
-thể hiện giao diện màn hình kết quả quét chi tiết của phiên quét loại Ajax.
+thể hiện giao diện màn hình kết quả quét chi tiết của phiên quét loại ZAP Ajax.
 
 \begin{figure}[H]
       \centering
-      \includegraphics[width=\textwidth]{applied-thesis-chapters/chapter-6/Màn hình kết quả quét chi tiết Ajax và bảng URLs In Scope.png}
-      \caption{Màn hình kết quả quét chi tiết Ajax và bảng URLs In Scope}
+      \includegraphics[width=\textwidth]{applied-thesis-chapters/chapter-6/Màn hình kết quả quét chi tiết ZAP Ajax và bảng URLs In Scope.png}
+      \caption{Màn hình kết quả quét chi tiết ZAP Ajax và bảng URLs In Scope}
       \label{fig:ManHinhKetQuaQuetChiTietAjaxVaURLsInScope}
 \end{figure}
 
 \begin{figure}[H]
       \centering
-      \includegraphics[width=\textwidth]{applied-thesis-chapters/chapter-6/Màn hình kết quả quét chi tiết Ajax và bảng URLs Out Of Scope.png}
-      \caption{Màn hình kết quả quét chi tiết Ajax và bảng URLs Out Of Scope}
+      \includegraphics[width=\textwidth]{applied-thesis-chapters/chapter-6/Màn hình kết quả quét chi tiết ZAP Ajax và bảng URLs Out Of Scope.png}
+      \caption{Màn hình kết quả quét chi tiết ZAP Ajax và bảng URLs Out Of Scope}
       \label{fig:ManHinhKetQuaQuetChiTietAjaxVaURLsOutOfScope}
 \end{figure}
 
 Các hình \textit{\ref{fig:ManHinhKetQuaQuetChiTietActiveVaAlertsSummary} \nameref{fig:ManHinhKetQuaQuetChiTietActiveVaAlertsSummary}}
 , \textit{\ref{fig:ManHinhKetQuaQuetChiTietActiveVaAlertsInformation} \nameref{fig:ManHinhKetQuaQuetChiTietActiveVaAlertsInformation}} 
 và \textit{\ref{fig:ManHinhKetQuaQuetChiTietActiveVaAlertsDetail} \nameref{fig:ManHinhKetQuaQuetChiTietActiveVaAlertsDetail}} 
-thể hiện giao diện màn hình kết quả quét chi tiết của phiên quét loại Active.
-Tương tự như Active, hình \textit{\ref{fig:ManHinhKetQuaQuetChiTietPassive} \nameref{fig:ManHinhKetQuaQuetChiTietPassive}} 
-thể hiện cho phiên quét loại Passive.
+thể hiện giao diện màn hình kết quả quét chi tiết của phiên quét loại ZAP Active.
+Tương tự như ZAP Active, hình \textit{\ref{fig:ManHinhKetQuaQuetChiTietPassive} \nameref{fig:ManHinhKetQuaQuetChiTietPassive}} 
+thể hiện cho phiên quét loại ZAP Passive.
 
 \begin{figure}[H]
       \centering
-      \includegraphics[width=\textwidth]{applied-thesis-chapters/chapter-6/Màn hình kết quả quét chi tiết Active và bảng Alerts Summary.png}
-      \caption{Màn hình kết quả quét chi tiết Active và bảng Alerts Summary}
+      \includegraphics[width=\textwidth]{applied-thesis-chapters/chapter-6/Màn hình kết quả quét chi tiết ZAP Active và bảng Alerts Summary.png}
+      \caption{Màn hình kết quả quét chi tiết ZAP Active và bảng Alerts Summary}
       \label{fig:ManHinhKetQuaQuetChiTietActiveVaAlertsSummary}
 \end{figure}
 
 \begin{figure}[H]
       \centering
-      \includegraphics[width=\textwidth]{applied-thesis-chapters/chapter-6/Màn hình kết quả quét chi tiết Active và bảng Alerts Information.png}
-      \caption{Màn hình kết quả quét chi tiết Active và bảng Alerts Information}
+      \includegraphics[width=\textwidth]{applied-thesis-chapters/chapter-6/Màn hình kết quả quét chi tiết ZAP Active và bảng Alerts Information.png}
+      \caption{Màn hình kết quả quét chi tiết ZAP Active và bảng Alerts Information}
       \label{fig:ManHinhKetQuaQuetChiTietActiveVaAlertsInformation}
 \end{figure}
 
 \begin{figure}[H]
       \centering
-      \includegraphics[width=\textwidth]{applied-thesis-chapters/chapter-6/Màn hình kết quả quét chi tiết Active và bảng Alerts Detail.png}
-      \caption{Màn hình kết quả quét chi tiết Active và bảng Alerts Detail}
+      \includegraphics[width=\textwidth]{applied-thesis-chapters/chapter-6/Màn hình kết quả quét chi tiết ZAP Active và bảng Alerts Detail.png}
+      \caption{Màn hình kết quả quét chi tiết ZAP Active và bảng Alerts Detail}
       \label{fig:ManHinhKetQuaQuetChiTietActiveVaAlertsDetail}
 \end{figure}
 
 \begin{figure}[H]
       \centering
-      \includegraphics[width=\textwidth]{applied-thesis-chapters/chapter-6/Màn hình kết quả quét chi tiết Passive.png}
-      \caption{Màn hình kết quả quét chi tiết Passive}
+      \includegraphics[width=\textwidth]{applied-thesis-chapters/chapter-6/Màn hình kết quả quét chi tiết ZAP Passive.png}
+      \caption{Màn hình kết quả quét chi tiết ZAP Passive}
       \label{fig:ManHinhKetQuaQuetChiTietPassive}
 \end{figure}
 
-Như đã trình bày ở mục x....., ở màn hình này, đối với Passive và Active sẽ giống nhau ở "as12ec21ewfefwe" và chỉ khác nhau ở "thông tin session(coi lại để sửa cho nhất quán)"
+Như đã trình bày ở mục \textit{\ref{subsubsec:CaiDatChucNangXemKetQuaQuetChiTiet} \nameref{subsubsec:CaiDatChucNangXemKetQuaQuetChiTiet}}
+, ở màn hình này, đối với ZAP Passive và ZAP Active sẽ giống nhau ở phần full result và khác nhau ở phần scan session.
+
+\myparagraph{Tạo phiên quét (New scan)}
+\tab \tab Để tạo mới một phiên quét, người dùng phải trải qua 2 bước là chọn mục tiêu và chọn cấu hình quét ở phần New scan.
+Nếu người dùng chọn tạo mới phiên quét từ mục mục tiêu ở Targets thì người dùng chỉ cần chọn tiếp cấu hình quét.
+Các hình \textit{\ref{fig:ManHinhNewScanVaSelectTargets} \nameref{fig:ManHinhNewScanVaSelectTargets}} 
+, \textit{\ref{fig:ManHinhNewScanVaConfigureScans} \nameref{fig:ManHinhNewScanVaConfigureScans}} 
+thể hiện giao diện màn hình của 2 bước này.
+
+\begin{figure}[H]
+      \centering
+      \includegraphics[width=\textwidth]{applied-thesis-chapters/chapter-6/Màn hình New Scan và bước Select Targets.png}
+      \caption{Màn hình New Scan và bước Select Targets}
+      \label{fig:ManHinhNewScanVaSelectTargets}
+\end{figure}
+
+\begin{figure}[H]
+      \centering
+      \includegraphics[width=\textwidth]{applied-thesis-chapters/chapter-6/Màn hình New Scan và bước Configure Scans.png}
+      \caption{Màn hình New Scan và bước Configure Scans}
+      \label{fig:ManHinhNewScanVaConfigureScans}
+\end{figure}
+
+\myparagraph{Cài đặt (Settings)}
+\tab \tab Hình \textit{\ref{fig:ManHinhSettings} \nameref{fig:ManHinhSettings}} thể hiện giao diện màn hình phần Settings.
+
+\begin{figure}[H]
+      \centering
+      \includegraphics[width=\textwidth]{applied-thesis-chapters/chapter-6/Màn hình Settings.png}
+      \caption{Màn hình Settings}
+      \label{fig:ManHinhSettings}
+\end{figure}
+
+Màn hình hiển thị hình ảnh, tên và thông email mà người dùng đã dùng để đăng nhập.
+Đồng thời người dùng cũng thực hiện đăng xuất khỏi ứng dụng ở màn hình này.
+
+\subsection{Cấu trúc nội dung các tệp báo cáo}
+
+\tab Ở màn hình kết quả quét chi tiết, người dùng có thể xuất tệp PDF báo cáo chi tiết cho kết quả quét.
+Như đã nhắc đến ở mục \textit{\ref{subsubsec:CaiDatChucNangXuatTepPDF} \nameref{subsubsec:CaiDatChucNangXuatTepPDF}}, 
+các loại báo cáo khác nhau sẽ có cách trình bày thông tin khác nhau.
+
+Các hình \textit{\ref{fig:SoLuocCauTrucNoiDungBaoCaoZapSpider} \nameref{fig:SoLuocCauTrucNoiDungBaoCaoZapSpider}}
+, \textit{\ref{fig:SoLuocCauTrucNoiDungBaoCaoZapAjax} \nameref{fig:SoLuocCauTrucNoiDungBaoCaoZapAjax}}
+, \textit{\ref{fig:SoLuocCauTrucNoiDungBaoCaoZapPassive} \nameref{fig:SoLuocCauTrucNoiDungBaoCaoZapPassive}}
+và \textit{\ref{fig:SoLuocCauTrucNoiDungBaoCaoZapActive} \nameref{fig:SoLuocCauTrucNoiDungBaoCaoZapActive}} 
+thể hiện sơ lược cấu trúc thông tin được trình bày trong các tệp báo cáo.
+
+\begin{figure}[H]
+      \centering
+      \includegraphics[width=\textwidth]{applied-thesis-chapters/chapter-6/Sơ lược cấu trúc nội dung báo cáo ZAP Spider.png}
+      \caption{Sơ lược cấu trúc nội dung báo cáo ZAP Spider}
+      \label{fig:SoLuocCauTrucNoiDungBaoCaoZapSpider}
+\end{figure}
+
+\begin{figure}[H]
+      \centering
+      \includegraphics[width=\textwidth]{applied-thesis-chapters/chapter-6/Sơ lược cấu trúc nội dung báo cáo ZAP Ajax.png}
+      \caption{Sơ lược cấu trúc nội dung báo cáo ZAP Ajax}
+      \label{fig:SoLuocCauTrucNoiDungBaoCaoZapAjax}
+\end{figure}
+
+\begin{figure}[H]
+      \centering
+      \includegraphics[width=\textwidth]{applied-thesis-chapters/chapter-6/Sơ lược cấu trúc nội dung báo cáo ZAP Passive.png}
+      \caption{Sơ lược cấu trúc nội dung báo cáo ZAP Passive}
+      \label{fig:SoLuocCauTrucNoiDungBaoCaoZapPassive}
+\end{figure}
+
+\begin{figure}[H]
+      \centering
+      \includegraphics[width=\textwidth]{applied-thesis-chapters/chapter-6/Sơ lược cấu trúc nội dung báo cáo ZAP Active.png}
+      \caption{Sơ lược cấu trúc nội dung báo cáo ZAP Active}
+      \label{fig:SoLuocCauTrucNoiDungBaoCaoZapActive}
+\end{figure}

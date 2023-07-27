@@ -1,40 +1,39 @@
 \chapter{CÀI ĐẶT GIẢI PHÁP}
 
-\tab Trong phần này, để cài đặt của các chức năng ở mục \ref{sec:CaiDatChucNangHeThong} "Cài đặt chức năng hệ thống" dễ hiểu và ngắn gọn hơn.
-Sau khi trình bày ở mục sau xong, thì các cài đặt có liên quan tới các thư viện đó ở mục \ref{sec:CaiDatChucNangHeThong} sẽ không được miêu tả lại.
+\tab Trong chương này, để trình bày cài đặt các giải pháp được dễ hiểu và ngắn gọn hơn.
+Nhóm trình bày dựa trên các thông tin cung cấp ở các mục sau:
 
-Nhóm sẽ tiến hành trình bày theo thứ tự các phần như sau:
 \begin{itemize}
-  \item RTK Query: cung cấp cái nhìn tổng quan về thư viện và mô tả chức năng.
-  Thư viện là một trong những phần cốt lõi để cài đặt ứng dụng web.
-  \item RxJS: cung cấp cái nhìn tổng quan về thư viện và mô tả chức năng tương tự cách trình bày RTK Query.
-  Thư viện là một trong những phần cốt lõi để cài đặt ứng dụng hệ thống.
-  \item OWASP Zed Attack Proxy: mô tả chi tiết thông tin và chức năng của ứng dụng OWASP Zed Attack Proxy.
-  Làm nền tảng để tiếp trục trình bày ở mục \ref{sec:CaiDatUngDungHeThong} "Cài đặt kiến trúc hệ thống" tiếp theo và mô tả cài đặt các chức năng ở mục \ref{sec:CaiDatChucNangHeThong} tiếp theo.
-  \item Cài đặt kiến trúc hệ thống: mô tả chi tiết cách cài đặt các service đã trình bày ở phần "Thiết kế kiến trúc hệ thống tầng ứng dụng" của mục \ref{subsec:TKKienTrucHeThong}.
+  \item RTK Query ở mục \textit{\ref{sec:RTKQ} \nameref{sec:RTKQ}}: Cung cấp cái nhìn tổng quan về thư viện và mô tả chức năng.
+        Thư viện là một trong những phần cốt lõi để cài đặt ứng dụng web.
+  \item RxJS ở mục \textit{\ref{sec:RxJS} \nameref{sec:RxJS}}: Cung cấp cái nhìn tổng quan về thư viện và mô tả chức năng tương tự cách trình bày RTK Query.
+        Thư viện là một trong những phần cốt lõi để cài đặt ứng dụng hệ thống.
+  \item OWASP Zed Attack Proxy ở mục \textit{\ref{sec:ZAP} \nameref{sec:ZAP}}: Mô tả chi tiết thông tin và chức năng của ứng dụng OWASP Zed Attack Proxy.
+        Là thành phần có thông tin chủ chốt để trình bày ở chương này.
 \end{itemize}
 
-Việc trình bày phần này là quan trọng. Vì phần này mang các cài đặt cốt lõi của ứng dụng hệ thống, 
-nếu không được mô tả trước thì sẽ khó để mô tả cài đặt các chức năng ở mục \ref{sec:CaiDatChucNangHeThong} "Cài đặt chức năng hệ thống" tiếp theo.
+Các cài đặt có liên quan hay sử dụng bất kỳ thành phần nào trong các mục trên sẽ được nhắc đến một cách lướt qua, không mô tả lại.
 
 \section{Cài đặt ứng dụng hệ thống} \label{sec:CaiDatUngDungHeThong}
 
-\tab Như đã trình bày ở mục Nhóm ZAP service của mục "Thiết kế kiến trúc hệ thống tầng ứng dụng" ở phần \ref{subsec:TKKienTrucHeThong}, hệ thống bao gồm nhiều service được cài đặt tách biệt với nhau và có các tác dụng khác nhau. Trong phần này, nhóm sẽ trình bày chi tiết hơn về cách thiết kế của các service này.
+\tab Như đã trình bày ở mục \textit{\ref{subsubsec:ThietKeKienTrucTangUngDung} \nameref{subsubsec:ThietKeKienTrucTangUngDung}}, hệ thống bao gồm nhiều service được cài đặt tách biệt với nhau và có các tác dụng khác nhau.
+Trong phần này, nhóm sẽ trình bày chi tiết hơn về cách thiết kế của các service này.
 
 \subsection{Cài đặt nhóm ZAP service} \label{subsec:CaiDatNhomZapService}
 
-\tab Như đã mô tả ở phần "Nhóm ZAP service" mục ...., cài đặt nhóm ZAP service cũng là một trong những phần khó nhất trong việc xây dựng ứng dụng hệ thống.
+\tab Như đã mô tả ở phần "Nhóm ZAP service" của mục \textit{\ref{subsubsec:ThietKeKienTrucTangUngDung} \nameref{subsubsec:ThietKeKienTrucTangUngDung}}, cài đặt nhóm ZAP service cũng là một trong những phần khó nhất trong việc xây dựng ứng dụng hệ thống.
 Tuy OWASP ZAP là một công cụ được phát triển bởi tổ chức lớn và các lập trình viên kỳ cựu, nhưng quy mô của công cụ là lớn và thời lượng các thành viên hoạt động trên nó còn hạn chế.
 Điều này dẫn đến việc các tính năng của công cụ được phát triển tốt.
 Nhưng nguồn tài liệu đi kèm còn thiếu, không rõ ràng hoặc chưa có.
 Nguồn tài liệu chính thức thực sự hạn chế về số lượng lẫn chất lượng.
+
 Để có thể cài đặt các service tương tác tốt với ứng dụng ZAP,
 nhóm cần hiểu được cách hoạt động của những chức năng mà nhóm cần tương tác trong ZAP.
 Để thực hiện điều này, nhóm tiến hành các việc như nghiên cứu các tài liệu, thông tin liên quan bên ngoài nguồn chính thống;
 Sử dụng thử ứng dụng và các endpoint; Đọc mã nguồn của chính công cụ ZAP.
 Chi tiết của các cài đặt được nhóm trình bày trong các phần sau.
 
-\subsubsection{Cài đặt ZAP Client service}
+\subsubsection{Cài đặt ZAP Client service} \label{subsubsec:CaiDatZapClientService}
 
 \tab Phần cốt lõi của service được thiết kế dựa trên gói zaproxy, gói là một nhánh nhỏ của dự án ứng dụng OWASP Zed Attack Proxy hỗ trợ ứng dụng Node.js tương tác với ứng dụng ZAP dễ dàng hơn. Để liên kết một ZAP instance, nhóm cài đặt phương thức initZapClient() làm xương sống cho service, phương thức trả về đối tượng được tạo từ lớp ZapClient trong gói zaproxy.
 
@@ -55,8 +54,8 @@ Với mỗi loại quét mà hệ thống hỗ trợ, nhóm thiết kế các ph
         Nếu tham số clientId không được chỉ định rõ ràng thì phiên quét sẽ được start trên ZAP Client Shared.
         Khi đó phương thức sẽ trả về một đối tượng có chứa thứ tự của phiên quét trong ZAP instance (gọi là scan id, tên thuộc tính là scanId).
         Nếu tham số config không được chỉ định thì phương thức sẽ sử dụng cấu hình mặc định trong ZAP instance.
-        Cấu hình chi tiết cho phiên quét của ZAP Spider được mô tả trong bảng \ref{tab:ConfigSpider} ở dưới.
-        
+        Cấu hình chi tiết cho phiên quét của ZAP Spider được mô tả trong bảng \textit{\ref{tab:ConfigSpider} \nameref{tab:ConfigSpider}} ở dưới.
+
         \newpage
         \begin{tabularx}{\textwidth}{|>{\hsize=.15\hsize\centering\let\newline
           \\\arraybackslash}X|>{\hsize=.15\hsize\centering\let\newline
@@ -111,7 +110,7 @@ Với mỗi loại quét mà hệ thống hỗ trợ, nhóm thiết kế các ph
         \end{itemize}
         Nếu tham số config không được chỉ định thì phương thức sẽ sử dụng cấu hình mặc định trong ZAP instance
 
-        Cấu hình chi tiết cho phiên quét của ZAP Ajax được mô tả trong bảng \ref{tab:ConfigAjax} ở dưới.
+        Cấu hình chi tiết cho phiên quét của ZAP Ajax được mô tả trong bảng \textit{\ref{tab:ConfigAjax} \nameref{tab:ConfigAjax}} ở dưới.
 
         \begin{tabularx}{\textwidth}{|>{\hsize=.15\hsize\centering\let\newline
           \\\arraybackslash}X|>{\hsize=.15\hsize\centering\let\newline
@@ -148,17 +147,17 @@ Với mỗi loại quét mà hệ thống hỗ trợ, nhóm thiết kế các ph
           \label{tab:ConfigAjax}
         \end{tabularx}
   \item Đối với ZAP Passive, nhóm tạo phương thức passiveStart() trong service để xử lý tác vụ này.
-  Loại quét này được thực hiện và kết quả được quản lý trên phạm vi toàn ZAP instance nên không thể chạy song song nhiều phiên quét. Nên giống như ZAP Ajax, nhóm tạo một ZAP instance mới cho mỗi phiên quét.
-  
-  Như đã nhắc đến ở mục \ref*{subsec:IntroFunc}, ZAP Passive là quét thụ động và cần được bổ trợ bởi ZAP Spider hay ZAP Ajax. Vì vậy phương thức có thêm tham số exploreType. Tham số có hai giá trị là “spider“ và “ajax“, giúp cho phương thức start biết được sẽ sử dụng ZAP Spider hay ZAP Ajax để khám phá. Khi đó, cấu hình chi tiết cho phiên quét sẽ tùy theo cách khám phá mà là cấu hình chi tiết của ZAP Spider hoặc ZAP Ajax. Phương thức không có tham số config.
+        Loại quét này được thực hiện và kết quả được quản lý trên phạm vi toàn ZAP instance nên không thể chạy song song nhiều phiên quét. Nên giống như ZAP Ajax, nhóm tạo một ZAP instance mới cho mỗi phiên quét.
+
+        Như đã nhắc đến ở mục \textit{\ref{subsec:IntroFunc} \nameref{subsec:IntroFunc}}, ZAP Passive là quét thụ động và cần được bổ trợ bởi ZAP Spider hay ZAP Ajax. Vì vậy phương thức có thêm tham số exploreType. Tham số có 2 giá trị là “spider“ và “ajax“, giúp cho phương thức start biết được sẽ sử dụng ZAP Spider hay ZAP Ajax để khám phá. Khi đó, cấu hình chi tiết cho phiên quét sẽ tùy theo cách khám phá mà là cấu hình chi tiết của ZAP Spider hoặc ZAP Ajax. Phương thức không có tham số config.
   \item Đối với ZAP Active, nhóm tạo phương thức activeStart() trong service để xử lý tác vụ này.
         Loại quét này được thực hiện và kết quả được quản lý trên phạm vi toàn ZAP instance nên không thể chạy song song nhiều phiên quét, giống ZAP Passive.
         Vậy nên nhóm cũng tạo ZAP instance mới cho mỗi phiên quét.
-        
-        Như đã nhắc đến ở mục \ref*{subsec:IntroFunc}, các mục tiêu để tấn công cần được tìm trước thông qua ZAP Spider hay ZAP Ajax nên phương thức cũng có thêm tham số exploreType và cách xử lý giống với passiveStart().
+
+        Như đã nhắc đến ở mục \textit{\ref{subsec:IntroFunc} \nameref{subsec:IntroFunc}}, các mục tiêu để tấn công cần được tìm trước thông qua ZAP Spider hay ZAP Ajax nên phương thức cũng có thêm tham số exploreType và cách xử lý giống với passiveStart().
         Ngoài ra, để đảm bảo tất cả các quy tắc quét trong chức năng Scan Policy đều được áp dụng, trước khi start phiên quét, nhóm kích hoạt tất cả các quy tắc quét Scan Policy qua phương thức ascan.enableAllScanners() từ ZAP Client.
         Nếu tham số config không được chỉ định thì phương thức sẽ sử dụng cấu hình mặc định trong ZAP instance.
-        Cấu hình chi tiết cho phiên quét của ZAP Active được mô tả trong bảng \ref{tab:ConfigActive} ở dưới.
+        Cấu hình chi tiết cho phiên quét của ZAP Active được mô tả trong bảng \textit{\ref{tab:ConfigActive} \nameref{tab:ConfigActive}} ở dưới.
         \begin{tabularx}{\textwidth}{|>{\hsize=.20\hsize\centering\let\newline
           \\\arraybackslash}X|>{\hsize=.20\hsize\centering\let\newline
           \\\arraybackslash}X|>{\hsize=.40\hsize\raggedright\let\newline
@@ -234,36 +233,36 @@ Nếu start scan thành công thì các phương thức sẽ trả về đối t
 
 \begin{itemize}
   \item Đối với ZAP Spider, nhóm sử dụng phương thức spider.fullResult() từ ZAP Client để lấy full result của phiên quét.
-        Dữ liệu trả về còn thô, khó sử dụng, lưu trữ và truy xuất nên nhóm có thực hiện biến đổi lại như sau, chi tiết cách biến đổi kiểu dữ liệu được thể hiện trong hình \ref{fig:SpiderTransformData} thể hiện kiểu dữ liệu ZAP Spider full result khi mới trả về từ ZAP instance và sau khi được biến đổi.
+        Dữ liệu trả về còn thô, khó sử dụng, lưu trữ và truy xuất nên nhóm có thực hiện biến đổi lại như sau, chi tiết cách biến đổi kiểu dữ liệu được thể hiện trong hình \textit{\ref{fig:SpiderTransformData} \nameref{fig:SpiderTransformData}} thể hiện kiểu dữ liệu ZAP Spider full result khi mới trả về từ ZAP instance và sau khi được biến đổi.
         \begin{figure}[H]
           \centering
           \includegraphics[width=\textwidth]{applied-thesis-chapters/chapter-4/Quá trình biến đổi của kiểu dữ liệu ZAP Spider full result.png}
           \caption{Quá trình biến đổi của kiểu dữ liệu ZAP Spider full result}
           \label{fig:SpiderTransformData}
-    \end{figure}
+        \end{figure}
   \item Đối với ZAP Ajax nhóm sử dụng phương thức ajaxSpider.fullResult() từ ZAP Client để lấy full result và không cần thực hiện biến đổi lại.
-  \item Đối với ZAP Passive và ZAP Active, kết quả quét của hai loại này là thông tin chi tiết của các lỗ hổng tìm năng gọi là cảnh báo (alert).
-  
-  ZAP cung cấp khá nhiều tổ hợp thông tin này, mỗi tổ hợp có kiểu dữ liệu khác nhau.
-  Nhóm chọn ra hai tổ hợp thông tin sau đó dựa vào các cách thay đổi, truy xuất tùy chỉnh để có được đầy đủ thông tin.
-  Tổ hợp đầu tiên là các alert, nhóm cài đặt phương thức getClientAlerts() trong service, với tham số truyền vào là client id, để lấy danh sách tất cả các alert mà instance tìm được.
-  Phương thức getClientAlerts() sử dụng phương thức core.alerts() từ ZAP Client làm xương sống.
-  
-  Tổ hợp tiếp theo là các alert theo rủi ro (risk), gọi là alert by risk, risk là một trường chỉ độ nghiêm trọng của alert.
-  Nhóm cài đặt phương thức getClientAlertsByRisk() với tham số truyền vào là client id, hoạt động giống getClientAlerts().
-  Nhóm tự tạo một API đến ZAP bằng cách sử dụng endpoint /alert/view/alertsByRisk/ với phương thức requestPromise() từ ZAP Client để hỗ trợ phương thức này.
-  Tuy nhiên kết quả trả về khá khó sử dụng nên nhóm có thực hiện biến đổi lại như sau, chi tiết cách biến đổi kiểu dữ liệu được thể hiện trong hình \ref{fig:ActiveTransformData} thể hiện kiểu dữ liệu alert by risk của ZAP Active và ZAP Passive khi mới trả về từ ZAP instance và sau khi được biến đổi.
-  \begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{applied-thesis-chapters/chapter-4/Quá trình biến đổi của kiểu dữ liệu ZAP Active và ZAP Passive full result.png}
-    \caption{Quá trình biến đổi của kiểu dữ liệu ZAP Active và ZAP Passive full result}
-    \label{fig:ActiveTransformData}
-\end{figure}
+  \item Đối với ZAP Passive và ZAP Active, kết quả quét của 2 loại này là thông tin chi tiết của các lỗ hổng tìm năng gọi là cảnh báo (alert).
+
+        ZAP cung cấp khá nhiều tổ hợp thông tin này, mỗi tổ hợp có kiểu dữ liệu khác nhau.
+        Nhóm chọn ra 2 tổ hợp thông tin sau đó dựa vào các cách thay đổi, truy xuất tùy chỉnh để có được đầy đủ thông tin.
+        Tổ hợp đầu tiên là các alert, nhóm cài đặt phương thức getClientAlerts() trong service, với tham số truyền vào là client id, để lấy danh sách tất cả các alert mà instance tìm được.
+        Phương thức getClientAlerts() sử dụng phương thức core.alerts() từ ZAP Client làm xương sống.
+
+        Tổ hợp tiếp theo là các alert theo rủi ro (risk), gọi là alert by risk, risk là một trường chỉ độ nghiêm trọng của alert.
+        Nhóm cài đặt phương thức getClientAlertsByRisk() với tham số truyền vào là client id, hoạt động giống getClientAlerts().
+        Nhóm tự tạo một API đến ZAP bằng cách sử dụng endpoint /alert/view/alertsByRisk/ với phương thức requestPromise() từ ZAP Client để hỗ trợ phương thức này.
+        Tuy nhiên kết quả trả về khá khó sử dụng nên nhóm có thực hiện biến đổi lại như sau, chi tiết cách biến đổi kiểu dữ liệu được thể hiện trong hình \textit{\ref{fig:ActiveTransformData} \nameref{fig:ActiveTransformData}} thể hiện kiểu dữ liệu alert by risk của ZAP Active và ZAP Passive khi mới trả về từ ZAP instance và sau khi được biến đổi.
+        \begin{figure}[H]
+          \centering
+          \includegraphics[width=\textwidth]{applied-thesis-chapters/chapter-4/Quá trình biến đổi của kiểu dữ liệu ZAP Active và ZAP Passive full result.png}
+          \caption{Quá trình biến đổi của kiểu dữ liệu ZAP Active và ZAP Passive full result}
+          \label{fig:ActiveTransformData}
+        \end{figure}
 \end{itemize}
 
 \subsubsection{Cài đặt ZAP Monitor service}
 
-\tab Như đã trình bày ở mục Nhóm ZAP service của mục Thiết kế kiến trúc hệ thống tầng ứng dụng ở phần \ref{subsec:TKKienTrucHeThong}, service đóng vai trò trung gian giữa ứng dụng hệ thống và ZAP Client service.
+\tab Như đã trình bày ở phần "Nhóm ZAP service" của mục \textit{\ref{subsubsec:ThietKeKienTrucTangUngDung} \nameref{subsubsec:ThietKeKienTrucTangUngDung}}, service đóng vai trò trung gian giữa ứng dụng hệ thống và ZAP Client service.
 
 Hệ thống thực hiện tương tác với phiên quét thông qua ZAP Monitor service.
 Các tương tác với phiên quét, giống nhau với mọi loại quét, được nhóm thiết kế trong service này là start và giám sát; chia sẻ trạng thái trực tiếp; ra hiệu dừng quét.
@@ -272,24 +271,24 @@ Cách thức cài đặt cho các tương tác như sau:
 
 \begin{itemize}
   \item Với tương tác start và giám sát, các loại quét đều có thiết kế, luồng hoạt động tương tự nhau nhưng không giống nhau.
-  Nhóm cài đặt các phương thức có tên với tiền tố là tên loại quét và hậu tố là StartAndMonitor để thực hiện tác vụ này, ví dụ ajaxStartAndMonitor(), nhóm sẽ gọi ngắn gọn là StartAndMonitor.
-  
-  Luồng hoạt động chung của các StartAndMonitor gồm các bước tuần tự là start phiên quét; tạo đối tượng giám sát phiên quét và thêm đối tượng đó vào Map giám sát.
-  Monitor id là băm (hash) của đối tượng chứa client id và scan id nên đảm bảo được tính độc nhất.
-  Đối tượng giám sát phiên quét, gọi là status monitor (là connectable() trong RxJS).
-  Đối tượng dù để cho phép nhiều kết nối có thể đăng ký (subscribe) vào.
-  Status monitor gói stream status observable của phiên quét ở bên trong (stream status observable đã nhắc đến ở mục "Cài đặt ZAP Client service" phần \ref{subsec:CaiDatNhomZapService}).
-  
-  Status monitor dùng để giám sát, thực hiện các tác vụ khi phiên quét đạt tới status cần xử lý và là observable được đẩy lên làm publisher (hay gọi là đối tượng phát trạng thái, emmiter).
-  Các tác vụ tiêu biểu được thực hiện trong status monitor là:
-  \begin{itemize}
-    \item Chỉ phát status khi có thay đổi so với phiên trước (mặc định).
-    \item Lấy full result của phiên quét tương ứng từ ZAP Client service và lưu xuống database qua Database service.
-    \item Thực hiện giải phóng các tài nguyên liên quan trong quá trình quét như xóa status monitor khỏi Map giám sát, tắt phiên quét, tắt ZAP instance qua ZAP Client service.
-  \end{itemize}
-  
+        Nhóm cài đặt các phương thức có tên với tiền tố là tên loại quét và hậu tố là StartAndMonitor để thực hiện tác vụ này, ví dụ ajaxStartAndMonitor(), nhóm sẽ gọi ngắn gọn là StartAndMonitor.
+
+        Luồng hoạt động chung của các StartAndMonitor gồm các bước tuần tự là start phiên quét; tạo đối tượng giám sát phiên quét và thêm đối tượng đó vào Map giám sát.
+        Monitor id là băm (hash) của đối tượng chứa client id và scan id nên đảm bảo được tính độc nhất.
+        Đối tượng giám sát phiên quét, gọi là status monitor (là connectable() trong RxJS).
+        Đối tượng dù để cho phép nhiều kết nối có thể đăng ký (subscribe) vào.
+        Status monitor gói stream status observable của phiên quét ở bên trong (stream status observable đã nhắc đến ở mục \textit{\ref{subsubsec:CaiDatZapClientService} \nameref{subsubsec:CaiDatZapClientService}}).
+
+        Status monitor dùng để giám sát, thực hiện các tác vụ khi phiên quét đạt tới status cần xử lý và là observable được đẩy lên làm publisher (hay gọi là đối tượng phát trạng thái, emmiter).
+        Các tác vụ tiêu biểu được thực hiện trong status monitor là:
+        \begin{itemize}
+          \item Chỉ phát status khi có thay đổi so với phiên trước (mặc định).
+          \item Lấy full result của phiên quét tương ứng từ ZAP Client service và lưu xuống database qua Database service.
+          \item Thực hiện giải phóng các tài nguyên liên quan trong quá trình quét như xóa status monitor khỏi Map giám sát, tắt phiên quét, tắt ZAP instance qua ZAP Client service.
+        \end{itemize}
+
   \item Tương tác chia sẻ trạng thái trực tiếp, đặt tên tương tự StartAndMonitor là SharedStatusStream, dành cho ứng dụng hệ thống đưa status monitor lên làm publisher.
-  Publisher gửi status phiên quét cho subscriber từ ứng dụng web bằng SSE, như thiết kế ở hình \ref{fig:TTZapMonitorStartScan} của mục "Thiết kế kiến trúc hệ thống tầng ứng dụng phần" \ref{subsec:TKKienTrucHeThong}.
+        Publisher gửi status phiên quét cho subscriber từ ứng dụng web bằng SSE, như thiết kế ở hình \textit{\ref{fig:TTZapMonitorStartScan} \nameref{fig:TTZapMonitorStartScan}} ở phần "ZAP Pool" của mục \textit{\ref{subsubsec:ThietKeKienTrucTangUngDung} \nameref{subsubsec:ThietKeKienTrucTangUngDung}}.
   \item Tương tác ra hiệu dừng quét là phương thức thiết kế hỗ trợ cho những trường hợp đặc biệt, được sử dụng như một phương pháp thu gom thủ công trên hệ thống. Những trường hợp này là khi có lỗi không xác định xảy ra, thiết kế dành cho trường hợp đặc biệt. Đảm bảo không có phiên quét dư thừa, ảnh hưởng hiệu suất hệ thống.
 \end{itemize}
 
@@ -298,16 +297,18 @@ Cách thức cài đặt cho các tương tác như sau:
 \tab Nhóm sử dụng nền tảng bên thứ ba là Google Cloud Identity (GCI), một nền tảng quản lý truy cập và nhận diện người dùng, làm chủ chốt để cài đặt service này.
 Cụ thể là sử dụng chức năng Xác thực (Authentication) trong nhóm các chức năng “Sign In with Google for Web“ của nền tảng.
 Để có thể sử dụng chức năng từ nền tảng, nhóm phải tạo một Google API ID (Google API client ID) để sử dụng trên cả ứng dụng web và ứng dụng hệ thống.
-Cài đặt chi tiết liên quan đến client ID này ở phía ứng dụng web sẽ được trình bày ở mục "Cài đặt chức năng đăng ký / đăng nhập phần" \ref{subsec:CaiDatDangKyDangNhap}.
+Cài đặt chi tiết liên quan đến client ID này ở phía ứng dụng web sẽ được trình bày ở mục \textit{\ref{subsubsec:CaiDatDangKyDangNhap} \nameref{subsubsec:CaiDatDangKyDangNhap}}.
 \par
 
 Ở ứng dụng hệ thống, để tương tác được với GCI, nhóm cài đặt gói google-auth-library và sử dụng đối tượng tạo từ lớp OAuth2Client với client ID đã có. Ta sử dụng đối tượng này để kiểm tra lại token credential nằm trong cookie với phương thức verifyIdToken() từ đối tượng, cookie được ghi và gửi kèm đến từ ứng dụng web. Nếu kết quả kiểm tra là hợp lệ, ta sẽ nhận được một đối tượng chứa thông tin chi tiết của tài khoản người dùng từ GCI trả về, nhóm gọi là GgUserData.
 \par
 
-Ngoài sử dụng để xác minh token credential, service được cài đặt và sử dụng chủ yếu làm các middleware ở những API có cần xác thực người dùng. Các middleware này phối hợp tuần tự với nhau, thực hiện các công việc riêng biệt để bảo vệ API nằm dưới nó. Hai middleware đầu tiên là parseAccessTokenMdw() và parseRefreshTokenMdw(), sử dụng phương thức expressjwt từ gói express-jwt, dùng để tách và xác minh lại accessToken và refreshToken, ngoài ra còn giúp các API nằm dưới truy cập token đã tách dễ hơn. Tiếp đó là middleware authenAccessMdw() dùng để kiểm tra tồn tại hợp lệ của accessToken và refreshToken đã tách, thực hiện tạo mới accessToken cho người dùng nếu accessToken đã hết hạn.
-\par
+Ngoài sử dụng để xác minh token credential, service được cài đặt và sử dụng chủ yếu làm các middleware ở những API có cần xác thực người dùng.
+Các middleware này phối hợp tuần tự với nhau, thực hiện các công việc riêng biệt để bảo vệ API nằm dưới nó.
+Hai middleware đầu tiên là parseAccessTokenMdw() và parseRefreshTokenMdw(), sử dụng phương thức expressjwt từ gói express-jwt, dùng để tách và xác minh lại accessToken và refreshToken, ngoài ra còn giúp các API nằm dưới truy cập token đã tách dễ hơn.
+Tiếp đó là middleware authenAccessMdw() dùng để kiểm tra tồn tại hợp lệ của accessToken và refreshToken đã tách, thực hiện tạo mới accessToken cho người dùng nếu accessToken đã hết hạn.
 
-Hai token trên là hai JWT được tạo qua phương thức signJwt() trong service, phương thức được cài đặt bằng cách sử dụng gói jsonwebtoken và khóa riêng tư (private key) của ứng dụng hệ thống là ZAP\_OP\_PRIVATE\_KEY.
+Hai cookie trên là 2 JSON Web Token (JWT) token được tạo qua phương thức signJwt() trong service, phương thức được cài đặt bằng cách sử dụng gói jsonwebtoken và khóa riêng tư (private key) của ứng dụng hệ thống là ZAP\_OP\_PRIVATE\_KEY.
 
 \subsection{Cài đặt Database service}
 
@@ -317,9 +318,9 @@ Hai token trên là hai JWT được tạo qua phương thức signJwt() trong s
 Trong MongoDB, một bảng trong database gọi là Collection. Collection được đặt tên theo quy ước của MongoDB và lưu trữ các bản ghi (document) trong đó. Để tương tác với các Collection, ta cần có các đối tượng Model, mỗi Model là đại diện cho mỗi Collection trong Mongoose. Model giúp việc tương tác với MongoDB dễ dàng hơn, không cần viết các câu lệnh trực tiếp để thao tác trên cơ sở dữ liệu. Thay vào đó, ta sử dụng các phương thức có sẵn trong Model để thực hiện các thao tác tương ứng. Đồng thời, định nghĩa cấu trúc (Schema) của Collection cũng có thể được tạo trong lúc tạo Model. Để tạo các Model, ta sử dụng đối tượng đã kết nối với database và phương thức model() được cung cấp bởi thư viện mongoose.
 \par
 
-Hệ thống có bốn Model chính dành để lưu trữ dữ liệu cho target, người dùng (user), phiên quét (scan session) và kết quả quét chi tiết (scan full result). Để khởi tạo và định nghĩa các Model này, hệ thống tạo các model có tên tương ứng lần lượt là target.model, user.model, scan-session.model và scan-fullresults.model. Các Model được tạo riêng lẻ trên các tệp khác nhau và xuất đối tượng trả về của model() để chia sẻ cho các tác vụ khác.
+Hệ thống có 4 Model chính dành để lưu trữ dữ liệu cho target, người dùng (user), phiên quét (scan session) và kết quả quét chi tiết (scan full result). Để khởi tạo và định nghĩa các Model này, hệ thống tạo các model có tên tương ứng lần lượt là target.model, user.model, scan-session.model và scan-fullresults.model. Các Model được tạo riêng lẻ trên các tệp khác nhau và xuất đối tượng trả về của model() để chia sẻ cho các tác vụ khác.
 
-Vì hệ thống có nhiều loại document khác nhau trên một Collection, như Collection dành cho phiên quét cần lưu trữ bốn loại phiên quét là ZAP Spider, ZAP Ajax, ZAP Passive và ZAP Active. Nên nhóm cần cấu hình cho các Model để thực hiện tác vụ này.
+Vì hệ thống có nhiều loại document khác nhau trên một Collection, như Collection dành cho phiên quét cần lưu trữ 4 loại phiên quét là ZAP Spider, ZAP Ajax, ZAP Passive và ZAP Active. Nên nhóm cần cấu hình cho các Model để thực hiện tác vụ này.
 \par
 
 Mongoose cung cấp một tính năng cho phép định nghĩa các loại document khác nhau trong một Collection là Discriminator. Khi sử dụng Discriminator, có thể định nghĩa một Schema chung cho tất cả các document trong Collection, sau đó định nghĩa các Schema riêng cho các document con. Các Schema riêng này sẽ kế thừa từ Schema chung và bổ sung thêm các định nghĩa của riêng nó. Document của các Schema con sẽ được phân biệt dựa trên một trường phân loại gọi là discriminator key.
@@ -332,12 +333,18 @@ Mongoose cung cấp một tính năng cho phép định nghĩa các loại docum
 \tab Service sử dụng gói winston để cài đặt và cấu hình các luồng nhật ký.
 Hệ thống có thể cụ thể tạo mới hoặc hủy các log tùy chỉnh qua các phương thức registerCustomLogger() và endCustomLogger().
 Các log tùy chỉnh là các loại, đối tượng log mới.
-Nằm ngoài bốn loại log chủ yếu được trình bày ở phần "Logging service" của phần "Thiết kế kiến trúc hệ thống tầng ứng dụng" mục \ref{subsec:TKKienTrucHeThong}.
-Các luồng log ngoài hiển thị trên console còn được lưu trữ trong thư mục có tên logs, thư này đồng cấp với thư mục chứa ứng dụng. Các loại log khác nhau hay mỗi log tùy chỉnh sẽ được lưu trong tệp riêng biệt, với tên tệp (tên luồng log được đặt lúc tạo) và thời gian tương ứng.
+Nằm ngoài 4 loại log chủ yếu được trình bày ở phần "Logging service" của mục \textit{\ref{subsubsec:ThietKeKienTrucTangUngDung} \nameref{subsubsec:ThietKeKienTrucTangUngDung}}.
+
+Các luồng log ngoài hiển thị trên console còn được lưu trữ trong thư mục có tên logs, thư này đồng cấp với thư mục chứa ứng dụng.
+Các loại log khác nhau hay mỗi log tùy chỉnh sẽ được lưu trong tệp riêng biệt, với tên tệp (tên luồng log được đặt lúc tạo) và thời gian tương ứng.
 
 \section{Cài đặt chức năng hệ thống} \label{sec:CaiDatChucNangHeThong}
 
-\tab Để thống nhất thông tin chi tiết cho trạng thái của các endpoint, nhóm thiết kế ba bảng trạng thái \ref{tab:LoginStatus}, \ref{tab:ScanStatus} và \ref{tab:MgmtStatus} riêng cho hệ thống và sử dụng tùy theo các trường hợp khác nhau.
+\tab Để thống nhất thông tin chi tiết cho trạng thái của các endpoint, nhóm thiết kế 3 bảng trạng thái 
+\textit{\ref{tab:AuthStatus} \nameref{tab:AuthStatus}}
+, \textit{\ref{tab:ScanStatus} \nameref{tab:ScanStatus}} 
+và \textit{\ref{tab:MgmtStatus} \nameref{tab:MgmtStatus}} 
+riêng cho hệ thống và sử dụng tùy theo các trường hợp khác nhau.
 
 \begin{tabularx}{\textwidth}{|>{\hsize=.35\hsize\centering\let\newline
   \\\arraybackslash}X|>{\hsize=.60\hsize\raggedright\let\newline
@@ -352,6 +359,22 @@ Các luồng log ngoài hiển thị trên console còn được lưu trữ tron
   statusCode: 0
   \newlinecontenttable
   msg: "Login successfully"
+  \\
+  \hline
+  REFRESH\_TOKEN
+  \newlinecontenttable
+  \_SUCCESSFULLY
+   &
+  statusCode: 1
+  \newlinecontenttable
+  msg: "Refresh token successfully"
+  \\
+  \hline
+  LOGOUT\_SUCCESS
+   &
+  statusCode: 2
+  \newlinecontenttable
+  msg: "Logout successfully"
   \\
   \hline
   TOKEN\_NOT\_FOUND
@@ -389,8 +412,8 @@ Các luồng log ngoài hiển thị trên console còn được lưu trữ tron
   msg: "Email already used"
   \\
   \hline
-  \caption{Trạng thái cho việc xác thực người dùng (LOGIN\_STATUS)}
-  \label{tab:LoginStatus}
+  \caption{Trạng thái cho việc xác thực người dùng (AUTH\_STATUS)}
+  \label{tab:AuthStatus}
 \end{tabularx}
 
 \begin{tabularx}{\textwidth}{|>{\hsize=.35\hsize\centering\let\newline
@@ -565,9 +588,9 @@ Các luồng log ngoài hiển thị trên console còn được lưu trữ tron
   \label{tab:MgmtStatus}
 \end{tabularx}
 
-\subsection{Cài đặt chức năng đăng ký / đăng nhập và đăng xuất} \label{subsec:CaiDatDangKyDangNhap}
+\subsection{Cài đặt các chức năng quản lý phiên đăng nhập}
 
-\subsubsection{Cài đặt chức năng đăng ký / đăng nhập}
+\subsubsection{Cài đặt chức năng đăng ký / đăng nhập} \label{subsubsec:CaiDatDangKyDangNhap}
 
 \tab Nhóm sử dụng nền tảng Google Cloud Identity, một nền tảng quản lý truy cập và nhận diện người dùng, làm chủ chốt để cài đặt chức năng đăng ký/đăng nhập cho ứng dụng, cụ thể là chức năng “Sign In with Google for Web“, một trong các chức năng Xác thực (Authentication) của nền tảng. Để có thể sử dụng chức năng từ nền tảng, nhóm phải tạo một Google API ID (Google API client ID), sau nhóm sẽ gọi là Google ID.
 \par
@@ -589,11 +612,11 @@ Vì ứng dụng web được phát triển bằng React TypeScript, nên để 
 
 Sau khi đã cài đặt các thư viện nền tảng, nhóm tạo AuthGoogleButton component và thực hiện hóa các chức năng gói trong component này. Component thực hiện cấu hình GSI cho ứng dụng bằng phương thức initialize() từ đối tượng window.google.accounts.id có trong thư viện. Các cấu hình là Google ID và callback là phương thức xử lý thông tin xác thực (credential, là một JSON Web Tokens - JWT) của GSI trả về. Sau đó tiến hành nhúng nút GSI vào ứng dụng bằng phương thức renderButton() từ đối tượng window.google.accounts.id.
 
-Nhóm thiết kế một mutation endpoint với RTK Query đặt tên là login, endpoint thực hiện request với phương thức HTTP POST đến điểm /login của ứng dụng hệ thống. Endpoint nhận vào biến loại GSI credential và trả về các đối tượng trạng thái như bảng trạng thái cho việc xác thực. Đồng thời, trên hook onQueryStarted của endpoint, nhóm xử lý ghi credential vào cookie tên ggToken tại domain hiện tại. Khi người dùng thực hiện đăng nhập hoàn tất, kích hoạt login endpoint.
+Nhóm thiết kế một Mutation endpoint với RTK Query đặt tên là login, endpoint thực hiện request với phương thức HTTP POST đến điểm /auth/login của ứng dụng hệ thống. Endpoint nhận vào biến loại GSI credential và trả về các đối tượng trạng thái như bảng trạng thái cho việc xác thực. Đồng thời, trên hook onQueryStarted của endpoint, nhóm xử lý ghi credential vào cookie tên ggToken tại domain hiện tại. Khi người dùng thực hiện đăng nhập hoàn tất, kích hoạt login endpoint.
 
 Để thực hiện xác thực, ứng dụng hệ thống thực hiện kiểm tra xem người dùng có phải là người dùng mới hay không.
 Nếu người dùng là người dùng mới thì thực hiện đăng ký cùng với đăng nhập, nếu không thì thực hiện đăng nhập.
-Chi tiết trong hình \ref{fig:SignUpIn} sơ đồ luồng kiểm tra đăng nhập.
+Chi tiết của quá trình được thể hiện trong hình \textit{\ref{fig:SignUpIn} \nameref{fig:SignUpIn}}.
 
 \begin{figure}[H]
   \centering
@@ -602,27 +625,31 @@ Chi tiết trong hình \ref{fig:SignUpIn} sơ đồ luồng kiểm tra đăng nh
   \label{fig:SignUpIn}
 \end{figure}
 
-Ở bước “Verify with Google“ trong hình \ref{fig:SignUpIn} Sơ đồ quá trình đăng ký và đăng nhập, ta thực hiện xác thực credential nhận được với Google qua Authentication service.
-Ở bước cuối cùng “Response Login Success“ cũng trong hình \ref{fig:SignUpIn} sơ đồ luồng kiểm tra đăng nhập, ngoài việc thực hiện trả về các thông tin trong hình ta còn thực hiện ghi hai cookie là accessToken và refreshToken lên toàn domain của ứng dụng, bao gồm cả tên miền chính và tiên miền con. Hai token này là hai JWT được tạo qua phương thức signJwt() của Authentication service.
+Ở bước “Verify with Google“ trong hình \textit{\ref{fig:SignUpIn} \nameref{fig:SignUpIn}}, ta thực hiện xác thực credential nhận được với Google qua Authentication service.
+Ở bước cuối cùng “Response Login Success“ cũng trong hình \textit{\ref{fig:SignUpIn} \nameref{fig:SignUpIn}} sơ đồ luồng kiểm tra đăng nhập, ngoài việc thực hiện trả về các thông tin trong hình ta còn thực hiện ghi 2 cookie là accessToken và refreshToken lên toàn domain của ứng dụng, bao gồm cả tên miền chính và tiên miền con. Hai token này là 2 JWT được tạo qua phương thức signJwt() của Authentication service.
 
 Trong việc ghi cookie lên toàn domain của ứng dụng, có một vấn đề đó là nếu đang trong phiên bản phát triển, khi ứng dụng web chạy trên localhost hay 127.0.0.1 thì không nên thêm thuộc tính domain, việc chỉ định thuộc tính domain trong trường hợp này sẽ gây ra lỗi khiến cho không ghi được cookie. Lỗi này nằm ở thiết kết của cookie của HTTP. Chi tiết như sau:
 
-\textit{“Chỉ các máy chủ trong domain được chỉ định mới có thể đặt cookie cho domain và các domain phải có ít nhất hai hoặc ba dấu chấm để ngăn các miền có dạng: ".com", ".edu" và " va.us"…“} \cite{chap4bib4}
+\textit{“Chỉ các máy chủ trong domain được chỉ định mới có thể đặt cookie cho domain và các domain phải có ít nhất 2 hoặc 3 dấu chấm để ngăn các miền có dạng: ".com", ".edu" và " va.us"…“} \cite{chap4bib4}
 
 Để xử lý vấn đề này nhóm thực hiện như sau, ở phần scripts trong tệp package.json trong ứng dụng Node.js của hệ thống.
 Nhóm cài đặt đặt biến môi trường NODE\_ENV là "production" ở lệnh start và NODE\_ENV là "development" ở lệnh dev.
 Để việc đặt giá trị cho biến môi trường, để có thể tương thích trên mọi môi trường (hệ điều hành) chạy Node.js thì nhóm sử dụng gói cross-env để cài đặt, hỗ trợ thực hiện tác vụ này. Sau đó nhóm cài đặt phương thức isOnProduction() để kiểm tra giá trị biến môi trường xem ứng dụng backend đang chạy trong chế độ (mode) nào. Và trước khi tiến hành ghi cookie sẽ tiến hành kiểm tra xem ứng dụng backend đang ở mode nào, nếu đang trong development mode thì sẽ không chỉ định thuộc tính domain và ngược lại.
 
-\subsubsection{Cài đặt chức  năng đăng xuất}
+\subsubsection{Cài đặt chức năng làm mới token và đăng xuất}
 
-\tab Khi người dùng chọn đăng xuất thì ứng dụng web sẽ tiến hành làm mới dữ liệu trong auth store. Đồng thời xóa hai cookie accessToken và refreshToken đã ghi trước đó.
+\tab 
+
+Khi người dùng chọn đăng xuất thì ứng dụng web sẽ tiến hành làm mới dữ liệu trong auth store.
+Đồng thời xóa 2 cookie accessToken và refreshToken đã ghi trước đó.
 
 Khi đó biến isAuth trong auth store, được cài đặt là biến phụ thuộc (dependence) trên phạm vi toàn ứng dụng web, có giá trị thay đổi thành false. Điều này khởi chạy các logic điều hướng người dùng trong ứng dụng ra ngoài màn hình trang chủ.
 
 \subsection{Cài đặt chức năng dùng thử quét với ZAP Spider} \label{subsec:CaiDatDungThuZapSpider}
 
-\tab Ở ứng dụng web, nhóm tạo một query endpoint với RTK Query đặt tên là trialScan, endpoint thuộc loại Query endpoint, là một endpoint tùy chỉnh (custom endpoint) để có thể sử dụng SSE, streaming update, đã đề cập đến ở phần "Endpoints, Queries, Mutations, các lifecycle hook và Streaming Update" của mục \ref{sec:RTKQ}.
-Endpoint nhận vào tham số target kiểu chuỗi (string) và trả về data custom được mô tả trong bảng \ref{tab:DesDataTrial}.
+\tab Ở ứng dụng web, nhóm tạo một query endpoint với RTK Query đặt tên là trialScan thuộc loại Query endpoint.
+Đây là một endpoint tùy chỉnh (custom endpoint) để có thể sử dụng SSE, streaming update, đã đề cập đến ở phần "Các lifecycle hook và Streaming Update" của mục \textit{\ref{sec:RTKQ} \nameref{sec:RTKQ}}.
+Endpoint nhận vào tham số target kiểu chuỗi (string) và trả về data custom được mô tả trong bảng \textit{\ref{tab:DesDataTrial} \nameref{tab:DesDataTrial}}.
 
 \begin{tabularx}{\textwidth}{|>{\hsize=.15\hsize\centering\let\newline
   \\\arraybackslash}X|>{\hsize=.15\hsize\centering\let\newline
@@ -666,24 +693,24 @@ Endpoint nhận vào tham số target kiểu chuỗi (string) và trả về dat
   \label{tab:DesDataTrial}
 \end{tabularx}
 
-Để thể hiện quá trình quét đang được thực hiện, trong hook onQueryStarted của trialScan endpoint ta dùng updateCachedData để cập nhật isScanning thành true. Tiếp đến, ta tiến hành thiết lập kết nối SSE với ứng dụng hệ thống trong hook onCacheEntryAdded. Khi trialScan endpoint được gọi, quá trình xử lý ở hai phía như sau:
+Để thể hiện quá trình quét đang được thực hiện, trong hook onQueryStarted của trialScan endpoint ta dùng updateCachedData để cập nhật isScanning thành true. Tiếp đến, ta tiến hành thiết lập kết nối SSE với ứng dụng hệ thống trong hook onCacheEntryAdded. Khi trialScan endpoint được gọi, quá trình xử lý ở 2 phía như sau:
 
 Phía ứng dụng web, ta thiết lập kết nối SSE tới backend bằng cách sử dụng đối tượng EventSource trong JavaScript.
 Endpoint được sử dụng để kết nối là /scan/trial?url="URL", với URL là địa chỉ trang web cần quét.
-Sau thiết lập thành công, ta tiếp tục tạo lắng nghe sự kiện trên ba kênh “id”, “status” và “error”.
+Sau thiết lập thành công, ta tiếp tục tạo lắng nghe sự kiện trên 3 kênh “id”, “status” và “error”.
 
 \begin{itemize}
   \item Kênh “id” dùng để lắng nghe mã số định danh phiên quét (scan id) của phiên quét.
-  Nếu sự kiện gửi đến không hợp lệ thì đóng kết nối SSE và cập nhật lại isScanning thành false.
+        Nếu sự kiện gửi đến không hợp lệ thì đóng kết nối SSE và cập nhật lại isScanning thành false.
   \item Kênh “status” dùng để lắng nghe trạng thái tiến độ (progress status) của phiên quét và cập nhật lên data.
-  Mỗi khi progress được gửi đến, cập nhật progress lên data và thực hiện lần lượt hai việc.
-  \begin{itemize}
-    \item Thứ nhất là gọi yêu cầu lấy dữ liệu từ endpoint /scan/trial/results?id=scanId bằng phương thức fetch() và cập nhật dữ liệu nhận được lên data, với scanId là scan id lắng nghe được từ kênh “id” và dữ liệu nhận được là chuỗi các URL kết quả quét từ phiên ZAP Spider trong thời điểm đó.
-    Kết quả được xử lý lại nhất quán, không trùng lặp.
-    \item Thứ hai là kiểm tra điều kiện duy trì kết nối nếu giá trị status là 100 thì đóng kết nối và cập nhật lại isScanning thành false.
-    \item Kênh “error“ dùng để lắng nghe các trạng thái lỗi được gửi đến.
-  \end{itemize}
-  Nếu có bất kỳ trạng thái nào được gửi đến thì cập nhật thông tin lên error trong đối tượng data custom, đóng kết nối SSE và cập nhật isScanning thành false.
+        Mỗi khi progress được gửi đến, cập nhật progress lên data và thực hiện lần lượt hai việc.
+        \begin{itemize}
+          \item Thứ nhất là gọi yêu cầu lấy dữ liệu từ endpoint /scan/trial/results?id=scanId bằng phương thức fetch() và cập nhật dữ liệu nhận được lên data, với scanId là scan id lắng nghe được từ kênh “id” và dữ liệu nhận được là chuỗi các URL kết quả quét từ phiên ZAP Spider trong thời điểm đó.
+                Kết quả được xử lý lại nhất quán, không trùng lặp.
+          \item Thứ hai là kiểm tra điều kiện duy trì kết nối nếu giá trị status là 100 thì đóng kết nối và cập nhật lại isScanning thành false.
+          \item Kênh “error“ dùng để lắng nghe các trạng thái lỗi được gửi đến.
+        \end{itemize}
+        Nếu có bất kỳ trạng thái nào được gửi đến thì cập nhật thông tin lên error trong đối tượng data custom, đóng kết nối SSE và cập nhật isScanning thành false.
 \end{itemize}
 
 Phía ứng dụng hệ thống, cài đặt chức năng quét này khác biệt so với các chức năng quét khác.
@@ -693,7 +720,7 @@ Phía ứng dụng hệ thống, cài đặt chức năng quét này khác biệ
 
 Cuối cùng start phiên quét và thực hiện đăng ký kết nối của ứng dụng web cho satus monitor tương ứng bằng ZAP Monitor service.
 Phiên quét được start với các cấu hình mặc định cài đặt sẵn cho chức năng dùng thử với ZAP Spider.
-Các cấu hình được biểu diễn chi tiết trong bảng \ref{tab:ConfigSpiderDefault}.
+Các cấu hình được biểu diễn chi tiết trong bảng \textit{\ref{tab:ConfigSpiderDefault} \nameref{tab:ConfigSpiderDefault}}.
 
 \begin{tabularx}{\textwidth}{|>{\hsize=.45\hsize\centering\let\newline
   \\\arraybackslash}X|>{\hsize=.45\hsize\centering\let\newline
@@ -737,7 +764,7 @@ Các cấu hình được biểu diễn chi tiết trong bảng \ref{tab:ConfigS
 
 \tab Để thêm mới target, ở ứng dụng web, nhóm cài đặt addTarget endpoint là một Mutation endpoint, endpoint thực hiện request HTTP POST đến /management/target.
 Để đánh dấu danh sách target trong cache đã cũ sau khi thêm mới thì nhóm thêm tag TARGET\_TAG, giống với getTarget endpoint, cho hook invalidatesTags trong endpoint.
-Ở ứng dụng hệ thống, thực hiện kiểm tra lại target với phương thức isValidURL() (đã nhắc đến ở mục \ref{subsec:CaiDatDungThuZapSpider}) và kiểm tra target có bị trùng tên với nhóm các target đã có của người dùng không. Nếu tất cả đều thỏa thì thêm target vào database. Endpoint gửi và nhận về kết quả trạng thái tương ứng trong bảng MGMT\_STATUS.
+Ở ứng dụng hệ thống, thực hiện kiểm tra lại target với phương thức isValidURL() (đã nhắc đến ở mục \textit{\ref{subsec:CaiDatDungThuZapSpider} \nameref{subsec:CaiDatDungThuZapSpider}}) và kiểm tra target có bị trùng tên với nhóm các target đã có của người dùng không. Nếu tất cả đều thỏa thì thêm target vào database. Endpoint gửi và nhận về kết quả trạng thái tương ứng trong bảng MGMT\_STATUS.
 
 Để xóa target, ở dứng dụng web, nhóm cài đặt moveToTrashTarget endpoint loại Mutation endpoint, thực hiện request HTTP DELETE đến /management/target?id=”ID” với ID là id của target.
 
@@ -747,7 +774,14 @@ Các cấu hình được biểu diễn chi tiết trong bảng \ref{tab:ConfigS
 
 \subsubsection{Cài đặt chức năng tìm mục tiêu theo tên}
 
-\tab Để thực hiện chức năng này, nhóm chỉ thực hiện cài đặt ở phía ứng dụng web. Danh sách các target được nhóm phân biệt theo hai đối đượng. Một là đối tượng danh sách các target có từ endpoint gọi là listTarget, hai là danh sách các target dùng để hiển thị gọi là listShowTarget. listShowTarget là một đối tượng được phản chiếu từ listTarget, các thay đổi trên thanh tìm kiếm sẽ thực hiện lọc và thay đổi listShowTarget.
+\tab Để thực hiện chức năng này, nhóm chỉ thực hiện cài đặt ở phía ứng dụng web. Danh sách các target được nhóm phân biệt theo 2 đối đượng.
+
+\begin{itemize}
+  \item listTarget: Là đối tượng danh sách các target có được từ endpoint.
+  \item listShowTarget: Là danh sách các target dùng để hiển thị.
+\end{itemize}
+
+listShowTarget là một đối tượng được phản chiếu từ listTarget, các thay đổi trên thanh tìm kiếm sẽ thực hiện lọc và thay đổi listShowTarget.
 
 Khi thực hiện tác vụ trên, nhóm gặp vấn đề vì thông tin trong thanh tìm kiếm là thông tin được nhập từ người dùng, nên tác vụ lọc sẽ được thực hiện rất nhiều lần khi thông tin tìm kiếm thay đổi. Đều này gây ra vấn đề hiệu suất và hiển thị. Để giải quyết vấn đề trên nhóm cài đặt custom hook useDebounceEffect(), sử dụng kỹ thuật debounce, để kiểm soát tầng suất thực hiện tác vụ. Sau đó, nhóm thực hiện bao tác vụ tìm kiếm và lọc trong hook này để khi người dùng dừng thay đổi thông tin tìm kiểm trong một khoảng thời gian thì mới thực hiện lọc. Khoảng thời gian nhóm cài đặt là 300 mili giây.
 
@@ -757,14 +791,15 @@ Khi thực hiện tác vụ trên, nhóm gặp vấn đề vì thông tin trong 
 
 Để biết được target nào cần quét và sử dụng các loại quét nào, nhóm tạo một đối tượng danh sách các target được chọn trong store gọi là listSelectedTarget và một đối tượng lưu thông tin trạng thái các lựa chọn quét gọi là scanOption. Đối tượng listSelectedTarget là một mảng có các phần tử là đối tượng chứa một số thông tin của target, thông tin tiêu biểu là target id. Đối tượng scanOption là một đối tượng chứa thông tin trạng thái bật tắt của các loại quét. Cùng với đó, nhóm tạo các reducer tương ứng trong store để thực hiện thay đổi, thêm bớt cho các đối tượng này.
 
-Ở giao diện web, theo cách tạo phiên quét bình thường, người dùng phải trải qua hai bước thiết lập là chọn các target trong danh sách và cấu hình các phiên quét.
+Ở giao diện web, theo cách tạo phiên quét bình thường, người dùng phải trải qua 2 bước thiết lập là chọn các target trong danh sách và cấu hình các phiên quét.
 Ở đây nhóm sẽ gọi đến các reducer tương ứng để lưu thông tin vào các đối tượng trong store. Cách tiếp cận này giúp nhóm có thể cài đặt hiển thị bền vững thông tin trạng thái của các lựa chọn trong màn hình, có nghĩa nếu đang trong quá trình tạo phiên quét, người dùng có di chuyển khỏi màn hình thì trạng thái của các lựa chọn cũng không mất đi.
 
 Nhờ cách cài đặt này, người dùng có thể sử dụng chức năng này như chức năng tạo nhiều phiên quét cùng lúc.
 Để bắt đầu xử lý gọi các phiên quét, nhóm tạo một custom hook tên useDigestTargetsWithOptions().
 Hook sẽ được gọi khi người dùng chọn bắt đầu quét sau khi đã thực hiện lựa chọn xong.
 Hook gọi đến lần lượt các trạng thái trong scanOption, ở mỗi trạng thái nếu là true thì sẽ duyệt listSelectedTarget và tạo phiên quét tương ứng với id target đó, gọi đến endpoint dùng để quét đã trình bày ở trên.
-Sau khi hoàn thành mỗi lần start scan cho mỗi phiên quét, để làm mới lại danh sách phiên quét thì nhóm thực hiện đánh dấu cũ cho tag của endpoint lấy danh sách phiên quét (sẽ được trình bày trong mục \ref{subsec:CaiDatQuanLyPhienQuet}).
+
+Sau khi hoàn thành mỗi lần start scan cho phiên quét, để làm mới lại danh sách phiên quét thì nhóm thực hiện đánh dấu cũ cho tag của endpoint lấy danh sách phiên quét (sẽ được trình bày trong mục \textit{\ref{subsec:CaiDatQuanLyPhienQuet} \nameref{subsec:CaiDatQuanLyPhienQuet}}).
 Sau khi hoàn thành thì hook gọi đến reducer tương ứng để làm mới listSelectedTarget và scanOption.
 
 Ở ứng dụng hệ thống, vì các endpoint trong này cần xác minh nên sẽ được đặt dưới các middleware xác thực.
@@ -775,7 +810,7 @@ Quá trình thực hiện start scan tương tự nhau và được thể hiện
   \item Bước 1: Xác minh sự tồn tại của target trong database thông qua target id. Nếu không target không tồn tại thì trả về đối tượng trạng thái TARGET\_FIND\_FAILED với HTTP\ 400.
   \item Bước 2: Lấy URL trong target ra và tiếp tục kiểm tra sự hợp lệ của URL. Nếu không hợp lệ thì trả về đối tượng trạng thái INVALID\_URL với HTTP\ 400.
   \item Bước 3: Tạo mới đối tượng scan session thông qua đối tượng scan-session.model. Với các dữ liệu là thông tin target, người dùng và cấu hình của phiên.
-  \item Bước 4: Bắt đầu start và monitor phiên quét thông qua ZAP Monitor service. Ở đây ZAP Monitor service sẽ trả về một đối tượng định danh phiên quét, như đã nhắc ở phần "Cài đặt ZAP Client service" của mục \ref{subsec:CaiDatNhomZapService}.
+  \item Bước 4: Bắt đầu start và monitor phiên quét thông qua ZAP Monitor service. Ở đây ZAP Monitor service sẽ trả về một đối tượng định danh phiên quét, như đã nhắc ở mục \textit{\ref{subsubsec:CaiDatZapClientService} \nameref{subsubsec:CaiDatZapClientService}}.
   \item Bước 5: Kiểm tra đối tượng định danh phiên quét được trả về ở bước trên. Nếu đối tượng tồn tại thì tiếp tục. Nếu đối tượng không xác định nghĩa là phiên quét start không thành công. Khi đó thực hiện cập nhật trạng thái quét của scan session là FAILED và lưu đối tượng vào database. Bước tiếp theo trả về đối tượng trạng thái ZAP\_INITIALIZE\_FAIL với HTTP\ 500.
 \end{itemize}
 
@@ -783,7 +818,7 @@ Quá trình thực hiện start scan tương tự nhau và được thể hiện
 Mà mỗi mục tùy theo loại phiên quét mà sử dụng endpoint khác nhau.
 Nhưng không thể cài đặt theo cấu trúc điều kiện cho mỗi mục trong trường hợp này, vì endpoint là hook và React không cho phép sử dụng hook trong cấu trúc điều kiện.
 Nhóm giải quyết vấn đề này bằng cách tạo từng component cho từng mục khác nhau, với mỗi mục thuộc mỗi loại phiên quét.
-Trong component, thực hiện gọi hook endpoint kết nối SSE trên loại component tương ứng. 
+Trong component, thực hiện gọi hook endpoint kết nối SSE trên loại component tương ứng.
 
 \subsection{Cài đặt chức năng quản lý phiên quét} \label{subsec:CaiDatQuanLyPhienQuet}
 
@@ -791,15 +826,26 @@ Trong component, thực hiện gọi hook endpoint kết nối SSE trên loại 
 
 Ở ứng dụng hệ thống, vì các endpoint cần xác minh nên được đặt dưới các middleware xác thực. Danh sách được lấy thông qua scan-session.model với định danh người dùng tương ứng, sắp xếp theo thứ tự giảm dần ở thuộc tính updateAt. Vì nhóm cần thêm thông tin của target kèm với thông tin của scan session tương ứng, nên nhóm sử dụng chức năng Population của mongoose (chức năng thay thế đại diện cho \$lookup aggregation của MongoDB). Khi cài đặt Schema cho scan-session.model, nhóm tạo tham chiếu đến id của document target, và khi truy xuất scan session nhóm sử dụng phương thức populate() để kèm theo thông tin của target tương ứng.
 
-\subsubsection{Cài đặt chức năng xem trạng thái phiên quét}
+\subsubsection{Cài đặt chức năng xem trạng thái phiên quét} \label{subsubsec:CaiDatXemTrangThaiPhienQuet}
 
-\tab Để thể hiện thông tin trạng thái của một phiên quét trong danh sách quét, nhóm thiết lập hai loại thông tin là thông tin trạng thái (state) và thông tin trạng thái tiến triển (progess). State chỉ trạng thái hiện tại của phiên quét và được thể hiện trong dữ liệu của phiên quét đó. Có 3 loại state là PROCESSING, SUCCESSFUL và FAILED. Progress là thông chỉ tiến độ của phiên quét khi phiên quét đang trong state PROCESSING, vì vậy chỉ khi state của phiên quét là PROCESSING thì progress mới hiển thị. Tùy theo từng loại quét mà progress sẽ thể hiện khác nhau.
+\tab Để thể hiện thông tin trạng thái của một phiên quét trong danh sách quét, nhóm thiết lập 2 loại thông tin là:
+
+\begin{itemize}
+  \item Thông tin trạng thái (state): Chỉ trạng thái hiện tại của phiên quét và được thể hiện trong dữ liệu của phiên quét đó.
+  Có 3 loại state là PROCESSING, SUCCESSFUL và FAILED.
+  \item Thông tin trạng thái tiến triển (progess): Chỉ tiến độ của phiên quét khi phiên quét đang trong state PROCESSING, vì vậy chỉ khi state của phiên quét là PROCESSING thì progress mới hiển thị.
+  Tùy theo từng loại quét mà progress sẽ thể hiện khác nhau.
+\end{itemize}
 
 Để có được thông tin progress của phiên quét, ở ứng dụng web, nhóm cài đặt lần lượt các endpoint cho các loại phiên quét với các tên streamSpiderScan, streamAjaxScan, streamPassiveScan, streamActiveScan.
-Các endpoint đều là Query endpoint và là custom endpoint để streaming update, đã đề cập đến ở phần "Endpoints, Queries, Mutations, các lifecycle hook và Streaming Update" của mục \ref{sec:RTKQ}.
+Các endpoint đều là Query endpoint và là custom endpoint để streaming update, đã đề cập đến ở phần "Các lifecycle hook và Streaming Update" của mục \textit{\ref{sec:RTKQ} \nameref{sec:RTKQ}}.
+
 Các endpoint này nhận vào tham số để định danh phiên quét tương ứng của nó ở ứng dụng hệ thống và trả về đối tượng data custom.
-Đối tượng data custom có các thuộc tính tương như các thuộc tính được mô tả trong bảng "\ref{tab:DesDataTrial} Mô tả các thuộc tính của đối tượng data custom trong trialScan endpoint" của mục \ref{subsec:CaiDatDungThuZapSpider}.
-Tuy nhiên, đối tượng không có thuộc tính data và thuộc tính progress sẽ có kiểu và giá trị tùy theo loại phiên quét. Nếu phiên quét thuộc loại ZAP Spider và ZAP Active thì thuộc tính progress sẽ là kiểu số và có giá trị từ 0 đến 100. Nếu phiên quét thuộc loại ZAP Ajax và ZAP Passive thì thuộc tính progress sẽ là kiểu chuỗi và có giá trị là “running“ hoặc “stopped“.
+Đối tượng data custom có các thuộc tính tương như các thuộc tính được mô tả trong bảng \textit{\ref{tab:DesDataTrial} \nameref{tab:DesDataTrial}} của mục \textit{\ref{subsec:CaiDatDungThuZapSpider} \nameref{subsec:CaiDatDungThuZapSpider}}.
+Tuy nhiên, đối tượng không có thuộc tính data và thuộc tính progress sẽ có kiểu và giá trị tùy theo loại phiên quét.
+
+Nếu phiên quét thuộc loại ZAP Spider và ZAP Active thì thuộc tính progress sẽ là kiểu số và có giá trị từ 0 đến 100.
+Nếu phiên quét thuộc loại ZAP Ajax và ZAP Passive thì thuộc tính progress sẽ là kiểu chuỗi và có giá trị là “running“ hoặc “stopped“.
 
 Các endpoint tiến hành thiết lập kết nối SSE với ứng dụng hệ thống trong hook onCacheEntryAdded bằng EventSource. Các endpoint được sử dụng để kết nối lần lượt tương ứng là \\
 /scan/zap/spider?scanSession=”sessionId”\&zapScanId=”zapScanId”, \\
@@ -808,12 +854,12 @@ Các endpoint tiến hành thiết lập kết nối SSE với ứng dụng hệ
 active?scanSession=”sessionId”\&zapClientId=”zapClientId” với sessionId là định danh document của phiên quét, zapScanId và zapClientId chính là thông tin định danh của đối tượng đang thực hiện phiên quét.
 
 Khi endpoint được gọi, endpoint cập nhật isScanning thành true trên hook onQueryStarted trước rồi thực hiện kết nối SSE với ứng dụng hệ thống trong hook onCacheEntryAdded.
-Sau khi thiết lập thành công, tạo lắng nghe sự kiện trên hai kênh “status” và “error”.
+Sau khi thiết lập thành công, tạo lắng nghe sự kiện trên 2 kênh “status” và “error”.
 \begin{itemize}
   \item Kênh “status” lắng nghe thông tin progress của phiên quét.
-  Mỗi khi trạng thái được gửi đến, thực hiện cập nhật progress lên data và kiểm tra điều kiện duy trì kết nối nếu giá trị status là 100 hoặc “stopped“ thì đóng kết nối và cập nhật lại isScanning thành false.
+        Mỗi khi trạng thái được gửi đến, thực hiện cập nhật progress lên data và kiểm tra điều kiện duy trì kết nối nếu giá trị status là 100 hoặc “stopped“ thì đóng kết nối và cập nhật lại isScanning thành false.
   \item Kênh “error“ dùng để lắng nghe các trạng thái lỗi được gửi đến.
-  Nếu trạng thái được gửi đến thì cập nhật thông tin lên error trong đối tượng data custom, đóng kết nối SSE và cập nhật isScanning thành false.
+        Nếu trạng thái được gửi đến thì cập nhật thông tin lên error trong đối tượng data custom, đóng kết nối SSE và cập nhật isScanning thành false.
 \end{itemize}
 
 Phía ứng dụng hệ thống, quá trình thực hiện kết nối streamming update tương tự nhau trên các endpoint. Quá trình được thực hiện qua các bước:
@@ -827,39 +873,53 @@ Phía ứng dụng hệ thống, quá trình thực hiện kết nối streammin
 
 Ở ứng dụng web, khi thực hiện chức năng này, nhóm gặp khó khăn vì danh sách phiên quét sẽ hiển thị nhiều mục phiên quét và mỗi mục tùy theo loại phiên quét mà sử dụng endpoint khác nhau. Không cài đặt theo cấu trúc điều kiện cho mỗi mục trong trường hợp này, vì endpoint là hook và React không cho phép sử dụng hook trong cấu trúc điều kiện. Nhóm giải quyết vấn đề này bằng cách tạo từng component cho từng mục khác nhau, với mỗi mục thuộc mỗi loại phiên quét. Thực hiện gọi hook endpoint kết nối SSE trên loại component tương ứng.
 
-\subsubsection{Cài đặt chức năng xem kết quả chi tiết phiên quét}
+\subsubsection{Cài đặt chức năng xem kết quả quét chi tiết} \label{subsubsec:CaiDatChucNangXemKetQuaQuetChiTiet}
 
-\tab Ở ứng dụng web, khi người dùng chọn vào một phiên quét trong danh sách quét được hiển thị, người dùng sẽ được đưa đến màn hình hiển thị thông tin chi tiết của phiên quét. Mỗi loại phiên quét khác nhau sẽ có cách hiển thị thông tin khác nhau. Xét chung, thông tin chi tiết phiên quét của các loại đều có hai phần là thông tin chi tiết của phiên quét (scan session) và thông tin chi tiết kết quả (full result).
+\tab Ở ứng dụng web, khi người dùng chọn vào một mục phiên quét trong danh sách quét được hiển thị, người dùng sẽ được đưa đến màn hình kết quả quét chi tiết của phiên quét.
+Mỗi loại phiên quét khác nhau sẽ có cách hiển thị khác nhau.
+Xét chung, kết quả quét chi tiết của các loại quét đều có 2 phần là thông tin chi tiết của phiên quét (scan session) và thông tin chi tiết kết quả (full result).
 
-Thông tin chi tiết của phiên quét được trích xuất từ data cache của endpoint getScanSession. Để tối ưu số lần gọi endpoint, nếu người dùng di chuyển vào màn hình khi data cache của endpoint getScanSession có tồn tại thì dữ liệu sẽ được trích xuất ở đó. Nếu data cache của endpoint getScanSession không tồn tại, ví dụ như trường hợp người dùng tải lại trang tại màn hình này, thì sẽ gọi đến endpoint.
+Thông tin chi tiết của scan session được trích xuất từ data cache của endpoint getScanSession.
+Để tối ưu số lần gọi endpoint, nếu người dùng di chuyển vào màn hình khi data cache của endpoint getScanSession có tồn tại thì dữ liệu sẽ được trích xuất ở đó.
+Nếu data cache của endpoint getScanSession không tồn tại, ví dụ như trường hợp người dùng tải lại trang tại màn hình này, thì sẽ gọi đến endpoint.
 
-Để có được thông tin chi tiết kết quả thì ta cần có id của chính phiên quét đó.
+Để có được thông tin full result thì ta cần có session id của chính phiên quét đó.
 Id này sẽ được lấy từ scan session ở trên.
 Để lấy full result, nhóm tạo các endpoint với các loại scan session tương ứng.
 Các endpoint này đều là Query endpoint, endpoint thực hiện request HTTP GET đến các điểm \\
-spider/fullResults?scanSession=${sessionId},\\
-ajax/fullResults?scanSession=${sessionId},\\
-passive/fullResults?scanSession=${sessionId},\\
-active/fullResults?scanSession=${sessionId} với sessionId là scan session id ta có.
+spider/fullResults?scanSession=\$\{sessionId\},\\
+ajax/fullResults?scanSession=\$\{sessionId\},\\
+passive/fullResults?scanSession=\$\{sessionId\},\\
+active/fullResults?scanSession=\$\{sessionId\} với sessionId là scan session id ta có.
 Tùy vào endpoint của từng loại quét mà kết quả sẽ khác nhau. Ở ứng dụng hệ thống, endpoint này của các loại quét được thiết kế xác thực, kiểm tra và truy vấn dữ liệu như thường.
 
-Ở ứng dụng web, cách thể hiện giao diện màn hình của các loại quét cũng khác nhau.
-Để thể hiện đầy đủ thông tin kết quả của phiên quét, nhóm thiết kế như sau.
-Màn hình của mọi loại quét đều có hiển thị phần thông tin chi tiết của scan session, mục cấu hình sẽ khác nhau theo cấu trúc tương ứng loại quét, đã được mô tả ở phần "Cài đặt ZAP Client service" mục \ref{subsec:CaiDatNhomZapService}.
+Ở ứng dụng web, cách thể hiện giao diện màn hình kết quả quét chi tiết của các loại quét cũng khác nhau.
+Để thể hiện đầy đủ thông tin kết quả quét chi tiết, nhóm thiết kế như sau.
+Màn hình của mỗi loại quét đều có hiển thị phần thông tin chi tiết của scan session, cấu trúc mục cấu hình sẽ khác nhau tương ứng với từng loại quét, như được mô tả ở mục \textit{\ref{subsubsec:CaiDatZapClientService} \nameref{subsubsec:CaiDatZapClientService}}.
 
-Phần tiếp theo trong màn hình là thông tin full result, để hiển thị full result của từng loại kết quả, nhóm phân giao diện phần này thành hai dạng chính. Một là dạng danh sách bảng các URL và hai là dạng chi tiết cảnh báo (alerts detail). Ở màn hình của phiên quét loại ZAP Spider và ZAP Ajax sẽ sử dụng các thành phần dạng danh sách bảng các URL. Và loại ZAP Passive và ZAP Active sẽ sử dụng các thành phần dạng alerts detail. Trong một alerts detail sẽ có 3 phần là tóm tắt cảnh báo (alerts summary), thông tin cảnh báo (alerts information) và chi tiết các cảnh báo (alerts detail).
+Phần tiếp theo trong màn hình là thông tin full result, để hiển thị full result của từng loại kết quả, nhóm phân giao diện phần này thành 2 dạng chính.
+Hai dạng đó là dạng danh sách bảng các URL và dạng chi tiết cảnh báo (alerts detail).
+Ở màn hình kết quả quét chi tiết, các loại ZAP Spider và ZAP Ajax sẽ sử dụng các thành phần dạng danh sách bảng các URL.
+Và loại ZAP Passive và ZAP Active sẽ sử dụng các thành phần dạng alerts detail.
+Trong một alerts detail sẽ có 3 phần là tóm tắt cảnh báo (alerts summary), thông tin cảnh báo (alerts information) và chi tiết các cảnh báo (alerts detail).
 
-Tương tự như phần "Cài đặt chức năng xem trạng thái phiên quét" mục \ref{subsec:CaiDatQuanLyPhienQuet}, vì React không cho phép sử dụng hook trong cấu trúc điều kiện. Nên nhóm phải cài đặt từng loại thành phần thông tin cho từng loại quét khác nhau. Và màn hình hiển thị thông tin chi tiết sẽ sử dụng các thành phần này tương ứng với nhu cầu.
+Tương tự như mục \textit{\ref{subsubsec:CaiDatXemTrangThaiPhienQuet} \nameref{subsubsec:CaiDatXemTrangThaiPhienQuet}}, vì React không cho phép sử dụng hook trong cấu trúc điều kiện. Nên nhóm phải cài đặt từng loại thành phần thông tin cho từng loại quét khác nhau. Và màn hình hiển thị thông tin chi tiết sẽ sử dụng các thành phần này tương ứng với nhu cầu.
 
-\subsubsection{Cài đặt chức năng xuất tệp PDF kết quả chi tiết phiên quét}
+\subsubsection{Cài đặt chức năng xuất tệp PDF báo cáo kết quả quét chi tiết} \label{subsubsec:CaiDatChucNangXuatTepPDF}
 
-\tab Khi đang trong màn hình hiển thị thông tin chi tiết của phiên quét, người dùng có thể xuất tệp PDF cho thông tin chi tiết này. Mỗi loại quét khác nhau sẽ có cấu trúc tệp PDF khác nhau. Tệp PDF này là phiên bản đầy đủ nhất, tham chiếu với dữ liệu của scan session và full result mà hệ thống lưu trữ.
+\tab Khi đang trong màn hình hiển thị thông tin kết quả quét chi tiết, người dùng có thể xuất tệp PDF cho thông tin kết quả này.
+Mỗi loại quét khác nhau sẽ có cấu trúc tệp PDF khác nhau.
+Tệp PDF này là phiên bản đầy đủ nhất, tham chiếu với dữ liệu của scan session và full result mà hệ thống lưu trữ.
 
-Chức năng này được thực hiện bởi ứng dụng web. Để tương tác với tệp PDF bằng TypeScript, nhóm sử dụng gói jspdf là một thư viện mã nguồn mở được viết bằng JavaScript, cho phép tạo và xuất các tài liệu PDF trên trình duyệt web. Tuy nhiên, nhu cầu của nhóm đa phần là tạo bảng nhưng việc tạo bảng thông qua gói sẽ tạo ra rất nhiều công việc nằm ngoài phạm vi của khóa luận. Để có thể tạo bảng trong tệp PDF, nhóm đã tìm và sử dụng thêm gói jspdf-autotable là một phần mở rộng của gói jspdf. Gói jspdf-autotable có các tính năng hỗ trợ tạo bảng dữ liệu trong tài liệu PDF từ mảng dữ liệu, định dạng cột và hàng, tùy chỉnh chiều rộng của cột, chèn hình ảnh và các siêu liên kết vào bảng, và tạo các trang PDF có kích thước tùy chỉnh.
+Chức năng này được thực hiện bởi ứng dụng web.
+Để tương tác với tệp PDF bằng TypeScript, nhóm sử dụng gói jspdf là một thư viện mã nguồn mở được viết bằng JavaScript, cho phép tạo và xuất các tài liệu PDF trên trình duyệt web.
+Tuy nhiên, nhu cầu của nhóm đa phần là tạo bảng nhưng việc tạo bảng thông qua gói sẽ tạo ra rất nhiều công việc nằm ngoài phạm vi của khóa luận.
+Để có thể tạo bảng trong tệp PDF, nhóm đã tìm và sử dụng thêm gói jspdf-autotable là một phần mở rộng của gói jspdf.
+Gói jspdf-autotable có các tính năng hỗ trợ tạo bảng dữ liệu trong tài liệu PDF từ mảng dữ liệu, định dạng cột và hàng, tùy chỉnh chiều rộng của cột, chèn hình ảnh và các siêu liên kết vào bảng, và tạo các trang PDF có kích thước tùy chỉnh.
 
 Tuy sự hỗ trợ mạnh mẽ từ gói, nhưng về bản chất đây là một tác vụ duyệt và ghi tệp PDF một cách thủ công.
 Nên nhóm cần phải thực hiện một khối công việc nhất định cho chức năng này.
 Tùy theo từng loại quét mà nội dung của tệp sẽ khác nhau.
-Nhưng vẫn thứ tự xắp xếp và các dạng thông tin trong tệp được cấu trúc tương tự như đã nhắc ở phần "Cài đặt chức năng xem kết quả chi tiết phiên quét" của mục \ref{subsec:CaiDatQuanLyPhienQuet}.
+Thứ tự xắp xếp cấu trúc thông tin trong tệp tương tự như đã nhắc ở mục \textit{\ref{subsubsec:CaiDatChucNangXemKetQuaQuetChiTiet} \nameref{subsubsec:CaiDatChucNangXemKetQuaQuetChiTiet}}.
 
-Khi thực hiện chức năng này, nhóm gặp phải khó khăn đó là cộng đồng sử dụng tệp PDF trên ứng dụng web tuy lớn, nhưng phát triển không mạnh. Các công cụ hỗ trợ đa dạng nhưng chưa thực sự tốt và phù hợp với nhu cầu của chức năng. Tài liệu của các công cụ còn hạn chế. Để lựa chọn được gói phù hợp để thực hiện chức năng, nhóm thực hiện dùng thử hết các gói đến khi có gói phù hợp. Cuối cùng nhóm đúc kết được kết quả sử dụng kết hợp hai gói là jspdf và jspdf-autotable để thực hiện chức năng này.
+Khi thực hiện chức năng này, nhóm gặp phải khó khăn đó là cộng đồng sử dụng tệp PDF trên ứng dụng web tuy lớn, nhưng phát triển không mạnh. Các công cụ hỗ trợ đa dạng nhưng chưa thực sự tốt và phù hợp với nhu cầu của chức năng. Tài liệu của các công cụ còn hạn chế. Để lựa chọn được gói phù hợp để thực hiện chức năng, nhóm thực hiện dùng thử hết các gói đến khi có gói phù hợp. Cuối cùng nhóm đúc kết được kết quả sử dụng kết hợp 2 gói là jspdf và jspdf-autotable để thực hiện chức năng này.
