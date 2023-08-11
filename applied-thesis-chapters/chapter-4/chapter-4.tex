@@ -130,6 +130,7 @@ Với mỗi loại quét mà hệ thống hỗ trợ, nhóm thiết kế các ph
           false
            &
           Nếu tham số có giá trị là “true” thì mọi URL nằm ngoài phạm vi sẽ bị bỏ qua.
+          Trong phạm vi giải pháp, vì chưa cung cấp giải pháp cấu hình phạm vi nên giá trị của tham số này chưa thể thay đổi khác "false".
           \\
           \hline
           contextName
@@ -804,15 +805,20 @@ Khi thực hiện tác vụ trên, nhóm gặp vấn đề vì thông tin trong 
 
 \tab Để có thể gửi yêu cầu quét của các loại quét cho ứng dụng back end, ở ứng dụng front end, nhóm cài đặt lần lượt các endpoint cho các loại quét với các tên spiderScan, ajaxScan, passiveScan, activeScan. Các endpoint này đều là Mutation endpoint thực hiện request HTTP POST đến lần lượt các điểm /scan/zap/spider, /scan/zap/ajax, /scan/zap/passive, /scan/zap/active. Các endpoint này đều gửi thông tin target cần quét, riêng passiveScan và activeScan thì cần thêm thông tin exploreType.
 
-Để biết được target nào cần quét và sử dụng các loại quét nào, nhóm tạo một đối tượng danh sách các target được chọn trong store gọi là listSelectedTarget và một đối tượng lưu thông tin trạng thái các lựa chọn quét gọi là scanOption. Đối tượng listSelectedTarget là một mảng có các phần tử là đối tượng chứa một số thông tin của target, thông tin tiêu biểu là target id. Đối tượng scanOption là một đối tượng chứa thông tin trạng thái bật tắt của các loại quét. Cùng với đó, nhóm tạo các reducer tương ứng trong store để thực hiện thay đổi, thêm bớt cho các đối tượng này.
+Để biết được target nào cần quét, sử dụng các loại quét nào và có cấu hình tùy chỉnh như thế nào.
+Trong store, nhóm tạo đối tượng listSelectedTarget để lưu danh sách các target được chọn, đối tượng scanOption để lưu thông tin trạng thái các lựa chọn quét và đối tượng scanConfig để lưu thông tin trạng thái các cấu hình quét tùy chỉnh.
+Đối tượng listSelectedTarget là một mảng có các phần tử là đối tượng chứa một số thông tin của target, thông tin tiêu biểu là target id.
+Đối tượng scanOption là một đối tượng chứa thông tin trạng thái bật tắt của các loại quét.
+Đối tượng scanConfig cũng tương tự như đối tượng scanOption nhưng dùng để chứa cấu hình.
+Cùng với đó, nhóm tạo các reducer tương ứng trong store để thực hiện thay đổi, thêm bớt cho các đối tượng này.
 
-Ở giao diện web, theo cách tạo phiên quét bình thường, người dùng phải trải qua 2 bước thiết lập là chọn các target trong danh sách và cấu hình các phiên quét.
+Ở giao diện web, theo cách tạo phiên quét bình thường, người dùng phải trải qua 3 bước thiết lập là chọn các target trong danh sách, chọn loại quét và có thể tùy chọn điều chỉnh cấu hình của phiên quét.
 Ở đây nhóm sẽ gọi đến các reducer tương ứng để lưu thông tin vào các đối tượng trong store. Cách tiếp cận này giúp nhóm có thể cài đặt hiển thị bền vững thông tin trạng thái của các lựa chọn trong màn hình, có nghĩa nếu đang trong quá trình tạo phiên quét, người dùng có di chuyển khỏi màn hình thì trạng thái của các lựa chọn cũng không mất đi.
 
 Nhờ cách cài đặt này, người dùng có thể sử dụng chức năng này như chức năng tạo nhiều phiên quét cùng lúc.
 Để bắt đầu xử lý gọi các phiên quét, nhóm tạo một custom hook tên useDigestTargetsWithOptions().
 Hook sẽ được gọi khi người dùng chọn bắt đầu quét sau khi đã thực hiện lựa chọn xong.
-Hook gọi đến lần lượt các trạng thái trong scanOption, ở mỗi trạng thái nếu là true thì sẽ duyệt listSelectedTarget và tạo phiên quét tương ứng với id target đó, gọi đến endpoint dùng để quét đã trình bày ở trên.
+Hook gọi đến lần lượt các trạng thái trong scanOption, ở mỗi trạng thái nếu là true thì sẽ duyệt listSelectedTarget, tạo phiên quét tương ứng với id target và cấu hình đó, gọi đến endpoint dùng để quét đã trình bày ở trên.
 
 Sau khi hoàn thành mỗi lần start scan cho phiên quét, để làm mới lại danh sách phiên quét thì nhóm thực hiện đánh dấu cũ cho tag của endpoint lấy danh sách phiên quét (sẽ được trình bày trong mục \textit{\ref{subsec:CaiDatQuanLyPhienQuet} \nameref{subsec:CaiDatQuanLyPhienQuet}}).
 Sau khi hoàn thành thì hook gọi đến reducer tương ứng để làm mới listSelectedTarget và scanOption.
